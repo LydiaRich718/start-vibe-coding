@@ -27,7 +27,7 @@
   --shadow-lift:0 4px 0 rgba(32,34,63,.08), 0 26px 50px -18px rgba(32,34,63,.32);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth; scroll-padding-top:96px}
+html{scroll-behavior:smooth; scroll-padding-top:calc(var(--topbar-h,52px) + var(--osbar-h,56px) + 14px)}
 body{
   margin:0; background:var(--cream); color:var(--ink);
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -47,7 +47,7 @@ code,kbd,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
 
 /* ---------- decorative background ---------- */
 .blobs{position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none}
-.blob{position:absolute; border-radius:50%; filter:blur(70px); opacity:.5; animation:drift 26s ease-in-out infinite}
+.blob{position:absolute; border-radius:50%; filter:blur(70px); opacity:.5; animation:drift 26s ease-in-out infinite; will-change:transform; backface-visibility:hidden}
 .blob.b1{width:460px;height:460px;background:var(--pink-bg);top:-140px;left:-120px}
 .blob.b2{width:420px;height:420px;background:var(--blue-bg);top:36%;right:-160px;animation-delay:-8s}
 .blob.b3{width:400px;height:400px;background:var(--mint-bg);bottom:-120px;left:8%;animation-delay:-15s}
@@ -56,8 +56,8 @@ code,kbd,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
 
 /* ---------- sticky progress bar ---------- */
 .topbar{
-  position:sticky; top:0; z-index:60; backdrop-filter:blur(14px);
-  background:rgba(255,252,246,.86); border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:60;
+  background:var(--cream); border-bottom:1px solid var(--line);
 }
 .topbar-in{max-width:940px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:14px}
 .tb-logo{font-family:Fraunces,serif;font-weight:800;font-size:1.05rem;white-space:nowrap}
@@ -76,7 +76,7 @@ code,kbd,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
   border-radius:99px;padding:7px 16px;font-size:.82rem;font-weight:700;margin-bottom:26px;
   box-shadow:3px 3px 0 var(--yellow); animation:pop .6s cubic-bezier(.2,1.4,.4,1) both;
 }
-.hero h1 .hl{position:relative;white-space:nowrap}
+.hero h1 .hl{position:relative;z-index:0;white-space:nowrap}
 .hero h1 .hl:after{
   content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.34em;background:var(--yellow);
   z-index:-1;border-radius:6px;transform:scaleX(0);transform-origin:left;animation:swipe .9s .5s cubic-bezier(.2,.9,.3,1) forwards;
@@ -130,7 +130,10 @@ section{padding:44px 0}
 .loopstep.on{transform:translateY(-6px) scale(1.03);box-shadow:0 12px 0 -4px var(--mint),0 18px 30px -14px rgba(0,0,0,.3);background:var(--mint-bg)}
 
 /* ---------- OS switch ---------- */
-.osbar{position:sticky;top:52px;z-index:50;display:flex;justify-content:center;margin:0 0 30px}
+.osbar{
+  position:sticky; top:var(--topbar-h,52px); z-index:50; display:flex; justify-content:center;
+  padding:12px 0 14px; margin:0 0 16px; background:var(--cream);
+}
 .osswitch{display:inline-flex;background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:4px;box-shadow:var(--shadow); gap:4px}
 .osswitch button{
   border:0;background:none;padding:9px 22px;border-radius:99px;font-weight:700;font-size:.92rem;cursor:pointer;
@@ -276,7 +279,28 @@ kbd{
   border:2px solid var(--ink);border-radius:28px;padding:44px 26px;box-shadow:var(--shadow-lift);margin:20px 0;
 }
 .finish .big{font-size:3.6rem;display:block;margin-bottom:8px;animation:bob 2.4s ease-in-out infinite}
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:200;display:none}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:400;display:none}
+
+/* ---------- celebration modal ---------- */
+.party{position:fixed;inset:0;z-index:300;display:none;place-items:center;padding:22px;background:rgba(32,34,63,.55)}
+.party.show{display:grid;animation:fadeIn .25s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.party-card{
+  background:var(--card);border:3px solid var(--ink);border-radius:28px;padding:36px 28px 30px;
+  max-width:440px;width:100%;text-align:center;position:relative;
+  box-shadow:0 10px 0 var(--pink),0 40px 70px -20px rgba(32,34,63,.6);
+  animation:springIn .55s cubic-bezier(.2,1.5,.4,1) both;
+}
+@keyframes springIn{from{opacity:0;transform:translateY(40px) scale(.85)}to{opacity:1;transform:none}}
+.party-card .emoji{font-size:4rem;display:block;line-height:1;margin-bottom:10px;animation:tada 1.2s ease-in-out infinite}
+@keyframes tada{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(-9deg) scale(1.12)}75%{transform:rotate(9deg) scale(1.12)}}
+.party-card h2{font-size:2rem;margin-bottom:.3em}
+.party-card p{color:var(--ink-soft);margin-bottom:20px}
+.party-card .btn{padding:13px 26px;font-size:.98rem}
+.party-close{position:absolute;top:10px;right:14px;border:0;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink-soft);padding:6px;font-family:inherit}
+.party-close:hover{color:var(--pink)}
+.party-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.party-badges span{background:var(--yellow-bg);border:2px solid var(--ink);border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:700}
 
 footer{padding:50px 0 70px;text-align:center;color:var(--ink-soft);font-size:.88rem}
 footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 22px,var(--yellow) 22px 44px,var(--mint) 44px 66px,var(--blue) 66px 88px);border-radius:2px;margin-bottom:26px}
@@ -287,7 +311,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   .copy{padding:16px 16px 58px}
   .copy button{top:auto;bottom:14px;right:14px}
   .mock-side{display:none}
-  .osbar{top:50px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -299,6 +322,16 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 <body data-os="mac">
 <div class="blobs"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
 <canvas id="confetti"></canvas>
+<div class="party" id="party" role="dialog" aria-modal="true" aria-labelledby="party-title">
+  <div class="party-card">
+    <button class="party-close" id="party-x" aria-label="Close">×</button>
+    <span class="emoji">🎉</span>
+    <h2 id="party-title">You actually did it.</h2>
+    <p>Ten out of ten. You have a Claude account, a GitHub, a Vercel, a working setup — and something you built that lives on the internet.</p>
+    <div class="party-badges"><span>✳️ Claude</span><span>🐙 GitHub</span><span>▲ Vercel</span><span>🌍 Shipped</span></div>
+    <a class="btn" href="#next" id="party-next">Pick your next build →</a>
+  </div>
+</div>
 
 <div class="topbar">
   <div class="topbar-in">
@@ -379,68 +412,29 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div class="step-num">0</div>
     <div class="step-title"><h2>Get a Claude account</h2><div class="mins">≈ 5 min · paid · needed first</div></div>
   </div>
-  <p>Claude Code needs a paid Claude plan. The free plan won't work.</p>
+  <p>Claude Code needs a paid Claude plan. The free plan won't work — it's chat only.</p>
   <ol class="dolist">
     <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> → <b>Sign up</b>. Use email or Google.</li>
     <li>Once in: click your name (bottom left) → <b>Settings</b> → <b>Plans</b>.</li>
-    <li>Pick <b>Pro</b> (about $20/month). It includes Claude Code.</li>
-    <li>Remember the login — you'll need it in Step 6.</li>
+    <li>Pick <b>Pro</b> — $20/month, or $17/month if you pay for the year.</li>
+    <li>Remember the login. You'll use it again in Step 4.</li>
   </ol>
   <div class="note tip">
     <h4>💸 Which plan?</h4>
     <ul class="plain">
       <li><b>Free</b> — chat only. Won't work here.</li>
       <li><b>Pro</b> — start here. Plenty for learning.</li>
-      <li><b>Max</b> — only if you're coding all day and hitting limits. Upgrade later in one click.</li>
+      <li><b>Max</b> — from $100/month. Only if you're coding all day and hitting limits. Upgrade later in one click.</li>
     </ul>
+    <p style="margin-bottom:0;font-size:.88rem">This is the only thing in this whole guide you pay for. Everything else is free.</p>
   </div>
   <label class="check"><input type="checkbox" data-step="0"><span class="box"></span><span class="lbl">Claude account, paid plan ✓</span></label>
 </article>
 
 <!-- STEP 1 -->
-<article class="step" id="step1" style="--c:var(--blue);--cbg:var(--blue-bg)">
+<article class="step" id="step1" style="--c:var(--pink);--cbg:var(--pink-bg)">
   <div class="step-head">
     <div class="step-num">1</div>
-    <div class="step-title"><h2>Get a GitHub account</h2><div class="mins">≈ 3 min · free</div></div>
-  </div>
-  <p>GitHub stores your projects online, free. You need it later to put things on the internet. Do it now while you're in signing-up mode.</p>
-  <ol class="dolist">
-    <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
-    <li>Enter your email, make a password, pick a username.</li>
-    <li>Your username shows up in links — pick something you'd say out loud. Lowercase, no spaces.</li>
-    <li>Confirm the code they email you. Choose the <b>Free</b> plan.</li>
-  </ol>
-  <div class="note tip">
-    <h4>💡 Write down your username</h4>
-    <p style="margin-bottom:0">You'll need it, and it's easy to forget which one you picked. Free covers everything in this guide — there's nothing to pay for.</p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="1"><span class="box"></span><span class="lbl">GitHub account, free plan ✓</span></label>
-</article>
-
-<!-- STEP 2 -->
-<article class="step" id="step2" style="--c:var(--mint);--cbg:var(--mint-bg)">
-  <div class="step-head">
-    <div class="step-num">2</div>
-    <div class="step-title"><h2>Get a Vercel account</h2><div class="mins">≈ 2 min · free</div></div>
-  </div>
-  <p>Vercel puts your project on the real internet, with a real link you can text someone. Also free.</p>
-  <ol class="dolist">
-    <li>Go to <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a>.</li>
-    <li>Choose <b>Hobby</b> — that's the free one.</li>
-    <li>Click <b>Continue with GitHub</b> and log in with the account you just made.</li>
-    <li>Approve the permissions box. Done — nothing to set up yet.</li>
-  </ol>
-  <div class="note see">
-    <h4>👀 You should see</h4>
-    <p style="margin-bottom:0">An empty Vercel dashboard saying you have no projects. Correct. Close the tab; you'll come back at Step 9.</p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="2"><span class="box"></span><span class="lbl">Vercel account, Hobby (free) ✓</span></label>
-</article>
-
-<!-- STEP 3 -->
-<article class="step" id="step3" style="--c:var(--pink);--cbg:var(--pink-bg)">
-  <div class="step-head">
-    <div class="step-num">3</div>
     <div class="step-title"><h2>Install VS Code</h2><div class="mins">≈ 5 min · free</div></div>
   </div>
   <ol class="dolist">
@@ -479,20 +473,20 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
       <div class="mock-main">↖ that strip of icons is the <b>Activity Bar</b>. It's the only part you need.</div>
     </div>
   </div>
-  <label class="check"><input type="checkbox" data-step="3"><span class="box"></span><span class="lbl">VS Code is installed and open</span></label>
+  <label class="check"><input type="checkbox" data-step="1"><span class="box"></span><span class="lbl">VS Code is installed and open</span></label>
 </article>
 
-<!-- STEP 4 -->
-<article class="step" id="step4" style="--c:var(--orange);--cbg:var(--orange-bg)">
+<!-- STEP 2 -->
+<article class="step" id="step2" style="--c:var(--orange);--cbg:var(--orange-bg)">
   <div class="step-head">
-    <div class="step-num">4</div>
-    <div class="step-title"><h2>Add Claude Code to VS Code</h2><div class="mins">≈ 3 min</div></div>
+    <div class="step-num">2</div>
+    <div class="step-title"><h2>Add Claude Code to VS Code</h2><div class="mins">≈ 3 min · free</div></div>
   </div>
   <p>An "extension" is an add-on for VS Code. You're installing the one that puts Claude inside it.</p>
   <ol class="dolist">
     <li>Click the <b>four squares</b> 🧩 icon on the far left. <span class="mac-only">Or <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>X</kbd>.</span><span class="win-only">Or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>.</span></li>
     <li>In the search box, type <b>Claude Code</b>.</li>
-    <li>Pick the one published by <b>Anthropic</b>. Check the name — there are copycats.</li>
+    <li>Pick the one published by <b>Anthropic</b>. Check the publisher — there are copycats.</li>
     <li>Click <b>Install</b> and wait a few seconds.</li>
   </ol>
   <div class="mock">
@@ -509,19 +503,23 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   </div>
   <div class="note see">
     <h4>👀 You should see</h4>
-    <p style="margin-bottom:0">A new <b>✳ Claude</b> icon in that left strip. If not, quit VS Code completely and reopen it.</p>
+    <p style="margin-bottom:0">A new <b>Spark</b> icon (a little four-pointed star, ✳) appear in that left strip. That star means Claude everywhere in VS Code — get used to spotting it.</p>
+  </div>
+  <div class="note stuck">
+    <h4>🔦 No star?</h4>
+    <p style="margin-bottom:0">Quit VS Code completely and reopen. Or press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. One of those always does it.</p>
   </div>
   <div class="note warn">
     <h4>🙅 You do NOT need</h4>
-    <p style="margin-bottom:0">Node.js. Git installed manually. A terminal. Tutorials that demand these are for a different setup. Claude will tell you if a project needs them later.</p>
+    <p style="margin-bottom:0">Node.js. Git installed by hand. A terminal. Tutorials demanding these are for a different setup. Claude will tell you if a project needs them later.</p>
   </div>
-  <label class="check"><input type="checkbox" data-step="4"><span class="box"></span><span class="lbl">Claude Code extension installed</span></label>
+  <label class="check"><input type="checkbox" data-step="2"><span class="box"></span><span class="lbl">Claude Code extension installed</span></label>
 </article>
 
-<!-- STEP 5 -->
-<article class="step" id="step5" style="--c:var(--yellow);--cbg:var(--yellow-bg)">
+<!-- STEP 3 -->
+<article class="step" id="step3" style="--c:var(--yellow);--cbg:var(--yellow-bg)">
   <div class="step-head">
-    <div class="step-num">5</div>
+    <div class="step-num">3</div>
     <div class="step-title"><h2>Make your first project folder</h2><div class="mins">≈ 2 min</div></div>
   </div>
   <p>Everything lives in a folder. Claude only touches files inside the folder you open — that's your safety net.</p>
@@ -551,28 +549,37 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <h4>💡 Naming rule</h4>
     <p style="margin-bottom:0">Lowercase, no spaces, use dashes. <code>my-recipe-site</code> ✅ &nbsp; <code>My Recipe Site</code> ❌ — spaces cause weird errors later.</p>
   </div>
-  <label class="check"><input type="checkbox" data-step="5"><span class="box"></span><span class="lbl">Empty project folder open in VS Code</span></label>
+  <label class="check"><input type="checkbox" data-step="3"><span class="box"></span><span class="lbl">Empty project folder open in VS Code</span></label>
 </article>
 
-<!-- STEP 6 -->
-<article class="step" id="step6" style="--c:var(--purple);--cbg:var(--purple-bg)">
+<!-- STEP 4 -->
+<article class="step" id="step4" style="--c:var(--mint);--cbg:var(--mint-bg)">
   <div class="step-head">
-    <div class="step-num">6</div>
+    <div class="step-num">4</div>
     <div class="step-title"><h2>Open Claude and sign in</h2><div class="mins">≈ 3 min</div></div>
   </div>
   <ol class="dolist">
-    <li>Click the <b>✳ Claude</b> icon in the left strip. A chat panel opens.</li>
+    <li>Click the <b>Spark</b> star ✳ in the left strip. A Claude panel opens.</li>
     <li>Click <b>Sign in</b>. Your browser pops open.</li>
     <li>Log in with your Claude account from Step 0 → <b>Authorize</b>.</li>
     <li>Close the browser tab and go back to VS Code.</li>
   </ol>
+  <div class="note see">
+    <h4>👀 You should see</h4>
+    <p>A chat box waiting for you — plus a little <b>Learn Claude Code</b> checklist. That's the extension's own tour. Click through it or dismiss it with the <b>×</b>; this guide covers the same ground.</p>
+    <p style="margin-bottom:0">The star also shows up in the <b>top-right</b> of the editor, but only once you have a file open — so it won't be there yet. The one in the left strip is always there.</p>
+  </div>
   <div class="note stuck">
-    <h4>🔦 Can't find the Claude icon?</h4>
+    <h4>🔦 Can't find it?</h4>
     <ul class="plain">
-      <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick the option that opens it. (<kbd>⇧</kbd> is Shift.)</li>
-      <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick the option that opens it.</li>
-      <li>Still nothing? Quit VS Code fully and reopen. Fixes it 9 times out of 10.</li>
+      <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick an option like "Open in New Tab". (<kbd>⇧</kbd> is Shift.)</li>
+      <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick an option like "Open in New Tab".</li>
+      <li>Still nothing? Same box, run <b>Developer: Reload Window</b>.</li>
     </ul>
+  </div>
+  <div class="note tip">
+    <h4>🎬 Want the official tour too?</h4>
+    <p style="margin-bottom:0">In that same command box, run <b>Claude Code: Open Walkthrough</b>. Two minutes, made by the people who built it.</p>
   </div>
   <div class="mock">
     <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">first-try — Claude Code</span></div>
@@ -582,13 +589,13 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
       <div class="mock-main" style="background:#faf8ff">✳ <b>Claude</b><br><br><span style="border:1px solid var(--line);border-radius:8px;padding:5px 9px;display:inline-block;width:90%">Type your message…</span></div>
     </div>
   </div>
-  <label class="check"><input type="checkbox" data-step="6"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
+  <label class="check"><input type="checkbox" data-step="4"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
 </article>
 
-<!-- STEP 7 -->
-<article class="step" id="step7" style="--c:var(--blue);--cbg:var(--blue-bg)">
+<!-- STEP 5 -->
+<article class="step" id="step5" style="--c:var(--blue);--cbg:var(--blue-bg)">
   <div class="step-head">
-    <div class="step-num">7</div>
+    <div class="step-num">5</div>
     <div class="step-title"><h2>Send your first two messages</h2><div class="mins">≈ 5 min · the fun bit</div></div>
   </div>
   <p>One sets the ground rules. Two gives it a job. Click to copy.</p>
@@ -608,22 +615,23 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   <div class="note see">
     <h4>👀 You should see</h4>
     <ul class="plain">
-      <li>Claude explains what it's about to do.</li>
+      <li>Claude explains what it's doing, then gets on with it.</li>
       <li>A file called <code>index.html</code> appears on the left. You made a file.</li>
-      <li>Claude may stop and ask <b>permission</b>.</li>
     </ul>
   </div>
   <div class="note warn">
-    <h4>🚦 Those permission pop-ups</h4>
-    <p style="margin-bottom:0"><b>Yes</b> if it's creating or editing a file inside <code>first-try</code> — that's the job you gave it. <b>Ask first</b> if it wants to delete lots of things, work outside your folder, or install something. Typing "why do you need that?" is always allowed.</p>
+    <h4>🚦 It edits files without asking. That's normal.</h4>
+    <p>At the bottom of the chat box there's a small word — that's the <b>mode</b>. On a Pro plan it starts on <b>Auto</b>, which means Claude writes and edits files in your folder without stopping to ask each time. It's meant to feel like that.</p>
+    <p>If that makes you twitchy, click that word and choose <b>Plan</b>. Claude then writes out what it intends to do and waits for your yes before touching anything. It's a lovely way to learn — you get to read the plan before it happens.</p>
+    <p style="margin-bottom:0">Whichever mode you're in, it still stops and asks before anything genuinely risky: deleting a lot, reaching outside your folder, installing software. If a request ever surprises you, type <b>"why do you need that?"</b> — nothing happens until you say so.</p>
   </div>
-  <label class="check"><input type="checkbox" data-step="7"><span class="box"></span><span class="lbl">Claude made me a file</span></label>
+  <label class="check"><input type="checkbox" data-step="5"><span class="box"></span><span class="lbl">Claude made me a file</span></label>
 </article>
 
-<!-- STEP 8 -->
-<article class="step" id="step8" style="--c:var(--pink);--cbg:var(--pink-bg)">
+<!-- STEP 6 -->
+<article class="step" id="step6" style="--c:var(--purple);--cbg:var(--purple-bg)">
   <div class="step-head">
-    <div class="step-num">8</div>
+    <div class="step-num">6</div>
     <div class="step-title"><h2>Look at it. Then change it.</h2><div class="mins">≈ 10 min · most-skipped step</div></div>
   </div>
   <p>Code you never looked at is a rumour. Easiest way to see it — just ask:</p>
@@ -651,19 +659,18 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <h4>🧭 The one rule that saves you</h4>
     <p style="margin-bottom:0"><b>Change one thing, then look.</b> Ask for eight changes at once and something breaks — you'll have no idea which one did it. For anything bigger than a tweak, say <b>"tell me your plan first."</b></p>
   </div>
-  <label class="check"><input type="checkbox" data-step="8"><span class="box"></span><span class="lbl">I saw my page and changed it</span></label>
+  <label class="check"><input type="checkbox" data-step="6"><span class="box"></span><span class="lbl">I saw my page and changed it</span></label>
 </article>
 
-<!-- STEP 9 -->
-<article class="step" id="step9" style="--c:var(--mint);--cbg:var(--mint-bg)">
+<!-- STEP 7 -->
+<article class="step" id="step7" style="--c:var(--pink);--cbg:var(--pink-bg)">
   <div class="step-head">
-    <div class="step-num">9</div>
-    <div class="step-title"><h2>Save your work &amp; put it online</h2><div class="mins">≈ 10 min · this is where the accounts pay off</div></div>
+    <div class="step-num">7</div>
+    <div class="step-title"><h2>Save your work properly</h2><div class="mins">≈ 5 min · do this before you break something</div></div>
   </div>
-
   <h4>📌 What Git actually is</h4>
-  <p>Git is an undo history for your whole project. Each time you <b>commit</b>, it records exactly what every file looked like at that moment. Later you can go back to any of those moments. GitHub is just a website that stores that history online, so it's backed up and shareable.</p>
-  <p>You don't have to learn any of it. Claude does the work — you say the words:</p>
+  <p>Git is an undo history for your whole project. Each time you <b>commit</b>, it records exactly what every file looked like at that moment. Later you can go back to any of those moments.</p>
+  <p>You don't have to learn it. Claude does the work — you say the words:</p>
   <div class="copy">
     <span class="tag">When something works</span>
     <div class="txt">This version works. Please set up Git if it isn't already, and commit this as a save point.</div>
@@ -674,10 +681,53 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div class="txt">Something is broken. Take me back to the last commit, and explain in simple words what went wrong.</div>
     <button>Copy</button>
   </div>
-  <p style="font-size:.94rem;color:var(--ink-soft)">Commit <b>before</b> anything big, and <b>after</b> anything that works.</p>
+  <div class="note tip">
+    <h4>⏰ When to commit</h4>
+    <p style="margin-bottom:0"><b>After</b> anything that works. <b>Before</b> anything big. It takes four seconds and it is the difference between "oh well" and "oh no".</p>
+  </div>
+  <label class="check"><input type="checkbox" data-step="7"><span class="box"></span><span class="lbl">I made my first commit</span></label>
+</article>
 
-  <h4 style="margin-top:26px">🌍 Now get a real link</h4>
-  <p>Time to use those free GitHub and Vercel accounts. Paste this:</p>
+<!-- STEP 8 -->
+<article class="step" id="step8" style="--c:var(--orange);--cbg:var(--orange-bg)">
+  <div class="step-head">
+    <div class="step-num">8</div>
+    <div class="step-title"><h2>Make two free accounts</h2><div class="mins">≈ 5 min · both free · needed for Step 9</div></div>
+  </div>
+  <p>To get your thing onto the actual internet you need two more accounts. Both free, no card.</p>
+
+  <h4>🐙 GitHub — stores your project online</h4>
+  <ol class="dolist">
+    <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
+    <li>Email, password, username. Your username shows up in links — lowercase, no spaces, something you'd say out loud.</li>
+    <li>Confirm the emailed code. Choose the <b>Free</b> plan.</li>
+    <li><b>Write your username down.</b> Everyone forgets which one they picked.</li>
+  </ol>
+
+  <h4 style="margin-top:24px">▲ Vercel — puts it on the internet</h4>
+  <ol class="dolist">
+    <li>Go to <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a>.</li>
+    <li>Click <b>Continue with GitHub</b> and use the account you just made.</li>
+    <li>Approve the permissions box, and pick <b>Hobby</b> when it asks — that's the free one.</li>
+  </ol>
+  <div class="note see">
+    <h4>👀 You should see</h4>
+    <p style="margin-bottom:0">An empty Vercel dashboard saying you have no projects. Correct. Step 9 fills it.</p>
+  </div>
+  <div class="note warn">
+    <h4>⚖️ One rule about the free Vercel plan</h4>
+    <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects, showing your mum — all fine. The moment it's a business or a client's site, Vercel expects you on a paid plan.</p>
+  </div>
+  <label class="check"><input type="checkbox" data-step="8"><span class="box"></span><span class="lbl">GitHub + Vercel accounts made (both free)</span></label>
+</article>
+
+<!-- STEP 9 -->
+<article class="step" id="step9" style="--c:var(--mint);--cbg:var(--mint-bg)">
+  <div class="step-head">
+    <div class="step-num">9</div>
+    <div class="step-title"><h2>Put it on the internet</h2><div class="mins">≈ 10 min · the payoff</div></div>
+  </div>
+  <p>Time to get a link you can text someone. Paste this and follow along:</p>
   <div class="copy prompt">
     <span class="tag">Paste into Claude</span>
     <div class="txt">I want to put this on the internet so I can send someone a link. I have free GitHub and Vercel accounts. Please walk me through it one step at a time, using the free options, and tell me exactly what to click. Stop and wait after each step.</div>
@@ -686,15 +736,19 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   <div class="note see">
     <h4>👀 What happens</h4>
     <ul class="plain">
-      <li>Claude pushes your project to GitHub (it may ask you to log in once).</li>
+      <li>Claude pushes your project up to GitHub. It may ask you to log in once.</li>
       <li>You connect that GitHub project to Vercel in the browser.</li>
       <li>Vercel hands you a link ending in <code>.vercel.app</code>.</li>
-      <li>Text it to someone. It's live on the actual internet.</li>
+      <li>Send it to someone. It's live on the real internet.</li>
     </ul>
+  </div>
+  <div class="note stuck">
+    <h4>🔐 If your friend's link asks them to log in</h4>
+    <p style="margin-bottom:0">Vercel switches on a thing called <b>Deployment Protection</b>, which locks the page to your account. Go to your project on <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → <b>Settings</b> → <b>Deployment Protection</b> → turn <b>Vercel Authentication</b> off → Save. Now anyone can open it.</p>
   </div>
   <div class="note tip">
     <h4>♻️ From now on</h4>
-    <p style="margin-bottom:0">Every time you commit and push, Vercel updates your live site automatically. Just say <b>"commit and push this"</b> and refresh the link a minute later.</p>
+    <p style="margin-bottom:0">Say <b>"commit and push this"</b>, wait a minute, refresh your link. Vercel updates the live site by itself every time. That's the whole publishing workflow, forever.</p>
   </div>
   <label class="check"><input type="checkbox" data-step="9"><span class="box"></span><span class="lbl">My thing is on the internet 🌍</span></label>
 </article>
@@ -705,7 +759,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   <p style="max-width:500px;margin:0 auto 22px">Everything else — apps, databases, big real websites — is these same steps, repeated more times. You now know how to build software.</p>
   <a class="btn" href="#cheat">Get the cheat sheet →</a>
 </div>
-
 <section id="safe">
   <div class="sec-head">
     <h2>Three rules that keep you safe</h2>
@@ -748,43 +801,86 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 <section id="stuck">
   <div class="sec-head">
     <h2>When you get stuck</h2>
-    <p>You will. Everyone does, forever. The usual suspects:</p>
+    <p>You will. Everyone does, forever. Here's the usual suspects.</p>
   </div>
-  <details class="acc"><summary>I can't find the Claude icon</summary><div class="inner">
-    <p>Quit VS Code completely <span class="mac-only">(<kbd>⌘</kbd>+<kbd>Q</kbd>)</span> and reopen. If it's still missing, check the Extensions panel says Claude Code is <b>Installed</b>, by Anthropic.</p>
+
+  <h3 style="margin:26px 0 12px">Setup won't cooperate</h3>
+  <details class="acc"><summary>I can't find the Spark star in VS Code</summary><div class="inner">
+    <p>Quit VS Code completely <span class="mac-only">(<kbd>⌘</kbd>+<kbd>Q</kbd> — closing the window isn't enough)</span><span class="win-only">(close it from the taskbar too)</span> and reopen. If it's still missing, press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. Still nothing? Check the Extensions panel says Claude Code is <b>Installed</b>, by Anthropic.</p>
   </div></details>
   <details class="acc"><summary>It says I need to sign in, or my plan won't work</summary><div class="inner">
-    <p>Claude Code needs a paid plan. Check <a href="https://claude.ai/settings/billing" target="_blank" rel="noopener">claude.ai → Settings → Billing</a>, then sign out and back in inside VS Code.</p>
+    <p>Claude Code needs a paid plan — Pro, Max, Team or Enterprise. Check <a href="https://claude.ai/settings/billing" target="_blank" rel="noopener">claude.ai → Settings → Billing</a> that it's actually active, then sign out and back in inside VS Code.</p>
   </div></details>
-  <details class="acc"><summary>Should I approve this permission pop-up?</summary><div class="inner">
-    <p><b>Yes</b> for creating or editing files in your project folder. <b>Ask first</b> for deleting lots of files, working outside the folder, installing software, or sending things to the internet. Nothing happens until you approve.</p>
-  </div></details>
-  <details class="acc"><summary>My change isn't showing up</summary><div class="inner">
-    <p>Refresh the browser <span class="mac-only">(<kbd>⌘</kbd>+<kbd>R</kbd>)</span><span class="win-only">(<kbd>Ctrl</kbd>+<kbd>R</kbd>)</span>. Still nothing? Ask: <b>"Which exact file should I open, and what's its full path?"</b></p>
-  </div></details>
-  <details class="acc"><summary>Everything broke</summary><div class="inner">
-    <p>Say: <b>"Stop. Explain what changed in simple words, then undo it."</b> If you committed, say <b>"take me back to the last commit."</b> This is exactly why commits exist.</p>
-  </div></details>
-  <details class="acc"><summary>There's scary red text</summary><div class="inner">
-    <p>Red is normal — usually a warning, not a disaster. Copy the whole thing, paste it to Claude, and say: <b>"I got this error. What does it mean and how do I fix it?"</b> That's what professionals do too.</p>
-  </div></details>
-  <details class="acc"><summary>I hit my usage limit</summary><div class="inner">
-    <p>Every plan refills every few hours. Wait, or upgrade. Nothing is broken and your work is saved.</p>
-  </div></details>
-  <details class="acc"><summary>My site didn't update after I pushed</summary><div class="inner">
-    <p>Give Vercel a minute, then hard-refresh. If it's still old, check on <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> whether the latest deploy succeeded — and if it failed, paste the error to Claude.</p>
+  <details class="acc"><summary>Nothing's happening. It's just sitting there.</summary><div class="inner">
+    <p>Give it 30 seconds — it thinks before it types, and bigger jobs take a minute. If it's genuinely frozen, there's a stop button; press it and send your message again. If that fails, <b>Developer: Reload Window</b> from the command box. Your files are on disk, so nothing is lost.</p>
   </div></details>
   <details class="acc"><summary>Do I need Node.js? Python? Homebrew?</summary><div class="inner">
-    <p>Not to start. Claude will say so when a project genuinely needs one. Don't install things "just in case".</p>
+    <p>Not to start. Claude will tell you when a project genuinely needs one, and can install it with you. Don't install things "just in case" — that's how beginners end up with four broken versions of everything.</p>
   </div></details>
-  <details class="acc"><summary>Optional: the terminal version</summary><div class="inner">
-    <p>Skippable forever. If you want Claude Code as a terminal command: in VS Code go to <b>Terminal → New Terminal</b>, paste the line below, press Enter, then type <code>claude</code>.</p>
+
+  <h3 style="margin:30px 0 12px">Claude is doing something weird</h3>
+  <details class="acc"><summary>It edited my files without asking. Is that normal?</summary><div class="inner">
+    <p>Yes. On a Pro plan it starts in <b>Auto</b> mode, where it just gets on with edits inside your project. Look at the bottom of the chat box — the mode is written there.</p>
+    <p>Want to be asked first? Click it and pick <b>Plan</b> (it writes out its intentions and waits) or <b>Manual</b> (it asks before each edit). Beginners often like Plan for the first week.</p>
+  </div></details>
+  <details class="acc"><summary>It IS asking permission. Should I say yes?</summary><div class="inner">
+    <p><b>Yes</b> for creating or editing files inside your project folder — that's the job you gave it.</p>
+    <p><b>Ask first</b> for deleting lots of files, working outside your folder, installing software, or sending things to the internet. Type <b>"why do you need that?"</b> Nothing happens until you approve.</p>
+  </div></details>
+  <details class="acc"><summary>Everything broke and I don't know what happened</summary><div class="inner">
+    <p>Say: <b>"Stop. Explain what changed in simple words, then undo it."</b> If you committed, say <b>"take me back to the last commit."</b> This is exactly why commits exist. Nothing is ever really lost.</p>
+  </div></details>
+  <details class="acc"><summary>There's scary red text</summary><div class="inner">
+    <p>Red is normal — usually a warning, not a disaster. Copy the whole thing, paste it to Claude, and say: <b>"I got this error. What does it mean and how do I fix it?"</b> That is genuinely what professionals do too.</p>
+  </div></details>
+  <details class="acc"><summary>My change isn't showing up</summary><div class="inner">
+    <p>Refresh the browser <span class="mac-only">(<kbd>⌘</kbd>+<kbd>R</kbd>)</span><span class="win-only">(<kbd>Ctrl</kbd>+<kbd>R</kbd>)</span>. Still nothing? Ask: <b>"Which exact file should I open, and what's its full path?"</b> — you're probably looking at a different copy.</p>
+  </div></details>
+  <details class="acc"><summary>Claude forgot what we were doing</summary><div class="inner">
+    <p>Long conversations get trimmed, and a new chat starts blank. Click <b>Session history</b> at the top of the Claude panel to reopen an old conversation with everything in it. Starting fresh? Just say what you're building in one line — it reads your files anyway.</p>
+  </div></details>
+
+  <h3 style="margin:30px 0 12px">Coming back tomorrow</h3>
+  <details class="acc"><summary>I closed VS Code. Is my work gone?</summary><div class="inner">
+    <p>No. It's saved in your folder on your computer. Open VS Code → <b>File</b> → <b>Open Recent</b> → pick your project, then click the Spark star. Carry on where you left off.</p>
+  </div></details>
+  <details class="acc"><summary>Can I have more than one project?</summary><div class="inner">
+    <p>Yes — one folder each, that's the whole system. Make a new folder, <b>File → Open Folder</b>, and Claude only sees that one. Never put two projects in one folder; it gets confusing fast.</p>
+  </div></details>
+  <details class="acc"><summary>I hit my usage limit</summary><div class="inner">
+    <p>Every plan refills every few hours. Wait it out, or upgrade. Nothing is broken and your work is saved.</p>
+  </div></details>
+
+  <h3 style="margin:30px 0 12px">Money, privacy, and the internet</h3>
+  <details class="acc"><summary>How much does all this actually cost?</summary><div class="inner">
+    <p><b>Claude Pro — $20/month</b> ($17 if you pay yearly). That's the only bill.</p>
+    <p style="margin-bottom:0">VS Code: free. GitHub: free. Vercel Hobby: free. A custom domain like <code>yourname.com</code>, if you ever want one, is roughly $10–15 a year and totally optional.</p>
+  </div></details>
+  <details class="acc"><summary>Can I use this for a business or a client's site?</summary><div class="inner">
+    <p>The free Vercel Hobby plan is for <b>personal, non-commercial</b> use only. The moment it's a business, a client, or anything selling something, Vercel expects you on their paid plan. Learning and side projects are exactly what Hobby is for.</p>
+  </div></details>
+  <details class="acc"><summary>My shared link asks people to log in</summary><div class="inner">
+    <p>That's Vercel's <b>Deployment Protection</b>, on by default, locking the page to your account. Fix: <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → your project → <b>Settings</b> → <b>Deployment Protection</b> → turn <b>Vercel Authentication</b> off → Save.</p>
+  </div></details>
+  <details class="acc"><summary>My site didn't update after I pushed</summary><div class="inner">
+    <p>Give it a minute, then hard-refresh. Still old? On <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a>, check whether the newest deploy succeeded — if it failed, click into it, copy the error, and paste it to Claude.</p>
+  </div></details>
+  <details class="acc"><summary>Is my code private?</summary><div class="inner">
+    <p>What you type and the files Claude reads go to Anthropic's servers to be worked on — that's how it functions. Your GitHub repos are private unless you make them public, and Claude runs on your own machine on your own folder.</p>
+    <p style="margin-bottom:0">The rule that matters: <b>never put real passwords, API keys, or real customer data in a project you're learning with.</b> For the specifics on how your data is handled, read <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic's privacy policy</a> and check the privacy settings in your Claude account.</p>
+  </div></details>
+
+  <h3 style="margin:30px 0 12px">Optional extras</h3>
+  <details class="acc"><summary>What's the terminal version, and do I need it?</summary><div class="inner">
+    <p>Same Claude, no buttons — you type <code>claude</code> in a black text window instead. You can skip it forever. If you're curious: in VS Code go to <b>Terminal → New Terminal</b>, paste the line below, press Enter, then type <code>claude</code>.</p>
     <div class="copy mac-only"><span class="tag">Mac</span><div class="txt">curl -fsSL https://claude.ai/install.sh | bash</div><button>Copy</button></div>
     <div class="copy win-only"><span class="tag">Windows PowerShell</span><div class="txt">irm https://claude.ai/install.ps1 | iex</div><button>Copy</button></div>
-    <p style="margin-bottom:0">Rule: never paste a command you found online without asking Claude "what does this do?" first.</p>
+    <p style="margin-bottom:0">Rule: never paste a command you found online without asking Claude "what does this actually do?" first.</p>
+  </div></details>
+  <details class="acc"><summary>Is there an official tour?</summary><div class="inner">
+    <p>Yes. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Claude Code: Open Walkthrough</b>. The full docs live at <a href="https://code.claude.com/docs" target="_blank" rel="noopener">code.claude.com/docs</a>.</p>
   </div></details>
 </section>
-
 <section id="words">
   <div class="sec-head">
     <h2>Words people will say at you</h2>
@@ -829,7 +925,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   <div class="wrap">
     <div class="hr"></div>
     <p style="font-size:1.05rem;color:var(--ink)"><b>Made for someone who's about to surprise themselves.</b></p>
-    <p>Tick the boxes as you go — this page remembers your place on this device.<br>
+    <p>Tick the boxes as you go. Refreshing starts you fresh, so the link works for the next person too.<br>
     Official docs: <a href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" rel="noopener">docs.claude.com</a> · Last checked September 2026.</p>
   </div>
 </footer>
@@ -837,7 +933,17 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 
 <script>
 (function(){
-  var TOTAL = 10, KEY = 'vibe-start-v2';
+  var TOTAL = 10;
+
+  /* ---------- measure the sticky bars so nothing overlaps or seams ---------- */
+  var topbar=document.querySelector(".topbar"), osbar=document.querySelector(".osbar");
+  function measure(){
+    if(topbar) document.documentElement.style.setProperty("--topbar-h", topbar.offsetHeight+"px");
+    if(osbar)  document.documentElement.style.setProperty("--osbar-h", osbar.offsetHeight+"px");
+  }
+  measure();
+  addEventListener("resize", measure);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 
   /* ---------- OS switch ---------- */
   var osKey='vibe-os', saved=null;
@@ -855,8 +961,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 
   /* ---------- checkboxes + progress ---------- */
   var fill=document.getElementById('fill'), count=document.getElementById('count');
-  var state={};
-  try{ state = JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ state={}; }
+  var state={};          /* deliberately not saved - a refresh starts the guide fresh */
   var celebrated=false;
 
   function paint(fire){
@@ -877,12 +982,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   document.querySelectorAll('.check input').forEach(function(inp){
     inp.addEventListener('change', function(){
       state[inp.dataset.step]=inp.checked;
-      try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){}
       paint(true);
     });
   });
   document.getElementById('reset').addEventListener('click', function(){
-    state={}; try{ localStorage.removeItem(KEY); }catch(e){} paint(false);
+    state={}; paint(false);
   });
   paint(false);
 
@@ -937,6 +1041,18 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     },1100);
   }
 
+  /* ---------- celebration modal ---------- */
+  var partyEl=document.getElementById('party');
+  function party(open){
+    if(!partyEl) return;
+    partyEl.classList.toggle('show', open);
+    if(open){ var x=document.getElementById('party-x'); if(x) x.focus(); }
+  }
+  document.getElementById('party-x').addEventListener('click',function(){ party(false); });
+  document.getElementById('party-next').addEventListener('click',function(){ party(false); });
+  partyEl.addEventListener('click',function(e){ if(e.target===partyEl) party(false); });
+  addEventListener('keydown',function(e){ if(e.key==='Escape') party(false); });
+
   /* ---------- confetti ---------- */
   function boom(){
     var c=document.getElementById('confetti'), ctx=c.getContext('2d');
@@ -959,8 +1075,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
       if(t<300) requestAnimationFrame(frame);
       else { ctx.clearRect(0,0,c.width,c.height); c.style.display='none'; }
     })();
-    var f=document.getElementById('finish');
-    if(f) f.scrollIntoView({behavior:'smooth',block:'center'});
+    party(true);
   }
 })();
 </script>
