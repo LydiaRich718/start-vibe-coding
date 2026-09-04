@@ -305,6 +305,30 @@ kbd{
 footer{padding:50px 0 70px;text-align:center;color:var(--ink-soft);font-size:.88rem}
 footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 22px,var(--yellow) 22px 44px,var(--mint) 44px 66px,var(--blue) 66px 88px);border-radius:2px;margin-bottom:26px}
 
+/* ---------- link hover previews ---------- */
+.lp{
+  position:fixed; left:0; top:0; z-index:500; pointer-events:none; width:236px;
+  background:var(--card); border:2px solid var(--ink); border-radius:16px; padding:6px 6px 2px;
+  box-shadow:0 7px 0 rgba(32,34,63,.13), 0 26px 44px -18px rgba(32,34,63,.5);
+  opacity:0; visibility:hidden;
+  transform:translate(calc(-50% + var(--lp-x,0px)), 10px) scale(.7);
+  transition:opacity .16s ease, transform .36s cubic-bezier(.2,1.5,.4,1), visibility .16s;
+}
+.lp.on{opacity:1; visibility:visible; transform:translate(calc(-50% + var(--lp-x,0px)), 0) scale(1)}
+.lp-shot{
+  display:block; width:222px; height:139px; border-radius:10px; object-fit:cover; object-position:top center;
+  background:var(--yellow-bg);
+}
+.lp-shot.loading{background:linear-gradient(100deg,var(--yellow-bg) 30%,#fff 50%,var(--yellow-bg) 70%);background-size:220% 100%;animation:shimmer 1.15s linear infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
+.lp-host{
+  font-size:.68rem; font-weight:700; letter-spacing:.03em; color:var(--ink-soft);
+  text-align:center; padding:5px 4px 4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+@media (max-width:640px){
+  .lp{display:none}
+}
+
 @media (max-width:640px){
   body{font-size:16px}
   .step{padding:20px 17px;border-radius:20px}
@@ -322,6 +346,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 <body data-os="mac">
 <div class="blobs"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
 <canvas id="confetti"></canvas>
+<div class="lp" id="lp" aria-hidden="true">
+  <img class="lp-shot" id="lp-shot" alt="">
+  <div class="lp-host" id="lp-host"></div>
+</div>
 <div class="party" id="party" role="dialog" aria-modal="true" aria-labelledby="party-title">
   <div class="party-card">
     <button class="party-close" id="party-x" aria-label="Close">×</button>
@@ -926,7 +954,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div class="hr"></div>
     <p style="font-size:1.05rem;color:var(--ink)"><b>Made for someone who's about to surprise themselves.</b></p>
     <p>Tick the boxes as you go. Refreshing starts you fresh, so the link works for the next person too.<br>
-    Official docs: <a href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" rel="noopener">docs.claude.com</a> · Last checked September 2026.</p>
+    Official docs: <a href="https://code.claude.com/docs" target="_blank" rel="noopener">code.claude.com/docs</a> · Last checked September 2026.</p>
   </div>
 </footer>
 </main>
@@ -1077,6 +1105,93 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     })();
     party(true);
   }
+})();
+</script>
+
+<script>
+/* ---------- hover a link, see where it goes ---------- */
+(function(){
+  var card=document.getElementById("lp"), shot=document.getElementById("lp-shot"), host=document.getElementById("lp-host");
+  if(!card || !matchMedia("(hover: hover)").matches) return;   /* no phones, no touch */
+
+  var W=660, H=414;                 /* 3x the display size, so it stays sharp */
+  var cache={}, openT=null, closeT=null, current=null;
+
+  function shotURL(u){
+    return "https://api.microlink.io/?" + new URLSearchParams({
+      url:u, screenshot:"true", meta:"false", embed:"screenshot.url",
+      colorScheme:"light", "viewport.isMobile":"true", "viewport.deviceScaleFactor":"1",
+      "viewport.width":String(W), "viewport.height":String(H)
+    }).toString();
+  }
+
+  function place(link){
+    var r=link.getBoundingClientRect(), cw=card.offsetWidth, ch=card.offsetHeight;
+    var cx=r.left + r.width/2;
+    cx=Math.min(Math.max(cx, cw/2 + 10), innerWidth - cw/2 - 10);   /* keep it on screen */
+    var top=r.top - ch - 12;
+    if(top < 10) top=r.bottom + 12;                                  /* no room above? go below */
+    card.style.left=cx+"px";
+    card.style.top=top+"px";
+  }
+
+  function show(link){
+    var url=link.href;
+    if(cache[url]==="fail") return;                                  /* never retry a dud */
+    current=link;
+    try{ host.textContent=new URL(url).hostname.replace(/^www\./,""); }catch(e){ host.textContent=""; }
+
+    if(cache[url]==="ok"){
+      shot.src=shotURL(url); shot.classList.remove("loading");
+    } else {
+      shot.removeAttribute("src");
+      shot.classList.add("loading");
+      var pre=new Image();
+      pre.onload=function(){
+        cache[url]="ok";
+        if(current!==link) return;                                   /* moved on already */
+        shot.src=pre.src; shot.classList.remove("loading");
+        place(link);
+      };
+      pre.onerror=function(){
+        cache[url]="fail";
+        if(current===link) hide();                                   /* silently give up */
+      };
+      pre.src=shotURL(url);
+    }
+    card.style.setProperty("--lp-x","0px");
+    place(link);
+    card.classList.add("on");
+  }
+
+  function hide(){
+    current=null;
+    card.classList.remove("on");
+  }
+
+  document.querySelectorAll('a[href^="http"]').forEach(function(link){
+    if(link.closest(".lp")) return;
+
+    link.addEventListener("mouseenter", function(){
+      clearTimeout(closeT); clearTimeout(openT);
+      openT=setTimeout(function(){ show(link); }, 220);              /* dont fire on a passing cursor */
+    });
+
+    link.addEventListener("mousemove", function(e){
+      if(current!==link) return;
+      var r=link.getBoundingClientRect();
+      var off=(e.clientX - r.left - r.width/2)/2;                    /* subtle lean toward the cursor */
+      card.style.setProperty("--lp-x", Math.max(-38, Math.min(38, off))+"px");
+    });
+
+    link.addEventListener("mouseleave", function(){
+      clearTimeout(openT);
+      closeT=setTimeout(hide, 140);
+    });
+  });
+
+  addEventListener("scroll", function(){ if(current) hide(); }, {passive:true});
+  addEventListener("resize", function(){ if(current) hide(); });
 })();
 </script>
 </body>
