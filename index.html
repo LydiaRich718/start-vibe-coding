@@ -178,6 +178,12 @@ code{background:var(--sand-deep);border-radius:6px;padding:1px 5px;font-size:.88
 .shot img{display:block;width:100%;height:auto}
 .shot figcaption{padding:11px 15px;font-size:.87rem;color:var(--ink-soft);border-top:2px solid var(--ink);background:var(--sand)}
 .shot.tight img{max-height:340px;object-fit:contain;object-position:left top;background:var(--sand)}
+.shot.narrow{max-width:430px}
+.shot.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;border:0;background:none;box-shadow:none;margin:20px 0}
+.shot.pair figure{margin:0;border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+.shot.pair img{display:block;width:100%;height:auto}
+.shot.pair figcaption{padding:10px 13px;font-size:.83rem;color:var(--ink-soft);border-top:2px solid var(--ink);background:var(--sand)}
+@media (max-width:700px){ .shot.pair{grid-template-columns:1fr} }
 
 /* fake UI mockups */
 .mock{border:2px solid var(--ink);border-radius:14px;overflow:hidden;margin:18px 0;box-shadow:var(--shadow);background:#fff}
@@ -569,6 +575,16 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <li>Once you are in, click your name at the <b>bottom left</b>, then <b>Settings</b>, then <b>Plans</b>.</li>
       <li>Choose <b>Pro</b>, which is $20 per month, or $17 if you pay for the year.</li>
     </ol>
+    <div class="shot pair">
+      <figure>
+        <img src="images/claude-signup.png" alt="The claude.ai sign-up page offering Google, Apple, or email" loading="lazy">
+        <figcaption>Google, Apple, or an email address. Any of the three works.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/claude-signin-email.png" alt="The Claude sign-in email with a Sign in button" loading="lazy">
+        <figcaption>Using email? Claude sends you this. The link expires in ten minutes.</figcaption>
+      </figure>
+    </div>
     <div class="note brain">
       <h4>🧾 Where your money goes</h4>
       <p style="margin:0">One subscription covers Claude in the browser and Claude Code in VS Code. It is a single bill. The remaining tools in this course cost nothing at all.</p>
@@ -682,18 +698,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <li>Choose the one published by <b>Anthropic</b>. Check the publisher, because there are imitations with near-identical names.</li>
       <li>Click <b>Install</b>.</li>
     </ol>
-    <div class="mock">
-      <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="t">Extensions</span></div>
-      <div class="mock-body">
-        <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>▶️</span><span class="hot pulse">🧩</span></div>
-        <div class="mock-side">
-          <div class="f" style="background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 6px;margin-bottom:8px">Claude Code|</div>
-          <div class="f" style="color:var(--ink);font-weight:700">✳️ Claude Code <span class="tagpin">Anthropic</span></div>
-          <div class="f" style="font-size:.72rem">Use Claude Code inside VS Code</div>
-        </div>
-        <div class="mock-main">The publisher must say <b>Anthropic</b>.</div>
-      </div>
-    </div>
+    <figure class="shot narrow">
+      <img src="images/vscode-extension-search.png" alt="The VS Code extensions marketplace searching for claude code, with the Anthropic result circled above several similarly named extensions" loading="lazy">
+      <figcaption>The circled one is the real thing. Look at everything below it: same words, different publishers. This is why you check.</figcaption>
+    </figure>
     <div class="note see">
       <h4>👀 You should see</h4>
       <p style="margin-bottom:0">A new <b>Spark</b> icon, a small four-pointed star, appear in that left strip. Learn to spot it, because it means Claude everywhere you meet it.</p>
@@ -792,18 +800,18 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <li>Log in with the account from Section 2 and click <b>Authorize</b>.</li>
       <li>Close the browser tab and return to VS Code.</li>
     </ol>
+    <figure class="shot">
+      <img src="images/claude-login-choice.png" alt="The Claude Code panel in VS Code asking how you want to log in, with Claude.ai Subscription highlighted" loading="lazy">
+      <figcaption>Pick <b>Claude.ai Subscription</b>, the top one. The other two bill you per use through a Console account, which is not what you set up in Section 2.</figcaption>
+    </figure>
+    <figure class="shot narrow">
+      <img src="images/claude-authorize.png" alt="The browser page asking you to authorize Claude Code to connect to your Claude account" loading="lazy">
+      <figcaption>Your browser opens this. Read the list, then click <b>Authorize</b>.</figcaption>
+    </figure>
     <div class="note see">
       <h4>👀 You should see</h4>
       <p>A chat box waiting for you, plus a small <b>Learn Claude Code</b> checklist. That is the extension's own tour. Click through it or dismiss it with the <b>×</b>, since this course covers the same ground.</p>
       <p style="margin-bottom:0">The star also appears at the top right of the editor, but only once a file is open, so it will not be there yet. The one in the left strip always is.</p>
-    </div>
-    <div class="mock">
-      <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="t">test, Claude Code</span></div>
-      <div class="mock-body">
-        <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>🧩</span><span class="hot pulse">✳️</span></div>
-        <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">TEST</div><div class="f" style="font-size:.72rem">(empty, which is correct)</div></div>
-        <div class="mock-main">✳️ <b>Claude</b><br><br><span style="border:1px solid var(--line);border-radius:8px;padding:5px 9px;display:inline-block;width:90%">Type your message…</span></div>
-      </div>
     </div>
     <div class="note stuck">
       <h4>🔦 If you cannot find it</h4>
@@ -1459,9 +1467,8 @@ node_modules</div></div>
 
 <div class="navrow" id="navrow"></div>
 
-<footer>
+<footer id="footer" hidden>
   <div class="hr"></div>
-  <p style="font-size:1.02rem;color:var(--ink)"><b>Made for someone who is about to surprise themselves.</b></p>
   <p>Your progress saves on this device. Use <b>start over</b> at the top to clear it.<br>
   Official documentation: <a href="https://code.claude.com/docs" target="_blank" rel="noopener">code.claude.com/docs</a> · Last checked September 2026.</p>
 </footer>
@@ -1531,8 +1538,10 @@ node_modules</div></div>
   /* a screenshot that has not been added yet should leave no gap */
   $$(".shot img").forEach(function(img){
     img.addEventListener("error", function(){
-      var fig = img.closest(".shot");
+      var fig = img.closest("figure") || img.closest(".shot");
       if(fig) fig.hidden = true;
+      var pair = img.closest(".shot.pair");   /* an empty pair should go too */
+      if(pair && !pair.querySelector("figure:not([hidden])")) pair.hidden = true;
     });
   });
 
@@ -1548,6 +1557,8 @@ node_modules</div></div>
     chapters.forEach(function(sec){ sec.classList.toggle("on", +sec.dataset.ch === n); });
     $$(".rail-item").forEach(function(b){ b.classList.toggle("on", +b.dataset.go === n); });
     closeRail();
+    var foot = $("#footer");
+    if(foot) foot.hidden = (n !== TOTAL);   /* the sign-off belongs at the end, not on every page */
     drawNav();
     paint();
     if(push !== false && location.hash !== "#ch"+n){
