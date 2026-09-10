@@ -179,6 +179,8 @@ code{background:var(--sand-deep);border-radius:6px;padding:1px 5px;font-size:.88
 .shot figcaption{padding:11px 15px;font-size:.87rem;color:var(--ink-soft);border-top:2px solid var(--ink);background:var(--sand)}
 .shot.tight img{max-height:340px;object-fit:contain;object-position:left top;background:var(--sand)}
 .shot.narrow{max-width:430px}
+.shot.medium{max-width:620px}
+.shot.medium img{max-height:380px;object-fit:cover;object-position:top left}   /* enough emptiness to make the point, without the scroll */
 .shot.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;border:0;background:none;box-shadow:none;margin:20px 0}
 .shot.pair figure{margin:0;border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
 .shot.pair img{display:block;width:100%;height:auto}
@@ -822,8 +824,12 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     </ol>
     <div class="note see">
       <h4>👀 You should see</h4>
-      <p style="margin-bottom:0"><b>TEST</b> in the top left with nothing underneath it. An empty folder is the correct outcome. Section 7 fills it.</p>
+      <p style="margin-bottom:0"><b>test</b> in the top left with nothing underneath it. An empty folder is the correct outcome, and Section 7 fills it.</p>
     </div>
+    <figure class="shot medium">
+      <img src="images/vscode-empty-folder.png" alt="The VS Code Explorer showing a folder called test with no files inside it" loading="lazy">
+      <figcaption>Nothing under the folder name. That is what an empty project looks like.</figcaption>
+    </figure>
     <div class="note tip">
       <h4>💡 The naming rule</h4>
       <p style="margin-bottom:0">Lowercase, no spaces, hyphens between words.<br><code>my-recipe-site</code> ✅ &nbsp;&nbsp; <code>My Recipe Site</code> ❌<br>Spaces in folder names produce baffling errors months later, so spare yourself and avoid them from the start.</p>
