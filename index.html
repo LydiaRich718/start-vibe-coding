@@ -185,7 +185,6 @@ code{background:var(--sand-deep);border-radius:6px;padding:1px 5px;font-size:.88
   border:1px solid rgba(28,24,20,.16);border-radius:10px;
 }
 .shot figcaption{padding:9px 2px 0;font-size:.86rem;color:var(--ink-soft)}
-.shot.tight img{max-height:340px;object-fit:cover;object-position:left top}
 .shot.narrow{max-width:430px}
 .shot.medium{max-width:620px}
 
@@ -1109,12 +1108,12 @@ footer .hr{background:var(--line);height:1px}
   <div class="block">
     <h3>It edits files without asking, and that is normal</h3>
     <p>At the bottom of the chat box there is a small word, and that word is the <b>mode</b>. On a Pro plan it begins on <b>Auto</b>, meaning Claude writes and edits files in your folder without pausing to ask each time.</p>
-    <figure class="shot tight">
+    <figure class="shot">
       <img src="images/claude-input.png" alt="The Claude Code message box, with the mode shown as Auto at the bottom right" loading="lazy">
       <figcaption>The mode sits at the bottom right of the message box. Here it reads <b>Auto</b>. Click it to change it.</figcaption>
     </figure>
     <p>Clicking it opens the four choices. <b>Plan</b> is the one to reach for if Auto makes you uneasy, because Claude writes out what it intends to do and waits for your approval. Many people stay on Plan for the first week, since reading the plan before it happens teaches you a great deal.</p>
-    <figure class="shot tight">
+    <figure class="shot narrow">
       <img src="images/claude-modes.png" alt="The Claude Code modes menu listing Manual, Edit automatically, Plan and Auto, with Auto selected" loading="lazy">
       <figcaption><b>Manual</b> asks before every edit. <b>Plan</b> shows you its thinking first. <b>Auto</b> gets on with the safe things and stops at anything risky. Shift and Tab cycles through them.</figcaption>
     </figure>
@@ -1319,6 +1318,17 @@ footer .hr{background:var(--line);height:1px}
       <li>Click <b>Continue with GitHub</b> and use the account you have just created.</li>
       <li>Approve the permissions box, and select <b>Hobby</b> when it asks, which is the free tier.</li>
     </ol>
+    <div class="flow">
+      <figure>
+        <img src="images/github-signup.png" alt="The GitHub sign-up form asking for email, password and username" loading="lazy">
+        <figcaption>GitHub asks for a username. That one shows up in your links.</figcaption>
+      </figure>
+      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 26 12" width="24" height="11"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <figure>
+        <img src="images/vercel-signup.png" alt="The Vercel sign-up page with Continue with GitHub among the options" loading="lazy">
+        <figcaption>Vercel: choose <b>Continue with GitHub</b>, not email.</figcaption>
+      </figure>
+    </div>
     <div class="note warn">
       <h4>One rule about the free tier</h4>
       <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects and showing your family all qualify. The moment it becomes a business or a client's site, Vercel expects you on a paid plan.</p>
