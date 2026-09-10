@@ -236,6 +236,18 @@ code{background:var(--sand-deep);border-radius:6px;padding:1px 5px;font-size:.88
 .check.on .box:after{opacity:1}
 .check.on .lbl{text-decoration:line-through;opacity:.65}
 
+/* vague description on the left, useful one on the right */
+.swap{display:grid;gap:10px;margin:16px 0}
+.swap-row{display:grid;grid-template-columns:1fr 28px 1fr;gap:10px;align-items:center}
+.swap .weak,.swap .strong{border-radius:12px;padding:10px 14px;font-size:.92rem;line-height:1.45}
+.swap .weak{background:var(--sand-deep);color:var(--ink-soft);text-decoration:line-through;text-decoration-color:rgba(28,24,20,.35)}
+.swap .strong{background:var(--orange-bg);border:2px solid var(--orange);font-weight:600}
+.swap .to{display:grid;place-items:center;color:var(--ink)}
+@media (max-width:640px){
+  .swap-row{grid-template-columns:1fr}
+  .swap .to{transform:rotate(90deg);padding:2px 0}
+}
+
 /* accordion */
 .acc{border:2px solid var(--ink);border-radius:16px;background:var(--card);margin-bottom:12px;overflow:hidden;box-shadow:3px 3px 0 rgba(32,34,63,.1)}
 .acc summary{padding:15px 18px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
@@ -960,6 +972,17 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 
   <div class="block">
+    <p class="lead">Section 1 described a loop: ask, look, correct, repeat. This is where you run it for the first time.</p>
+    <div class="loop">
+      <div class="loopstep"><div class="n">1</div><h4>Ask</h4><p>You did this in Section 7.</p></div>
+      <div class="loopstep on"><div class="n">2</div><h4>Look</h4><p>Open it. Click it. Does it work?</p></div>
+      <div class="loopstep on"><div class="n">3</div><h4>Correct</h4><p>Say what to change.</p></div>
+      <div class="loopstep"><div class="n">4</div><h4>Repeat</h4><p>For as long as you build things.</p></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>First, look at it</h3>
     <div class="big-idea">Code you have not looked at<br>is <mark>not finished</mark>.</div>
     <p>The easiest way to see your page is to ask for it:</p>
     <div class="copy">
@@ -975,25 +998,69 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       </div>
     </div>
     <p style="font-size:.95rem;color:var(--ink-soft)">Right-click <code>index.html</code> on the left, choose <span class="mac-only">Reveal in Finder</span><span class="win-only">Reveal in File Explorer</span>, and double-click it.</p>
-  </div>
-
-  <div class="block">
-    <h3>Now change things, one at a time</h3>
-    <p class="lead">Click any of these to copy it, paste it in, and watch what happens. One at a time, so that when something breaks you know which change did it.</p>
-    <div class="phrases" style="margin:16px 0">
-      <div class="phrase"><span>Make the button green and round.</span><span class="mini">copy</span></div>
-      <div class="phrase"><span>Put the button underneath the boxes.</span><span class="mini">copy</span></div>
-      <div class="phrase"><span>Add a photo of a dog at the top.</span><span class="mini">copy</span></div>
-      <div class="phrase"><span>Make it look good on a phone.</span><span class="mini">copy</span></div>
-      <div class="phrase"><span>Add a counter that goes up when I click.</span><span class="mini">copy</span></div>
-      <div class="phrase"><span>Make the whole thing dark mode.</span><span class="mini">copy</span></div>
-    </div>
+    <figure class="shot medium">
+      <img src="images/page-first.png" alt="A simple web page with a heading, three coloured boxes and a button" loading="lazy">
+      <figcaption>Roughly what comes back. Yours will look different, and that is fine.</figcaption>
+    </figure>
     <div class="note tip">
       <h4>🔁 Refresh after every change</h4>
       <p style="margin-bottom:0">Your browser has no idea Claude edited the file. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>R</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>R</kbd></span>. You will meet this problem many times before refreshing becomes reflex. If nothing has changed, ask <b>"did you save the file?"</b></p>
     </div>
+  </div>
+
+  <div class="block">
+    <h3>Then correct it, one thing at a time</h3>
+    <p class="lead">Work down the list. Each tier asks more of Claude than the one above it, and you will feel the difference. One change at a time, so that when something breaks you know which change did it.</p>
+
+    <h4 style="margin-top:22px">Cosmetic, the safest place to start</h4>
+    <div class="phrases" style="margin:12px 0">
+      <div class="phrase"><span>Make the button green and round.</span><span class="mini">copy</span></div>
+      <div class="phrase"><span>Make the whole thing dark mode.</span><span class="mini">copy</span></div>
+      <div class="phrase"><span>Add a photo of a dog at the top.</span><span class="mini">copy</span></div>
+    </div>
+
+    <h4 style="margin-top:22px">Layout, moving things around</h4>
+    <div class="phrases" style="margin:12px 0">
+      <div class="phrase"><span>Put the button underneath the boxes.</span><span class="mini">copy</span></div>
+      <div class="phrase"><span>Make it look good on a phone.</span><span class="mini">copy</span></div>
+    </div>
+
+    <h4 style="margin-top:22px">Behaviour, making it do something</h4>
+    <div class="phrases" style="margin:12px 0">
+      <div class="phrase"><span>Add a counter that goes up when I click.</span><span class="mini">copy</span></div>
+      <div class="phrase"><span>Make the boxes change colour when I hover over them.</span><span class="mini">copy</span></div>
+    </div>
+
+    <figure class="shot medium">
+      <img src="images/page-changed.png" alt="The same page after a few changes, looking different from the first version" loading="lazy">
+      <figcaption>The same page, a few requests later. Nothing here was typed by hand.</figcaption>
+    </figure>
+  </div>
+
+  <div class="block">
+    <h3>When it is not what you meant</h3>
+    <p class="lead">Refreshing handles the case where nothing happened. This handles the case where something happened and it is wrong, which is the more common one.</p>
+    <p>Claude cannot see your screen. It knows what it wrote, not what you are looking at. Describing the result is your half of the work, and vague descriptions get vague fixes.</p>
+    <div class="swap">
+      <div class="swap-row">
+        <span class="weak">"It looks bad."</span><span class="to" aria-hidden="true"><svg viewBox="0 0 26 12" width="22" height="10"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="strong">"The button is wider than the boxes above it."</span>
+      </div>
+      <div class="swap-row">
+        <span class="weak">"It's broken."</span><span class="to" aria-hidden="true"><svg viewBox="0 0 26 12" width="22" height="10"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="strong">"Clicking the button does nothing at all now."</span>
+      </div>
+      <div class="swap-row">
+        <span class="weak">"That's not right."</span><span class="to" aria-hidden="true"><svg viewBox="0 0 26 12" width="22" height="10"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="strong">"The boxes are stacked. I wanted them side by side."</span>
+      </div>
+    </div>
+    <p>Say what you see, and where. That is the whole technique.</p>
+    <div class="copy">
+      <span class="tag">When you cannot put it into words</span>
+      <div class="txt">That is not what I wanted. Undo that last change, then ask me questions until you understand what I am picturing.</div>
+      <button>Copy</button>
+    </div>
     <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span class="lbl">I saw my page and changed it</span></label>
   </div>
+
 </section>
 
 <!-- ═══════════ SECTION 9 ═══════════ -->
