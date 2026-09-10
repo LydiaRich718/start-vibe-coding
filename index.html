@@ -575,16 +575,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <li>Once you are in, click your name at the <b>bottom left</b>, then <b>Settings</b>, then <b>Plans</b>.</li>
       <li>Choose <b>Pro</b>, which is $20 per month, or $17 if you pay for the year.</li>
     </ol>
-    <div class="shot pair">
-      <figure>
-        <img src="images/claude-signup.png" alt="The claude.ai sign-up page offering Google, Apple, or email" loading="lazy">
-        <figcaption>Google, Apple, or an email address. Any of the three works.</figcaption>
-      </figure>
-      <figure>
-        <img src="images/claude-signin-email.png" alt="The Claude sign-in email with a Sign in button" loading="lazy">
-        <figcaption>Using email? Claude sends you this. The link expires in ten minutes.</figcaption>
-      </figure>
-    </div>
+    <figure class="shot narrow">
+      <img src="images/claude-signup.png" alt="The claude.ai sign-up page offering Google, Apple, or an email address" loading="lazy">
+      <figcaption>Google, Apple, or an email address. Any of the three is fine. You will meet this page again in Section 5, when VS Code sends you back to it.</figcaption>
+    </figure>
     <div class="note brain">
       <h4>🧾 Where your money goes</h4>
       <p style="margin:0">One subscription covers Claude in the browser and Claude Code in VS Code. It is a single bill. The remaining tools in this course cost nothing at all.</p>
@@ -719,6 +713,75 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   <div class="ch-cover">
     <div>
       <div class="ch-kicker">Section 5 · Building</div>
+      <h2>Meet Claude</h2>
+      <p class="sub">Sign in and find the chat box.</p>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <path d="M26 42a12 12 0 0 1 12-12h68a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12H62l-22 18V88h-2a12 12 0 0 1-12-12V42z" fill="#f3ebda" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="46" y="50" width="46" height="7" rx="3.5" fill="#1c1814" opacity=".32"/>
+      <rect x="46" y="64" width="30" height="7" rx="3.5" fill="#1c1814" opacity=".18"/>
+      <path d="M148 62l8 20 20 8-20 8-8 20-8-20-20-8 20-8 8-20z" fill="#e0701f" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="60" cy="126" r="5" fill="#f5a463" stroke="#1c1814" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <div class="block">
+    <div class="osrow">
+      <span class="lab">Showing steps for</span>
+      <div class="osswitch" role="group" aria-label="Choose your computer">
+        <button data-os="mac" class="on">🍎 Mac</button>
+        <button data-os="win">🪟 Windows</button>
+      </div>
+    </div>
+    <p class="lead">Signing in sends you out to your browser and back again. Here is the whole trip.</p>
+    <ol class="dolist">
+      <li>Click the <b>Spark</b> star in the left strip, and a Claude panel opens.</li>
+      <li>Click <b>Claude.ai Subscription</b>, the top option. The other two bill you per use through a Console account, which is not the plan you set up in Section 2.
+        <figure class="shot">
+          <img src="images/claude-login-choice.png" alt="The Claude Code panel in VS Code asking how you want to log in, with Claude.ai Subscription highlighted" loading="lazy">
+        </figure>
+      </li>
+      <li>Your browser opens on the Claude sign-in page. Use the same account you set up in Section 2.
+        <figure class="shot narrow">
+          <img src="images/claude-signup.png" alt="The claude.ai sign-in page offering Google, Apple, or an email address" loading="lazy">
+        </figure>
+      </li>
+      <li>If you signed in with an email address, Claude sends you a link. Click it reasonably promptly, because it stops working after ten minutes.
+        <figure class="shot narrow">
+          <img src="images/claude-signin-email.png" alt="The Claude sign-in email with a Sign in button" loading="lazy">
+        </figure>
+      </li>
+      <li>Read what Claude Code is asking for, then click <b>Authorize</b>.
+        <figure class="shot narrow">
+          <img src="images/claude-authorize.png" alt="The browser page asking you to authorize Claude Code to connect to your Claude account" loading="lazy">
+        </figure>
+      </li>
+      <li>Close the tab and return to VS Code.</li>
+    </ol>
+    <div class="note see">
+      <h4>👀 You should see</h4>
+      <p>A chat box waiting for you, plus a small <b>Learn Claude Code</b> checklist. That is the extension's own tour. Click through it or dismiss it with the <b>×</b>, since this course covers the same ground.</p>
+      <p style="margin-bottom:0">The star also appears at the top right of the editor, but only once a file is open, so it will not be there yet. The one in the left strip always is.</p>
+    </div>
+    <div class="note stuck">
+      <h4>🔦 If you cannot find it</h4>
+      <ul class="plain">
+        <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, and pick an option such as "Open in New Tab". (<kbd>⇧</kbd> is Shift.)</li>
+        <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, and pick an option such as "Open in New Tab".</li>
+        <li>Still nothing? From the same box, run <b>Developer: Reload Window</b>. It resolves a surprising share of VS Code problems, so learn it now and save yourself the grief later.</li>
+      </ul>
+    </div>
+    <div class="note tip">
+      <h4>🎬 The official tour</h4>
+      <p style="margin-bottom:0">In that same command box, run <b>Claude Code: Open Walkthrough</b>. Two minutes, made by the people who built it.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
+  </div>
+</section>
+<section class="chapter" id="ch6" data-ch="6">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Section 6 · Building</div>
       <h2>Your first project folder</h2>
       <p class="sub">A box to work in, and quietly your safety net.</p>
     </div>
@@ -770,64 +833,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 </section>
 
 <!-- ═══════════ SECTION 6 ═══════════ -->
-<section class="chapter" id="ch6" data-ch="6">
-  <div class="ch-cover">
-    <div>
-      <div class="ch-kicker">Section 6 · Building</div>
-      <h2>Meet Claude</h2>
-      <p class="sub">Sign in and find the chat box.</p>
-    </div>
-    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <path d="M26 42a12 12 0 0 1 12-12h68a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12H62l-22 18V88h-2a12 12 0 0 1-12-12V42z" fill="#f3ebda" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <rect x="46" y="50" width="46" height="7" rx="3.5" fill="#1c1814" opacity=".32"/>
-      <rect x="46" y="64" width="30" height="7" rx="3.5" fill="#1c1814" opacity=".18"/>
-      <path d="M148 62l8 20 20 8-20 8-8 20-8-20-20-8 20-8 8-20z" fill="#e0701f" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <circle cx="60" cy="126" r="5" fill="#f5a463" stroke="#1c1814" stroke-width="3"/>
-    </svg>
-  </div>
-
-  <div class="block">
-    <div class="osrow">
-      <span class="lab">Showing steps for</span>
-      <div class="osswitch" role="group" aria-label="Choose your computer">
-        <button data-os="mac" class="on">🍎 Mac</button>
-        <button data-os="win">🪟 Windows</button>
-      </div>
-    </div>
-    <ol class="dolist">
-      <li>Click the <b>Spark</b> star in the left strip, and a Claude panel opens.</li>
-      <li>Click <b>Sign in</b>. Your browser will pop open.</li>
-      <li>Log in with the account from Section 2 and click <b>Authorize</b>.</li>
-      <li>Close the browser tab and return to VS Code.</li>
-    </ol>
-    <figure class="shot">
-      <img src="images/claude-login-choice.png" alt="The Claude Code panel in VS Code asking how you want to log in, with Claude.ai Subscription highlighted" loading="lazy">
-      <figcaption>Pick <b>Claude.ai Subscription</b>, the top one. The other two bill you per use through a Console account, which is not what you set up in Section 2.</figcaption>
-    </figure>
-    <figure class="shot narrow">
-      <img src="images/claude-authorize.png" alt="The browser page asking you to authorize Claude Code to connect to your Claude account" loading="lazy">
-      <figcaption>Your browser opens this. Read the list, then click <b>Authorize</b>.</figcaption>
-    </figure>
-    <div class="note see">
-      <h4>👀 You should see</h4>
-      <p>A chat box waiting for you, plus a small <b>Learn Claude Code</b> checklist. That is the extension's own tour. Click through it or dismiss it with the <b>×</b>, since this course covers the same ground.</p>
-      <p style="margin-bottom:0">The star also appears at the top right of the editor, but only once a file is open, so it will not be there yet. The one in the left strip always is.</p>
-    </div>
-    <div class="note stuck">
-      <h4>🔦 If you cannot find it</h4>
-      <ul class="plain">
-        <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, and pick an option such as "Open in New Tab". (<kbd>⇧</kbd> is Shift.)</li>
-        <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, and pick an option such as "Open in New Tab".</li>
-        <li>Still nothing? From the same box, run <b>Developer: Reload Window</b>. It resolves a surprising share of VS Code problems, so learn it now and save yourself the grief later.</li>
-      </ul>
-    </div>
-    <div class="note tip">
-      <h4>🎬 The official tour</h4>
-      <p style="margin-bottom:0">In that same command box, run <b>Claude Code: Open Walkthrough</b>. Two minutes, made by the people who built it.</p>
-    </div>
-    <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
-  </div>
-</section>
 
 <!-- ═══════════ SECTION 7 ═══════════ -->
 <section class="chapter" id="ch7" data-ch="7">
@@ -1485,8 +1490,8 @@ node_modules</div></div>
     {n:2,  t:"Your Claude account",   k:"Equipment",  c:"var(--ink)"},
     {n:3,  t:"Install VS Code",       k:"Equipment",  c:"var(--orange)"},
     {n:4,  t:"Add Claude Code",       k:"Equipment",  c:"var(--orange-deep)"},
-    {n:5,  t:"First project folder",  k:"Building",   c:"var(--ink)"},
-    {n:6,  t:"Meet Claude",           k:"Building",   c:"var(--orange)"},
+    {n:5,  t:"Meet Claude",           k:"Building",   c:"var(--ink)"},
+    {n:6,  t:"First project folder",  k:"Building",   c:"var(--orange)"},
     {n:7,  t:"Your first build",      k:"Building",   c:"var(--orange-deep)"},
     {n:8,  t:"Look at it. Change it.",k:"Building",   c:"var(--ink)"},
     {n:9,  t:"Git",                   k:"Protection", c:"var(--orange)"},
