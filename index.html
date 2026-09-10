@@ -184,6 +184,24 @@ code{background:var(--sand-deep);border-radius:6px;padding:1px 5px;font-size:.88
 .shot.tight img{max-height:340px;object-fit:contain;object-position:left top;background:var(--sand)}
 .shot.narrow{max-width:430px}
 .shot.medium{max-width:620px}
+
+/* a row of screens with small arrows between them */
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;margin:22px 0}
+.flow figure{
+  flex:1 1 300px;min-width:280px;max-width:430px;margin:0;display:flex;flex-direction:column;
+  border:2px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--card);box-shadow:var(--shadow);
+}
+.flow figure img{display:block;width:100%;height:200px;object-fit:contain;object-position:center;background:var(--sand-deep)}
+.flow figcaption{
+  padding:9px 12px;font-size:.81rem;font-weight:600;color:var(--ink);
+  border-top:2px solid var(--ink);background:var(--sand);
+}
+.flow .arrow{flex:0 0 34px;display:grid;place-items:center;color:var(--ink)}
+@media (max-width:640px){
+  .flow{flex-direction:column;align-items:stretch}
+  .flow figure{max-width:none}
+  .flow .arrow{flex:0 0 auto;padding:7px 0;transform:rotate(90deg)}
+}
 .shot.medium img{max-height:380px;object-fit:cover;object-position:top left}   /* enough emptiness to make the point, without the scroll */
 .shot.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;border:0;background:none;box-shadow:none;margin:20px 0}
 .shot.pair figure{margin:0;border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
@@ -627,14 +645,18 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <li>Go to <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a>.</li>
       <li>Click the button for your computer. The site usually guesses correctly.</li>
     </ol>
-    <figure class="shot">
-      <img src="images/vscode-download.png" alt="The VS Code download page showing Windows, macOS and Linux cards, with macOS highlighted and marked YOUR OS" loading="lazy">
-      <figcaption>The site works out what you are on and marks it <b>YOUR OS</b>. Click the big button in that card and ignore the other two.</figcaption>
-    </figure>
-    <figure class="shot medium">
-      <img src="images/vscode-downloading.png" alt="The browser download popup showing the VS Code installer downloading" loading="lazy">
-      <figcaption>Your browser shows it arriving. It is a few hundred megabytes, so give it a minute.</figcaption>
-    </figure>
+    <div class="flow">
+      <figure>
+        <img src="images/vscode-download.png" alt="The VS Code download page showing Windows, macOS and Linux cards, with macOS highlighted and marked YOUR OS" loading="lazy">
+        <figcaption>1 · The site marks your machine <b>YOUR OS</b>. Click that card.</figcaption>
+      </figure>
+      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 26 12" width="24" height="11"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <figure>
+        <img src="images/vscode-downloading.png" alt="The browser download popup showing the VS Code installer downloading" loading="lazy">
+        <figcaption>2 · Your browser shows it arriving. A few hundred megabytes.</figcaption>
+      </figure>
+    </div>
+    <p>Once it lands, install it.</p>
     <div class="mac-only">
       <div class="note tip">
         <h4>🍎 On Mac</h4>
@@ -746,28 +768,36 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <p class="lead">Signing in sends you out to your browser and back again. Here is the whole trip.</p>
     <ol class="dolist">
       <li>Click the <b>Spark</b> star in the left strip, and a Claude panel opens.</li>
-      <li>Click <b>Claude.ai Subscription</b>, the top option. The other two bill you per use through a Console account, which is not the plan you set up in Section 2.
-        <figure class="shot">
-          <img src="images/claude-login-choice.png" alt="The Claude Code panel in VS Code asking how you want to log in, with Claude.ai Subscription highlighted" loading="lazy">
-        </figure>
-      </li>
-      <li>Your browser opens on the Claude sign-in page. Use the same account you set up in Section 2.
-        <figure class="shot narrow">
-          <img src="images/claude-signup.png" alt="The claude.ai sign-in page offering Google, Apple, or an email address" loading="lazy">
-        </figure>
-      </li>
-      <li>If you signed in with an email address, Claude sends you a link. Click it reasonably promptly, because it stops working after ten minutes.
-        <figure class="shot narrow">
-          <img src="images/claude-signin-email.png" alt="The Claude sign-in email with a Sign in button" loading="lazy">
-        </figure>
-      </li>
-      <li>Read what Claude Code is asking for, then click <b>Authorize</b>.
-        <figure class="shot narrow">
-          <img src="images/claude-authorize.png" alt="The browser page asking you to authorize Claude Code to connect to your Claude account" loading="lazy">
-        </figure>
-      </li>
+      <li>Click <b>Claude.ai Subscription</b>, the top option. The other two bill you per use through a Console account, which is not the plan you set up in Section 2.</li>
+      <li>Your browser opens on the Claude sign-in page. Use the same account you set up in Section 2.</li>
+      <li>If you signed in with an email address, Claude sends you a link. Click it reasonably promptly, because it stops working after ten minutes.</li>
+      <li>Read what Claude Code is asking for, then click <b>Authorize</b>.</li>
       <li>Close the tab and return to VS Code.</li>
     </ol>
+
+    <div class="flow">
+      <figure>
+        <img src="images/claude-login-choice.png" alt="The Claude Code panel in VS Code asking how you want to log in, with Claude.ai Subscription highlighted" loading="lazy">
+        <figcaption>2 · Pick the subscription</figcaption>
+      </figure>
+      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 26 12" width="24" height="11"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <figure>
+        <img src="images/claude-signup.png" alt="The claude.ai sign-in page offering Google, Apple, or an email address" loading="lazy">
+        <figcaption>3 · Sign in to Claude</figcaption>
+      </figure>
+      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 26 12" width="24" height="11"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <figure>
+        <img src="images/claude-signin-email.png" alt="The Claude sign-in email with a Sign in button" loading="lazy">
+        <figcaption>4 · Click the emailed link</figcaption>
+      </figure>
+      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 26 12" width="24" height="11"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <figure>
+        <img src="images/claude-authorize.png" alt="The browser page asking you to authorize Claude Code to connect to your Claude account" loading="lazy">
+        <figcaption>5 · Authorize</figcaption>
+      </figure>
+    </div>
+
+    <p>You only do this once. Claude stays signed in from now on.</p>
     <div class="note see">
       <h4>👀 You should see</h4>
       <p>A chat box waiting for you, plus a small <b>Learn Claude Code</b> checklist. That is the extension's own tour. Click through it or dismiss it with the <b>×</b>, since this course covers the same ground.</p>
