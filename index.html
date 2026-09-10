@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Start Vibe Coding — the friendliest guide to Claude Code + VS Code</title>
-<meta name="description" content="A step-by-step, no-experience-needed guide to building your first thing with AI. Colorful, checkable, and written in plain English.">
-<meta property="og:title" content="Start Vibe Coding">
-<meta property="og:description" content="You don't need to know how to code. You need 30 minutes and this page.">
+<title>Vibe Coding 101 — a 12-chapter course for people who've never coded</title>
+<meta name="description" content="A twelve-chapter beginner course in building real software with AI. Flip through the chapters, take the mini quizzes, ship something to the internet.">
+<meta property="og:title" content="Vibe Coding 101">
+<meta property="og:description" content="Twelve chapters. No experience needed. By the end you'll have something live on the internet.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,12 +22,14 @@
   --blue:#4d9dff; --blue-bg:#e2eefe;
   --purple:#a77bff; --purple-bg:#efe7ff;
   --orange:#ff8a3d; --orange-bg:#ffe9db;
+  --red:#f4525f; --red-bg:#ffe3e5;
   --radius:20px;
   --shadow:0 2px 0 rgba(32,34,63,.06), 0 12px 32px -12px rgba(32,34,63,.18);
   --shadow-lift:0 4px 0 rgba(32,34,63,.08), 0 26px 50px -18px rgba(32,34,63,.32);
+  --rail-w:252px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth; scroll-padding-top:calc(var(--topbar-h,52px) + var(--osbar-h,56px) + 14px)}
+html{scroll-behavior:smooth}
 body{
   margin:0; background:var(--cream); color:var(--ink);
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -35,164 +37,107 @@ body{
   overflow-x:hidden;
 }
 h1,h2,h3,h4{font-family:Fraunces,Georgia,serif; line-height:1.12; margin:0 0 .4em; letter-spacing:-.01em}
-h1{font-size:clamp(2.6rem,7vw,4.6rem); font-weight:800}
-h2{font-size:clamp(1.8rem,4vw,2.7rem); font-weight:800}
-h3{font-size:1.32rem; font-weight:700}
+h1{font-size:clamp(2.4rem,6vw,4.2rem); font-weight:800}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem); font-weight:800}
+h3{font-size:1.3rem; font-weight:700}
 h4{font-size:1.02rem; font-weight:700; font-family:Inter,sans-serif; letter-spacing:.01em}
 p{margin:0 0 1em}
 a{color:#2b6fd6; text-decoration-thickness:2px; text-underline-offset:3px}
-.wrap{max-width:940px; margin:0 auto; padding:0 22px}
-.narrow{max-width:760px}
 code,kbd,.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+b,strong{font-weight:700}
+.wrap{max-width:940px;margin:0 auto;padding:0 22px}
 
 /* ---------- decorative background ---------- */
 .blobs{position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none}
-.blob{position:absolute; border-radius:50%; filter:blur(70px); opacity:.5; animation:drift 26s ease-in-out infinite; will-change:transform; backface-visibility:hidden}
+.blob{position:absolute; border-radius:50%; filter:blur(70px); opacity:.45; animation:drift 26s ease-in-out infinite; will-change:transform; backface-visibility:hidden}
 .blob.b1{width:460px;height:460px;background:var(--pink-bg);top:-140px;left:-120px}
 .blob.b2{width:420px;height:420px;background:var(--blue-bg);top:36%;right:-160px;animation-delay:-8s}
 .blob.b3{width:400px;height:400px;background:var(--mint-bg);bottom:-120px;left:8%;animation-delay:-15s}
 .blob.b4{width:340px;height:340px;background:var(--yellow-bg);top:66%;left:-140px;animation-delay:-4s}
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-40px) scale(1.1)}66%{transform:translate(-30px,30px) scale(.95)}}
 
-/* ---------- sticky progress bar ---------- */
-.topbar{
-  position:sticky; top:0; z-index:60;
-  background:var(--cream); border-bottom:1px solid var(--line);
-}
-.topbar-in{max-width:940px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:14px}
-.tb-logo{font-family:Fraunces,serif;font-weight:800;font-size:1.05rem;white-space:nowrap}
+/* ---------- top bar ---------- */
+.topbar{position:sticky; top:0; z-index:60; background:var(--cream); border-bottom:2px solid var(--ink)}
+.topbar-in{max-width:1320px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:14px}
+.tb-logo{font-family:Fraunces,serif;font-weight:800;font-size:1.02rem;white-space:nowrap;cursor:pointer;background:none;border:0;padding:0;color:inherit;font-family:Fraunces,serif}
 .tb-logo span{background:linear-gradient(90deg,var(--pink),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-.tb-track{flex:1;height:12px;border-radius:99px;background:#efe9df;overflow:hidden;position:relative;min-width:60px}
-.tb-fill{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--mint),var(--blue));background-size:300% 100%;transition:width .5s cubic-bezier(.2,.9,.3,1);animation:slide 6s linear infinite}
+.tb-track{flex:1;height:12px;border-radius:99px;background:#efe9df;overflow:hidden;position:relative;min-width:50px;border:1px solid rgba(32,34,63,.1)}
+.tb-fill{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--mint),var(--blue));background-size:300% 100%;transition:width .55s cubic-bezier(.2,.9,.3,1);animation:slide 6s linear infinite}
 @keyframes slide{to{background-position:300% 0}}
-.tb-count{font-size:.82rem;font-weight:700;color:var(--ink-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
-.tb-reset{border:0;background:none;color:var(--ink-soft);font-size:.78rem;cursor:pointer;text-decoration:underline;padding:4px;font-family:inherit}
+.tb-count{font-size:.8rem;font-weight:700;color:var(--ink-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tb-reset{border:0;background:none;color:var(--ink-soft);font-size:.76rem;cursor:pointer;text-decoration:underline;padding:4px;font-family:inherit}
 .tb-reset:hover{color:var(--pink)}
+.tb-menu{display:none;border:2px solid var(--ink);background:var(--card);border-radius:11px;width:38px;height:34px;font-size:1rem;cursor:pointer;line-height:1}
 
-/* ---------- hero ---------- */
-.hero{padding:76px 0 40px; text-align:center; position:relative}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--ink);
-  border-radius:99px;padding:7px 16px;font-size:.82rem;font-weight:700;margin-bottom:26px;
-  box-shadow:3px 3px 0 var(--yellow); animation:pop .6s cubic-bezier(.2,1.4,.4,1) both;
-}
-.hero h1 .hl{position:relative;z-index:0;white-space:nowrap}
-.hero h1 .hl:after{
-  content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.34em;background:var(--yellow);
-  z-index:-1;border-radius:6px;transform:scaleX(0);transform-origin:left;animation:swipe .9s .5s cubic-bezier(.2,.9,.3,1) forwards;
-}
-@keyframes swipe{to{transform:scaleX(1)}}
-@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.94)}to{opacity:1;transform:none}}
-.lede{font-size:1.22rem;color:var(--ink-soft);max-width:600px;margin:0 auto 30px}
-.hero-facts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
-.fact{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:10px 16px;font-size:.86rem;font-weight:600;box-shadow:3px 3px 0 rgba(32,34,63,.12)}
-.fact b{display:block;font-size:1.35rem;font-family:Fraunces,serif}
-.btn{
-  display:inline-block;background:var(--ink);color:#fff;border:2px solid var(--ink);border-radius:99px;
-  padding:15px 34px;font-weight:700;font-size:1.05rem;text-decoration:none;cursor:pointer;
-  box-shadow:0 5px 0 var(--pink); transition:transform .12s, box-shadow .12s; font-family:inherit;
-}
-.btn:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--pink)}
-.btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--pink)}
-.btn.ghost{background:var(--card);color:var(--ink);box-shadow:0 5px 0 var(--blue)}
-.btn.ghost:hover{box-shadow:0 3px 0 var(--blue)}
-.scroll-hint{margin-top:38px;font-size:1.6rem;animation:bob 1.8s ease-in-out infinite;display:inline-block}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+/* ---------- layout shell ---------- */
+.shell{max-width:1320px;margin:0 auto;padding:26px 20px 0;display:grid;grid-template-columns:var(--rail-w) 1fr;gap:30px;align-items:start}
+.page{min-width:0}
 
-/* ---------- generic section ---------- */
-section{padding:44px 0}
-.sec-head{text-align:center;margin-bottom:34px}
-.sec-head p{color:var(--ink-soft);max-width:560px;margin:0 auto}
+/* ---------- chapter rail ---------- */
+.rail{position:sticky;top:78px;max-height:calc(100vh - 100px);overflow-y:auto;padding-right:4px;scrollbar-width:thin}
+.rail-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);margin:0 0 10px 6px}
+.rail-item{
+  display:flex;gap:10px;align-items:center;width:100%;text-align:left;
+  background:none;border:2px solid transparent;border-radius:13px;padding:8px 10px;margin-bottom:2px;
+  font-family:inherit;font-size:.88rem;font-weight:600;color:var(--ink-soft);cursor:pointer;line-height:1.3;
+  transition:background .16s,color .16s,border-color .16s,transform .16s;
+}
+.rail-item:hover{background:var(--card);color:var(--ink);transform:translateX(2px)}
+.rail-item.on{background:var(--card);border-color:var(--ink);color:var(--ink);box-shadow:3px 3px 0 var(--c,var(--pink))}
+.rail-dot{
+  flex:none;width:26px;height:26px;border-radius:9px;border:2px solid currentColor;display:grid;place-items:center;
+  font-size:.72rem;font-weight:700;font-variant-numeric:tabular-nums;
+}
+.rail-item.on .rail-dot{background:var(--c,var(--pink));border-color:var(--ink);color:var(--ink)}
+.rail-item.done{color:var(--ink)}
+.rail-item.done .rail-dot{background:var(--mint);border-color:var(--ink);color:#fff;font-size:.8rem}
+.rail-item.done .rail-dot:after{content:"✓"}
+.rail-item.done .rail-dot .n{display:none}
+.rail-foot{margin:14px 6px 30px;font-size:.74rem;color:var(--ink-soft);line-height:1.5}
+.rail-reset{border:0;background:none;padding:4px 0 0;font-family:inherit;font-size:.74rem;font-weight:700;color:var(--ink-soft);text-decoration:underline;cursor:pointer}
+.rail-reset:hover{color:var(--pink)}
 
-/* ---------- word cards ---------- */
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.wordcard{
-  background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);padding:22px;
-  box-shadow:5px 5px 0 var(--c,var(--yellow)); transition:transform .18s ease, box-shadow .18s ease;
-}
-.wordcard:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--c,var(--yellow))}
-.wordcard .ic{font-size:2rem;line-height:1;display:block;margin-bottom:10px}
-.wordcard h3{margin-bottom:.25em}
-.wordcard p{margin:0;font-size:.94rem;color:var(--ink-soft)}
+/* ---------- chapters ---------- */
+.chapter{display:none}
+.chapter.on{display:block;animation:pageIn .38s cubic-bezier(.2,.9,.3,1) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* ---------- the loop diagram ---------- */
-.loop{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:8px}
-.loopstep{
-  position:relative;background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:18px 16px;text-align:center;
-  transition:transform .3s, box-shadow .3s, background .3s;
+.ch-cover{
+  background:var(--card);border:2px solid var(--ink);border-radius:26px;padding:26px 28px;margin-bottom:22px;
+  box-shadow:var(--shadow);position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1fr 168px;gap:22px;align-items:center;
 }
-.loopstep .n{
-  width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;
-  font-weight:700;font-size:.85rem;margin:0 auto 10px;
-}
-.loopstep h4{margin:0 0 4px}
-.loopstep p{margin:0;font-size:.86rem;color:var(--ink-soft)}
-.loopstep.on{transform:translateY(-6px) scale(1.03);box-shadow:0 12px 0 -4px var(--mint),0 18px 30px -14px rgba(0,0,0,.3);background:var(--mint-bg)}
+.ch-cover:before{content:"";position:absolute;left:-2px;right:-2px;top:-2px;height:10px;background:var(--c,var(--pink))}
+.ch-kicker{display:inline-flex;align-items:center;gap:8px;background:var(--cbg,var(--pink-bg));border:2px solid var(--ink);border-radius:99px;padding:4px 13px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px}
+.ch-cover h2{margin-bottom:.25em}
+.ch-cover .sub{color:var(--ink-soft);margin:0;font-size:1.02rem}
+.ch-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.ch-meta span{background:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:3px 10px;font-size:.76rem;font-weight:700}
+.illus{width:168px;height:132px;display:block}
 
-/* ---------- OS switch ---------- */
-.osbar{
-  position:sticky; top:var(--topbar-h,52px); z-index:50; display:flex; justify-content:center;
-  padding:12px 0 14px; margin:0 0 16px; background:var(--cream);
-}
-.osswitch{display:inline-flex;background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:4px;box-shadow:var(--shadow); gap:4px}
-.osswitch button{
-  border:0;background:none;padding:9px 22px;border-radius:99px;font-weight:700;font-size:.92rem;cursor:pointer;
-  font-family:inherit;color:var(--ink-soft);transition:.16s; white-space:nowrap;
-}
-.osswitch button.on{background:var(--ink);color:#fff}
-.mac-only,.win-only{display:none}
-body[data-os="mac"] .mac-only,body[data-os="win"] .win-only{display:block}
-body[data-os="mac"] span.mac-only,body[data-os="win"] span.win-only{display:inline}
-body[data-os="mac"] li.mac-only,body[data-os="win"] li.win-only{display:list-item}
-body[data-os="mac"] code.mac-only,body[data-os="win"] code.win-only{display:inline}
+.block{background:var(--card);border:2px solid var(--ink);border-radius:22px;padding:24px 26px;margin-bottom:20px;box-shadow:var(--shadow)}
+.block > :last-child{margin-bottom:0}
+.block h3:first-child,.block h4:first-child{margin-top:0}
+.block h3{margin-top:28px}
+.block h3:first-of-type{margin-top:0}
 
-/* ---------- steps ---------- */
-.step{
-  background:var(--card);border:2px solid var(--ink);border-radius:26px;padding:26px;margin-bottom:26px;
-  box-shadow:var(--shadow); position:relative; opacity:0; transform:translateY(26px);
-  transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.3,1), box-shadow .25s;
+.lead{font-size:1.1rem;color:var(--ink-soft)}
+.big-idea{
+  font-family:Fraunces,Georgia,serif;font-size:clamp(1.25rem,2.6vw,1.75rem);font-weight:800;line-height:1.28;
+  border-left:7px solid var(--c,var(--pink));padding:4px 0 4px 20px;margin:26px 0;
 }
-.step.in{opacity:1;transform:none}
-.step:before{
-  content:"";position:absolute;left:-2px;right:-2px;top:-2px;height:9px;border-radius:26px 26px 0 0;background:var(--c,var(--pink));
-}
-.step.done{box-shadow:0 0 0 4px var(--mint-bg), var(--shadow)}
-.step-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:6px}
-.step-num{
-  flex:none;width:52px;height:52px;border-radius:16px;background:var(--cbg,var(--pink-bg));border:2px solid var(--ink);
-  display:grid;place-items:center;font-family:Fraunces,serif;font-weight:800;font-size:1.25rem;
-}
-.step-title{flex:1}
-.step-title h2{font-size:1.6rem;margin-bottom:.15em}
-.step-title .mins{font-size:.8rem;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
-
-/* checkbox */
-.check{
-  display:flex;align-items:center;gap:12px;margin-top:22px;padding:13px 18px;border-radius:16px;
-  background:var(--cbg,var(--pink-bg));border:2px dashed rgba(32,34,63,.28);cursor:pointer;user-select:none;
-  font-weight:700;transition:.2s;
-}
-.check:hover{border-style:solid;transform:translateY(-2px)}
-.check input{position:absolute;opacity:0;pointer-events:none}
-.box{
-  width:26px;height:26px;flex:none;border-radius:8px;background:#fff;border:2px solid var(--ink);
-  display:grid;place-items:center;transition:.2s; font-size:1rem;
-}
-.check.on{background:var(--mint-bg);border-color:var(--mint);border-style:solid}
-.check.on .box{background:var(--mint);border-color:var(--mint);color:#fff;transform:rotate(-8deg) scale(1.06)}
-.check .box:after{content:"✓";opacity:0;font-weight:700;transition:.2s;color:#fff}
-.check.on .box:after{opacity:1}
-.check.on .lbl{text-decoration:line-through;opacity:.65}
+mark{background:linear-gradient(180deg,transparent 58%,var(--yellow) 58%);color:inherit;padding:0 2px;font-weight:600}
 
 /* callouts */
 .note{border-radius:16px;padding:16px 18px;margin:18px 0;border:2px solid var(--ink);font-size:.96rem}
 .note h4{margin:0 0 6px;display:flex;gap:8px;align-items:center}
-.note p:last-child,.note ul:last-child{margin-bottom:0}
+.note p:last-child,.note ul:last-child,.note ol:last-child{margin-bottom:0}
 .note.see{background:var(--mint-bg)}
 .note.warn{background:var(--yellow-bg)}
 .note.stuck{background:var(--pink-bg)}
 .note.tip{background:var(--blue-bg)}
 .note.brain{background:var(--purple-bg)}
+.note.danger{background:var(--red-bg)}
 
 ol.dolist{padding-left:0;list-style:none;counter-reset:d;margin:16px 0}
 ol.dolist li{counter-increment:d;position:relative;padding:8px 0 8px 44px;border-bottom:1px dashed var(--line)}
@@ -204,26 +149,17 @@ ol.dolist li:before{
 ul.plain{padding-left:22px;margin:10px 0}
 ul.plain li{margin-bottom:6px}
 
-kbd{
-  display:inline-block;background:#fff;border:2px solid var(--ink);border-bottom-width:4px;border-radius:8px;
-  padding:2px 9px;font-size:.84rem;font-weight:600;margin:0 1px;
-}
+kbd{display:inline-block;background:#fff;border:2px solid var(--ink);border-bottom-width:4px;border-radius:8px;padding:2px 9px;font-size:.84rem;font-weight:600;margin:0 1px}
+code{background:var(--yellow-bg);border-radius:6px;padding:1px 5px;font-size:.88em}
+.note code{background:rgba(255,255,255,.7)}
 
 /* copy blocks */
-.copy{
-  position:relative;background:#20223f;color:#f4f2ff;border-radius:16px;padding:18px 108px 18px 20px;
-  margin:16px 0;font-size:.94rem;line-height:1.55;box-shadow:var(--shadow);
-}
+.copy{position:relative;background:#20223f;color:#f4f2ff;border-radius:16px;padding:18px 108px 18px 20px;margin:18px 0;font-size:.94rem;line-height:1.55;box-shadow:var(--shadow)}
 .copy.prompt{background:linear-gradient(135deg,#2b2456,#3d2a5e)}
-.copy .tag{
-  position:absolute;top:-11px;left:16px;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);
-  border-radius:99px;font-size:.68rem;font-weight:700;padding:1px 10px;text-transform:uppercase;letter-spacing:.06em;
-}
+.copy .tag{position:absolute;top:-11px;left:16px;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);border-radius:99px;font-size:.68rem;font-weight:700;padding:1px 10px;text-transform:uppercase;letter-spacing:.06em}
 .copy .txt{white-space:pre-wrap;word-break:break-word}
-.copy button{
-  position:absolute;right:14px;top:14px;background:#fff;color:var(--ink);border:2px solid var(--ink);
-  border-radius:99px;padding:6px 14px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;transition:.15s;
-}
+.copy code{background:rgba(255,255,255,.12);color:#fff}
+.copy button{position:absolute;right:14px;top:14px;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:99px;padding:6px 14px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;transition:.15s}
 .copy button:hover{background:var(--yellow);transform:translateY(-1px)}
 .copy button.ok{background:var(--mint);border-color:var(--mint);color:#fff}
 
@@ -244,11 +180,20 @@ kbd{
 @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,107,157,.55)}50%{box-shadow:0 0 0 9px rgba(255,107,157,0)}}
 .tagpin{display:inline-block;background:var(--pink);color:#fff;font-size:.68rem;font-weight:700;border-radius:99px;padding:1px 9px;margin-left:6px}
 
+/* checkbox */
+.check{display:flex;align-items:center;gap:12px;margin-top:22px;padding:14px 18px;border-radius:16px;background:var(--cbg,var(--pink-bg));border:2px dashed rgba(32,34,63,.28);cursor:pointer;user-select:none;font-weight:700;transition:.2s}
+.check:hover{border-style:solid;transform:translateY(-2px)}
+.check input{position:absolute;opacity:0;pointer-events:none}
+.box{width:26px;height:26px;flex:none;border-radius:8px;background:#fff;border:2px solid var(--ink);display:grid;place-items:center;transition:.2s;font-size:1rem}
+.check.on{background:var(--mint-bg);border-color:var(--mint);border-style:solid}
+.check.on .box{background:var(--mint);border-color:var(--mint);color:#fff;transform:rotate(-8deg) scale(1.06)}
+.check .box:after{content:"✓";opacity:0;font-weight:700;transition:.2s;color:#fff}
+.check.on .box:after{opacity:1}
+.check.on .lbl{text-decoration:line-through;opacity:.65}
+
 /* accordion */
 .acc{border:2px solid var(--ink);border-radius:16px;background:var(--card);margin-bottom:12px;overflow:hidden;box-shadow:3px 3px 0 rgba(32,34,63,.1)}
-.acc summary{
-  padding:15px 18px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;
-}
+.acc summary{padding:15px 18px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
 .acc summary::-webkit-details-marker{display:none}
 .acc summary:after{content:"+";font-size:1.5rem;font-weight:400;line-height:1;transition:transform .2s;flex:none}
 .acc[open] summary:after{transform:rotate(45deg)}
@@ -256,89 +201,224 @@ kbd{
 .acc .inner{padding:16px 18px;font-size:.96rem}
 .acc .inner p:last-child{margin-bottom:0}
 
-/* cheat sheet */
+/* phrase cards / grids */
 .phrases{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-.phrase{
-  background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;cursor:pointer;
-  font-weight:600;font-size:.93rem;display:flex;justify-content:space-between;gap:10px;align-items:center;transition:.16s;
-  box-shadow:3px 3px 0 var(--c,var(--purple));
-}
+.phrase{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:14px 16px;cursor:pointer;font-weight:600;font-size:.93rem;display:flex;justify-content:space-between;gap:10px;align-items:center;transition:.16s;box-shadow:3px 3px 0 var(--c,var(--purple))}
 .phrase:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--c,var(--purple))}
 .phrase .mini{font-size:.7rem;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;flex:none}
 .phrase.ok{background:var(--mint-bg)}
-
-/* glossary */
-.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px}
+.wordcard{background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);padding:22px;box-shadow:5px 5px 0 var(--c,var(--yellow));transition:transform .18s ease, box-shadow .18s ease}
+.wordcard:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--c,var(--yellow))}
+.wordcard .ic{font-size:2rem;line-height:1;display:block;margin-bottom:10px}
+.wordcard h3{margin-bottom:.25em;margin-top:0}
+.wordcard p{margin:0;font-size:.94rem;color:var(--ink-soft)}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .gl{background:var(--card);border:2px dashed var(--ink);border-radius:14px;padding:14px}
 .gl b{display:block;font-size:1rem;margin-bottom:2px}
 .gl span{font-size:.88rem;color:var(--ink-soft)}
 
-/* finish */
-.finish{
-  text-align:center;background:linear-gradient(135deg,var(--purple-bg),var(--pink-bg),var(--yellow-bg));
-  border:2px solid var(--ink);border-radius:28px;padding:44px 26px;box-shadow:var(--shadow-lift);margin:20px 0;
-}
-.finish .big{font-size:3.6rem;display:block;margin-bottom:8px;animation:bob 2.4s ease-in-out infinite}
-#confetti{position:fixed;inset:0;pointer-events:none;z-index:400;display:none}
+/* loop diagram */
+.loop{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:8px}
+.loopstep{position:relative;background:var(--cream);border:2px solid var(--ink);border-radius:18px;padding:18px 16px;text-align:center;transition:transform .3s, box-shadow .3s, background .3s}
+.loopstep .n{width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.85rem;margin:0 auto 10px}
+.loopstep h4{margin:0 0 4px}
+.loopstep p{margin:0;font-size:.86rem;color:var(--ink-soft)}
+.loopstep.on{transform:translateY(-6px) scale(1.03);box-shadow:0 12px 0 -4px var(--mint),0 18px 30px -14px rgba(0,0,0,.3);background:var(--mint-bg)}
 
-/* ---------- celebration modal ---------- */
+/* OS switch */
+.osswitch{display:inline-flex;background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:4px;gap:4px;box-shadow:3px 3px 0 rgba(32,34,63,.12)}
+.osswitch button{border:0;background:none;padding:8px 18px;border-radius:99px;font-weight:700;font-size:.88rem;cursor:pointer;font-family:inherit;color:var(--ink-soft);transition:.16s;white-space:nowrap}
+.osswitch button.on{background:var(--ink);color:#fff}
+.osrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.osrow .lab{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+.mac-only,.win-only{display:none}
+body[data-os="mac"] .mac-only,body[data-os="win"] .win-only{display:block}
+body[data-os="mac"] span.mac-only,body[data-os="win"] span.win-only{display:inline}
+body[data-os="mac"] li.mac-only,body[data-os="win"] li.win-only{display:list-item}
+body[data-os="mac"] code.mac-only,body[data-os="win"] code.win-only{display:inline}
+
+/* ---------- quiz ---------- */
+.quiz{
+  background:linear-gradient(150deg,var(--purple-bg),var(--pink-bg) 55%,var(--yellow-bg));
+  border:2px solid var(--ink);border-radius:24px;padding:26px;margin-bottom:22px;box-shadow:var(--shadow-lift);position:relative;
+}
+.quiz-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.quiz-head .zap{font-size:1.8rem;line-height:1;animation:bob 2.4s ease-in-out infinite}
+.quiz-head h3{margin:0;font-size:1.45rem}
+.quiz-sub{color:var(--ink-soft);font-size:.94rem;margin:0 0 20px}
+.q{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:18px 20px;margin-bottom:14px;box-shadow:3px 3px 0 rgba(32,34,63,.12)}
+.q > p.qt{font-weight:700;margin:0 0 12px;font-size:1.02rem}
+.q > p.qt:before{content:attr(data-n) ". ";color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.opts{display:grid;gap:8px}
+.opt{
+  display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;
+  background:var(--cream);border:2px solid var(--ink);border-radius:13px;padding:11px 14px;
+  font-family:inherit;font-size:.95rem;font-weight:500;color:var(--ink);cursor:pointer;line-height:1.45;
+  transition:transform .14s,background .14s,box-shadow .14s;
+}
+.opt:hover{transform:translateX(3px);background:#fff;box-shadow:-3px 3px 0 rgba(32,34,63,.1)}
+.opt .pip{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid var(--ink);background:#fff;display:grid;place-items:center;font-size:.75rem;font-weight:700}
+.opt.right{background:var(--mint-bg);border-color:var(--mint);font-weight:600}
+.opt.right .pip{background:var(--mint);border-color:var(--mint);color:#fff}
+.opt.right .pip:after{content:"✓"}
+.opt.right .pip .ltr{display:none}
+.opt.wrong{background:var(--red-bg);border-color:var(--red);opacity:.75;animation:shake .38s}
+.opt.wrong .pip{background:var(--red);border-color:var(--red);color:#fff}
+.opt.wrong .pip:after{content:"×";font-size:1rem}
+.opt.wrong .pip .ltr{display:none}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.q.locked .opt{pointer-events:none}
+.q.locked .opt:not(.right):not(.wrong){opacity:.5}
+.why{
+  margin:12px 0 0;font-size:.92rem;background:var(--mint-bg);border:2px solid var(--ink);border-radius:13px;
+  padding:11px 14px;display:none;
+}
+.why.show{display:block;animation:pageIn .3s both}
+.why b{font-weight:700}
+.nudge{margin:12px 0 0;font-size:.92rem;background:var(--yellow-bg);border:2px dashed var(--ink);border-radius:13px;padding:10px 14px;display:none}
+.nudge.show{display:block;animation:pageIn .3s both}
+.quiz-score{
+  display:flex;align-items:center;gap:12px;background:var(--card);border:2px solid var(--ink);border-radius:16px;
+  padding:14px 18px;font-weight:700;box-shadow:3px 3px 0 rgba(32,34,63,.12);
+}
+.quiz-score .bar{flex:1;height:11px;border-radius:99px;background:#efe9df;overflow:hidden;min-width:50px}
+.quiz-score .bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--mint),var(--blue));transition:width .5s cubic-bezier(.2,.9,.3,1)}
+.quiz-score.pass{background:var(--mint-bg);border-color:var(--mint)}
+.quiz-score .msg{white-space:nowrap;font-size:.92rem}
+
+/* ---------- page nav ---------- */
+.navrow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 60px}
+.navbtn{
+  display:flex;flex-direction:column;gap:2px;background:var(--card);border:2px solid var(--ink);border-radius:18px;
+  padding:14px 20px;font-family:inherit;text-align:left;cursor:pointer;transition:transform .14s,box-shadow .14s;
+  box-shadow:0 5px 0 var(--blue);color:inherit;text-decoration:none;
+}
+.navbtn:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--blue)}
+.navbtn .k{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-soft)}
+.navbtn .v{font-family:Fraunces,serif;font-weight:800;font-size:1.05rem;line-height:1.2}
+.navbtn.next{text-align:right;box-shadow:0 5px 0 var(--pink)}
+.navbtn.next:hover{box-shadow:0 3px 0 var(--pink)}
+.navbtn[disabled]{opacity:.35;pointer-events:none}
+
+.btn{display:inline-block;background:var(--ink);color:#fff;border:2px solid var(--ink);border-radius:99px;padding:14px 30px;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;box-shadow:0 5px 0 var(--pink);transition:transform .12s, box-shadow .12s;font-family:inherit}
+.btn:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--pink)}
+.btn:active{transform:translateY(5px);box-shadow:0 0 0 var(--pink)}
+.btn.ghost{background:var(--card);color:var(--ink);box-shadow:0 5px 0 var(--blue)}
+.btn.ghost:hover{box-shadow:0 3px 0 var(--blue)}
+
+/* ---------- cover / hero chapter ---------- */
+.hero{text-align:center;padding:34px 0 10px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:7px 16px;font-size:.82rem;font-weight:700;margin-bottom:22px;box-shadow:3px 3px 0 var(--yellow);animation:pop .6s cubic-bezier(.2,1.4,.4,1) both}
+.hero h1 .hl{position:relative;z-index:0;white-space:nowrap}
+.hero h1 .hl:after{content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.34em;background:var(--yellow);z-index:-1;border-radius:6px;transform:scaleX(0);transform-origin:left;animation:swipe .9s .45s cubic-bezier(.2,.9,.3,1) forwards}
+@keyframes swipe{to{transform:scaleX(1)}}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.lede{font-size:1.16rem;color:var(--ink-soft);max-width:610px;margin:0 auto 26px}
+.hero-facts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.fact{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:10px 16px;font-size:.84rem;font-weight:600;box-shadow:3px 3px 0 rgba(32,34,63,.12)}
+.fact b{display:block;font-size:1.3rem;font-family:Fraunces,serif}
+
+/* map of the course */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-top:8px}
+.mapcard{background:var(--cream);border:2px solid var(--ink);border-radius:16px;padding:14px;cursor:pointer;text-align:left;font-family:inherit;transition:transform .16s,box-shadow .16s;box-shadow:3px 3px 0 var(--c,var(--pink))}
+.mapcard:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--c,var(--pink))}
+.mapcard .n{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.mapcard .t{font-family:Fraunces,serif;font-weight:800;font-size:1rem;line-height:1.2;margin-top:3px;display:block;color:var(--ink)}
+
+/* certificate */
+.cert{
+  background:linear-gradient(140deg,#fffdf7,#fff8ec);border:3px double var(--ink);border-radius:22px;
+  padding:38px 30px;text-align:center;box-shadow:var(--shadow-lift);position:relative;overflow:hidden;
+}
+.cert:before,.cert:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;filter:blur(50px);opacity:.55}
+.cert:before{background:var(--pink-bg);top:-70px;left:-50px}
+.cert:after{background:var(--blue-bg);bottom:-70px;right:-50px}
+.cert > *{position:relative}
+.cert .seal{font-size:3.4rem;line-height:1;display:block;margin-bottom:8px;animation:bob 2.6s ease-in-out infinite}
+.cert h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:.2em}
+.cert .name{font-family:Fraunces,serif;font-weight:800;font-size:1.5rem;border-bottom:3px solid var(--ink);display:inline-block;padding:0 26px 4px;margin:14px 0 8px;min-width:220px}
+.cert input.name{background:none;border:0;border-bottom:3px solid var(--ink);text-align:center;font-family:Fraunces,serif;font-weight:800;font-size:1.5rem;padding:0 10px 4px;color:inherit;outline:none;max-width:100%}
+.cert input.name::placeholder{color:rgba(86,90,128,.45)}
+.badges{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:20px 0 6px}
+.badge{background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:5px 13px;font-size:.78rem;font-weight:700;box-shadow:2px 2px 0 var(--c,var(--yellow));opacity:.35;transition:.3s}
+.badge.on{opacity:1;transform:translateY(-2px)}
+
+.finish{text-align:center;background:linear-gradient(135deg,var(--purple-bg),var(--pink-bg),var(--yellow-bg));border:2px solid var(--ink);border-radius:26px;padding:40px 26px;box-shadow:var(--shadow-lift);margin-bottom:22px}
+.finish .big{font-size:3.4rem;display:block;margin-bottom:8px;animation:bob 2.4s ease-in-out infinite}
+
+/* celebration */
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:400;display:none}
 .party{position:fixed;inset:0;z-index:300;display:none;place-items:center;padding:22px;background:rgba(32,34,63,.55)}
 .party.show{display:grid;animation:fadeIn .25s ease both}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.party-card{
-  background:var(--card);border:3px solid var(--ink);border-radius:28px;padding:36px 28px 30px;
-  max-width:440px;width:100%;text-align:center;position:relative;
-  box-shadow:0 10px 0 var(--pink),0 40px 70px -20px rgba(32,34,63,.6);
-  animation:springIn .55s cubic-bezier(.2,1.5,.4,1) both;
-}
+.party-card{background:var(--card);border:3px solid var(--ink);border-radius:28px;padding:36px 28px 30px;max-width:440px;width:100%;text-align:center;position:relative;box-shadow:0 10px 0 var(--pink),0 40px 70px -20px rgba(32,34,63,.6);animation:springIn .55s cubic-bezier(.2,1.5,.4,1) both}
 @keyframes springIn{from{opacity:0;transform:translateY(40px) scale(.85)}to{opacity:1;transform:none}}
 .party-card .emoji{font-size:4rem;display:block;line-height:1;margin-bottom:10px;animation:tada 1.2s ease-in-out infinite}
 @keyframes tada{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(-9deg) scale(1.12)}75%{transform:rotate(9deg) scale(1.12)}}
-.party-card h2{font-size:2rem;margin-bottom:.3em}
+.party-card h2{font-size:1.9rem;margin-bottom:.3em}
 .party-card p{color:var(--ink-soft);margin-bottom:20px}
-.party-card .btn{padding:13px 26px;font-size:.98rem}
+.party-card .btn{padding:13px 26px;font-size:.96rem}
 .party-close{position:absolute;top:10px;right:14px;border:0;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink-soft);padding:6px;font-family:inherit}
 .party-close:hover{color:var(--pink)}
 .party-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
 .party-badges span{background:var(--yellow-bg);border:2px solid var(--ink);border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:700}
 
-footer{padding:50px 0 70px;text-align:center;color:var(--ink-soft);font-size:.88rem}
-footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 22px,var(--yellow) 22px 44px,var(--mint) 44px 66px,var(--blue) 66px 88px);border-radius:2px;margin-bottom:26px}
+/* chapter-complete toast */
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,140%);z-index:280;
+  background:var(--ink);color:#fff;border-radius:99px;padding:12px 24px;font-weight:700;font-size:.95rem;
+  box-shadow:0 16px 40px -14px rgba(0,0,0,.7);transition:transform .45s cubic-bezier(.2,1.4,.4,1);white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis;
+}
+.toast.on{transform:translate(-50%,0)}
+
+footer{padding:10px 0 60px;text-align:center;color:var(--ink-soft);font-size:.86rem}
+footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 22px,var(--yellow) 22px 44px,var(--mint) 44px 66px,var(--blue) 66px 88px);border-radius:2px;margin-bottom:22px}
 
 /* ---------- link hover previews ---------- */
-.lp{
-  position:fixed; left:0; top:0; z-index:500; pointer-events:none; width:236px;
-  background:var(--card); border:2px solid var(--ink); border-radius:16px; padding:6px 6px 2px;
-  box-shadow:0 7px 0 rgba(32,34,63,.13), 0 26px 44px -18px rgba(32,34,63,.5);
-  opacity:0; visibility:hidden;
-  transform:translate(calc(-50% + var(--lp-x,0px)), 10px) scale(.7);
-  transition:opacity .16s ease, transform .36s cubic-bezier(.2,1.5,.4,1), visibility .16s;
-}
-.lp.on{opacity:1; visibility:visible; transform:translate(calc(-50% + var(--lp-x,0px)), 0) scale(1)}
-.lp-shot{
-  display:block; width:222px; height:139px; border-radius:10px; object-fit:cover; object-position:top center;
-  background:var(--yellow-bg);
-}
+.lp{position:fixed;left:0;top:0;z-index:500;pointer-events:none;width:236px;background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:6px 6px 2px;box-shadow:0 7px 0 rgba(32,34,63,.13),0 26px 44px -18px rgba(32,34,63,.5);opacity:0;visibility:hidden;transform:translate(calc(-50% + var(--lp-x,0px)),10px) scale(.7);transition:opacity .16s ease, transform .36s cubic-bezier(.2,1.5,.4,1), visibility .16s}
+.lp.on{opacity:1;visibility:visible;transform:translate(calc(-50% + var(--lp-x,0px)),0) scale(1)}
+.lp-shot{display:block;width:222px;height:139px;border-radius:10px;object-fit:cover;object-position:top center;background:var(--yellow-bg)}
 .lp-shot.loading{background:linear-gradient(100deg,var(--yellow-bg) 30%,#fff 50%,var(--yellow-bg) 70%);background-size:220% 100%;animation:shimmer 1.15s linear infinite}
 @keyframes shimmer{to{background-position:-220% 0}}
-.lp-host{
-  font-size:.68rem; font-weight:700; letter-spacing:.03em; color:var(--ink-soft);
-  text-align:center; padding:5px 4px 4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
-@media (max-width:640px){
-  .lp{display:none}
-}
+.lp-host{font-size:.68rem;font-weight:700;letter-spacing:.03em;color:var(--ink-soft);text-align:center;padding:5px 4px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
+/* ---------- responsive ---------- */
+@media (max-width:1060px){
+  :root{--rail-w:214px}
+  .rail-item{font-size:.83rem;padding:7px 8px}
+}
+@media (max-width:900px){
+  .shell{grid-template-columns:1fr;gap:0;padding-top:18px}
+  .tb-menu{display:block}
+  .rail{
+    position:fixed;left:0;top:0;bottom:0;width:290px;max-height:none;z-index:90;background:var(--cream);
+    border-right:2px solid var(--ink);padding:20px 16px;overflow-y:auto;
+    transform:translateX(-102%);transition:transform .3s cubic-bezier(.2,.9,.3,1);box-shadow:14px 0 40px -18px rgba(32,34,63,.5);
+  }
+  .rail.open{transform:none}
+  .scrim{position:fixed;inset:0;background:rgba(32,34,63,.45);z-index:85;display:none}
+  .scrim.on{display:block;animation:fadeIn .2s both}
+  .ch-cover{grid-template-columns:1fr;gap:16px;text-align:left}
+  .illus{width:152px;height:120px;margin:0 auto}
+}
 @media (max-width:640px){
   body{font-size:16px}
-  .step{padding:20px 17px;border-radius:20px}
+  .block,.quiz{padding:19px 17px;border-radius:19px}
+  .ch-cover{padding:20px 18px;border-radius:20px}
   .copy{padding:16px 16px 58px}
   .copy button{top:auto;bottom:14px;right:14px}
   .mock-side{display:none}
+  .lp{display:none}
+  .navrow{grid-template-columns:1fr}
+  .topbar-in{gap:10px;padding:8px 14px}
+  .tb-logo{font-size:.9rem}
+  .tb-reset{display:none}
+  .shell{padding-left:14px;padding-right:14px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
-  .step{opacity:1;transform:none}
   .hero h1 .hl:after{transform:scaleX(1)}
 }
 </style>
@@ -346,776 +426,1686 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 <body data-os="mac">
 <div class="blobs"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div></div>
 <canvas id="confetti"></canvas>
-<div class="lp" id="lp" aria-hidden="true">
-  <img class="lp-shot" id="lp-shot" alt="">
-  <div class="lp-host" id="lp-host"></div>
-</div>
+<div class="lp" id="lp" aria-hidden="true"><img class="lp-shot" id="lp-shot" alt=""><div class="lp-host" id="lp-host"></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <div class="party" id="party" role="dialog" aria-modal="true" aria-labelledby="party-title">
   <div class="party-card">
     <button class="party-close" id="party-x" aria-label="Close">×</button>
-    <span class="emoji">🎉</span>
+    <span class="emoji">🎓</span>
     <h2 id="party-title">You actually did it.</h2>
-    <p>Ten out of ten. You have a Claude account, a GitHub, a Vercel, a working setup — and something you built that lives on the internet.</p>
-    <div class="party-badges"><span>✳️ Claude</span><span>🐙 GitHub</span><span>▲ Vercel</span><span>🌍 Shipped</span></div>
-    <a class="btn" href="#next" id="party-next">Pick your next build →</a>
+    <p>Twelve chapters. A working setup, a save history, secrets handled properly, and something you built living on the real internet.</p>
+    <div class="party-badges"><span>✳️ Claude</span><span>🐙 GitHub</span><span>▲ Vercel</span><span>🔑 OpenRouter</span><span>🌍 Shipped</span></div>
+    <button class="btn" id="party-next">See my certificate →</button>
   </div>
 </div>
 
 <div class="topbar">
   <div class="topbar-in">
-    <div class="tb-logo">Start <span>Vibe Coding</span></div>
-    <div class="tb-track"><div class="tb-fill" id="fill"></div></div>
-    <div class="tb-count" id="count">0 / 10</div>
-    <button class="tb-reset" id="reset" title="Clear my ticks">reset</button>
+    <button class="tb-menu" id="menu" aria-label="Chapters">☰</button>
+    <button class="tb-logo" id="home">Vibe <span>Coding 101</span></button>
+    <div class="tb-track" role="progressbar" aria-label="Course progress"><div class="tb-fill" id="fill"></div></div>
+    <div class="tb-count" id="count">0 / 12</div>
+    <button class="tb-reset" id="reset" title="Wipe my progress and start over">start over</button>
   </div>
 </div>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">🍼 No coding experience required</div>
-    <h1>You're about to<br>build <span class="hl">real software.</span></h1>
-    <p class="lede">You type what you want in plain English. The AI writes the code. You look, and say what to change. That's the whole job — and this page walks you through every click.</p>
+<div class="scrim" id="scrim"></div>
+<div class="shell">
+<nav class="rail" id="rail" aria-label="Chapters">
+  <p class="rail-title">The Course</p>
+  <div id="rail-list"></div>
+  <p class="rail-foot">12 chapters · about 90 minutes.<br>Your place is saved on this device.<br><button class="rail-reset" data-reset>start over</button></p>
+</nav>
+<main class="page" id="page">
+
+<!-- ═══════════ CHAPTER 1 ═══════════ -->
+<section class="chapter" id="ch1" data-ch="1" style="--c:var(--purple);--cbg:var(--purple-bg)">
+  <div class="hero">
+    <div class="eyebrow">🍼 Nobody here has coded before</div>
+    <h1>You're about to build <span class="hl">real software.</span></h1>
+    <p class="lede">Not a toy. Not a tutorial you'll forget. A thing that exists on the internet with a link you can text your mum. Twelve chapters. Let's go.</p>
     <div class="hero-facts">
-      <div class="fact"><b>30</b>minutes to set up</div>
-      <div class="fact"><b>10</b>tiny steps</div>
+      <div class="fact"><b>12</b>chapters</div>
+      <div class="fact"><b>90</b>minutes-ish</div>
       <div class="fact"><b>0</b>lines you type yourself</div>
     </div>
-    <a class="btn" href="#step0">Start at the beginning →</a>
-    <a class="btn ghost" href="#cheat" style="margin-left:8px">I'm already set up</a>
-    <div class="scroll-hint">👇</div>
+    <button class="btn" data-goto="2">Let’s begin →</button>
   </div>
-</header>
 
-<section id="what">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>First, three words</h2>
-      <p>People will throw these at you. Here's all they mean.</p>
-    </div>
-    <div class="grid3">
+  <div class="block">
+    <h3>The deal</h3>
+    <p>Here's the trick nobody tells beginners: <b>you don't write the code.</b> You describe what you want in ordinary English, an AI writes it, and you look at what came out and say what to change.</p>
+    <div class="big-idea">You're not learning to code.<br>You're learning to <mark>direct</mark> something that codes.</div>
+    <p>That's it. That's the job. The rest of this course is just showing you which buttons to press and which sentences to say.</p>
+  </div>
+
+  <div class="block">
+    <h3>Three words people will throw at you</h3>
+    <p class="lead">Here's all they actually mean.</p>
+    <div class="grid3" style="margin-top:18px">
       <div class="wordcard" style="--c:var(--blue)">
-        <span class="ic">🗂️</span>
-        <h3>VS Code</h3>
-        <p>A free app that holds your project's files. This is where you'll work.</p>
+        <span class="ic">🗂️</span><h3>VS Code</h3>
+        <p>A free app that holds your project's files. This is your workshop.</p>
       </div>
       <div class="wordcard" style="--c:var(--pink)">
-        <span class="ic">✨</span>
-        <h3>Claude Code</h3>
+        <span class="ic">✨</span><h3>Claude Code</h3>
         <p>The AI that lives inside VS Code. You chat, it writes the files.</p>
       </div>
       <div class="wordcard" style="--c:var(--mint)">
-        <span class="ic">⌨️</span>
-        <h3>Terminal</h3>
+        <span class="ic">⌨️</span><h3>Terminal</h3>
         <p>A box for typing commands instead of clicking. You can ignore it.</p>
       </div>
     </div>
-
-    <div class="note brain" style="margin-top:26px">
+    <div class="note brain" style="margin-top:24px">
       <h4>🧠 So what is "vibe coding"?</h4>
-      <p style="margin:0">Describing what you want in normal words and letting AI write it. You stay the boss. You don't have to read the code — but you do have to look at the result.</p>
+      <p style="margin:0">Describing what you want in normal words and letting AI write it. You stay the boss. You don't have to read the code — but you <b>do</b> have to look at the result. That distinction is the whole course in one line.</p>
     </div>
+  </div>
 
-    <h3 style="margin-top:36px;text-align:center">The whole loop, forever</h3>
+  <div class="block">
+    <h3>The loop you'll do forever</h3>
+    <p class="lead">Every professional developer using AI is doing this exact circle. Including the ones with fifteen years' experience.</p>
     <div class="loop" id="loop">
       <div class="loopstep"><div class="n">1</div><h4>Ask</h4><p>"Make a page with three colourful boxes."</p></div>
       <div class="loopstep"><div class="n">2</div><h4>Look</h4><p>Open it. Click it. Does it work?</p></div>
       <div class="loopstep"><div class="n">3</div><h4>Correct</h4><p>"Make the button green."</p></div>
       <div class="loopstep"><div class="n">4</div><h4>Repeat</h4><p>That's genuinely it.</p></div>
     </div>
+    <div class="note warn" style="margin-top:22px">
+      <h4>⚠️ The one way to do this badly</h4>
+      <p style="margin:0">Skipping step 2. Code you never looked at is a <b>rumour</b>. If you only remember one thing from twelve chapters, remember to look.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>What's coming</h3>
+    <p class="lead">Click any chapter to jump ahead. But chapters 2–7 build on each other, so the first time through, just go in order.</p>
+    <div class="map" id="map"></div>
+  </div>
+
+  <div class="block">
+    <h3>One setting before we start</h3>
+    <p>Some instructions differ between a Mac and a Windows PC. Tell the course which one you're on and it'll only show you yours.</p>
+    <div class="osrow" style="margin:0">
+      <span class="lab">I'm on a</span>
+      <div class="osswitch" role="group" aria-label="Choose your computer">
+        <button data-os="mac" class="on">🍎 Mac</button>
+        <button data-os="win">🪟 Windows</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-quiz="1">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: The Brief</h3></div>
+    <p class="quiz-sub">Two questions. Get them right and Chapter 1 gets a tick. Wrong answers cost nothing — try again.</p>
+    <div class="q">
+      <p class="qt" data-n="1">In vibe coding, whose job is it to actually type the code?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yours — the AI just suggests things and you type them in.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>The AI's. You describe what you want and review what comes back.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Nobody's — the website builds itself.</span></button>
+      </div>
+      <p class="why"><b>Exactly.</b> You're the director, not the typist. Your job is describing clearly and checking the result.</p>
+      <p class="nudge">Not that one. Think about who's holding the keyboard versus who's holding the vision.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">Which step of the loop do beginners skip, to their own ruin?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Ask</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Look</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Repeat</span></button>
+      </div>
+      <p class="why"><b>Yep.</b> Asking is fun and repeating is easy. Opening the thing and checking it actually works is the bit people skip — and it's the bit that saves you.</p>
+      <p class="nudge">Close. Which one feels like a chore rather than a thrill?</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
-<div class="osbar">
-  <div class="osswitch" role="group" aria-label="Choose your computer">
-    <button data-os="mac" class="on">🍎 I have a Mac</button>
-    <button data-os="win">🪟 I have Windows</button>
+<!-- ═══════════ CHAPTER 2 ═══════════ -->
+<section class="chapter" id="ch2" data-ch="2" style="--c:var(--pink);--cbg:var(--pink-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 2 · Kit up</div>
+      <h2>Your Claude account</h2>
+      <p class="sub">The one thing in this whole course you pay for. Everything else is free.</p>
+      <div class="ch-meta"><span>≈ 5 min</span><span>💳 Paid</span><span>Needed first</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <rect x="26" y="34" width="148" height="92" rx="16" fill="#ffe8f0" stroke="#20223f" stroke-width="4"/>
+      <rect x="26" y="52" width="148" height="16" fill="#20223f"/>
+      <rect x="42" y="86" width="54" height="9" rx="4.5" fill="#20223f" opacity=".35"/>
+      <rect x="42" y="102" width="34" height="9" rx="4.5" fill="#20223f" opacity=".2"/>
+      <circle cx="140" cy="100" r="17" fill="#ffc73f" stroke="#20223f" stroke-width="4"/>
+      <path d="M133 100l5 5 10-11" stroke="#20223f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M100 12v14M84 20l7 9M116 20l-7 9" stroke="#ff6b9d" stroke-width="4" stroke-linecap="round"/>
+    </svg>
   </div>
-</div>
 
-<main class="wrap">
-
-<!-- STEP 0 -->
-<article class="step" id="step0" style="--c:var(--purple);--cbg:var(--purple-bg)">
-  <div class="step-head">
-    <div class="step-num">0</div>
-    <div class="step-title"><h2>Get a Claude account</h2><div class="mins">≈ 5 min · paid · needed first</div></div>
-  </div>
-  <p>Claude Code needs a paid Claude plan. The free plan won't work — it's chat only.</p>
-  <ol class="dolist">
-    <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> → <b>Sign up</b>. Use email or Google.</li>
-    <li>Once in: click your name (bottom left) → <b>Settings</b> → <b>Plans</b>.</li>
-    <li>Pick <b>Pro</b> — $20/month, or $17/month if you pay for the year.</li>
-    <li>Remember the login. You'll use it again in Step 4.</li>
-  </ol>
-  <div class="note tip">
-    <h4>💸 Which plan?</h4>
-    <ul class="plain">
-      <li><b>Free</b> — chat only. Won't work here.</li>
-      <li><b>Pro</b> — start here. Plenty for learning.</li>
-      <li><b>Max</b> — from $100/month. Only if you're coding all day and hitting limits. Upgrade later in one click.</li>
-    </ul>
-    <p style="margin-bottom:0;font-size:.88rem">This is the only thing in this whole guide you pay for. Everything else is free.</p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="0"><span class="box"></span><span class="lbl">Claude account, paid plan ✓</span></label>
-</article>
-
-<!-- STEP 1 -->
-<article class="step" id="step1" style="--c:var(--pink);--cbg:var(--pink-bg)">
-  <div class="step-head">
-    <div class="step-num">1</div>
-    <div class="step-title"><h2>Install VS Code</h2><div class="mins">≈ 5 min · free</div></div>
-  </div>
-  <ol class="dolist">
-    <li>Go to <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a>.</li>
-    <li>Click the button for your computer. The site usually guesses right.</li>
-  </ol>
-  <div class="mac-only">
+  <div class="block">
+    <p class="lead">Claude Code needs a <b>paid</b> Claude plan. The free plan is chat-only — it can talk to you, but it can't reach into your files and build things. That's the bit we need.</p>
+    <ol class="dolist">
+      <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> → <b>Sign up</b>. Email or Google, either's fine.</li>
+      <li>Once you're in: click your name at the <b>bottom left</b> → <b>Settings</b> → <b>Plans</b>.</li>
+      <li>Pick <b>Pro</b> — $20/month, or $17/month if you pay for the year.</li>
+      <li><b>Remember this login.</b> You'll need it again in Chapter 6.</li>
+    </ol>
     <div class="note tip">
-      <h4>🍎 On Mac</h4>
+      <h4>💸 Which plan, honestly?</h4>
       <ul class="plain">
-        <li>Double-click the downloaded <code>.zip</code>. A blue icon appears.</li>
-        <li>Drag it into your <b>Applications</b> folder, then double-click to open.</li>
-        <li>"Downloaded from the internet, are you sure?" → <b>Open</b>.</li>
+        <li><b>Free</b> — chat only. Won't work for this.</li>
+        <li><b>Pro</b> — start here. Plenty for learning, and plenty for building real things.</li>
+        <li><b>Max</b> — from $100/month. Only if you're coding all day and hitting limits. You can upgrade later in one click, so don't agonise now.</li>
       </ul>
     </div>
-  </div>
-  <div class="win-only">
-    <div class="note tip">
-      <h4>🪟 On Windows</h4>
-      <ul class="plain">
-        <li>Double-click the downloaded <code>.exe</code>.</li>
-        <li>Accept the agreement, then <b>Next</b> through every screen — defaults are fine.</li>
-        <li><b>Install</b> → <b>Finish</b>. VS Code opens.</li>
-      </ul>
+    <div class="note brain">
+      <h4>🧾 Where your money goes</h4>
+      <p style="margin:0">One subscription covers Claude in the browser <b>and</b> Claude Code in VS Code. It's not two bills. Everything else in this course — VS Code, GitHub, Vercel — is genuinely free.</p>
     </div>
+    <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span class="lbl">Claude account created, on a paid plan ✓</span></label>
   </div>
-  <div class="note see">
-    <h4>👀 You should see</h4>
-    <p style="margin-bottom:0">A big window with a strip of icons down the far left. It looks intimidating. Ignore 95% of it.</p>
-  </div>
-  <div class="mock">
-    <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">Visual Studio Code</span></div>
-    <div class="mock-body">
-      <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>▶️</span><span>🧩</span></div>
-      <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">EXPLORER</div><div class="f">No folder opened</div></div>
-      <div class="mock-main">↖ that strip of icons is the <b>Activity Bar</b>. It's the only part you need.</div>
-    </div>
-  </div>
-  <label class="check"><input type="checkbox" data-step="1"><span class="box"></span><span class="lbl">VS Code is installed and open</span></label>
-</article>
 
-<!-- STEP 2 -->
-<article class="step" id="step2" style="--c:var(--orange);--cbg:var(--orange-bg)">
-  <div class="step-head">
-    <div class="step-num">2</div>
-    <div class="step-title"><h2>Add Claude Code to VS Code</h2><div class="mins">≈ 3 min · free</div></div>
-  </div>
-  <p>An "extension" is an add-on for VS Code. You're installing the one that puts Claude inside it.</p>
-  <ol class="dolist">
-    <li>Click the <b>four squares</b> 🧩 icon on the far left. <span class="mac-only">Or <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>X</kbd>.</span><span class="win-only">Or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>.</span></li>
-    <li>In the search box, type <b>Claude Code</b>.</li>
-    <li>Pick the one published by <b>Anthropic</b>. Check the publisher — there are copycats.</li>
-    <li>Click <b>Install</b> and wait a few seconds.</li>
-  </ol>
-  <div class="mock">
-    <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">Extensions</span></div>
-    <div class="mock-body">
-      <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>▶️</span><span class="hot pulse">🧩</span></div>
-      <div class="mock-side">
-        <div class="f" style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:4px 6px;margin-bottom:8px">Claude Code|</div>
-        <div class="f" style="color:var(--ink);font-weight:700">✨ Claude Code <span class="tagpin">Anthropic</span></div>
-        <div class="f" style="font-size:.72rem">Use Claude Code inside VS Code</div>
+  <div class="quiz" data-quiz="2">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Kitting up</h3></div>
+    <p class="quiz-sub">Two quick ones.</p>
+    <div class="q">
+      <p class="qt" data-n="1">Why won't the free Claude plan work for this course?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>It's slower.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>It's chat-only — it can't create and edit files on your computer.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>It doesn't work on a Mac.</span></button>
       </div>
-      <div class="mock-main">Click <b>Install</b> →<br><br>Publisher must say <b>Anthropic</b>.</div>
+      <p class="why"><b>Right.</b> Chatting is free. Reaching into your project folder and writing files is the paid part.</p>
+      <p class="nudge">Nope. Think about what Claude Code does that a chat window doesn't.</p>
     </div>
-  </div>
-  <div class="note see">
-    <h4>👀 You should see</h4>
-    <p style="margin-bottom:0">A new <b>Spark</b> icon (a little four-pointed star, ✳) appear in that left strip. That star means Claude everywhere in VS Code — get used to spotting it.</p>
-  </div>
-  <div class="note stuck">
-    <h4>🔦 No star?</h4>
-    <p style="margin-bottom:0">Quit VS Code completely and reopen. Or press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. One of those always does it.</p>
-  </div>
-  <div class="note warn">
-    <h4>🙅 You do NOT need</h4>
-    <p style="margin-bottom:0">Node.js. Git installed by hand. A terminal. Tutorials demanding these are for a different setup. Claude will tell you if a project needs them later.</p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="2"><span class="box"></span><span class="lbl">Claude Code extension installed</span></label>
-</article>
-
-<!-- STEP 3 -->
-<article class="step" id="step3" style="--c:var(--yellow);--cbg:var(--yellow-bg)">
-  <div class="step-head">
-    <div class="step-num">3</div>
-    <div class="step-title"><h2>Make your first project folder</h2><div class="mins">≈ 2 min</div></div>
-  </div>
-  <p>Everything lives in a folder. Claude only touches files inside the folder you open — that's your safety net.</p>
-  <div class="mac-only">
-    <ol class="dolist">
-      <li>Open <b>Finder</b> → <b>Documents</b>.</li>
-      <li>Right-click empty space → <b>New Folder</b>. Name it <code>first-try</code>.</li>
-    </ol>
-  </div>
-  <div class="win-only">
-    <ol class="dolist">
-      <li>Open <b>File Explorer</b> → <b>Documents</b>.</li>
-      <li>Right-click empty space → <b>New</b> → <b>Folder</b>. Name it <code>first-try</code>.</li>
-    </ol>
-  </div>
-  <h4 style="margin-top:20px">Open it in VS Code</h4>
-  <ol class="dolist">
-    <li>Top menu → <b>File</b> → <b>Open Folder…</b></li>
-    <li>Pick <code>first-try</code> → <b>Open</b>.</li>
-    <li>"Do you trust the authors?" → <b>Yes, I trust the authors</b>. You made the folder. You trust you.</li>
-  </ol>
-  <div class="note see">
-    <h4>👀 You should see</h4>
-    <p style="margin-bottom:0"><b>FIRST-TRY</b> top-left, with nothing under it. An empty folder is exactly right.</p>
-  </div>
-  <div class="note tip">
-    <h4>💡 Naming rule</h4>
-    <p style="margin-bottom:0">Lowercase, no spaces, use dashes. <code>my-recipe-site</code> ✅ &nbsp; <code>My Recipe Site</code> ❌ — spaces cause weird errors later.</p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="3"><span class="box"></span><span class="lbl">Empty project folder open in VS Code</span></label>
-</article>
-
-<!-- STEP 4 -->
-<article class="step" id="step4" style="--c:var(--mint);--cbg:var(--mint-bg)">
-  <div class="step-head">
-    <div class="step-num">4</div>
-    <div class="step-title"><h2>Open Claude and sign in</h2><div class="mins">≈ 3 min</div></div>
-  </div>
-  <ol class="dolist">
-    <li>Click the <b>Spark</b> star ✳ in the left strip. A Claude panel opens.</li>
-    <li>Click <b>Sign in</b>. Your browser pops open.</li>
-    <li>Log in with your Claude account from Step 0 → <b>Authorize</b>.</li>
-    <li>Close the browser tab and go back to VS Code.</li>
-  </ol>
-  <div class="note see">
-    <h4>👀 You should see</h4>
-    <p>A chat box waiting for you — plus a little <b>Learn Claude Code</b> checklist. That's the extension's own tour. Click through it or dismiss it with the <b>×</b>; this guide covers the same ground.</p>
-    <p style="margin-bottom:0">The star also shows up in the <b>top-right</b> of the editor, but only once you have a file open — so it won't be there yet. The one in the left strip is always there.</p>
-  </div>
-  <div class="note stuck">
-    <h4>🔦 Can't find it?</h4>
-    <ul class="plain">
-      <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick an option like "Open in New Tab". (<kbd>⇧</kbd> is Shift.)</li>
-      <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick an option like "Open in New Tab".</li>
-      <li>Still nothing? Same box, run <b>Developer: Reload Window</b>.</li>
-    </ul>
-  </div>
-  <div class="note tip">
-    <h4>🎬 Want the official tour too?</h4>
-    <p style="margin-bottom:0">In that same command box, run <b>Claude Code: Open Walkthrough</b>. Two minutes, made by the people who built it.</p>
-  </div>
-  <div class="mock">
-    <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">first-try — Claude Code</span></div>
-    <div class="mock-body">
-      <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>🧩</span><span class="hot pulse">✳️</span></div>
-      <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">FIRST-TRY</div><div class="f" style="font-size:.72rem">(empty — correct)</div></div>
-      <div class="mock-main" style="background:#faf8ff">✳ <b>Claude</b><br><br><span style="border:1px solid var(--line);border-radius:8px;padding:5px 9px;display:inline-block;width:90%">Type your message…</span></div>
+    <div class="q">
+      <p class="qt" data-n="2">How many separate things will you be paying for by the end of this course?</p>
+      <div class="opts">
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">A</span></span><span>One — the Claude plan.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>Three — Claude, GitHub and Vercel.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Four, plus a domain name.</span></button>
+      </div>
+      <p class="why"><b>Just the one.</b> VS Code is free, GitHub is free, Vercel's Hobby plan is free. (In Chapter 11 you'll optionally add a few dollars of AI credit — but that's opt-in and tiny.)</p>
+      <p class="nudge">Have another look at the money note above.</p>
     </div>
+    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
-  <label class="check"><input type="checkbox" data-step="4"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
-</article>
+</section>
 
-<!-- STEP 5 -->
-<article class="step" id="step5" style="--c:var(--blue);--cbg:var(--blue-bg)">
-  <div class="step-head">
-    <div class="step-num">5</div>
-    <div class="step-title"><h2>Send your first two messages</h2><div class="mins">≈ 5 min · the fun bit</div></div>
+<!-- ═══════════ CHAPTER 3 ═══════════ -->
+<section class="chapter" id="ch3" data-ch="3" style="--c:var(--blue);--cbg:var(--blue-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 3 · Kit up</div>
+      <h2>Install VS Code</h2>
+      <p class="sub">Your workshop. It looks terrifying for about ninety seconds, and then it doesn't.</p>
+      <div class="ch-meta"><span>≈ 5 min</span><span>🆓 Free</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <rect x="20" y="26" width="160" height="104" rx="13" fill="#fff" stroke="#20223f" stroke-width="4"/>
+      <rect x="20" y="26" width="160" height="20" rx="13" fill="#e2eefe" stroke="#20223f" stroke-width="4"/>
+      <circle cx="34" cy="36" r="4" fill="#ff6b9d"/><circle cx="48" cy="36" r="4" fill="#ffc73f"/><circle cx="62" cy="36" r="4" fill="#25cfa0"/>
+      <rect x="20" y="46" width="30" height="84" fill="#20223f"/>
+      <rect x="30" y="58" width="10" height="4" rx="2" fill="#fff"/><rect x="30" y="72" width="10" height="4" rx="2" fill="#fff" opacity=".5"/><rect x="30" y="86" width="10" height="4" rx="2" fill="#fff" opacity=".5"/><rect x="30" y="100" width="10" height="4" rx="2" fill="#fff" opacity=".5"/>
+      <rect x="62" y="60" width="62" height="8" rx="4" fill="#4d9dff" opacity=".7"/>
+      <rect x="62" y="76" width="94" height="8" rx="4" fill="#20223f" opacity=".2"/>
+      <rect x="62" y="92" width="74" height="8" rx="4" fill="#20223f" opacity=".2"/>
+      <rect x="62" y="108" width="44" height="8" rx="4" fill="#ffc73f"/>
+      <path d="M158 128l14 16M172 128l-14 16" stroke="#ff6b9d" stroke-width="4" stroke-linecap="round"/>
+    </svg>
   </div>
-  <p>One sets the ground rules. Two gives it a job. Click to copy.</p>
 
-  <div class="copy prompt">
-    <span class="tag">Message 1</span>
-    <div class="txt">I am completely new to coding and to VS Code. Treat me like a total beginner. Use simple words and explain any technical term in one short line. Give me one step at a time. Before making big changes, tell me your plan first.</div>
-    <button>Copy</button>
+  <div class="block">
+    <div class="osrow">
+      <span class="lab">Showing steps for</span>
+      <div class="osswitch" role="group" aria-label="Choose your computer">
+        <button data-os="mac" class="on">🍎 Mac</button>
+        <button data-os="win">🪟 Windows</button>
+      </div>
+    </div>
+    <ol class="dolist">
+      <li>Go to <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a>.</li>
+      <li>Click the big button for your computer. The site usually guesses right.</li>
+    </ol>
+    <div class="mac-only">
+      <div class="note tip">
+        <h4>🍎 On Mac</h4>
+        <ul class="plain">
+          <li>Double-click the downloaded <code>.zip</code>. A blue icon appears.</li>
+          <li>Drag it into your <b>Applications</b> folder, then double-click to open.</li>
+          <li>"Downloaded from the internet, are you sure?" → <b>Open</b>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="win-only">
+      <div class="note tip">
+        <h4>🪟 On Windows</h4>
+        <ul class="plain">
+          <li>Double-click the downloaded <code>.exe</code>.</li>
+          <li>Accept the agreement, then <b>Next</b> through every screen — the defaults are fine.</li>
+          <li><b>Install</b> → <b>Finish</b>. VS Code opens itself.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note see">
+      <h4>👀 You should see</h4>
+      <p style="margin-bottom:0">A big window with a strip of icons down the far left. It looks intimidating. <b>Ignore 95% of it</b> — you'll use about three buttons in this entire course.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">Visual Studio Code</span></div>
+      <div class="mock-body">
+        <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>▶️</span><span>🧩</span></div>
+        <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">EXPLORER</div><div class="f">No folder opened</div></div>
+        <div class="mock-main">↖ that strip of icons is the <b>Activity Bar</b>. It's the only part you need.</div>
+      </div>
+    </div>
+    <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span class="lbl">VS Code is installed and open</span></label>
   </div>
 
-  <div class="copy prompt">
-    <span class="tag">Message 2</span>
-    <div class="txt">I want to make a very simple one-page website. Please make a heading, three colourful boxes, and a button that shows a friendly message when clicked. Keep it in one file. When you are done, tell me exactly how to open it and look at it.</div>
-    <button>Copy</button>
+  <div class="quiz" data-quiz="3">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: The workshop</h3></div>
+    <p class="quiz-sub">One question. You've earned an easy one.</p>
+    <div class="q">
+      <p class="qt" data-n="1">That strip of icons down the far-left edge of VS Code is called the…</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Terminal</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Activity Bar</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Repo</span></button>
+      </div>
+      <p class="why"><b>That's it.</b> Files, search, extensions, and soon a little star — all live in the Activity Bar.</p>
+      <p class="nudge">Have a scroll back up to the fake VS Code window.</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 1</span><span class="bar"><i></i></span></div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER 4 ═══════════ -->
+<section class="chapter" id="ch4" data-ch="4" style="--c:var(--orange);--cbg:var(--orange-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 4 · Kit up</div>
+      <h2>Add Claude Code</h2>
+      <p class="sub">Putting the AI inside your workshop. Three minutes and one little star.</p>
+      <div class="ch-meta"><span>≈ 3 min</span><span>🆓 Free</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <path d="M52 42h34a12 12 0 1 1 24 0h34v34a12 12 0 1 0 0 24v34H52V42z" fill="#ffe9db" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M100 62l7 17 17 7-17 7-7 17-7-17-17-7 17-7 7-17z" fill="#ffc73f" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="150" cy="40" r="6" fill="#ff6b9d" stroke="#20223f" stroke-width="3"/>
+      <circle cx="42" cy="122" r="5" fill="#25cfa0" stroke="#20223f" stroke-width="3"/>
+    </svg>
   </div>
 
-  <div class="note see">
-    <h4>👀 You should see</h4>
-    <ul class="plain">
-      <li>Claude explains what it's doing, then gets on with it.</li>
-      <li>A file called <code>index.html</code> appears on the left. You made a file.</li>
-    </ul>
+  <div class="block">
+    <p class="lead">An <b>extension</b> is an add-on for VS Code — like an app on your phone. You're installing exactly one: the one that puts Claude inside.</p>
+    <div class="osrow">
+      <span class="lab">Showing steps for</span>
+      <div class="osswitch" role="group" aria-label="Choose your computer">
+        <button data-os="mac" class="on">🍎 Mac</button>
+        <button data-os="win">🪟 Windows</button>
+      </div>
+    </div>
+    <ol class="dolist">
+      <li>Click the <b>four squares</b> 🧩 icon on the far left. <span class="mac-only">Or press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>X</kbd>.</span><span class="win-only">Or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>.</span></li>
+      <li>In the search box, type <b>Claude Code</b>.</li>
+      <li>Pick the one published by <b>Anthropic</b>. Check the publisher — there are copycats.</li>
+      <li>Click <b>Install</b> and wait a few seconds.</li>
+    </ol>
+    <div class="mock">
+      <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">Extensions</span></div>
+      <div class="mock-body">
+        <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>▶️</span><span class="hot pulse">🧩</span></div>
+        <div class="mock-side">
+          <div class="f" style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:4px 6px;margin-bottom:8px">Claude Code|</div>
+          <div class="f" style="color:var(--ink);font-weight:700">✨ Claude Code <span class="tagpin">Anthropic</span></div>
+          <div class="f" style="font-size:.72rem">Use Claude Code inside VS Code</div>
+        </div>
+        <div class="mock-main">Click <b>Install</b> →<br><br>Publisher must say <b>Anthropic</b>.</div>
+      </div>
+    </div>
+    <div class="note see">
+      <h4>👀 You should see</h4>
+      <p style="margin-bottom:0">A new <b>Spark</b> icon — a little four-pointed star, ✳ — appear in that left strip. That star means Claude, everywhere in VS Code. Get used to spotting it.</p>
+    </div>
+    <div class="note stuck">
+      <h4>🔦 No star?</h4>
+      <p style="margin-bottom:0">Quit VS Code completely and reopen it. Or press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. One of those always does it.</p>
+    </div>
+    <div class="note warn">
+      <h4>🙅 Things you do NOT need</h4>
+      <p style="margin-bottom:0">Node.js. Git installed by hand. Homebrew. A terminal. Any tutorial demanding these is describing a different setup. If a project genuinely needs one later, Claude will tell you and install it with you.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span class="lbl">Claude Code extension installed, star visible</span></label>
   </div>
-  <div class="note warn">
-    <h4>🚦 It edits files without asking. That's normal.</h4>
+
+  <div class="quiz" data-quiz="4">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: The star</h3></div>
+    <p class="quiz-sub">Two questions, and one of them matters a lot.</p>
+    <div class="q">
+      <p class="qt" data-n="1">You search "Claude Code" and get several results. Which do you install?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>The first one in the list.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>The one with the most downloads.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">C</span></span><span>The one whose publisher says <b>Anthropic</b>.</span></button>
+      </div>
+      <p class="why"><b>Always check the publisher.</b> Popular extensions attract copycats with near-identical names. This habit will serve you for the rest of your life in software.</p>
+      <p class="nudge">Careful — this is exactly how people install the wrong thing.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">Before you can start building, you must first install Node.js, Git and Homebrew. True or false?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>True — every developer needs them.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>False — you need none of them to start.</span></button>
+      </div>
+      <p class="why"><b>False.</b> Installing things "just in case" is how beginners end up with four broken versions of everything. Wait until something actually asks.</p>
+      <p class="nudge">Have another look at the "things you do NOT need" box.</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER 5 ═══════════ -->
+<section class="chapter" id="ch5" data-ch="5" style="--c:var(--yellow);--cbg:var(--yellow-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 5 · Build</div>
+      <h2>Your first project folder</h2>
+      <p class="sub">A box to build in — and, quietly, your safety net.</p>
+      <div class="ch-meta"><span>≈ 2 min</span><span>🛟 Safety matters</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <path d="M28 44a8 8 0 0 1 8-8h34l12 14h54a8 8 0 0 1 8 8v56a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V44z" fill="#fff3d4" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M28 66h116v52a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V66z" fill="#ffc73f" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M150 40l6 14 14 6-14 6-6 14-6-14-14-6 14-6 6-14z" fill="#fff" stroke="#20223f" stroke-width="3.5" stroke-linejoin="round"/>
+      <rect x="56" y="88" width="60" height="7" rx="3.5" fill="#20223f" opacity=".3"/>
+    </svg>
+  </div>
+
+  <div class="block">
+    <p class="lead">Everything you build lives in a folder. And here's the important part: <b>Claude only touches files inside the folder you open.</b> That's not a rule you have to enforce — it's how it works.</p>
+    <div class="big-idea">One project, one folder.<br>The folder <mark>is</mark> the safety net.</div>
+    <div class="osrow">
+      <span class="lab">Showing steps for</span>
+      <div class="osswitch" role="group" aria-label="Choose your computer">
+        <button data-os="mac" class="on">🍎 Mac</button>
+        <button data-os="win">🪟 Windows</button>
+      </div>
+    </div>
+    <div class="mac-only">
+      <ol class="dolist">
+        <li>Open <b>Finder</b> → <b>Documents</b>.</li>
+        <li>Right-click empty space → <b>New Folder</b>. Name it <code>first-try</code>.</li>
+      </ol>
+    </div>
+    <div class="win-only">
+      <ol class="dolist">
+        <li>Open <b>File Explorer</b> → <b>Documents</b>.</li>
+        <li>Right-click empty space → <b>New</b> → <b>Folder</b>. Name it <code>first-try</code>.</li>
+      </ol>
+    </div>
+    <h3>Now open it in VS Code</h3>
+    <ol class="dolist">
+      <li>Top menu → <b>File</b> → <b>Open Folder…</b></li>
+      <li>Pick <code>first-try</code> → <b>Open</b>.</li>
+      <li>"Do you trust the authors?" → <b>Yes, I trust the authors</b>. You made the folder. You trust you.</li>
+    </ol>
+    <div class="note see">
+      <h4>👀 You should see</h4>
+      <p style="margin-bottom:0"><b>FIRST-TRY</b> in the top-left, with nothing underneath it. An empty folder is exactly right. Chapter 7 fills it.</p>
+    </div>
+    <div class="note tip">
+      <h4>💡 The naming rule</h4>
+      <p style="margin-bottom:0">Lowercase, no spaces, dashes between words.<br><code>my-recipe-site</code> ✅ &nbsp;&nbsp; <code>My Recipe Site</code> ❌<br>Spaces in folder names cause genuinely baffling errors months later. Free lunch: just never use them.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span class="lbl">Empty project folder open in VS Code</span></label>
+  </div>
+
+  <div class="quiz" data-quiz="5">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: The box</h3></div>
+    <p class="quiz-sub">Two questions.</p>
+    <div class="q">
+      <p class="qt" data-n="1">Which of these is a good project folder name?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span><code>My First Website</code></span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span><code>my-first-website</code></span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span><code>Website (final) v2!!</code></span></button>
+      </div>
+      <p class="why"><b>Lowercase, dashes, no spaces.</b> Boring names age well.</p>
+      <p class="nudge">Spaces and punctuation are the trap here.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">You open the folder <code>first-try</code> in VS Code. Can Claude read and change files in your Photos folder?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yes, it can see everything on the computer.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>No — it works inside the folder you opened, and asks before reaching outside it.</span></button>
+      </div>
+      <p class="why"><b>Correct, and this is why the folder matters.</b> Anything outside it is a deliberate, permission-asking step — not something that happens by accident.</p>
+      <p class="nudge">Think back to why we called the folder a safety net.</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER 6 ═══════════ -->
+<section class="chapter" id="ch6" data-ch="6" style="--c:var(--mint);--cbg:var(--mint-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 6 · Build</div>
+      <h2>Meet Claude</h2>
+      <p class="sub">Sign in, find the chat box, and say hello to your new colleague.</p>
+      <div class="ch-meta"><span>≈ 3 min</span><span>✳️ Find the star</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <path d="M26 42a12 12 0 0 1 12-12h68a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12H62l-22 18V88h-2a12 12 0 0 1-12-12V42z" fill="#d9f8ee" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="46" y="50" width="46" height="7" rx="3.5" fill="#20223f" opacity=".35"/>
+      <rect x="46" y="64" width="30" height="7" rx="3.5" fill="#20223f" opacity=".2"/>
+      <path d="M148 62l8 20 20 8-20 8-8 20-8-20-20-8 20-8 8-20z" fill="#a77bff" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="60" cy="126" r="5" fill="#ffc73f" stroke="#20223f" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <div class="block">
+    <div class="osrow">
+      <span class="lab">Showing steps for</span>
+      <div class="osswitch" role="group" aria-label="Choose your computer">
+        <button data-os="mac" class="on">🍎 Mac</button>
+        <button data-os="win">🪟 Windows</button>
+      </div>
+    </div>
+    <ol class="dolist">
+      <li>Click the <b>Spark</b> star ✳ in the left strip. A Claude panel slides open.</li>
+      <li>Click <b>Sign in</b>. Your browser pops open.</li>
+      <li>Log in with the Claude account from Chapter 2 → <b>Authorize</b>.</li>
+      <li>Close the browser tab and go back to VS Code.</li>
+    </ol>
+    <div class="note see">
+      <h4>👀 You should see</h4>
+      <p>A chat box waiting for you — plus a little <b>Learn Claude Code</b> checklist. That's the extension's own tour. Click through it or dismiss it with the <b>×</b>; this course covers the same ground.</p>
+      <p style="margin-bottom:0">The star also appears in the <b>top-right</b> of the editor, but only once you've got a file open — so it won't be there yet. The one in the left strip is always there.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">first-try — Claude Code</span></div>
+      <div class="mock-body">
+        <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>🧩</span><span class="hot pulse">✳️</span></div>
+        <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">FIRST-TRY</div><div class="f" style="font-size:.72rem">(empty — correct)</div></div>
+        <div class="mock-main" style="background:#faf8ff">✳ <b>Claude</b><br><br><span style="border:1px solid var(--line);border-radius:8px;padding:5px 9px;display:inline-block;width:90%">Type your message…</span></div>
+      </div>
+    </div>
+    <div class="note stuck">
+      <h4>🔦 Can't find it?</h4>
+      <ul class="plain">
+        <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick an option like "Open in New Tab". (<kbd>⇧</kbd> is Shift.)</li>
+        <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick an option like "Open in New Tab".</li>
+        <li>Still nothing? Same box, run <b>Developer: Reload Window</b>.</li>
+      </ul>
+    </div>
+    <div class="note tip">
+      <h4>🎬 Want the official tour too?</h4>
+      <p style="margin-bottom:0">In that same command box, run <b>Claude Code: Open Walkthrough</b>. Two minutes, made by the people who built it.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
+  </div>
+
+  <div class="quiz" data-quiz="6">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Hello</h3></div>
+    <p class="quiz-sub">One question. Then the fun starts.</p>
+    <div class="q">
+      <p class="qt" data-n="1">VS Code is being stubborn — a panel won't appear, or something looks stuck. What's the standard first move?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Reinstall VS Code from scratch.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Open the command box and run <b>Developer: Reload Window</b>.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Restart the computer.</span></button>
+      </div>
+      <p class="why"><b>Reload Window fixes an embarrassing proportion of VS Code weirdness.</b> Learn it now, thank yourself for years. Nothing is lost — your files are on disk.</p>
+      <p class="nudge">There's a much gentler option than either of those.</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 1</span><span class="bar"><i></i></span></div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER 7 ═══════════ -->
+<section class="chapter" id="ch7" data-ch="7" style="--c:var(--purple);--cbg:var(--purple-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 7 · Build</div>
+      <h2>Your first build</h2>
+      <p class="sub">Two messages. One sets the ground rules, one gives it a job. This is the good bit.</p>
+      <div class="ch-meta"><span>≈ 5 min</span><span>🎈 The fun one</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <rect x="94" y="46" width="76" height="84" rx="10" fill="#fff" stroke="#20223f" stroke-width="4"/>
+      <rect x="106" y="60" width="52" height="12" rx="6" fill="#a77bff"/>
+      <rect x="106" y="80" width="14" height="14" rx="4" fill="#ff6b9d" stroke="#20223f" stroke-width="3"/>
+      <rect x="125" y="80" width="14" height="14" rx="4" fill="#ffc73f" stroke="#20223f" stroke-width="3"/>
+      <rect x="144" y="80" width="14" height="14" rx="4" fill="#25cfa0" stroke="#20223f" stroke-width="3"/>
+      <rect x="106" y="104" width="34" height="13" rx="6.5" fill="#4d9dff" stroke="#20223f" stroke-width="3"/>
+      <path d="M26 118L72 72" stroke="#20223f" stroke-width="9" stroke-linecap="round"/>
+      <path d="M72 72l10-10" stroke="#ffc73f" stroke-width="11" stroke-linecap="round"/>
+      <path d="M62 42l4 10 10 4-10 4-4 10-4-10-10-4 10-4 4-10z" fill="#ffc73f" stroke="#20223f" stroke-width="3" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="block">
+    <p class="lead">Click either box to copy it, then paste it into the Claude chat box and press Enter. Message 1 first.</p>
+    <div class="copy prompt">
+      <span class="tag">Message 1 · the ground rules</span>
+      <div class="txt">I am completely new to coding and to VS Code. Treat me like a total beginner. Use simple words and explain any technical term in one short line. Give me one step at a time. Before making big changes, tell me your plan first.</div>
+      <button>Copy</button>
+    </div>
+    <div class="copy prompt">
+      <span class="tag">Message 2 · the job</span>
+      <div class="txt">I want to make a very simple one-page website. Please make a heading, three colourful boxes, and a button that shows a friendly message when clicked. Keep it in one file. When you are done, tell me exactly how to open it and look at it.</div>
+      <button>Copy</button>
+    </div>
+    <div class="note see">
+      <h4>👀 You should see</h4>
+      <ul class="plain">
+        <li>Claude explains what it's about to do, then gets on with it.</li>
+        <li>A file called <code>index.html</code> appears on the left.</li>
+        <li>That's yours. <b>You made a file.</b></li>
+      </ul>
+    </div>
+    <div class="big-idea">Message 1 is worth more than message 2.<br>Set the rules and it behaves for the <mark>whole conversation</mark>.</div>
+  </div>
+
+  <div class="block">
+    <h3>It's editing files without asking. That's normal.</h3>
     <p>At the bottom of the chat box there's a small word — that's the <b>mode</b>. On a Pro plan it starts on <b>Auto</b>, which means Claude writes and edits files in your folder without stopping to ask each time. It's meant to feel like that.</p>
     <p>If that makes you twitchy, click that word and choose <b>Plan</b>. Claude then writes out what it intends to do and waits for your yes before touching anything. It's a lovely way to learn — you get to read the plan before it happens.</p>
-    <p style="margin-bottom:0">Whichever mode you're in, it still stops and asks before anything genuinely risky: deleting a lot, reaching outside your folder, installing software. If a request ever surprises you, type <b>"why do you need that?"</b> — nothing happens until you say so.</p>
+    <div class="note warn">
+      <h4>🚦 Whichever mode you're in</h4>
+      <p style="margin-bottom:0">It still stops and asks before anything genuinely risky: deleting a lot, reaching outside your folder, installing software. If a request ever surprises you, type <b>"why do you need that?"</b> — nothing happens until you say so.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span class="lbl">Claude made me a file 🎈</span></label>
   </div>
-  <label class="check"><input type="checkbox" data-step="5"><span class="box"></span><span class="lbl">Claude made me a file</span></label>
-</article>
 
-<!-- STEP 6 -->
-<article class="step" id="step6" style="--c:var(--purple);--cbg:var(--purple-bg)">
-  <div class="step-head">
-    <div class="step-num">6</div>
-    <div class="step-title"><h2>Look at it. Then change it.</h2><div class="mins">≈ 10 min · most-skipped step</div></div>
-  </div>
-  <p>Code you never looked at is a rumour. Easiest way to see it — just ask:</p>
-  <div class="copy">
-    <span class="tag">Paste into Claude</span>
-    <div class="txt">Open the page you just made in my web browser so I can see it.</div>
-    <button>Copy</button>
-  </div>
-  <p style="font-size:.94rem;color:var(--ink-soft)">Or right-click <code>index.html</code> on the left → <span class="mac-only">Reveal in Finder</span><span class="win-only">Reveal in File Explorer</span> → double-click it.</p>
-
-  <h4 style="margin-top:22px">Now change things. One at a time. Click to copy:</h4>
-  <div class="phrases" style="margin:14px 0">
-    <div class="phrase" style="--c:var(--pink)"><span>Make the button green and round.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--yellow)"><span>Put the button underneath the boxes.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--mint)"><span>Add a photo of a dog at the top.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--blue)"><span>Make it look good on a phone.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--purple)"><span>Add a counter that goes up when I click.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--orange)"><span>Make the whole thing dark mode.</span><span class="mini">copy</span></div>
-  </div>
-  <div class="note tip">
-    <h4>🔁 Refresh after every change</h4>
-    <p style="margin-bottom:0">Your browser doesn't know Claude edited the file. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>R</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>R</kbd></span>. Still not there? Ask "did you save the file?"</p>
-  </div>
-  <div class="note brain">
-    <h4>🧭 The one rule that saves you</h4>
-    <p style="margin-bottom:0"><b>Change one thing, then look.</b> Ask for eight changes at once and something breaks — you'll have no idea which one did it. For anything bigger than a tweak, say <b>"tell me your plan first."</b></p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="6"><span class="box"></span><span class="lbl">I saw my page and changed it</span></label>
-</article>
-
-<!-- STEP 7 -->
-<article class="step" id="step7" style="--c:var(--pink);--cbg:var(--pink-bg)">
-  <div class="step-head">
-    <div class="step-num">7</div>
-    <div class="step-title"><h2>Save your work properly</h2><div class="mins">≈ 5 min · do this before you break something</div></div>
-  </div>
-  <h4>📌 What Git actually is</h4>
-  <p>Git is an undo history for your whole project. Each time you <b>commit</b>, it records exactly what every file looked like at that moment. Later you can go back to any of those moments.</p>
-  <p>You don't have to learn it. Claude does the work — you say the words:</p>
-  <div class="copy">
-    <span class="tag">When something works</span>
-    <div class="txt">This version works. Please set up Git if it isn't already, and commit this as a save point.</div>
-    <button>Copy</button>
-  </div>
-  <div class="copy">
-    <span class="tag">When you've broken it</span>
-    <div class="txt">Something is broken. Take me back to the last commit, and explain in simple words what went wrong.</div>
-    <button>Copy</button>
-  </div>
-  <div class="note tip">
-    <h4>⏰ When to commit</h4>
-    <p style="margin-bottom:0"><b>After</b> anything that works. <b>Before</b> anything big. It takes four seconds and it is the difference between "oh well" and "oh no".</p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="7"><span class="box"></span><span class="lbl">I made my first commit</span></label>
-</article>
-
-<!-- STEP 8 -->
-<article class="step" id="step8" style="--c:var(--orange);--cbg:var(--orange-bg)">
-  <div class="step-head">
-    <div class="step-num">8</div>
-    <div class="step-title"><h2>Make two free accounts</h2><div class="mins">≈ 5 min · both free · needed for Step 9</div></div>
-  </div>
-  <p>To get your thing onto the actual internet you need two more accounts. Both free, no card.</p>
-
-  <h4>🐙 GitHub — stores your project online</h4>
-  <ol class="dolist">
-    <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
-    <li>Email, password, username. Your username shows up in links — lowercase, no spaces, something you'd say out loud.</li>
-    <li>Confirm the emailed code. Choose the <b>Free</b> plan.</li>
-    <li><b>Write your username down.</b> Everyone forgets which one they picked.</li>
-  </ol>
-
-  <h4 style="margin-top:24px">▲ Vercel — puts it on the internet</h4>
-  <ol class="dolist">
-    <li>Go to <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a>.</li>
-    <li>Click <b>Continue with GitHub</b> and use the account you just made.</li>
-    <li>Approve the permissions box, and pick <b>Hobby</b> when it asks — that's the free one.</li>
-  </ol>
-  <div class="note see">
-    <h4>👀 You should see</h4>
-    <p style="margin-bottom:0">An empty Vercel dashboard saying you have no projects. Correct. Step 9 fills it.</p>
-  </div>
-  <div class="note warn">
-    <h4>⚖️ One rule about the free Vercel plan</h4>
-    <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects, showing your mum — all fine. The moment it's a business or a client's site, Vercel expects you on a paid plan.</p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="8"><span class="box"></span><span class="lbl">GitHub + Vercel accounts made (both free)</span></label>
-</article>
-
-<!-- STEP 9 -->
-<article class="step" id="step9" style="--c:var(--mint);--cbg:var(--mint-bg)">
-  <div class="step-head">
-    <div class="step-num">9</div>
-    <div class="step-title"><h2>Put it on the internet</h2><div class="mins">≈ 10 min · the payoff</div></div>
-  </div>
-  <p>Time to get a link you can text someone. Paste this and follow along:</p>
-  <div class="copy prompt">
-    <span class="tag">Paste into Claude</span>
-    <div class="txt">I want to put this on the internet so I can send someone a link. I have free GitHub and Vercel accounts. Please walk me through it one step at a time, using the free options, and tell me exactly what to click. Stop and wait after each step.</div>
-    <button>Copy</button>
-  </div>
-  <div class="note see">
-    <h4>👀 What happens</h4>
-    <ul class="plain">
-      <li>Claude pushes your project up to GitHub. It may ask you to log in once.</li>
-      <li>You connect that GitHub project to Vercel in the browser.</li>
-      <li>Vercel hands you a link ending in <code>.vercel.app</code>.</li>
-      <li>Send it to someone. It's live on the real internet.</li>
-    </ul>
-  </div>
-  <div class="note stuck">
-    <h4>🔐 If your friend's link asks them to log in</h4>
-    <p style="margin-bottom:0">Vercel switches on a thing called <b>Deployment Protection</b>, which locks the page to your account. Go to your project on <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → <b>Settings</b> → <b>Deployment Protection</b> → turn <b>Vercel Authentication</b> off → Save. Now anyone can open it.</p>
-  </div>
-  <div class="note tip">
-    <h4>♻️ From now on</h4>
-    <p style="margin-bottom:0">Say <b>"commit and push this"</b>, wait a minute, refresh your link. Vercel updates the live site by itself every time. That's the whole publishing workflow, forever.</p>
-  </div>
-  <label class="check"><input type="checkbox" data-step="9"><span class="box"></span><span class="lbl">My thing is on the internet 🌍</span></label>
-</article>
-
-<div class="finish" id="finish">
-  <span class="big">🎉</span>
-  <h2>That's the whole thing.</h2>
-  <p style="max-width:500px;margin:0 auto 22px">Everything else — apps, databases, big real websites — is these same steps, repeated more times. You now know how to build software.</p>
-  <a class="btn" href="#cheat">Get the cheat sheet →</a>
-</div>
-<section id="safe">
-  <div class="sec-head">
-    <h2>Three rules that keep you safe</h2>
-  </div>
-  <div class="note warn">
-    <h4>🔒 1. Never paste these into a chat</h4>
-    <p style="margin-bottom:0">Passwords · API keys and secret tokens (long random strings) · database passwords · real customer names, emails or card numbers. If a project genuinely needs a key, say: <b>"Set this up as an environment variable so the key isn't in the code."</b></p>
-  </div>
-  <div class="note stuck">
-    <h4>🛑 2. If it goes off the rails, say these in order</h4>
-    <p style="margin-bottom:0"><b>"Stop. Don't change anything else."</b> → <b>"Explain what you just changed, in simple words."</b> → <b>"Undo that."</b> You won't hurt its feelings, and you can't break your computer from a chat box.</p>
-  </div>
-  <div class="note tip">
-    <h4>🐢 3. Small changes beat big ones</h4>
-    <p style="margin-bottom:0">One change, look, commit. Every time. It feels slower and it is dramatically faster.</p>
+  <div class="quiz" data-quiz="7">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: First contact</h3></div>
+    <p class="quiz-sub">Two questions.</p>
+    <div class="q">
+      <p class="qt" data-n="1">Why send message 1 before message 2?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>It's just polite.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>It sets the rules for the whole conversation — plain words, one step at a time, plan before big changes.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>It has to warm up before it can write files.</span></button>
+      </div>
+      <p class="why"><b>Right.</b> Telling Claude <i>how</i> to work with you is the highest-value thing you'll ever type. Say it once, benefit all session.</p>
+      <p class="nudge">Think about what message 1 actually asks for.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">Claude wants to run something and you don't understand it. Best move?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Approve it — it probably knows best.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>Close VS Code immediately.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">C</span></span><span>Type "why do you need that?" and read the answer before deciding.</span></button>
+      </div>
+      <p class="why"><b>Ask. Always ask.</b> Nothing happens until you approve, and you'll learn something every time. You cannot hurt its feelings.</p>
+      <p class="nudge">You don't have to guess, and you don't have to panic. There's a third option.</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
-<section id="cheat">
-  <div class="sec-head">
-    <h2>Your tiny cheat sheet</h2>
-    <p>Click to copy. These eight sentences get you out of almost any hole.</p>
+<!-- ═══════════ CHAPTER 8 ═══════════ -->
+<section class="chapter" id="ch8" data-ch="8" style="--c:var(--pink);--cbg:var(--pink-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 8 · Build</div>
+      <h2>Look at it. Change it.</h2>
+      <p class="sub">The most-skipped chapter, and the one that separates people who build things from people who nearly build things.</p>
+      <div class="ch-meta"><span>≈ 10 min</span><span>👀 Do not skip</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <path d="M14 78s24-34 60-34 60 34 60 34-24 34-60 34-60-34-60-34z" fill="#ffe8f0" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="74" cy="78" r="19" fill="#fff" stroke="#20223f" stroke-width="4"/>
+      <circle cx="74" cy="78" r="8" fill="#20223f"/>
+      <path d="M150 118l30-30a9 9 0 0 0-13-13l-30 30-5 18 18-5z" fill="#ffc73f" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M132 105l13 13" stroke="#20223f" stroke-width="3.5"/>
+      <path d="M158 40v12M148 46h20" stroke="#25cfa0" stroke-width="4" stroke-linecap="round"/>
+    </svg>
   </div>
-  <div class="phrases">
-    <div class="phrase" style="--c:var(--pink)"><span>Explain that in beginner words.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--yellow)"><span>Give me one step at a time.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--mint)"><span>Don't change anything yet. Give me a plan first.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--blue)"><span>What exactly did you just change, and why?</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--purple)"><span>How do I test this? Tell me what to click.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--orange)"><span>Check your own work for mistakes before I look.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--pink)"><span>That's not what I meant. Don't change anything else.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--mint)"><span>Commit this working version, then push it.</span><span class="mini">copy</span></div>
+
+  <div class="block">
+    <div class="big-idea">Code you never looked at is a <mark>rumour</mark>.</div>
+    <p>Easiest way to see your page — just ask:</p>
+    <div class="copy">
+      <span class="tag">Paste into Claude</span>
+      <div class="txt">Open the page you just made in my web browser so I can see it.</div>
+      <button>Copy</button>
+    </div>
+    <div class="osrow" style="margin-top:18px">
+      <span class="lab">Or do it by hand on</span>
+      <div class="osswitch" role="group" aria-label="Choose your computer">
+        <button data-os="mac" class="on">🍎 Mac</button>
+        <button data-os="win">🪟 Windows</button>
+      </div>
+    </div>
+    <p style="font-size:.95rem;color:var(--ink-soft)">Right-click <code>index.html</code> on the left → <span class="mac-only">Reveal in Finder</span><span class="win-only">Reveal in File Explorer</span> → double-click it.</p>
   </div>
-  <div class="note brain" style="margin-top:26px">
-    <h4>🌟 Remember four things</h4>
-    <p style="margin-bottom:0">You don't have to understand the code — you do have to look at the result. Ask the second you're confused. Keep changes small. Commit whenever something works.</p>
+
+  <div class="block">
+    <h3>Now change things. One at a time.</h3>
+    <p class="lead">Click any of these to copy it, paste it, watch what happens. This is the loop, and it's addictive.</p>
+    <div class="phrases" style="margin:16px 0">
+      <div class="phrase" style="--c:var(--pink)"><span>Make the button green and round.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--yellow)"><span>Put the button underneath the boxes.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--mint)"><span>Add a photo of a dog at the top.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--blue)"><span>Make it look good on a phone.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--purple)"><span>Add a counter that goes up when I click.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--orange)"><span>Make the whole thing dark mode.</span><span class="mini">copy</span></div>
+    </div>
+    <div class="note tip">
+      <h4>🔁 Refresh after every single change</h4>
+      <p style="margin-bottom:0">Your browser has no idea Claude edited the file. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>R</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>R</kbd></span>. Still not there? Ask <b>"did you save the file?"</b></p>
+    </div>
+    <div class="note brain">
+      <h4>🧭 The one rule that saves you</h4>
+      <p style="margin-bottom:0"><b>Change one thing, then look.</b> Ask for eight changes at once and something breaks — and you'll have no idea which one did it. For anything bigger than a tweak, say <b>"tell me your plan first."</b></p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span class="lbl">I saw my page and changed it 🎨</span></label>
+  </div>
+
+  <div class="quiz" data-quiz="8">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Look and change</h3></div>
+    <p class="quiz-sub">Two questions. These come up in real life constantly.</p>
+    <div class="q">
+      <p class="qt" data-n="1">You asked for a change, Claude says it's done, but your page looks identical. First thing to try?</p>
+      <div class="opts">
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">A</span></span><span>Refresh the browser.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>Tell Claude it's broken and ask it to start over.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Delete the file and try again.</span></button>
+      </div>
+      <p class="why"><b>Refresh first, always.</b> The browser is showing you a snapshot from before the edit. This will happen to you roughly nine hundred times.</p>
+      <p class="nudge">Before you blame anyone, consider that the browser might just be showing you an old picture.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">You want six different changes. What's the smart way?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Ask for all six in one message to save time.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>One at a time, looking after each.</span></button>
+      </div>
+      <p class="why"><b>One at a time.</b> It feels slower. It is dramatically faster — because when something breaks you know exactly which change did it.</p>
+      <p class="nudge">Think about what happens when six changes land at once and one of them breaks the page.</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
-<section id="stuck">
-  <div class="sec-head">
-    <h2>When you get stuck</h2>
-    <p>You will. Everyone does, forever. Here's the usual suspects.</p>
+<!-- ═══════════ CHAPTER 9 ═══════════ -->
+<section class="chapter" id="ch9" data-ch="9" style="--c:var(--blue);--cbg:var(--blue-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 9 · Protect</div>
+      <h2>Save points</h2>
+      <p class="sub">Git, explained without a single diagram of arrows. It's just an undo history for your whole project.</p>
+      <div class="ch-meta"><span>≈ 5 min</span><span>💾 Do this early</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <path d="M30 110h140" stroke="#20223f" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="52" cy="110" r="11" fill="#25cfa0" stroke="#20223f" stroke-width="4"/>
+      <circle cx="100" cy="110" r="11" fill="#4d9dff" stroke="#20223f" stroke-width="4"/>
+      <circle cx="148" cy="110" r="11" fill="#ff6b9d" stroke="#20223f" stroke-width="4"/>
+      <path d="M52 99V62h28l-7 8 7 8H52" fill="#fff3d4" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M100 99V46h28l-7 8 7 8h-28" fill="#e2eefe" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M148 99V72h26l-7 7 7 7h-26" fill="#ffe8f0" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M40 132h120" stroke="#20223f" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+    </svg>
   </div>
 
-  <h3 style="margin:26px 0 12px">Setup won't cooperate</h3>
-  <details class="acc"><summary>I can't find the Spark star in VS Code</summary><div class="inner">
-    <p>Quit VS Code completely <span class="mac-only">(<kbd>⌘</kbd>+<kbd>Q</kbd> — closing the window isn't enough)</span><span class="win-only">(close it from the taskbar too)</span> and reopen. If it's still missing, press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. Still nothing? Check the Extensions panel says Claude Code is <b>Installed</b>, by Anthropic.</p>
-  </div></details>
-  <details class="acc"><summary>It says I need to sign in, or my plan won't work</summary><div class="inner">
-    <p>Claude Code needs a paid plan — Pro, Max, Team or Enterprise. Check <a href="https://claude.ai/settings/billing" target="_blank" rel="noopener">claude.ai → Settings → Billing</a> that it's actually active, then sign out and back in inside VS Code.</p>
-  </div></details>
-  <details class="acc"><summary>Nothing's happening. It's just sitting there.</summary><div class="inner">
-    <p>Give it 30 seconds — it thinks before it types, and bigger jobs take a minute. If it's genuinely frozen, there's a stop button; press it and send your message again. If that fails, <b>Developer: Reload Window</b> from the command box. Your files are on disk, so nothing is lost.</p>
-  </div></details>
-  <details class="acc"><summary>Do I need Node.js? Python? Homebrew?</summary><div class="inner">
-    <p>Not to start. Claude will tell you when a project genuinely needs one, and can install it with you. Don't install things "just in case" — that's how beginners end up with four broken versions of everything.</p>
-  </div></details>
-
-  <h3 style="margin:30px 0 12px">Claude is doing something weird</h3>
-  <details class="acc"><summary>It edited my files without asking. Is that normal?</summary><div class="inner">
-    <p>Yes. On a Pro plan it starts in <b>Auto</b> mode, where it just gets on with edits inside your project. Look at the bottom of the chat box — the mode is written there.</p>
-    <p>Want to be asked first? Click it and pick <b>Plan</b> (it writes out its intentions and waits) or <b>Manual</b> (it asks before each edit). Beginners often like Plan for the first week.</p>
-  </div></details>
-  <details class="acc"><summary>It IS asking permission. Should I say yes?</summary><div class="inner">
-    <p><b>Yes</b> for creating or editing files inside your project folder — that's the job you gave it.</p>
-    <p><b>Ask first</b> for deleting lots of files, working outside your folder, installing software, or sending things to the internet. Type <b>"why do you need that?"</b> Nothing happens until you approve.</p>
-  </div></details>
-  <details class="acc"><summary>Everything broke and I don't know what happened</summary><div class="inner">
-    <p>Say: <b>"Stop. Explain what changed in simple words, then undo it."</b> If you committed, say <b>"take me back to the last commit."</b> This is exactly why commits exist. Nothing is ever really lost.</p>
-  </div></details>
-  <details class="acc"><summary>There's scary red text</summary><div class="inner">
-    <p>Red is normal — usually a warning, not a disaster. Copy the whole thing, paste it to Claude, and say: <b>"I got this error. What does it mean and how do I fix it?"</b> That is genuinely what professionals do too.</p>
-  </div></details>
-  <details class="acc"><summary>My change isn't showing up</summary><div class="inner">
-    <p>Refresh the browser <span class="mac-only">(<kbd>⌘</kbd>+<kbd>R</kbd>)</span><span class="win-only">(<kbd>Ctrl</kbd>+<kbd>R</kbd>)</span>. Still nothing? Ask: <b>"Which exact file should I open, and what's its full path?"</b> — you're probably looking at a different copy.</p>
-  </div></details>
-  <details class="acc"><summary>Claude forgot what we were doing</summary><div class="inner">
-    <p>Long conversations get trimmed, and a new chat starts blank. Click <b>Session history</b> at the top of the Claude panel to reopen an old conversation with everything in it. Starting fresh? Just say what you're building in one line — it reads your files anyway.</p>
-  </div></details>
-
-  <h3 style="margin:30px 0 12px">Coming back tomorrow</h3>
-  <details class="acc"><summary>I closed VS Code. Is my work gone?</summary><div class="inner">
-    <p>No. It's saved in your folder on your computer. Open VS Code → <b>File</b> → <b>Open Recent</b> → pick your project, then click the Spark star. Carry on where you left off.</p>
-  </div></details>
-  <details class="acc"><summary>Can I have more than one project?</summary><div class="inner">
-    <p>Yes — one folder each, that's the whole system. Make a new folder, <b>File → Open Folder</b>, and Claude only sees that one. Never put two projects in one folder; it gets confusing fast.</p>
-  </div></details>
-  <details class="acc"><summary>I hit my usage limit</summary><div class="inner">
-    <p>Every plan refills every few hours. Wait it out, or upgrade. Nothing is broken and your work is saved.</p>
-  </div></details>
-
-  <h3 style="margin:30px 0 12px">Money, privacy, and the internet</h3>
-  <details class="acc"><summary>How much does all this actually cost?</summary><div class="inner">
-    <p><b>Claude Pro — $20/month</b> ($17 if you pay yearly). That's the only bill.</p>
-    <p style="margin-bottom:0">VS Code: free. GitHub: free. Vercel Hobby: free. A custom domain like <code>yourname.com</code>, if you ever want one, is roughly $10–15 a year and totally optional.</p>
-  </div></details>
-  <details class="acc"><summary>Can I use this for a business or a client's site?</summary><div class="inner">
-    <p>The free Vercel Hobby plan is for <b>personal, non-commercial</b> use only. The moment it's a business, a client, or anything selling something, Vercel expects you on their paid plan. Learning and side projects are exactly what Hobby is for.</p>
-  </div></details>
-  <details class="acc"><summary>My shared link asks people to log in</summary><div class="inner">
-    <p>That's Vercel's <b>Deployment Protection</b>, on by default, locking the page to your account. Fix: <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → your project → <b>Settings</b> → <b>Deployment Protection</b> → turn <b>Vercel Authentication</b> off → Save.</p>
-  </div></details>
-  <details class="acc"><summary>My site didn't update after I pushed</summary><div class="inner">
-    <p>Give it a minute, then hard-refresh. Still old? On <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a>, check whether the newest deploy succeeded — if it failed, click into it, copy the error, and paste it to Claude.</p>
-  </div></details>
-  <details class="acc"><summary>Is my code private?</summary><div class="inner">
-    <p>What you type and the files Claude reads go to Anthropic's servers to be worked on — that's how it functions. Your GitHub repos are private unless you make them public, and Claude runs on your own machine on your own folder.</p>
-    <p style="margin-bottom:0">The rule that matters: <b>never put real passwords, API keys, or real customer data in a project you're learning with.</b> For the specifics on how your data is handled, read <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic's privacy policy</a> and check the privacy settings in your Claude account.</p>
-  </div></details>
-
-  <h3 style="margin:30px 0 12px">Optional extras</h3>
-  <details class="acc"><summary>What's the terminal version, and do I need it?</summary><div class="inner">
-    <p>Same Claude, no buttons — you type <code>claude</code> in a black text window instead. You can skip it forever. If you're curious: in VS Code go to <b>Terminal → New Terminal</b>, paste the line below, press Enter, then type <code>claude</code>.</p>
-    <div class="copy mac-only"><span class="tag">Mac</span><div class="txt">curl -fsSL https://claude.ai/install.sh | bash</div><button>Copy</button></div>
-    <div class="copy win-only"><span class="tag">Windows PowerShell</span><div class="txt">irm https://claude.ai/install.ps1 | iex</div><button>Copy</button></div>
-    <p style="margin-bottom:0">Rule: never paste a command you found online without asking Claude "what does this actually do?" first.</p>
-  </div></details>
-  <details class="acc"><summary>Is there an official tour?</summary><div class="inner">
-    <p>Yes. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Claude Code: Open Walkthrough</b>. The full docs live at <a href="https://code.claude.com/docs" target="_blank" rel="noopener">code.claude.com/docs</a>.</p>
-  </div></details>
-</section>
-<section id="words">
-  <div class="sec-head">
-    <h2>Words people will say at you</h2>
-    <p>Four-word definitions. That's all you need.</p>
+  <div class="block">
+    <h3>What Git actually is</h3>
+    <p>Git is an <b>undo history for your whole project</b>. Each time you <b>commit</b>, it records exactly what every file looked like at that moment. Later you can go back to any of those moments.</p>
+    <p>Think of it like save points in a game. You don't need to understand the machinery. You need to know when to press save.</p>
+    <div class="big-idea">Commit <mark>after</mark> anything that works.<br>Commit <mark>before</mark> anything big.</div>
+    <p>You don't have to learn any commands. Claude does the work — you just say the words:</p>
+    <div class="copy">
+      <span class="tag">When something works</span>
+      <div class="txt">This version works. Please set up Git if it isn't already, and commit this as a save point.</div>
+      <button>Copy</button>
+    </div>
+    <div class="copy">
+      <span class="tag">When you've broken it</span>
+      <div class="txt">Something is broken. Take me back to the last commit, and explain in simple words what went wrong.</div>
+      <button>Copy</button>
+    </div>
+    <div class="note tip">
+      <h4>⏰ It takes four seconds</h4>
+      <p style="margin-bottom:0">And it is the entire difference between "oh well" and "oh no". There is no such thing as committing too often.</p>
+    </div>
+    <div class="note brain">
+      <h4>🧠 Three words you'll hear</h4>
+      <ul class="plain">
+        <li><b>Commit</b> — one saved moment in your history.</li>
+        <li><b>Push</b> — send your commits up to GitHub (Chapter 10).</li>
+        <li><b>Repo</b> — short for repository. Your project plus all its history.</li>
+      </ul>
+    </div>
+    <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span class="lbl">I made my first commit 💾</span></label>
   </div>
-  <div class="gloss">
-    <div class="gl"><b>File</b><span>One document. <code>index.html</code> is a file.</span></div>
-    <div class="gl"><b>Folder</b><span>A box holding files.</span></div>
-    <div class="gl"><b>Extension</b><span>An add-on for VS Code.</span></div>
-    <div class="gl"><b>Terminal</b><span>Text box for typing commands.</span></div>
-    <div class="gl"><b>HTML</b><span>The words and structure of a page.</span></div>
-    <div class="gl"><b>CSS</b><span>How the page looks.</span></div>
-    <div class="gl"><b>JavaScript</b><span>Makes the page do things.</span></div>
-    <div class="gl"><b>Git</b><span>Undo history for your project.</span></div>
-    <div class="gl"><b>Commit</b><span>One saved moment in that history.</span></div>
-    <div class="gl"><b>Push</b><span>Send your commits to GitHub.</span></div>
-    <div class="gl"><b>Repo</b><span>Your project plus its history.</span></div>
-    <div class="gl"><b>GitHub</b><span>Website that stores your repos.</span></div>
-    <div class="gl"><b>Localhost</b><span>The version only on your computer.</span></div>
-    <div class="gl"><b>Deploy</b><span>Put it on the internet.</span></div>
-    <div class="gl"><b>API key</b><span>A password for a service.</span></div>
-    <div class="gl"><b>Bug</b><span>Something works wrong. Very normal.</span></div>
+
+  <div class="quiz" data-quiz="9">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Save points</h3></div>
+    <p class="quiz-sub">Two questions.</p>
+    <div class="q">
+      <p class="qt" data-n="1">When should you commit?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Once, at the very end, when the project is finished.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>After anything that works, and before anything big.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Only when something has already broken.</span></button>
+      </div>
+      <p class="why"><b>Yes.</b> A commit is only useful if it already exists when disaster strikes. Committing after the fire is not a fire escape.</p>
+      <p class="nudge">A save point you make <i>after</i> you die isn't much use.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">Everything has broken and you have no idea why. You committed an hour ago. What do you say?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Nothing — start the project again from scratch.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>"Take me back to the last commit, and explain what went wrong."</span></button>
+      </div>
+      <p class="why"><b>This is exactly why commits exist.</b> Nothing is ever really lost. Ask for the explanation too — that's how you stop repeating it.</p>
+      <p class="nudge">You have a save point. Use it.</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
-<section id="next">
-  <div class="sec-head">
-    <h2>So what should I build?</h2>
-    <p>Pick something you actually want to exist. Click to copy a starting prompt.</p>
+<!-- ═══════════ CHAPTER 10 ═══════════ -->
+<section class="chapter" id="ch10" data-ch="10" style="--c:var(--mint);--cbg:var(--mint-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 10 · Ship</div>
+      <h2>Put it on the internet</h2>
+      <p class="sub">Two free accounts and one prompt, and you'll have a link you can text someone. This is the payoff.</p>
+      <div class="ch-meta"><span>≈ 15 min</span><span>🆓 Both free</span><span>🌍 The payoff</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <circle cx="82" cy="78" r="46" fill="#d9f8ee" stroke="#20223f" stroke-width="4"/>
+      <path d="M36 78h92M82 32c14 14 14 78 0 92M82 32c-14 14-14 78 0 92" stroke="#20223f" stroke-width="3.5"/>
+      <path d="M142 118l-9-9a11 11 0 0 1 0-16l9-9a11 11 0 0 1 16 16l-3 3" fill="none" stroke="#ff6b9d" stroke-width="5" stroke-linecap="round"/>
+      <path d="M162 62l9 9a11 11 0 0 1 0 16l-9 9a11 11 0 0 1-16-16l3-3" fill="none" stroke="#ffc73f" stroke-width="5" stroke-linecap="round"/>
+      <path d="M148 90l16-16" stroke="#20223f" stroke-width="4" stroke-linecap="round"/>
+    </svg>
   </div>
-  <div class="phrases">
-    <div class="phrase" style="--c:var(--pink)"><span>Build a one-page personal site with my name, a short bio, and links to my socials.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--yellow)"><span>Build a countdown page to a date I choose, with confetti when it hits zero.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--mint)"><span>Build a chore chart I can tick off, and make it remember.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--blue)"><span>Build a random dinner picker from a list of meals I give you.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--purple)"><span>Build a quiz about my friend, with a score at the end.</span><span class="mini">copy</span></div>
-    <div class="phrase" style="--c:var(--orange)"><span>Build a page showing my photos in a grid I can click through.</span><span class="mini">copy</span></div>
+
+  <div class="block">
+    <h3>First, two free accounts</h3>
+    <p class="lead">No card needed for either.</p>
+    <h4 style="margin-top:22px">🐙 GitHub — stores your project online</h4>
+    <ol class="dolist">
+      <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
+      <li>Email, password, username. Your username shows up in links — lowercase, no spaces, something you'd happily say out loud.</li>
+      <li>Confirm the emailed code. Choose the <b>Free</b> plan.</li>
+      <li><b>Write your username down.</b> Everyone forgets which one they picked.</li>
+    </ol>
+    <h4 style="margin-top:26px">▲ Vercel — puts it on the actual internet</h4>
+    <ol class="dolist">
+      <li>Go to <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a>.</li>
+      <li>Click <b>Continue with GitHub</b> and use the account you just made.</li>
+      <li>Approve the permissions box, and pick <b>Hobby</b> when it asks — that's the free one.</li>
+    </ol>
+    <div class="note see">
+      <h4>👀 You should see</h4>
+      <p style="margin-bottom:0">An empty Vercel dashboard saying you have no projects. Correct. You're about to fix that.</p>
+    </div>
+    <div class="note warn">
+      <h4>⚖️ One rule about free Vercel</h4>
+      <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects, showing your mum — all fine. The moment it's a business or a client's site, Vercel expects you on a paid plan.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Now ship it</h3>
+    <p class="lead">Paste this and follow along. Claude drives, you click.</p>
+    <div class="copy prompt">
+      <span class="tag">Paste into Claude</span>
+      <div class="txt">I want to put this on the internet so I can send someone a link. I have free GitHub and Vercel accounts. Please walk me through it one step at a time, using the free options, and tell me exactly what to click. Stop and wait after each step.</div>
+      <button>Copy</button>
+    </div>
+    <div class="note see">
+      <h4>👀 What happens</h4>
+      <ul class="plain">
+        <li>Claude pushes your project up to GitHub. It may ask you to log in once.</li>
+        <li>You connect that GitHub project to Vercel in the browser.</li>
+        <li>Vercel hands you a link ending in <code>.vercel.app</code>.</li>
+        <li><b>Send it to someone.</b> It's live on the real internet, on a real server, right now.</li>
+      </ul>
+    </div>
+    <div class="note stuck">
+      <h4>🔐 If your friend's link asks them to log in</h4>
+      <p style="margin-bottom:0">Vercel switches on a thing called <b>Deployment Protection</b>, which locks the page to your account. Go to your project on <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → <b>Settings</b> → <b>Deployment Protection</b> → turn <b>Vercel Authentication</b> off → Save. Now anyone can open it.</p>
+    </div>
+    <div class="note tip">
+      <h4>♻️ From now on, forever</h4>
+      <p style="margin-bottom:0">Say <b>"commit and push this"</b>, wait a minute, refresh your link. Vercel updates the live site by itself every time. That's the entire publishing workflow for the rest of your life.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span class="lbl">My thing is on the internet 🌍</span></label>
+  </div>
+
+  <div class="quiz" data-quiz="10">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Shipping</h3></div>
+    <p class="quiz-sub">Two questions.</p>
+    <div class="q">
+      <p class="qt" data-n="1">What's the difference between GitHub and Vercel?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>They're the same thing with different names.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>GitHub stores your project and its history; Vercel takes that and serves it to the public as a website.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>GitHub is for code, Vercel is for images.</span></button>
+      </div>
+      <p class="why"><b>Storage versus serving.</b> GitHub is the filing cabinet; Vercel is the shop window that reads from it.</p>
+      <p class="nudge">One of them keeps your files safe. The other shows them to the world.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">You've made a change and want the live site updated. What do you do?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Set the whole thing up on Vercel again from scratch.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Say "commit and push this", wait a minute, refresh.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Email the file to Vercel.</span></button>
+      </div>
+      <p class="why"><b>Push and it deploys itself.</b> That connection you made once keeps working forever.</p>
+      <p class="nudge">You only ever connect GitHub to Vercel once.</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
+
+<!-- ═══════════ CHAPTER 11 ═══════════ -->
+<section class="chapter" id="ch11" data-ch="11" style="--c:var(--orange);--cbg:var(--orange-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 11 · Level up</div>
+      <h2>Secrets &amp; superpowers</h2>
+      <p class="sub">API keys, the mysterious <code>.env</code> file, and how to put AI inside the thing you built.</p>
+      <div class="ch-meta"><span>≈ 20 min</span><span>🔑 The grown-up bit</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <rect x="40" y="72" width="80" height="60" rx="12" fill="#ffe9db" stroke="#20223f" stroke-width="4"/>
+      <path d="M58 72V56a22 22 0 0 1 44 0v16" fill="none" stroke="#20223f" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="80" cy="98" r="8" fill="#20223f"/>
+      <path d="M80 106v10" stroke="#20223f" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="152" cy="52" r="12" fill="#ffc73f" stroke="#20223f" stroke-width="4"/>
+      <path d="M152 64v30M146 78h12M146 88h12" stroke="#20223f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M138 118h34M144 128h22" stroke="#a77bff" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="block">
+    <h3>What's a secret?</h3>
+    <p class="lead">Sooner or later your project will want to use somebody else's service — send an email, take a payment, ask an AI a question. Those services need to know it's you asking.</p>
+    <p>So they give you an <b>API key</b>: a long random string that acts as a password. Something like:</p>
+    <div class="copy"><div class="txt">sk-or-v1-8f3a...2c7d</div></div>
+    <div class="note danger">
+      <h4>🚨 An API key is a password with your credit card attached</h4>
+      <p style="margin-bottom:0">If someone else gets yours, they can use the service <b>as you</b>, and you get the bill. People run bots that scan GitHub for leaked keys around the clock. This is not a hypothetical.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>So where do you put it? A file called <code>.env</code></h3>
+    <p><code>.env</code> is short for <b>environment</b>. It's a plain text file that sits in your project folder and holds your secrets, one per line, like this:</p>
+    <div class="copy"><span class="tag">.env</span><div class="txt">OPENROUTER_API_KEY=sk-or-v1-8f3a...2c7d
+WEATHER_API_KEY=abc123def456</div></div>
+    <p>Your code says "go get <code>OPENROUTER_API_KEY</code>" instead of containing the key itself. The key lives in one file, in one place, and never appears in the code you share.</p>
+    <div class="big-idea">The whole point of <code>.env</code>:<br>your code can be <mark>public</mark> while your keys stay <mark>private</mark>.</div>
+
+    <h3>And the file that makes it work: <code>.gitignore</code></h3>
+    <p>Remember Git from Chapter 9 — it records everything in your folder. <b>Everything.</b> Including a file full of passwords, if you let it.</p>
+    <p><code>.gitignore</code> is a list of files Git should pretend it can't see. Put <code>.env</code> in it and your secrets never leave your computer, no matter how many times you push.</p>
+    <div class="copy"><span class="tag">.gitignore</span><div class="txt">.env
+.env.local
+node_modules</div></div>
+    <div class="note tip">
+      <h4>🧪 The two-file trick you'll see everywhere</h4>
+      <p style="margin-bottom:0">Projects often ship a <code>.env.example</code> with the key <i>names</i> but no values — <code>OPENROUTER_API_KEY=</code> — so the next person knows what to fill in. That one <b>is</b> committed. The real <code>.env</code> never is.</p>
+    </div>
+    <div class="note brain">
+      <h4>🧠 Why the leading dot?</h4>
+      <p style="margin-bottom:0">A filename starting with <code>.</code> is hidden by default on Mac and Linux — which is why you might not see it in Finder. VS Code shows it just fine. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>.</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>H</kbd></span> in your file browser if you ever need to see hidden files.</p>
+    </div>
+    <p>You don't have to make these by hand. Say this:</p>
+    <div class="copy">
+      <span class="tag">Paste into Claude</span>
+      <div class="txt">Set this up properly for secrets: create a .env file for my API keys, make sure .env is listed in .gitignore so it never gets committed, and add a .env.example with the key names but no values. Then explain in simple words how my code will read the key.</div>
+      <button>Copy</button>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Let's get you a real key: OpenRouter</h3>
+    <p class="lead"><a href="https://openrouter.ai" target="_blank" rel="noopener">OpenRouter</a> is one door to hundreds of AI models — Claude, GPT, Gemini, open-source ones — through a single key. It means the app <i>you</i> build can have AI inside it, not just the editor you build it in.</p>
+    <div class="note brain">
+      <h4>🤔 Wait, don't I already pay for Claude?</h4>
+      <p style="margin-bottom:0">Yes — that's for <b>Claude helping you build</b>. This key is for <b>your app doing AI things for its users</b>. Two different jobs. Your Claude subscription can't power a website you built any more than your Netflix account can power a cinema.</p>
+    </div>
+    <ol class="dolist">
+      <li>Go to <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a> → <b>Sign in</b>. Google or GitHub is quickest.</li>
+      <li>Click your avatar (top right) → <b>Keys</b>, or go straight to <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">openrouter.ai/keys</a>.</li>
+      <li>Click <b>Create Key</b>, name it something like <code>first-try</code>.</li>
+      <li><b>Copy it now.</b> It's shown once and never again. If you lose it, delete it and make a new one — no drama.</li>
+      <li>Paste it straight into your <code>.env</code> file. Not into a chat. Not into a note. Not into your code.</li>
+    </ol>
+    <div class="note warn">
+      <h4>💰 About money — read this before you spend anything</h4>
+      <ul class="plain">
+        <li><b>Signing up is free.</b> No card needed to look around.</li>
+        <li>Some models are <b>free to use</b> (they're marked as such, usually with <code>:free</code> in the name). Start there. Seriously — start there.</li>
+        <li>Paid models work on <b>credit you add up front</b>, charged per use. If you want to try them, add the <b>smallest amount they'll let you</b>. You cannot accidentally run up a huge bill on credit that doesn't exist.</li>
+        <li>Check the price of a model on <a href="https://openrouter.ai/models" target="_blank" rel="noopener">openrouter.ai/models</a> <i>before</i> you point your code at it, not after.</li>
+      </ul>
+    </div>
+    <div class="note danger">
+      <h4>🚨 Set a limit on the key while you're there</h4>
+      <p style="margin-bottom:0">When you create a key, OpenRouter lets you cap how much it can spend. <b>Do it.</b> A key with a $1 ceiling can cost you at most $1, even if your code goes haywire in a loop at 3am. This is the single best habit in this chapter.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span class="lbl">OpenRouter key made, safely in .env 🔑</span></label>
+  </div>
+
+  <div class="block">
+    <h3>Now build something with it</h3>
+    <p class="lead">Here's the fun part. Pick one and paste it — Claude will wire up the key from your <code>.env</code> for you.</p>
+    <div class="phrases" style="margin:16px 0">
+      <div class="phrase" style="--c:var(--pink)"><span>Add a box to my page where someone types a mood and gets back a short poem, using my OpenRouter key from .env. Use a free model.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--yellow)"><span>Build a page where I paste in a recipe and it tells me the shopping list, using my OpenRouter key from .env.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--mint)"><span>Make a page that gives me a silly nickname based on my name, powered by OpenRouter with the key from .env.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--blue)"><span>Explain, in beginner words, exactly how my code reads the key out of .env and what would happen if the file was missing.</span><span class="mini">copy</span></div>
+    </div>
+    <div class="note stuck">
+      <h4>🌐 "It works on my computer but not on the live site"</h4>
+      <p>Almost always this. Remember, <code>.env</code> deliberately never left your machine — so the live site has no key.</p>
+      <p style="margin-bottom:0">Fix: go to <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → your project → <b>Settings</b> → <b>Environment Variables</b>, add the same name and value there, then redeploy. Same secret, told to Vercel directly instead of through GitHub. This is exactly how professional teams do it.</p>
+    </div>
+    <div class="note danger">
+      <h4>🙈 If you ever leak a key</h4>
+      <p style="margin-bottom:0">Deleting the file isn't enough — Git remembers, and the internet is fast. <b>Go to the service, delete that key, make a new one.</b> Takes thirty seconds and completely solves it. Everyone does this at least once; the only mistake is not revoking it.</p>
+    </div>
+  </div>
+
+  <div class="quiz" data-quiz="11">
+    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Secrets</h3></div>
+    <p class="quiz-sub">Four questions — this is the chapter where mistakes cost actual money.</p>
+    <div class="q">
+      <p class="qt" data-n="1">What is a <code>.env</code> file for?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Storing your website's colours and fonts.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Holding secrets like API keys, so they stay out of your code.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Listing everyone who worked on the project.</span></button>
+      </div>
+      <p class="why"><b>Exactly.</b> Code in one place, secrets in another. That separation is the whole idea.</p>
+      <p class="nudge">The name is short for "environment" — think about what your code needs to know that you'd never want to publish.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">Which file stops <code>.env</code> being uploaded to GitHub?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span><code>index.html</code></span></button>
+        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span><code>.env.example</code></span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">C</span></span><span><code>.gitignore</code></span></button>
+      </div>
+      <p class="why"><b>Right.</b> <code>.gitignore</code> is the list of things Git pretends it can't see. If <code>.env</code> isn't in there, your keys go public the first time you push.</p>
+      <p class="nudge">The clue is in the name — which file tells Git to <i>ignore</i> something?</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="3">Your site works locally but breaks live, with an error about a missing key. Why?</p>
+      <div class="opts">
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">A</span></span><span><code>.env</code> never got uploaded — by design — so you must add the key in Vercel's Environment Variables.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>Vercel doesn't support API keys.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>You need to commit <code>.env</code> to GitHub after all.</span></button>
+      </div>
+      <p class="why"><b>Spot on — and never do C.</b> The live site gets its secrets told to it directly by the host, never through your code.</p>
+      <p class="nudge">The key deliberately stayed on your computer. So how does the live site ever learn it?</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="4">You accidentally pasted your API key into a public place. What now?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Delete the message and hope nobody saw.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Go to the service, revoke that key, create a new one.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Change your account password.</span></button>
+      </div>
+      <p class="why"><b>Revoke and replace.</b> Thirty seconds and the leaked key is worthless. Deleting the message does nothing — bots scrape faster than you can undo.</p>
+      <p class="nudge">Hoping is not a security strategy. What makes the leaked key <i>useless</i>?</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 4</span><span class="bar"><i></i></span></div>
+  </div>
+</section>
+
+<!-- ═══════════ CHAPTER 12 ═══════════ -->
+<section class="chapter" id="ch12" data-ch="12" style="--c:var(--purple);--cbg:var(--purple-bg)">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Chapter 12 · Graduation</div>
+      <h2>Your survival kit</h2>
+      <p class="sub">The cheat sheet, the safety rules, every way you'll get stuck, and one final exam.</p>
+      <div class="ch-meta"><span>Keep this open</span><span>🎓 Final exam</span></div>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <path d="M100 28l72 28-72 28-72-28 72-28z" fill="#efe7ff" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M52 70v28c0 12 22 20 48 20s48-8 48-20V70" fill="none" stroke="#20223f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M172 56v34" stroke="#20223f" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="172" cy="96" r="7" fill="#ffc73f" stroke="#20223f" stroke-width="4"/>
+      <path d="M100 130v10" stroke="#ff6b9d" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="block">
+    <h3>Three rules that keep you safe</h3>
+    <div class="note danger">
+      <h4>🔒 1. Never paste these into a chat</h4>
+      <p style="margin-bottom:0">Passwords · API keys and secret tokens · database passwords · real customer names, emails or card numbers. If a project genuinely needs a key, say: <b>"Set this up as an environment variable so the key isn't in the code."</b> (Chapter 11, in one sentence.)</p>
+    </div>
+    <div class="note stuck">
+      <h4>🛑 2. If it goes off the rails, say these in order</h4>
+      <p style="margin-bottom:0"><b>"Stop. Don't change anything else."</b> → <b>"Explain what you just changed, in simple words."</b> → <b>"Undo that."</b> You won't hurt its feelings, and you cannot break your computer from a chat box.</p>
+    </div>
+    <div class="note tip">
+      <h4>🐢 3. Small changes beat big ones</h4>
+      <p style="margin-bottom:0">One change, look, commit. Every time. It feels slower and it is dramatically faster.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Your tiny cheat sheet</h3>
+    <p class="lead">Click to copy. These eight sentences get you out of almost any hole.</p>
+    <div class="phrases" style="margin-top:16px">
+      <div class="phrase" style="--c:var(--pink)"><span>Explain that in beginner words.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--yellow)"><span>Give me one step at a time.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--mint)"><span>Don't change anything yet. Give me a plan first.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--blue)"><span>What exactly did you just change, and why?</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--purple)"><span>How do I test this? Tell me what to click.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--orange)"><span>Check your own work for mistakes before I look.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--pink)"><span>That's not what I meant. Don't change anything else.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--mint)"><span>Commit this working version, then push it.</span><span class="mini">copy</span></div>
+    </div>
+    <div class="note brain" style="margin-top:24px">
+      <h4>🌟 Remember four things</h4>
+      <p style="margin-bottom:0">You don't have to understand the code — you do have to look at the result. Ask the second you're confused. Keep changes small. Commit whenever something works.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>When you get stuck</h3>
+    <p class="lead">You will. Everyone does, forever. Here are the usual suspects.</p>
+    <div class="osrow" style="margin-top:16px">
+      <span class="lab">Showing answers for</span>
+      <div class="osswitch" role="group" aria-label="Choose your computer">
+        <button data-os="mac" class="on">🍎 Mac</button>
+        <button data-os="win">🪟 Windows</button>
+      </div>
+    </div>
+
+    <h4 style="margin:24px 0 12px">Setup won't cooperate</h4>
+    <details class="acc"><summary>I can't find the Spark star in VS Code</summary><div class="inner">
+      <p>Quit VS Code completely <span class="mac-only">(<kbd>⌘</kbd>+<kbd>Q</kbd> — closing the window isn't enough)</span><span class="win-only">(close it from the taskbar too)</span> and reopen. If it's still missing, press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. Still nothing? Check the Extensions panel says Claude Code is <b>Installed</b>, by Anthropic.</p>
+    </div></details>
+    <details class="acc"><summary>It says I need to sign in, or my plan won't work</summary><div class="inner">
+      <p>Claude Code needs a paid plan — Pro, Max, Team or Enterprise. Check <a href="https://claude.ai/settings/billing" target="_blank" rel="noopener">claude.ai → Settings → Billing</a> that it's actually active, then sign out and back in inside VS Code.</p>
+    </div></details>
+    <details class="acc"><summary>Nothing's happening. It's just sitting there.</summary><div class="inner">
+      <p>Give it 30 seconds — it thinks before it types, and bigger jobs take a minute. If it's genuinely frozen, there's a stop button; press it and send your message again. If that fails, <b>Developer: Reload Window</b> from the command box. Your files are on disk, so nothing is lost.</p>
+    </div></details>
+    <details class="acc"><summary>Do I need Node.js? Python? Homebrew?</summary><div class="inner">
+      <p>Not to start. Claude will tell you when a project genuinely needs one, and can install it with you. Don't install things "just in case" — that's how beginners end up with four broken versions of everything.</p>
+    </div></details>
+
+    <h4 style="margin:28px 0 12px">Claude is doing something weird</h4>
+    <details class="acc"><summary>It edited my files without asking. Is that normal?</summary><div class="inner">
+      <p>Yes. On a Pro plan it starts in <b>Auto</b> mode, where it just gets on with edits inside your project. Look at the bottom of the chat box — the mode is written there.</p>
+      <p>Want to be asked first? Click it and pick <b>Plan</b> (it writes out its intentions and waits) or <b>Manual</b> (it asks before each edit). Beginners often like Plan for the first week.</p>
+    </div></details>
+    <details class="acc"><summary>It IS asking permission. Should I say yes?</summary><div class="inner">
+      <p><b>Yes</b> for creating or editing files inside your project folder — that's the job you gave it.</p>
+      <p><b>Ask first</b> for deleting lots of files, working outside your folder, installing software, or sending things to the internet. Type <b>"why do you need that?"</b> Nothing happens until you approve.</p>
+    </div></details>
+    <details class="acc"><summary>Everything broke and I don't know what happened</summary><div class="inner">
+      <p>Say: <b>"Stop. Explain what changed in simple words, then undo it."</b> If you committed, say <b>"take me back to the last commit."</b> This is exactly why commits exist. Nothing is ever really lost.</p>
+    </div></details>
+    <details class="acc"><summary>There's scary red text</summary><div class="inner">
+      <p>Red is normal — usually a warning, not a disaster. Copy the whole thing, paste it to Claude, and say: <b>"I got this error. What does it mean and how do I fix it?"</b> That is genuinely what professionals do too.</p>
+    </div></details>
+    <details class="acc"><summary>My change isn't showing up</summary><div class="inner">
+      <p>Refresh the browser <span class="mac-only">(<kbd>⌘</kbd>+<kbd>R</kbd>)</span><span class="win-only">(<kbd>Ctrl</kbd>+<kbd>R</kbd>)</span>. Still nothing? Ask: <b>"Which exact file should I open, and what's its full path?"</b> — you're probably looking at a different copy.</p>
+    </div></details>
+    <details class="acc"><summary>Claude forgot what we were doing</summary><div class="inner">
+      <p>Long conversations get trimmed, and a new chat starts blank. Click <b>Session history</b> at the top of the Claude panel to reopen an old conversation with everything in it. Starting fresh? Just say what you're building in one line — it reads your files anyway.</p>
+    </div></details>
+
+    <h4 style="margin:28px 0 12px">Keys, secrets and money</h4>
+    <details class="acc"><summary>My site works locally but breaks live</summary><div class="inner">
+      <p>Nine times out of ten it's a missing environment variable. Your <code>.env</code> never left your computer — that's the point of it. Add the same key names and values in <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → your project → <b>Settings</b> → <b>Environment Variables</b>, then redeploy.</p>
+    </div></details>
+    <details class="acc"><summary>I think I leaked an API key</summary><div class="inner">
+      <p>Don't panic and don't try to erase history. Go to the service that issued it, <b>delete that key</b>, and create a new one. The leaked one instantly becomes worthless. Then check <code>.env</code> is listed in <code>.gitignore</code> so it can't happen twice.</p>
+    </div></details>
+    <details class="acc"><summary>How much does all this actually cost?</summary><div class="inner">
+      <p><b>Claude Pro — $20/month</b> ($17 if you pay yearly). That's the only recurring bill.</p>
+      <p>VS Code: free. GitHub: free. Vercel Hobby: free. OpenRouter: free to sign up, and free models exist — paid ones run on credit you add up front, so you can't be surprised.</p>
+      <p style="margin-bottom:0">A custom domain like <code>yourname.com</code>, if you ever want one, is roughly $10–15 a year and totally optional.</p>
+    </div></details>
+    <details class="acc"><summary>Can I use this for a business or a client's site?</summary><div class="inner">
+      <p>The free Vercel Hobby plan is for <b>personal, non-commercial</b> use only. The moment it's a business, a client, or anything selling something, Vercel expects you on their paid plan. Learning and side projects are exactly what Hobby is for.</p>
+    </div></details>
+    <details class="acc"><summary>My shared link asks people to log in</summary><div class="inner">
+      <p>That's Vercel's <b>Deployment Protection</b>, on by default, locking the page to your account. Fix: <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → your project → <b>Settings</b> → <b>Deployment Protection</b> → turn <b>Vercel Authentication</b> off → Save.</p>
+    </div></details>
+    <details class="acc"><summary>Is my code private?</summary><div class="inner">
+      <p>What you type and the files Claude reads go to Anthropic's servers to be worked on — that's how it functions. Your GitHub repos are private unless you make them public, and Claude runs on your own machine on your own folder.</p>
+      <p style="margin-bottom:0">The rule that matters: <b>never put real passwords, API keys, or real customer data in a project you're learning with.</b> For the specifics, read <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic's privacy policy</a> and check the privacy settings in your Claude account.</p>
+    </div></details>
+
+    <h4 style="margin:28px 0 12px">Coming back tomorrow</h4>
+    <details class="acc"><summary>I closed VS Code. Is my work gone?</summary><div class="inner">
+      <p>No. It's saved in your folder on your computer. Open VS Code → <b>File</b> → <b>Open Recent</b> → pick your project, then click the Spark star. Carry on where you left off.</p>
+    </div></details>
+    <details class="acc"><summary>Can I have more than one project?</summary><div class="inner">
+      <p>Yes — one folder each, that's the whole system. Make a new folder, <b>File → Open Folder</b>, and Claude only sees that one. Never put two projects in one folder; it gets confusing fast.</p>
+    </div></details>
+    <details class="acc"><summary>I hit my usage limit</summary><div class="inner">
+      <p>Every plan refills every few hours. Wait it out, or upgrade. Nothing is broken and your work is saved.</p>
+    </div></details>
+    <details class="acc"><summary>What's the terminal version, and do I need it?</summary><div class="inner">
+      <p>Same Claude, no buttons — you type <code>claude</code> in a black text window instead. You can skip it forever. If you're curious: in VS Code go to <b>Terminal → New Terminal</b>, paste the line below, press Enter, then type <code>claude</code>.</p>
+      <div class="copy mac-only"><span class="tag">Mac</span><div class="txt">curl -fsSL https://claude.ai/install.sh | bash</div><button>Copy</button></div>
+      <div class="copy win-only"><span class="tag">Windows PowerShell</span><div class="txt">irm https://claude.ai/install.ps1 | iex</div><button>Copy</button></div>
+      <p style="margin-bottom:0">Rule: never paste a command you found online without asking Claude "what does this actually do?" first.</p>
+    </div></details>
+  </div>
+
+  <div class="block">
+    <h3>Words people will say at you</h3>
+    <p class="lead">Four-word definitions. That's all you need.</p>
+    <div class="gloss" style="margin-top:16px">
+      <div class="gl"><b>File</b><span>One document. <code>index.html</code> is a file.</span></div>
+      <div class="gl"><b>Folder</b><span>A box holding files.</span></div>
+      <div class="gl"><b>Extension</b><span>An add-on for VS Code.</span></div>
+      <div class="gl"><b>Terminal</b><span>Text box for typing commands.</span></div>
+      <div class="gl"><b>HTML</b><span>The words and structure of a page.</span></div>
+      <div class="gl"><b>CSS</b><span>How the page looks.</span></div>
+      <div class="gl"><b>JavaScript</b><span>Makes the page do things.</span></div>
+      <div class="gl"><b>Git</b><span>Undo history for your project.</span></div>
+      <div class="gl"><b>Commit</b><span>One saved moment in that history.</span></div>
+      <div class="gl"><b>Push</b><span>Send your commits to GitHub.</span></div>
+      <div class="gl"><b>Repo</b><span>Your project plus its history.</span></div>
+      <div class="gl"><b>GitHub</b><span>Website that stores your repos.</span></div>
+      <div class="gl"><b>Deploy</b><span>Put it on the internet.</span></div>
+      <div class="gl"><b>Localhost</b><span>The version only on your computer.</span></div>
+      <div class="gl"><b>API</b><span>How two programs talk.</span></div>
+      <div class="gl"><b>API key</b><span>A password for a service.</span></div>
+      <div class="gl"><b>.env</b><span>Hidden file holding your secrets.</span></div>
+      <div class="gl"><b>.gitignore</b><span>Files Git should never record.</span></div>
+      <div class="gl"><b>Environment variable</b><span>A secret handed in from outside.</span></div>
+      <div class="gl"><b>Bug</b><span>Something works wrong. Very normal.</span></div>
+    </div>
+  </div>
+
+  <div class="quiz" data-quiz="12">
+    <div class="quiz-head"><span class="zap">🎓</span><h3>Final exam</h3></div>
+    <p class="quiz-sub">Five questions, pulled from all twelve chapters. Pass this and you graduate.</p>
+    <div class="q">
+      <p class="qt" data-n="1">What's the single most important habit in this whole course?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Learning to read code.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Making one change at a time and looking at the result.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Writing very long, very detailed prompts.</span></button>
+      </div>
+      <p class="why"><b>One change, then look.</b> Everything else in this course is a detail hanging off that.</p>
+      <p class="nudge">It's the thing we've said in almost every chapter.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="2">Claude wants to delete a lot of files and you weren't expecting it. What do you type?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Nothing — close the laptop.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>"Stop. Why do you need that?"</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Approve it and check afterwards.</span></button>
+      </div>
+      <p class="why"><b>Ask before you approve, every time.</b> Nothing happens without your yes.</p>
+      <p class="nudge">You have a voice here. Use it.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="3">Where does an API key belong?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Right in the code, so it's easy to find.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>In <code>.env</code> locally, and in the host's environment variables when live.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>In a comment at the top of the file.</span></button>
+      </div>
+      <p class="why"><b>Never in the code.</b> <code>.env</code> on your machine, environment variables on the host, <code>.gitignore</code> making sure the first one never travels.</p>
+      <p class="nudge">Chapter 11. Think about what gets uploaded when you push.</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="4">You've built something that works. What's the very next thing you do?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Immediately start the next big feature.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Commit it.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Delete the old version to keep things tidy.</span></button>
+      </div>
+      <p class="why"><b>Commit the moment it works.</b> Four seconds now, an hour saved later.</p>
+      <p class="nudge">Chapter 9. What do you do when you reach a save point?</p>
+    </div>
+    <div class="q">
+      <p class="qt" data-n="5">Honestly, now: do you need to understand every line of code your project contains?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yes, or you're not a real developer.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>No — but you do need to check that the result actually works.</span></button>
+      </div>
+      <p class="why"><b>And that's the course.</b> Understanding is optional. Looking is not. Go build something.</p>
+      <p class="nudge">Think back to Chapter 1. What did we say the job actually is?</p>
+    </div>
+    <div class="quiz-score"><span class="msg">0 of 5</span><span class="bar"><i></i></span></div>
+  </div>
+
+  <div class="cert" id="cert">
+    <span class="seal">🎓</span>
+    <h2>Certificate of Absolutely Getting On With It</h2>
+    <p style="color:var(--ink-soft);margin-bottom:0">This certifies that</p>
+    <input class="name" id="certname" placeholder="your name here" maxlength="34" aria-label="Your name">
+    <p style="color:var(--ink-soft);max-width:460px;margin:8px auto 0">built real software, put it on the internet, and did not once need to know what a semicolon does.</p>
+    <div class="badges" id="badges"></div>
+    <p style="font-size:.82rem;color:var(--ink-soft);margin:14px 0 0" id="certprog">Finish all twelve chapters to light up every badge.</p>
+  </div>
+
+  <div class="block" style="margin-top:22px">
+    <h3>So… what should I build next?</h3>
+    <p class="lead">Pick something you actually want to exist. Click to copy a starting prompt.</p>
+    <div class="phrases" style="margin-top:16px">
+      <div class="phrase" style="--c:var(--pink)"><span>Build a one-page personal site with my name, a short bio, and links to my socials.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--yellow)"><span>Build a countdown page to a date I choose, with confetti when it hits zero.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--mint)"><span>Build a chore chart I can tick off, and make it remember.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--blue)"><span>Build a random dinner picker from a list of meals I give you.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--purple)"><span>Build a quiz about my friend, with a score at the end.</span><span class="mini">copy</span></div>
+      <div class="phrase" style="--c:var(--orange)"><span>Build a page showing my photos in a grid I can click through.</span><span class="mini">copy</span></div>
+    </div>
+    <div class="note brain" style="margin-top:24px">
+      <h4>🚀 The only advice left</h4>
+      <p style="margin-bottom:0">Build the thing you keep wishing existed. It'll be harder than the tutorial and you'll learn ten times more. And you already know every step: ask, look, correct, commit, push.</p>
+    </div>
+  </div>
+</section>
+
+<div class="navrow" id="navrow"></div>
 
 <footer>
-  <div class="wrap">
-    <div class="hr"></div>
-    <p style="font-size:1.05rem;color:var(--ink)"><b>Made for someone who's about to surprise themselves.</b></p>
-    <p>Tick the boxes as you go. Refreshing starts you fresh, so the link works for the next person too.<br>
-    Official docs: <a href="https://code.claude.com/docs" target="_blank" rel="noopener">code.claude.com/docs</a> · Last checked September 2026.</p>
-  </div>
+  <div class="hr"></div>
+  <p style="font-size:1.02rem;color:var(--ink)"><b>Made for someone who's about to surprise themselves.</b></p>
+  <p>Your progress saves on this device. Hit <b>start over</b> up top to wipe it.<br>
+  Official docs: <a href="https://code.claude.com/docs" target="_blank" rel="noopener">code.claude.com/docs</a> · Last checked September 2026.</p>
 </footer>
 </main>
+</div>
 
 <script>
 (function(){
-  var TOTAL = 10;
+  "use strict";
 
-  /* ---------- measure the sticky bars so nothing overlaps or seams ---------- */
-  var topbar=document.querySelector(".topbar"), osbar=document.querySelector(".osbar");
-  function measure(){
-    if(topbar) document.documentElement.style.setProperty("--topbar-h", topbar.offsetHeight+"px");
-    if(osbar)  document.documentElement.style.setProperty("--osbar-h", osbar.offsetHeight+"px");
-  }
-  measure();
-  addEventListener("resize", measure);
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+  /* ---------- the course ---------- */
+  var CH = [
+    {n:1,  t:"The Brief",            k:"Start here",  c:"var(--purple)"},
+    {n:2,  t:"Your Claude account",  k:"Kit up",      c:"var(--pink)"},
+    {n:3,  t:"Install VS Code",      k:"Kit up",      c:"var(--blue)"},
+    {n:4,  t:"Add Claude Code",      k:"Kit up",      c:"var(--orange)"},
+    {n:5,  t:"First project folder", k:"Build",       c:"var(--yellow)"},
+    {n:6,  t:"Meet Claude",          k:"Build",       c:"var(--mint)"},
+    {n:7,  t:"Your first build",     k:"Build",       c:"var(--purple)"},
+    {n:8,  t:"Look at it. Change it.",k:"Build",      c:"var(--pink)"},
+    {n:9,  t:"Save points",          k:"Protect",     c:"var(--blue)"},
+    {n:10, t:"Put it on the internet",k:"Ship",       c:"var(--mint)"},
+    {n:11, t:"Secrets & superpowers",k:"Level up",    c:"var(--orange)"},
+    {n:12, t:"Your survival kit",    k:"Graduation",  c:"var(--purple)"}
+  ];
+  var TOTAL = CH.length, KEY = "vibe101-v1";
 
-  /* ---------- OS switch ---------- */
-  var osKey='vibe-os', saved=null;
-  try{ saved = localStorage.getItem(osKey); }catch(e){}
-  var os = saved || (/Win/i.test(navigator.platform||navigator.userAgent) ? 'win' : 'mac');
-  function setOS(v){
-    os=v; document.body.dataset.os=v;
-    document.querySelectorAll('.osswitch button').forEach(function(b){ b.classList.toggle('on', b.dataset.os===v); });
-    try{ localStorage.setItem(osKey,v); }catch(e){}
-  }
-  setOS(os);
-  document.querySelectorAll('.osswitch button').forEach(function(b){
-    b.addEventListener('click', function(){ setOS(b.dataset.os); });
+  /* ---------- saved state ---------- */
+  var S = {at:1, quiz:{}, check:{}, name:""};
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(raw){
+      var p = JSON.parse(raw);
+      if(p && typeof p === "object"){
+        S.at    = +p.at > 0 && +p.at <= TOTAL ? +p.at : 1;
+        S.quiz  = p.quiz  && typeof p.quiz  === "object" ? p.quiz  : {};
+        S.check = p.check && typeof p.check === "object" ? p.check : {};
+        S.name  = typeof p.name === "string" ? p.name : "";
+      }
+    }
+  }catch(e){}
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+  var $  = function(s,r){ return (r||document).querySelector(s); };
+  var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+
+  /* a chapter is done when its quiz is passed AND any hands-on box is ticked */
+  function hasCheck(n){ return !!$('.check input[data-check="'+n+'"]'); }
+  function done(n){ return !!S.quiz[n] && (!hasCheck(n) || !!S.check[n]); }
+  function doneCount(){ var c=0; for(var i=1;i<=TOTAL;i++) if(done(i)) c++; return c; }
+
+  /* ---------- build the rail + the map ---------- */
+  var railList = $("#rail-list"), map = $("#map");
+  CH.forEach(function(ch){
+    var b = document.createElement("button");
+    b.className = "rail-item";
+    b.style.setProperty("--c", ch.c);
+    b.dataset.go = ch.n;
+    b.innerHTML = '<span class="rail-dot"><span class="n">'+ch.n+'</span></span><span>'+ch.t+'</span>';
+    railList.appendChild(b);
+
+    if(map && ch.n > 1){
+      var m = document.createElement("button");
+      m.className = "mapcard";
+      m.style.setProperty("--c", ch.c);
+      m.dataset.go = ch.n;
+      m.innerHTML = '<span class="n">'+ch.k+' · '+ch.n+'</span><span class="t">'+ch.t+'</span>';
+      map.appendChild(m);
+    }
   });
 
-  /* ---------- checkboxes + progress ---------- */
-  var fill=document.getElementById('fill'), count=document.getElementById('count');
-  var state={};          /* deliberately not saved - a refresh starts the guide fresh */
-  var celebrated=false;
+  /* ---------- page navigation ---------- */
+  var chapters = $$(".chapter"), navrow = $("#navrow"), rail = $("#rail"), scrim = $("#scrim");
+  var current = 0;
+
+  function go(n, push){
+    n = Math.min(Math.max(+n || 1, 1), TOTAL);
+    current = n;
+    S.at = n; save();
+
+    chapters.forEach(function(sec){ sec.classList.toggle("on", +sec.dataset.ch === n); });
+    $$(".rail-item").forEach(function(b){ b.classList.toggle("on", +b.dataset.go === n); });
+    closeRail();
+    drawNav();
+    paint();
+    if(push !== false && location.hash !== "#ch"+n){
+      history.replaceState(null, "", "#ch"+n);
+    }
+    window.scrollTo(0, 0);   /* a page flip should land at the top, not glide there */
+  }
+
+  function drawNav(){
+    var prev = CH[current-2], next = CH[current];
+    navrow.innerHTML = "";
+    var p = document.createElement("button");
+    p.className = "navbtn";
+    if(prev){ p.innerHTML = '<span class="k">← Previous</span><span class="v">'+prev.t+'</span>'; p.dataset.go = prev.n; }
+    else { p.disabled = true; p.innerHTML = '<span class="k">You’re at the start</span><span class="v">Chapter 1</span>'; }
+    var nx = document.createElement("button");
+    nx.className = "navbtn next";
+    if(next){ nx.innerHTML = '<span class="k">Next →</span><span class="v">'+next.t+'</span>'; nx.dataset.go = next.n; }
+    else { nx.innerHTML = '<span class="k">That’s everything</span><span class="v">Back to the start ↺</span>'; nx.dataset.go = 1; }
+    navrow.appendChild(p); navrow.appendChild(nx);
+  }
+
+  document.addEventListener("click", function(e){
+    var hit = e.target.closest("[data-go],[data-goto]");
+    if(!hit) return;
+    go(hit.dataset.go || hit.dataset.goto);
+  });
+
+  /* ---------- rail drawer (mobile) ---------- */
+  function openRail(){ rail.classList.add("open"); scrim.classList.add("on"); }
+  function closeRail(){ rail.classList.remove("open"); scrim.classList.remove("on"); }
+  $("#menu").addEventListener("click", function(){
+    rail.classList.contains("open") ? closeRail() : openRail();
+  });
+  scrim.addEventListener("click", closeRail);
+  $("#home").addEventListener("click", function(){ go(1); });
+
+  /* ---------- progress paint ---------- */
+  var fill = $("#fill"), count = $("#count"), badges = $("#badges"), certprog = $("#certprog");
+  var celebrated = false;
+
+  CH.forEach(function(ch){
+    if(!badges) return;
+    var s = document.createElement("span");
+    s.className = "badge"; s.dataset.badge = ch.n;
+    s.style.setProperty("--c", ch.c);
+    s.textContent = ch.n + ". " + ch.t;
+    badges.appendChild(s);
+  });
 
   function paint(fire){
-    var n=0;
-    document.querySelectorAll('.check input').forEach(function(inp){
-      var on=!!state[inp.dataset.step];
-      inp.checked=on;
-      inp.closest('.check').classList.toggle('on',on);
-      var st=inp.closest('.step'); if(st) st.classList.toggle('done',on);
-      if(on) n++;
+    var n = doneCount();
+    fill.style.width = (n/TOTAL*100) + "%";
+    count.textContent = n + " / " + TOTAL;
+    $$(".rail-item").forEach(function(b){ b.classList.toggle("done", done(+b.dataset.go)); });
+    $$(".badge").forEach(function(b){ b.classList.toggle("on", done(+b.dataset.badge)); });
+    $$(".check input").forEach(function(inp){
+      var on = !!S.check[inp.dataset.check];
+      inp.checked = on;
+      inp.closest(".check").classList.toggle("on", on);
     });
-    fill.style.width=(n/TOTAL*100)+'%';
-    count.textContent=n+' / '+TOTAL;
-    if(n===TOTAL && fire && !celebrated){ celebrated=true; boom(); }
-    if(n<TOTAL) celebrated=false;
+    if(certprog){
+      certprog.textContent = n === TOTAL
+        ? "All twelve chapters. Screenshot this and put it somewhere embarrassing."
+        : n + " of 12 chapters complete — finish the rest to light up every badge.";
+    }
+    if(n === TOTAL && fire && !celebrated){ celebrated = true; boom(); }
+    if(n < TOTAL) celebrated = false;
   }
 
-  document.querySelectorAll('.check input').forEach(function(inp){
-    inp.addEventListener('change', function(){
-      state[inp.dataset.step]=inp.checked;
+  /* ---------- hands-on checkboxes ---------- */
+  $$(".check input").forEach(function(inp){
+    inp.addEventListener("change", function(){
+      S.check[inp.dataset.check] = inp.checked;
+      save();
+      var was = inp.checked && done(+inp.dataset.check);
       paint(true);
+      if(was) toast("Chapter " + inp.dataset.check + " complete ✓");
     });
   });
-  document.getElementById('reset').addEventListener('click', function(){
-    state={}; paint(false);
-  });
-  paint(false);
 
-  /* ---------- copy buttons ---------- */
-  function copyText(t, done){
+  function startOver(){
+    if(!confirm("Wipe your ticks, quiz answers and certificate name, and start the course fresh?")) return;
+    S = {at:1, quiz:{}, check:{}, name:""};
+    save();
+    $$(".q").forEach(function(q){
+      q.classList.remove("locked");
+      $$(".opt", q).forEach(function(o){ o.classList.remove("right","wrong"); });
+      var w = $(".why", q), g = $(".nudge", q);
+      if(w) w.classList.remove("show");
+      if(g) g.classList.remove("show");
+    });
+    $$(".quiz").forEach(scoreQuiz);
+    var cn = $("#certname"); if(cn) cn.value = "";
+    go(1);
+  }
+  $("#reset").addEventListener("click", startOver);
+  $$("[data-reset]").forEach(function(b){ b.addEventListener("click", startOver); });
+
+  /* ---------- quizzes ---------- */
+  function scoreQuiz(quiz){
+    var qs   = $$(".q", quiz);
+    var got  = qs.filter(function(q){ return q.classList.contains("locked"); }).length;
+    var box  = $(".quiz-score", quiz);
+    var pass = got === qs.length;
+    if(box){
+      box.classList.toggle("pass", pass);
+      $(".msg", box).textContent = pass ? "Passed ✓ " + got + " of " + qs.length : got + " of " + qs.length;
+      $(".bar i", box).style.width = (got/qs.length*100) + "%";
+    }
+    return pass;
+  }
+
+  $$(".quiz").forEach(function(quiz){
+    var num = +quiz.dataset.quiz;
+
+    /* restore a previously passed quiz */
+    if(S.quiz[num]){
+      $$(".q", quiz).forEach(function(q){
+        q.classList.add("locked");
+        var right = $(".opt[data-ok]", q);
+        if(right) right.classList.add("right");
+        var w = $(".why", q); if(w) w.classList.add("show");
+      });
+    }
+    scoreQuiz(quiz);
+
+    $$(".opt", quiz).forEach(function(opt){
+      opt.addEventListener("click", function(){
+        var q = opt.closest(".q");
+        if(q.classList.contains("locked")) return;
+        var why = $(".why", q), nudge = $(".nudge", q);
+
+        if(opt.dataset.ok){
+          opt.classList.add("right");
+          q.classList.add("locked");
+          if(nudge) nudge.classList.remove("show");
+          if(why) why.classList.add("show");
+          if(scoreQuiz(quiz)){
+            var already = !!S.quiz[num];
+            S.quiz[num] = true; save();
+            var full = done(num);
+            paint(true);
+            if(!already){
+              toast(num === 12 ? "Final exam passed 🎓 You're a vibe coder."
+                   : full     ? "Chapter " + num + " complete ✓"
+                   :            "Quiz passed ✓ — now tick the box below");
+            }
+          }
+        } else {
+          opt.classList.add("wrong");
+          if(nudge) nudge.classList.add("show");
+        }
+      });
+    });
+  });
+
+  /* ---------- toast ---------- */
+  var toastEl = $("#toast"), toastT = null;
+  function toast(msg){
+    if(!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add("on");
+    clearTimeout(toastT);
+    toastT = setTimeout(function(){ toastEl.classList.remove("on"); }, 2600);
+  }
+
+  /* ---------- certificate name ---------- */
+  var certname = $("#certname");
+  if(certname){
+    certname.value = S.name || "";
+    certname.addEventListener("input", function(){ S.name = certname.value; save(); });
+  }
+
+  /* ---------- OS switch (several copies, kept in sync) ---------- */
+  var osKey = "vibe-os", savedOS = null;
+  try{ savedOS = localStorage.getItem(osKey); }catch(e){}
+  function setOS(v){
+    document.body.dataset.os = v;
+    $$(".osswitch button").forEach(function(b){ b.classList.toggle("on", b.dataset.os === v); });
+    try{ localStorage.setItem(osKey, v); }catch(e){}
+  }
+  setOS(savedOS || (/Win/i.test(navigator.platform || navigator.userAgent) ? "win" : "mac"));
+  $$(".osswitch button").forEach(function(b){
+    b.addEventListener("click", function(){ setOS(b.dataset.os); });
+  });
+
+  /* ---------- copy to clipboard ---------- */
+  function copyText(t, cb){
     if(navigator.clipboard && window.isSecureContext){
-      navigator.clipboard.writeText(t).then(done, function(){ fallback(t,done); });
-    } else fallback(t,done);
+      navigator.clipboard.writeText(t).then(cb, function(){ fallback(t, cb); });
+    } else fallback(t, cb);
   }
-  function fallback(t,done){
-    var ta=document.createElement('textarea');
-    ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+  function fallback(t, cb){
+    var ta = document.createElement("textarea");
+    ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
     document.body.appendChild(ta); ta.select();
-    try{ document.execCommand('copy'); }catch(e){}
-    document.body.removeChild(ta); done();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta); cb();
   }
-  document.querySelectorAll('.copy button').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var t=btn.parentElement.querySelector('.txt').textContent.trim();
+  $$(".copy button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var t = btn.parentElement.querySelector(".txt").textContent.trim();
       copyText(t, function(){
-        var old=btn.textContent; btn.textContent='Copied ✓'; btn.classList.add('ok');
-        setTimeout(function(){ btn.textContent=old; btn.classList.remove('ok'); },1500);
+        var old = btn.textContent;
+        btn.textContent = "Copied ✓"; btn.classList.add("ok");
+        setTimeout(function(){ btn.textContent = old; btn.classList.remove("ok"); }, 1500);
       });
     });
   });
-  document.querySelectorAll('.phrase').forEach(function(p){
-    p.addEventListener('click', function(){
-      var t=p.firstElementChild.textContent.trim();
-      var mini=p.querySelector('.mini');
+  $$(".phrase").forEach(function(p){
+    p.addEventListener("click", function(){
+      var t = p.firstElementChild.textContent.trim();
+      var mini = p.querySelector(".mini");
       copyText(t, function(){
-        mini.textContent='copied ✓'; p.classList.add('ok');
-        setTimeout(function(){ mini.textContent='copy'; p.classList.remove('ok'); },1500);
+        mini.textContent = "copied ✓"; p.classList.add("ok");
+        setTimeout(function(){ mini.textContent = "copy"; p.classList.remove("ok"); }, 1500);
       });
     });
   });
 
-  /* ---------- scroll reveal ---------- */
-  var steps=document.querySelectorAll('.step');
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-    },{threshold:.1, rootMargin:'0px 0px -40px 0px'});
-    steps.forEach(function(s){ io.observe(s); });
-  } else steps.forEach(function(s){ s.classList.add('in'); });
-
-  /* ---------- loop diagram cycle ---------- */
-  var loops=document.querySelectorAll('#loop .loopstep'), li=0;
-  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  /* ---------- the loop diagram ---------- */
+  var loops = $$("#loop .loopstep"), li = 0;
+  if(loops.length && !matchMedia("(prefers-reduced-motion: reduce)").matches){
     setInterval(function(){
-      loops.forEach(function(l,i){ l.classList.toggle('on', i===li); });
-      li=(li+1)%loops.length;
-    },1100);
+      loops.forEach(function(l,i){ l.classList.toggle("on", i === li); });
+      li = (li + 1) % loops.length;
+    }, 1100);
   }
 
-  /* ---------- celebration modal ---------- */
-  var partyEl=document.getElementById('party');
+  /* ---------- keyboard: ← / → flip pages ---------- */
+  addEventListener("keydown", function(e){
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target.tagName;
+    if(t === "INPUT" || t === "TEXTAREA" || e.target.isContentEditable) return;
+    if(e.key === "ArrowRight" && current < TOTAL) go(current + 1);
+    if(e.key === "ArrowLeft"  && current > 1)     go(current - 1);
+    if(e.key === "Escape"){ closeRail(); party(false); }
+  });
+
+  /* ---------- celebration ---------- */
+  var partyEl = $("#party");
   function party(open){
     if(!partyEl) return;
-    partyEl.classList.toggle('show', open);
-    if(open){ var x=document.getElementById('party-x'); if(x) x.focus(); }
+    partyEl.classList.toggle("show", open);
+    if(open){ var x = $("#party-x"); if(x) x.focus(); }
   }
-  document.getElementById('party-x').addEventListener('click',function(){ party(false); });
-  document.getElementById('party-next').addEventListener('click',function(){ party(false); });
-  partyEl.addEventListener('click',function(e){ if(e.target===partyEl) party(false); });
-  addEventListener('keydown',function(e){ if(e.key==='Escape') party(false); });
+  $("#party-x").addEventListener("click", function(){ party(false); });
+  $("#party-next").addEventListener("click", function(){
+    party(false);
+    go(12);
+    setTimeout(function(){
+      var c = $("#cert");
+      if(c) c.scrollIntoView({behavior:"smooth", block:"center"});
+    }, 420);
+  });
+  partyEl.addEventListener("click", function(e){ if(e.target === partyEl) party(false); });
 
-  /* ---------- confetti ---------- */
   function boom(){
-    var c=document.getElementById('confetti'), ctx=c.getContext('2d');
-    c.style.display='block'; c.width=innerWidth; c.height=innerHeight;
-    var cols=['#ff6b9d','#ffc73f','#25cfa0','#4d9dff','#a77bff','#ff8a3d'], ps=[];
-    for(var i=0;i<160;i++) ps.push({
-      x:Math.random()*c.width, y:-20-Math.random()*c.height*.5,
-      w:6+Math.random()*8, h:8+Math.random()*10,
-      vy:2+Math.random()*4, vx:-1.6+Math.random()*3.2,
-      r:Math.random()*6, vr:-.2+Math.random()*.4, col:cols[i%cols.length]
+    var c = $("#confetti"), ctx = c.getContext("2d");
+    c.style.display = "block"; c.width = innerWidth; c.height = innerHeight;
+    var cols = ["#ff6b9d","#ffc73f","#25cfa0","#4d9dff","#a77bff","#ff8a3d"], ps = [];
+    for(var i = 0; i < 170; i++) ps.push({
+      x: Math.random()*c.width, y: -20 - Math.random()*c.height*0.5,
+      w: 6 + Math.random()*8, h: 8 + Math.random()*10,
+      vy: 2 + Math.random()*4, vx: -1.6 + Math.random()*3.2,
+      r: Math.random()*6, vr: -0.2 + Math.random()*0.4, col: cols[i % cols.length]
     });
-    var t=0;
+    var t = 0;
     (function frame(){
       ctx.clearRect(0,0,c.width,c.height); t++;
       ps.forEach(function(p){
-        p.x+=p.vx; p.y+=p.vy; p.r+=p.vr;
-        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r);
-        ctx.fillStyle=p.col; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+        p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+        ctx.fillStyle = p.col; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h); ctx.restore();
       });
-      if(t<300) requestAnimationFrame(frame);
-      else { ctx.clearRect(0,0,c.width,c.height); c.style.display='none'; }
+      if(t < 300) requestAnimationFrame(frame);
+      else { ctx.clearRect(0,0,c.width,c.height); c.style.display = "none"; }
     })();
     party(true);
   }
+
+  /* ---------- open on the right chapter ---------- */
+  var fromHash = (location.hash.match(/^#ch(\d+)$/) || [])[1];
+  go(fromHash || S.at || 1, false);
+  addEventListener("hashchange", function(){
+    var m = (location.hash.match(/^#ch(\d+)$/) || [])[1];
+    if(m && +m !== current) go(m, false);
+  });
 })();
 </script>
 
 <script>
 /* ---------- hover a link, see where it goes ---------- */
 (function(){
-  var card=document.getElementById("lp"), shot=document.getElementById("lp-shot"), host=document.getElementById("lp-host");
+  var card = document.getElementById("lp"), shot = document.getElementById("lp-shot"), host = document.getElementById("lp-host");
   if(!card || !matchMedia("(hover: hover)").matches) return;   /* no phones, no touch */
 
-  var W=660, H=414;                 /* 3x the display size, so it stays sharp */
-  var cache={}, openT=null, closeT=null, current=null;
+  var W = 660, H = 414;             /* 3x the display size, so it stays sharp */
+  var cache = {}, openT = null, closeT = null, current = null;
 
   function shotURL(u){
     return "https://api.microlink.io/?" + new URLSearchParams({
@@ -1126,67 +2116,64 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   }
 
   function place(link){
-    var r=link.getBoundingClientRect(), cw=card.offsetWidth, ch=card.offsetHeight;
-    var cx=r.left + r.width/2;
-    cx=Math.min(Math.max(cx, cw/2 + 10), innerWidth - cw/2 - 10);   /* keep it on screen */
-    var top=r.top - ch - 12;
-    if(top < 10) top=r.bottom + 12;                                  /* no room above? go below */
-    card.style.left=cx+"px";
-    card.style.top=top+"px";
+    var r = link.getBoundingClientRect(), cw = card.offsetWidth, ch = card.offsetHeight;
+    var cx = r.left + r.width/2;
+    cx = Math.min(Math.max(cx, cw/2 + 10), innerWidth - cw/2 - 10);   /* keep it on screen */
+    var top = r.top - ch - 12;
+    if(top < 10) top = r.bottom + 12;                                 /* no room above? go below */
+    card.style.left = cx + "px";
+    card.style.top  = top + "px";
   }
 
   function show(link){
-    var url=link.href;
-    if(cache[url]==="fail") return;                                  /* never retry a dud */
-    current=link;
-    try{ host.textContent=new URL(url).hostname.replace(/^www\./,""); }catch(e){ host.textContent=""; }
+    var url = link.href;
+    if(cache[url] === "fail") return;                                 /* never retry a dud */
+    current = link;
+    try{ host.textContent = new URL(url).hostname.replace(/^www\./,""); }catch(e){ host.textContent = ""; }
 
-    if(cache[url]==="ok"){
-      shot.src=shotURL(url); shot.classList.remove("loading");
+    if(cache[url] === "ok"){
+      shot.src = shotURL(url); shot.classList.remove("loading");
     } else {
       shot.removeAttribute("src");
       shot.classList.add("loading");
-      var pre=new Image();
-      pre.onload=function(){
-        cache[url]="ok";
-        if(current!==link) return;                                   /* moved on already */
-        shot.src=pre.src; shot.classList.remove("loading");
+      var pre = new Image();
+      pre.onload = function(){
+        cache[url] = "ok";
+        if(current !== link) return;                                  /* moved on already */
+        shot.src = pre.src; shot.classList.remove("loading");
         place(link);
       };
-      pre.onerror=function(){
-        cache[url]="fail";
-        if(current===link) hide();                                   /* silently give up */
+      pre.onerror = function(){
+        cache[url] = "fail";
+        if(current === link) hide();                                  /* silently give up */
       };
-      pre.src=shotURL(url);
+      pre.src = shotURL(url);
     }
     card.style.setProperty("--lp-x","0px");
     place(link);
     card.classList.add("on");
   }
 
-  function hide(){
-    current=null;
-    card.classList.remove("on");
-  }
+  function hide(){ current = null; card.classList.remove("on"); }
 
   document.querySelectorAll('a[href^="http"]').forEach(function(link){
     if(link.closest(".lp")) return;
 
     link.addEventListener("mouseenter", function(){
       clearTimeout(closeT); clearTimeout(openT);
-      openT=setTimeout(function(){ show(link); }, 220);              /* dont fire on a passing cursor */
+      openT = setTimeout(function(){ show(link); }, 220);             /* dont fire on a passing cursor */
     });
 
     link.addEventListener("mousemove", function(e){
-      if(current!==link) return;
-      var r=link.getBoundingClientRect();
-      var off=(e.clientX - r.left - r.width/2)/2;                    /* subtle lean toward the cursor */
-      card.style.setProperty("--lp-x", Math.max(-38, Math.min(38, off))+"px");
+      if(current !== link) return;
+      var r = link.getBoundingClientRect();
+      var off = (e.clientX - r.left - r.width/2)/2;                   /* subtle lean toward the cursor */
+      card.style.setProperty("--lp-x", Math.max(-38, Math.min(38, off)) + "px");
     });
 
     link.addEventListener("mouseleave", function(){
       clearTimeout(openT);
-      closeT=setTimeout(hide, 140);
+      closeT = setTimeout(hide, 140);
     });
   });
 
