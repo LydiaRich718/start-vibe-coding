@@ -557,7 +557,10 @@ h1,h2,h3{letter-spacing:-.02em}
 .rail-title{letter-spacing:.14em}
 .rail-phase{margin:16px 0 6px 10px;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);opacity:.75}
 /* the exam sits apart and carries no number */
-.rail-item.exam{margin-top:12px;padding-top:15px;border-top:1px solid var(--line);border-radius:0}
+.rail-item.exam,.rail-item.opening{border-radius:0}
+.rail-item.exam{margin-top:12px;padding-top:15px;border-top:1px solid var(--line)}
+.rail-item.opening{margin-bottom:4px}
+.rail-item.opening .rail-dot,.rail-item.exam .rail-dot{background:none}
 .rail-item.exam .rail-dot{background:none}
 .rail-item.exam.on{border-top-color:var(--line)}
 
@@ -814,7 +817,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch2" data-ch="2">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 2 · Set up</div>
+      <div class="ch-kicker">Section 1 · Set up</div>
       <h2>Your Claude account</h2>
       <p class="sub paren">The only purchase this course requires.</p>
     </div>
@@ -852,7 +855,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch3" data-ch="3">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 3 · Set up</div>
+      <div class="ch-kicker">Section 2 · Set up</div>
       <h2>Install VS Code</h2>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true"><g transform="translate(64 42) scale(3)"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z" fill="#007ACC"/></g></svg>
@@ -921,7 +924,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch4" data-ch="4">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 4 · Set up</div>
+      <div class="ch-kicker">Section 3 · Set up</div>
       <h2>Add Claude Code</h2>
       <p class="sub">Installing the AI into your workshop.</p>
     </div>
@@ -968,7 +971,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch5" data-ch="5">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 5 · Set up</div>
+      <div class="ch-kicker">Section 4 · Set up</div>
       <h2>Meet Claude</h2>
       <p class="sub">Sign in and find the chat box.</p>
     </div>
@@ -1047,7 +1050,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch6" data-ch="6">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 6 · Set up</div>
+      <div class="ch-kicker">Section 5 · Set up</div>
       <h2>Your GitHub account</h2>
       <p class="sub paren">Free, and no card.</p>
     </div>
@@ -1082,7 +1085,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch7" data-ch="7">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 7 · Set up</div>
+      <div class="ch-kicker">Section 6 · Set up</div>
       <h2>Your Vercel account</h2>
       <p class="sub paren">Also free, also no card.</p>
     </div>
@@ -1105,7 +1108,7 @@ footer .hr{background:var(--line);height:1px}
     </ol>
     <figure class="shot medium">
       <img src="images/vercel-signup.png" alt="The Vercel sign-up page with Continue with GitHub among the options" loading="lazy">
-      <figcaption>Choose <b>Continue with GitHub</b>. Signing up by email here makes Section 12 harder than it needs to be.</figcaption>
+      <figcaption>Choose <b>Continue with GitHub</b>. Signing up by email here makes Section 11 harder than it needs to be.</figcaption>
     </figure>
     <div class="note warn">
       <h4>One rule about the free tier</h4>
@@ -1119,7 +1122,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch8" data-ch="8">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 8 · First project</div>
+      <div class="ch-kicker">Section 7 · First project</div>
       <h2>Your first project folder</h2>
       <p class="sub">A box to work in.</p>
     </div>
@@ -1160,7 +1163,7 @@ footer .hr{background:var(--line);height:1px}
     </ol>
     <div class="note see">
       <h4>You should see</h4>
-      <p style="margin-bottom:0"><b>test</b> in the top left with nothing underneath it. An empty folder is the correct outcome, and Section 9 fills it.</p>
+      <p style="margin-bottom:0"><b>test</b> in the top left with nothing underneath it. An empty folder is the correct outcome, and Section 8 fills it.</p>
     </div>
     <figure class="shot medium">
       <img src="images/vscode-empty-folder.png" alt="The VS Code Explorer showing a folder called test with no files inside it" loading="lazy">
@@ -1177,7 +1180,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch9" data-ch="9">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 9 · First project</div>
+      <div class="ch-kicker">Section 8 · First project</div>
       <h2>Your first build</h2>
       <p class="sub">Two messages. The first sets your terms, the second gives Claude a job.</p>
     </div>
@@ -1248,7 +1251,7 @@ footer .hr{background:var(--line);height:1px}
     </div>
     <div class="note tip">
       <h4>Worth doing now: your first save point</h4>
-      <p>You have something that works, and that is the moment to record it. Section 11 covers this properly, but it costs one sentence to do it today:</p>
+      <p>You have something that works, and that is the moment to record it. Section 10 covers this properly, but it costs one sentence to do it today:</p>
       <div class="copy" style="margin-bottom:0">
         <span class="tag">Paste into Claude</span>
         <div class="txt">This version works. Please set up Git if it isn't already, and commit this as a save point.</div>
@@ -1263,7 +1266,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch10" data-ch="10">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 10 · First project</div>
+      <div class="ch-kicker">Section 9 · First project</div>
       <h2>Look at it. Then change it.</h2>
       <p class="sub">The section most people skip, and the one that separates those who build things from those who nearly build things.</p>
     </div>
@@ -1365,7 +1368,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch11" data-ch="11">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 11 · First project</div>
+      <div class="ch-kicker">Section 10 · First project</div>
       <h2>Git</h2>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -1403,7 +1406,7 @@ footer .hr{background:var(--line);height:1px}
     <div class="note brain">
       <h4>Two more words you will hear</h4>
       <ul class="plain">
-        <li><b>Push.</b> Sending your commits up to GitHub, which is Section 12.</li>
+        <li><b>Push.</b> Sending your commits up to GitHub, which is Section 11.</li>
         <li><b>Repo.</b> Short for repository. Your project together with all of its history.</li>
       </ul>
     </div>
@@ -1419,7 +1422,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch12" data-ch="12">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 12 · First project</div>
+      <div class="ch-kicker">Section 11 · First project</div>
       <h2>Put it on the internet</h2>
       <p class="sub paren">The payoff.</p>
     </div>
@@ -1465,7 +1468,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch13" data-ch="13">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 13 · Going further</div>
+      <div class="ch-kicker">Section 12 · Going further</div>
       <h2>Secrets and superpowers</h2>
       <p class="sub">API keys, the <code>.env</code> file, and putting AI inside the thing you built.</p>
     </div>
@@ -1572,7 +1575,7 @@ node_modules</div></div>
 <section class="chapter" id="ch14" data-ch="14">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 14 · Reference</div>
+      <div class="ch-kicker">Section 13 · Reference</div>
       <h2>Your survival kit</h2>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -1890,21 +1893,21 @@ node_modules</div></div>
 
   /* ---------- the course ---------- */
   var CH = [
-    {n:1,  t:"The Brief",              k:"Start here",     c:"var(--orange)"},
-    {n:2,  t:"Your Claude account",    k:"Set up",         c:"var(--ink)"},
-    {n:3,  t:"Install VS Code",        k:"Set up",         c:"var(--orange)"},
-    {n:4,  t:"Add Claude Code",        k:"Set up",         c:"var(--orange-deep)"},
-    {n:5,  t:"Meet Claude",            k:"Set up",         c:"var(--ink)"},
-    {n:6,  t:"Your GitHub account",    k:"Set up",         c:"var(--orange)"},
-    {n:7,  t:"Your Vercel account",    k:"Set up",         c:"var(--orange-deep)"},
-    {n:8,  t:"First project folder",   k:"First project",  c:"var(--ink)"},
-    {n:9,  t:"Your first build",       k:"First project",  c:"var(--orange)"},
-    {n:10, t:"Look at it. Change it.", k:"First project",  c:"var(--orange-deep)"},
-    {n:11, t:"Git",                    k:"First project",  c:"var(--ink)"},
-    {n:12, t:"Put it on the internet", k:"First project",  c:"var(--orange)"},
-    {n:13, t:"Secrets & superpowers",  k:"Going further",  c:"var(--orange-deep)"},
-    {n:14, t:"Your survival kit",      k:"Reference",      c:"var(--ink)"},
-    {n:15, t:"Final exam",             k:"The last thing", c:"var(--orange-deep)", exam:true}
+    {n:1,  num:null, t:"The Brief",              k:"Start here",     c:"var(--orange)", opening:true},
+    {n:2,  num:1,    t:"Your Claude account",    k:"Set up",         c:"var(--ink)"},
+    {n:3,  num:2,    t:"Install VS Code",        k:"Set up",         c:"var(--orange)"},
+    {n:4,  num:3,    t:"Add Claude Code",        k:"Set up",         c:"var(--orange-deep)"},
+    {n:5,  num:4,    t:"Meet Claude",            k:"Set up",         c:"var(--ink)"},
+    {n:6,  num:5,    t:"Your GitHub account",    k:"Set up",         c:"var(--orange)"},
+    {n:7,  num:6,    t:"Your Vercel account",    k:"Set up",         c:"var(--orange-deep)"},
+    {n:8,  num:7,    t:"First project folder",   k:"First project",  c:"var(--ink)"},
+    {n:9,  num:8,    t:"Your first build",       k:"First project",  c:"var(--orange)"},
+    {n:10, num:9,    t:"Look at it. Change it.", k:"First project",  c:"var(--orange-deep)"},
+    {n:11, num:10,   t:"Git",                    k:"First project",  c:"var(--ink)"},
+    {n:12, num:11,   t:"Put it on the internet", k:"First project",  c:"var(--orange)"},
+    {n:13, num:12,   t:"Secrets & superpowers",  k:"Going further",  c:"var(--orange-deep)"},
+    {n:14, num:13,   t:"Your survival kit",      k:"Reference",      c:"var(--ink)"},
+    {n:15, num:null, t:"Final exam",             k:"The last thing", c:"var(--orange-deep)", exam:true}
   ];
   var TOTAL = CH.length, KEY = "vibe101-v1";
 
@@ -1944,7 +1947,8 @@ node_modules</div></div>
     b.style.setProperty("--c", ch.c);
     b.dataset.go = ch.n;
     if(ch.exam) b.classList.add("exam");
-    b.innerHTML = '<span class="rail-dot"><span class="n">'+(ch.exam ? "" : ch.n)+'</span></span><span>'+ch.t+'</span>';
+    if(ch.opening) b.classList.add("opening");
+    b.innerHTML = '<span class="rail-dot"><span class="n">'+(ch.num == null ? "" : ch.num)+'</span></span><span>'+ch.t+'</span>';
     if(ch.k !== lastPhase && !ch.exam && ch.n > 1){
       var hd = document.createElement("p");
       hd.className = "rail-phase";
