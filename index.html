@@ -121,6 +121,19 @@ b,strong{font-weight:700}
   border-left:7px solid var(--c,var(--orange));padding:4px 0 4px 20px;margin:26px 0;
 }
 mark{background:linear-gradient(180deg,transparent 58%,var(--orange-soft) 58%);color:inherit;padding:0 2px;font-weight:600}
+/* a hand-drawn underline, for the odd word that deserves one */
+.u{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 7C20 3 40 9 62 5S100 3 118 6' fill='none' stroke='%23e0701f' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:0 100%; background-size:100% .34em;
+  padding-bottom:.12em;
+}
+/* a scribbled aside pointing back at the line above it */
+.pointer{
+  display:flex;gap:10px;align-items:flex-start;max-width:440px;margin:-2px 0 18px;
+  background:var(--sand);border:2px dashed var(--ink);border-radius:14px;padding:10px 14px;font-size:.89rem;
+}
+.pointer .pt{flex:none;font-size:1.1rem;line-height:1.25}
+.pointer p{margin:0}
 
 /* callouts */
 .note{border-radius:16px;padding:16px 18px;margin:18px 0;border:2px solid var(--ink);font-size:.96rem}
@@ -537,7 +550,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 2 · Equipment</div>
       <h2>Your Claude account</h2>
       <p class="sub">The only purchase this course requires.</p>
-      <div class="ch-meta"><span>≈ 5 min</span><span>Paid</span><span>Needed first</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <rect x="26" y="34" width="148" height="92" rx="16" fill="#fbe6d2" stroke="#1c1814" stroke-width="4"/>
@@ -572,7 +584,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 3 · Equipment</div>
       <h2>Install VS Code</h2>
       <p class="sub">Your workshop. It looks alarming for about ninety seconds.</p>
-      <div class="ch-meta"><span>≈ 5 min</span><span>Free</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <rect x="20" y="26" width="160" height="104" rx="13" fill="#fffdf7" stroke="#1c1814" stroke-width="4"/>
@@ -647,7 +658,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 4 · Equipment</div>
       <h2>Add Claude Code</h2>
       <p class="sub">Installing the AI into your workshop.</p>
-      <div class="ch-meta"><span>≈ 3 min</span><span>Free</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M52 42h34a12 12 0 1 1 24 0h34v34a12 12 0 1 0 0 24v34H52V42z" fill="#fbe6d2" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
@@ -703,7 +713,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 5 · Building</div>
       <h2>Your first project folder</h2>
       <p class="sub">A box to work in, and quietly your safety net.</p>
-      <div class="ch-meta"><span>≈ 2 min</span><span>Matters more than it looks</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M28 44a8 8 0 0 1 8-8h34l12 14h54a8 8 0 0 1 8 8v56a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V44z" fill="#f3ebda" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
@@ -759,7 +768,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 6 · Building</div>
       <h2>Meet Claude</h2>
       <p class="sub">Sign in and find the chat box.</p>
-      <div class="ch-meta"><span>≈ 3 min</span><span>Find the star</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M26 42a12 12 0 0 1 12-12h68a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12H62l-22 18V88h-2a12 12 0 0 1-12-12V42z" fill="#f3ebda" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
@@ -820,7 +828,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 7 · Building</div>
       <h2>Your first build</h2>
       <p class="sub">Two messages. The first sets your terms, the second gives Claude a job.</p>
-      <div class="ch-meta"><span>≈ 5 min</span><span>The enjoyable one</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <rect x="94" y="46" width="76" height="84" rx="10" fill="#fffdf7" stroke="#1c1814" stroke-width="4"/>
@@ -885,7 +892,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 8 · Building</div>
       <h2>Look at it. Then change it.</h2>
       <p class="sub">The section most people skip, and the one that separates those who build things from those who nearly build things.</p>
-      <div class="ch-meta"><span>≈ 10 min</span><span>Do not skip this</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M14 78s24-34 60-34 60 34 60 34-24 34-60 34-60-34-60-34z" fill="#fbe6d2" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
@@ -943,9 +949,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   <div class="ch-cover">
     <div>
       <div class="ch-kicker">Section 9 · Protection</div>
-      <h2>Save points</h2>
-      <p class="sub">Git, explained without a single diagram of arrows.</p>
-      <div class="ch-meta"><span>≈ 5 min</span><span>Do this early</span></div>
+      <h2>Git</h2>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M30 110h140" stroke="#1c1814" stroke-width="4" stroke-linecap="round"/>
@@ -961,8 +965,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
   <div class="block">
     <h3>What Git does</h3>
-    <p>Git is an undo history for your entire project. Each time you <b>commit</b>, it records exactly what every file looked like at that moment, and you can return to any of those moments afterwards.</p>
-    <p>Think of them as save points in a game. You do not need to understand the machinery, you need to know when to press save.</p>
+    <p>Git is an undo history for your entire project. Each time you <b>commit</b>, it records exactly what every file looked like at that moment, and you can return to any of those versions.</p>
+    <div class="pointer"><span class="pt">↑</span><p>A <b>commit</b> is one saved version of your project. You will make hundreds of them.</p></div>
     <div class="big-idea">Commit <mark>after</mark> anything that works.<br>Commit <mark>before</mark> anything large.</div>
     <p>There are no commands to learn. Claude does the work, and you supply the words:</p>
     <div class="copy">
@@ -980,9 +984,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p style="margin-bottom:0">Which is the difference between "oh well" and "oh no". There is no such thing as committing too often, and a save point created after the disaster is of no use to anybody.</p>
     </div>
     <div class="note brain">
-      <h4>🧠 Three words you will hear</h4>
+      <h4>🧠 Two more words you will hear</h4>
       <ul class="plain">
-        <li><b>Commit.</b> One saved moment in your history.</li>
         <li><b>Push.</b> Sending your commits up to GitHub, which is Section 10.</li>
         <li><b>Repo.</b> Short for repository. Your project together with all of its history.</li>
       </ul>
@@ -998,7 +1001,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 10 · Shipping</div>
       <h2>Put it on the internet</h2>
       <p class="sub">Two free accounts and one prompt, and you have a link you can send to anyone.</p>
-      <div class="ch-meta"><span>≈ 15 min</span><span>Both free</span><span>The payoff</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <circle cx="82" cy="78" r="46" fill="#fbe6d2" stroke="#1c1814" stroke-width="4"/>
@@ -1011,7 +1013,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
   <div class="block">
     <h3>Two free accounts</h3>
-    <p class="lead">GitHub stores your project and its history. Vercel takes what GitHub holds and serves it to the public. Neither asks for a card.</p>
+    <p class="lead"><span class="u">GitHub</span> stores your project and its history. <span class="u">Vercel</span> takes what GitHub holds and serves it to the public. Both have free tiers.</p>
     <h4 style="margin-top:22px">GitHub, the filing cabinet</h4>
     <ol class="dolist">
       <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
@@ -1067,7 +1069,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="ch-kicker">Section 11 · Advanced</div>
       <h2>Secrets and superpowers</h2>
       <p class="sub">API keys, the <code>.env</code> file, and putting AI inside the thing you built.</p>
-      <div class="ch-meta"><span>≈ 20 min</span><span>The grown-up section</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <rect x="40" y="72" width="80" height="60" rx="12" fill="#fbe6d2" stroke="#1c1814" stroke-width="4"/>
@@ -1175,7 +1176,6 @@ node_modules</div></div>
       <div class="ch-kicker">Section 12 · Graduation</div>
       <h2>Your survival kit</h2>
       <p class="sub">The safety rules, the cheat sheet, every way you will get stuck, and the final exam.</p>
-      <div class="ch-meta"><span>Keep this open</span><span>Final exam</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M100 28l72 28-72 28-72-28 72-28z" fill="#fbe6d2" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
@@ -1482,7 +1482,7 @@ node_modules</div></div>
     {n:6,  t:"Meet Claude",           k:"Building",   c:"var(--orange)"},
     {n:7,  t:"Your first build",      k:"Building",   c:"var(--orange-deep)"},
     {n:8,  t:"Look at it. Change it.",k:"Building",   c:"var(--ink)"},
-    {n:9,  t:"Save points",           k:"Protection", c:"var(--orange)"},
+    {n:9,  t:"Git",                   k:"Protection", c:"var(--orange)"},
     {n:10, t:"Put it on the internet",k:"Shipping",   c:"var(--orange-deep)"},
     {n:11, t:"Secrets & superpowers", k:"Advanced",   c:"var(--ink)"},
     {n:12, t:"Your survival kit",     k:"Graduation", c:"var(--orange)"}
