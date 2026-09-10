@@ -1195,9 +1195,19 @@ footer .hr{background:var(--line);height:1px}
     </figure>
     <p>Clicking it opens the four choices. <b>Plan</b> is the one to reach for if Auto makes you uneasy, because Claude writes out what it intends to do and waits for your approval. Many people stay on Plan for the first week, since reading the plan before it happens teaches you a great deal.</p>
     <figure class="shot narrow">
-      <img src="images/claude-modes.png" alt="The Claude Code modes menu listing Manual, Edit automatically, Plan and Auto, with Auto selected" loading="lazy">
-      <figcaption><b>Manual</b> asks before every edit. <b>Plan</b> shows you its thinking first. <b>Auto</b> gets on with the safe things and stops at anything risky. Shift and Tab cycles through them.</figcaption>
+      <img src="images/claude-modes.png" alt="The Claude Code modes menu listing Manual, Edit automatically, Plan and Auto, with Auto selected, above an Effort slider" loading="lazy">
     </figure>
+    <ul class="plain">
+      <li><b>Manual</b> asks before every single edit.</li>
+      <li><b>Edit automatically</b> changes the file you have open, without asking.</li>
+      <li><b>Plan</b> writes out what it intends to do, then waits for your yes.</li>
+      <li><b>Auto</b> gets on with the safe things and stops at anything risky.</li>
+    </ul>
+    <p>Holding <kbd>Shift</kbd> and pressing <kbd>Tab</kbd> cycles through them without opening the menu.</p>
+    <div class="note tip">
+      <h4>The Effort slider underneath</h4>
+      <p style="margin-bottom:0">That second row controls how long Claude thinks before it answers. Further right means slower and better at hard problems; further left means quicker, which is fine for small edits. It is unrelated to the modes above it, and you can leave it exactly where it is.</p>
+    </div>
     <div class="note warn">
       <h4>In every mode</h4>
       <p style="margin-bottom:0">Claude still stops and asks before anything consequential: deleting many files, reaching outside your folder, or installing software. If a request surprises you, type <b>"why do you need that?"</b> Nothing proceeds until you agree to it.</p>
