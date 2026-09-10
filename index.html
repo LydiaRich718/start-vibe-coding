@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vibe Coding 101</title>
-<meta name="description" content="A twelve-chapter beginner course in building real software with AI. Flip through the chapters, take the mini quizzes, ship something to the internet.">
+<meta name="description" content="A twelve-section beginner course in building real software with AI. Flip through the sections, take the mini quizzes, ship something to the internet.">
 <meta property="og:title" content="Vibe Coding 101">
-<meta property="og:description" content="Twelve chapters. No experience needed. By the end you'll have something live on the internet.">
+<meta property="og:description" content="Twelve sections. No experience needed. By the end you'll have something live on the internet.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,6 +159,12 @@ code{background:var(--sand-deep);border-radius:6px;padding:1px 5px;font-size:.88
 .copy button{position:absolute;right:14px;top:14px;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:99px;padding:6px 14px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;transition:.15s}
 .copy button:hover{background:var(--orange-soft);transform:translateY(-1px)}
 .copy button.ok{background:var(--orange);border-color:var(--orange);color:#fff}
+
+/* real screenshots */
+.shot{margin:20px 0;border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{padding:11px 15px;font-size:.87rem;color:var(--ink-soft);border-top:2px solid var(--ink);background:var(--sand)}
+.shot.tight img{max-height:340px;object-fit:contain;object-position:left top;background:var(--sand)}
 
 /* fake UI mockups */
 .mock{border:2px solid var(--ink);border-radius:14px;overflow:hidden;margin:18px 0;box-shadow:var(--shadow);background:#fff}
@@ -322,13 +328,6 @@ body[data-os="mac"] code.mac-only,body[data-os="win"] code.win-only{display:inli
 .fact{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:10px 16px;font-size:.84rem;font-weight:600;box-shadow:3px 3px 0 rgba(32,34,63,.12)}
 .fact b{display:block;font-size:1.3rem;font-family:Fraunces,serif}
 
-/* map of the course */
-.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-top:8px}
-.mapcard{background:var(--cream);border:2px solid var(--ink);border-radius:16px;padding:14px;cursor:pointer;text-align:left;font-family:inherit;transition:transform .16s,box-shadow .16s;box-shadow:3px 3px 0 var(--c,var(--orange))}
-.mapcard:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--c,var(--orange))}
-.mapcard .n{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
-.mapcard .t{font-family:Fraunces,serif;font-weight:800;font-size:1rem;line-height:1.2;margin-top:3px;display:block;color:var(--ink)}
-
 /* certificate */
 .cert{
   background:linear-gradient(140deg,#fffdf7,#fff8ec);border:3px double var(--ink);border-radius:22px;
@@ -436,7 +435,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   <div class="party-card">
     <button class="party-close" id="party-x" aria-label="Close">×</button>
     <span class="emoji">🎓</span>
-    <h2 id="party-title">Twelve chapters, completed.</h2>
+    <h2 id="party-title">Twelve sections, completed.</h2>
     <p>A working setup, a save history, secrets handled properly, and something you built living on the real internet.</p>
     <div class="party-badges"><span>✳️ Claude</span><span>🐙 GitHub</span><span>▲ Vercel</span><span>🔑 OpenRouter</span><span>🌍 Shipped</span></div>
     <button class="btn" id="party-next">See my certificate →</button>
@@ -445,7 +444,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
 <div class="topbar">
   <div class="topbar-in">
-    <button class="tb-menu" id="menu" aria-label="Chapters">☰</button>
+    <button class="tb-menu" id="menu" aria-label="Sections">☰</button>
     <button class="tb-logo" id="home">Vibe <span>Coding 101</span></button>
     <div class="tb-track" role="progressbar" aria-label="Course progress"><div class="tb-fill" id="fill"></div></div>
     <div class="tb-count" id="count">0 / 12</div>
@@ -455,23 +454,21 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
 <div class="scrim" id="scrim"></div>
 <div class="shell">
-<nav class="rail" id="rail" aria-label="Chapters">
+<nav class="rail" id="rail" aria-label="Sections">
   <p class="rail-title">The Course</p>
   <div id="rail-list"></div>
-  <p class="rail-foot">12 chapters · about 90 minutes.<br>Your place is saved on this device.<br><button class="rail-reset" data-reset>start over</button></p>
+  <p class="rail-foot">12 sections · about 90 minutes.<br>Your place is saved on this device.<br><button class="rail-reset" data-reset>start over</button></p>
 </nav>
 <main class="page" id="page">
 
-<!-- ═══════════ CHAPTER 1 ═══════════ -->
+<!-- ═══════════ SECTION 1 ═══════════ -->
 <section class="chapter" id="ch1" data-ch="1">
   <div class="hero">
     <div class="eyebrow">📋 No experience assumed</div>
     <h1>You're about to build <span class="hl">real software.</span></h1>
-    <p class="lede">By the end of this course you will have a working program on the internet, with a link you can send to anyone who doubts you. Twelve chapters, about ninety minutes.</p>
+    <p class="lede">By the end of this course you will have a working program on the internet, with a link you can send to anyone who doubts you. Twelve sections, about ninety minutes.</p>
     <div class="hero-facts">
-      <div class="fact"><b>12</b>chapters</div>
-      <div class="fact"><b>90</b>minutes-ish</div>
-      <div class="fact"><b>0</b>lines you type yourself</div>
+      <div class="fact"><b>12</b>sections</div>
     </div>
     <button class="btn" data-goto="2">Begin the course →</button>
   </div>
@@ -480,7 +477,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <h3>The arrangement</h3>
     <p>You will not be writing the code. You describe what you want in plain English, the AI writes it, and then you examine the result and say what to change.</p>
     <div class="big-idea">You are not learning to code.<br>You are learning to <mark>direct</mark> something that codes.</div>
-    <p>The remainder of this course covers which buttons to press and which sentences to say. There is less to it than you have been led to believe.</p>
   </div>
 
   <div class="block">
@@ -516,14 +512,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     </div>
     <div class="note warn" style="margin-top:22px">
       <h4>⚠️ The one way to do this badly</h4>
-      <p style="margin:0">Skipping step two. Code you have not looked at is a rumour rather than a result.</p>
+      <p style="margin:0">Skipping step two.</p>
     </div>
-  </div>
-
-  <div class="block">
-    <h3>What is coming</h3>
-    <p class="lead">Click any chapter to jump ahead. Chapters 2 through 7 build on one another, so work through those in order the first time.</p>
-    <div class="map" id="map"></div>
   </div>
 
   <div class="block">
@@ -540,11 +530,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 2 ═══════════ -->
+<!-- ═══════════ SECTION 2 ═══════════ -->
 <section class="chapter" id="ch2" data-ch="2">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 2 · Equipment</div>
+      <div class="ch-kicker">Section 2 · Equipment</div>
       <h2>Your Claude account</h2>
       <p class="sub">The only purchase this course requires.</p>
       <div class="ch-meta"><span>≈ 5 min</span><span>Paid</span><span>Needed first</span></div>
@@ -563,19 +553,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   <div class="block">
     <p class="lead">Claude Code requires a paid Claude plan. The free plan is conversation only. It will talk with you, but it cannot reach into your files and build things, which is precisely what we need it to do.</p>
     <ol class="dolist">
-      <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> and click <b>Sign up</b>. Email or Google, whichever you prefer.</li>
+      <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> and click <b>Sign up</b>.</li>
       <li>Once you are in, click your name at the <b>bottom left</b>, then <b>Settings</b>, then <b>Plans</b>.</li>
       <li>Choose <b>Pro</b>, which is $20 per month, or $17 if you pay for the year.</li>
-      <li>Keep track of this login. You will need it again in Chapter 6.</li>
     </ol>
-    <div class="note tip">
-      <h4>💸 Which plan to choose</h4>
-      <ul class="plain">
-        <li><b>Free.</b> Conversation only, so it will not work here.</li>
-        <li><b>Pro.</b> Begin here. It is ample for learning and for building real projects.</li>
-        <li><b>Max.</b> From $100 per month. Worth considering only once you are coding all day and running into limits. You can upgrade in one click later, so there is no need to deliberate now.</li>
-      </ul>
-    </div>
     <div class="note brain">
       <h4>🧾 Where your money goes</h4>
       <p style="margin:0">One subscription covers Claude in the browser and Claude Code in VS Code. It is a single bill. The remaining tools in this course cost nothing at all.</p>
@@ -584,11 +565,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 3 ═══════════ -->
+<!-- ═══════════ SECTION 3 ═══════════ -->
 <section class="chapter" id="ch3" data-ch="3">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 3 · Equipment</div>
+      <div class="ch-kicker">Section 3 · Equipment</div>
       <h2>Install VS Code</h2>
       <p class="sub">Your workshop. It looks alarming for about ninety seconds.</p>
       <div class="ch-meta"><span>≈ 5 min</span><span>Free</span></div>
@@ -619,6 +600,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <li>Go to <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a>.</li>
       <li>Click the button for your computer. The site usually guesses correctly.</li>
     </ol>
+    <figure class="shot">
+      <img src="images/vscode-download.png" alt="The VS Code download page showing Windows, macOS and Linux cards, with macOS highlighted and marked YOUR OS" loading="lazy">
+      <figcaption>The site works out what you are on and marks it <b>YOUR OS</b>. Click the big button in that card and ignore the other two.</figcaption>
+    </figure>
     <div class="mac-only">
       <div class="note tip">
         <h4>🍎 On Mac</h4>
@@ -655,11 +640,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 4 ═══════════ -->
+<!-- ═══════════ SECTION 4 ═══════════ -->
 <section class="chapter" id="ch4" data-ch="4">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 4 · Equipment</div>
+      <div class="ch-kicker">Section 4 · Equipment</div>
       <h2>Add Claude Code</h2>
       <p class="sub">Installing the AI into your workshop.</p>
       <div class="ch-meta"><span>≈ 3 min</span><span>Free</span></div>
@@ -707,19 +692,15 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <h4>🔦 If no star appears</h4>
       <p style="margin-bottom:0">Quit VS Code completely and reopen it. Failing that, press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. One of the two always resolves it.</p>
     </div>
-    <div class="note warn">
-      <h4>🙅 What you do not need</h4>
-      <p style="margin-bottom:0">Node.js. Git installed by hand. Homebrew. A terminal. Any tutorial insisting on these is describing a different setup. If a project requires one later, Claude will say so and install it with you.</p>
-    </div>
     <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span class="lbl">Claude Code extension installed, star visible</span></label>
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 5 ═══════════ -->
+<!-- ═══════════ SECTION 5 ═══════════ -->
 <section class="chapter" id="ch5" data-ch="5">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 5 · Building</div>
+      <div class="ch-kicker">Section 5 · Building</div>
       <h2>Your first project folder</h2>
       <p class="sub">A box to work in, and quietly your safety net.</p>
       <div class="ch-meta"><span>≈ 2 min</span><span>Matters more than it looks</span></div>
@@ -734,7 +715,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
   <div class="block">
     <p class="lead">Every project you build lives in a folder. Claude only touches files inside the folder you have opened. This is not a rule you have to enforce, it is how the tool works.</p>
-    <div class="big-idea">One project, one folder.<br>The folder <mark>is</mark> your safety net.</div>
     <div class="osrow">
       <span class="lab">Showing steps for</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
@@ -745,24 +725,24 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <div class="mac-only">
       <ol class="dolist">
         <li>Open <b>Finder</b> and go to <b>Documents</b>.</li>
-        <li>Right-click empty space and choose <b>New Folder</b>. Name it <code>first-try</code>.</li>
+        <li>Right-click empty space and choose <b>New Folder</b>. Name it <code>test</code>.</li>
       </ol>
     </div>
     <div class="win-only">
       <ol class="dolist">
         <li>Open <b>File Explorer</b> and go to <b>Documents</b>.</li>
-        <li>Right-click empty space and choose <b>New</b>, then <b>Folder</b>. Name it <code>first-try</code>.</li>
+        <li>Right-click empty space and choose <b>New</b>, then <b>Folder</b>. Name it <code>test</code>.</li>
       </ol>
     </div>
     <h3>Open it in VS Code</h3>
     <ol class="dolist">
       <li>From the top menu, choose <b>File</b>, then <b>Open Folder…</b></li>
-      <li>Select <code>first-try</code> and click <b>Open</b>.</li>
+      <li>Select <code>test</code> and click <b>Open</b>.</li>
       <li>When asked whether you trust the authors, say yes. You made the folder yourself.</li>
     </ol>
     <div class="note see">
       <h4>👀 You should see</h4>
-      <p style="margin-bottom:0"><b>FIRST-TRY</b> in the top left with nothing underneath it. An empty folder is the correct outcome. Chapter 7 fills it.</p>
+      <p style="margin-bottom:0"><b>TEST</b> in the top left with nothing underneath it. An empty folder is the correct outcome. Section 7 fills it.</p>
     </div>
     <div class="note tip">
       <h4>💡 The naming rule</h4>
@@ -772,11 +752,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 6 ═══════════ -->
+<!-- ═══════════ SECTION 6 ═══════════ -->
 <section class="chapter" id="ch6" data-ch="6">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 6 · Building</div>
+      <div class="ch-kicker">Section 6 · Building</div>
       <h2>Meet Claude</h2>
       <p class="sub">Sign in and find the chat box.</p>
       <div class="ch-meta"><span>≈ 3 min</span><span>Find the star</span></div>
@@ -801,7 +781,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <ol class="dolist">
       <li>Click the <b>Spark</b> star in the left strip, and a Claude panel opens.</li>
       <li>Click <b>Sign in</b>. Your browser will pop open.</li>
-      <li>Log in with the account from Chapter 2 and click <b>Authorize</b>.</li>
+      <li>Log in with the account from Section 2 and click <b>Authorize</b>.</li>
       <li>Close the browser tab and return to VS Code.</li>
     </ol>
     <div class="note see">
@@ -810,10 +790,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p style="margin-bottom:0">The star also appears at the top right of the editor, but only once a file is open, so it will not be there yet. The one in the left strip always is.</p>
     </div>
     <div class="mock">
-      <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="t">first-try, Claude Code</span></div>
+      <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="t">test, Claude Code</span></div>
       <div class="mock-body">
         <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>🧩</span><span class="hot pulse">✳️</span></div>
-        <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">FIRST-TRY</div><div class="f" style="font-size:.72rem">(empty, which is correct)</div></div>
+        <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">TEST</div><div class="f" style="font-size:.72rem">(empty, which is correct)</div></div>
         <div class="mock-main">✳️ <b>Claude</b><br><br><span style="border:1px solid var(--line);border-radius:8px;padding:5px 9px;display:inline-block;width:90%">Type your message…</span></div>
       </div>
     </div>
@@ -833,11 +813,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 7 ═══════════ -->
+<!-- ═══════════ SECTION 7 ═══════════ -->
 <section class="chapter" id="ch7" data-ch="7">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 7 · Building</div>
+      <div class="ch-kicker">Section 7 · Building</div>
       <h2>Your first build</h2>
       <p class="sub">Two messages. The first sets your terms, the second gives Claude a job.</p>
       <div class="ch-meta"><span>≈ 5 min</span><span>The enjoyable one</span></div>
@@ -881,7 +861,15 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   <div class="block">
     <h3>It edits files without asking, and that is normal</h3>
     <p>At the bottom of the chat box there is a small word, and that word is the <b>mode</b>. On a Pro plan it begins on <b>Auto</b>, meaning Claude writes and edits files in your folder without pausing to ask each time.</p>
-    <p>If that makes you uneasy, click the word and choose <b>Plan</b>. Claude will then write out what it intends to do and wait for your approval. Many people prefer this for the first week, because reading the plan before it happens teaches you a great deal.</p>
+    <figure class="shot tight">
+      <img src="images/claude-input.png" alt="The Claude Code message box, with the mode shown as Auto at the bottom right" loading="lazy">
+      <figcaption>The mode sits at the bottom right of the message box. Here it reads <b>Auto</b>. Click it to change it.</figcaption>
+    </figure>
+    <p>Clicking it opens the four choices. <b>Plan</b> is the one to reach for if Auto makes you uneasy, because Claude writes out what it intends to do and waits for your approval. Many people stay on Plan for the first week, since reading the plan before it happens teaches you a great deal.</p>
+    <figure class="shot tight">
+      <img src="images/claude-modes.png" alt="The Claude Code modes menu listing Manual, Edit automatically, Plan and Auto, with Auto selected" loading="lazy">
+      <figcaption><b>Manual</b> asks before every edit. <b>Plan</b> shows you its thinking first. <b>Auto</b> gets on with the safe things and stops at anything risky. Shift and Tab cycles through them.</figcaption>
+    </figure>
     <div class="note warn">
       <h4>🚦 In every mode</h4>
       <p style="margin-bottom:0">Claude still stops and asks before anything consequential: deleting many files, reaching outside your folder, or installing software. If a request surprises you, type <b>"why do you need that?"</b> Nothing proceeds until you agree to it.</p>
@@ -890,13 +878,13 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 8 ═══════════ -->
+<!-- ═══════════ SECTION 8 ═══════════ -->
 <section class="chapter" id="ch8" data-ch="8">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 8 · Building</div>
+      <div class="ch-kicker">Section 8 · Building</div>
       <h2>Look at it. Then change it.</h2>
-      <p class="sub">The chapter most people skip, and the one that separates those who build things from those who nearly build things.</p>
+      <p class="sub">The section most people skip, and the one that separates those who build things from those who nearly build things.</p>
       <div class="ch-meta"><span>≈ 10 min</span><span>Do not skip this</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -950,11 +938,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 9 ═══════════ -->
+<!-- ═══════════ SECTION 9 ═══════════ -->
 <section class="chapter" id="ch9" data-ch="9">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 9 · Protection</div>
+      <div class="ch-kicker">Section 9 · Protection</div>
       <h2>Save points</h2>
       <p class="sub">Git, explained without a single diagram of arrows.</p>
       <div class="ch-meta"><span>≈ 5 min</span><span>Do this early</span></div>
@@ -995,7 +983,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <h4>🧠 Three words you will hear</h4>
       <ul class="plain">
         <li><b>Commit.</b> One saved moment in your history.</li>
-        <li><b>Push.</b> Sending your commits up to GitHub, which is Chapter 10.</li>
+        <li><b>Push.</b> Sending your commits up to GitHub, which is Section 10.</li>
         <li><b>Repo.</b> Short for repository. Your project together with all of its history.</li>
       </ul>
     </div>
@@ -1003,11 +991,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 10 ═══════════ -->
+<!-- ═══════════ SECTION 10 ═══════════ -->
 <section class="chapter" id="ch10" data-ch="10">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 10 · Shipping</div>
+      <div class="ch-kicker">Section 10 · Shipping</div>
       <h2>Put it on the internet</h2>
       <p class="sub">Two free accounts and one prompt, and you have a link you can send to anyone.</p>
       <div class="ch-meta"><span>≈ 15 min</span><span>Both free</span><span>The payoff</span></div>
@@ -1072,14 +1060,14 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 11 ═══════════ -->
+<!-- ═══════════ SECTION 11 ═══════════ -->
 <section class="chapter" id="ch11" data-ch="11">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 11 · Advanced</div>
+      <div class="ch-kicker">Section 11 · Advanced</div>
       <h2>Secrets and superpowers</h2>
       <p class="sub">API keys, the <code>.env</code> file, and putting AI inside the thing you built.</p>
-      <div class="ch-meta"><span>≈ 20 min</span><span>The grown-up chapter</span></div>
+      <div class="ch-meta"><span>≈ 20 min</span><span>The grown-up section</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <rect x="40" y="72" width="80" height="60" rx="12" fill="#fbe6d2" stroke="#1c1814" stroke-width="4"/>
@@ -1142,8 +1130,8 @@ node_modules</div></div>
     <ol class="dolist">
       <li>Go to <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a> and sign in. Google or GitHub is quickest.</li>
       <li>Click your avatar and choose <b>Keys</b>, or go straight to <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">openrouter.ai/keys</a>.</li>
-      <li>Click <b>Create Key</b> and name it <code>first-try</code>.</li>
-      <li><b>Set a spend limit on the key while you are there.</b> A key capped at one dollar can cost you at most one dollar, even if your code falls into a loop at three in the morning. This is the most valuable habit in the chapter.</li>
+      <li>Click <b>Create Key</b> and name it <code>test</code>.</li>
+      <li><b>Set a spend limit on the key while you are there.</b> A key capped at one dollar can cost you at most one dollar, even if your code falls into a loop at three in the morning. This is the most valuable habit in the section.</li>
       <li>Copy the key now, because it is shown only once. If you lose it, delete it and issue another.</li>
       <li>Paste it into your <code>.env</code> file. Not into a chat, not into a note, and not into your code.</li>
     </ol>
@@ -1180,11 +1168,11 @@ node_modules</div></div>
   </div>
 </section>
 
-<!-- ═══════════ CHAPTER 12 ═══════════ -->
+<!-- ═══════════ SECTION 12 ═══════════ -->
 <section class="chapter" id="ch12" data-ch="12">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Chapter 12 · Graduation</div>
+      <div class="ch-kicker">Section 12 · Graduation</div>
       <h2>Your survival kit</h2>
       <p class="sub">The safety rules, the cheat sheet, every way you will get stuck, and the final exam.</p>
       <div class="ch-meta"><span>Keep this open</span><span>Final exam</span></div>
@@ -1350,7 +1338,7 @@ node_modules</div></div>
 
   <div class="quiz" data-quiz="12">
     <div class="quiz-head"><span class="zap">🎓</span><h3>Final exam</h3></div>
-    <p class="quiz-sub">Eight questions drawn from across the twelve chapters. Wrong answers cost you nothing, so guess freely. Pass and you graduate.</p>
+    <p class="quiz-sub">Eight questions drawn from across the twelve sections. Wrong answers cost you nothing, so guess freely. Pass and you graduate.</p>
 
     <div class="q">
       <p class="qt" data-n="1">In vibe coding, whose job is it to type the code?</p>
@@ -1386,7 +1374,7 @@ node_modules</div></div>
     </div>
 
     <div class="q">
-      <p class="qt" data-n="4">You have opened the folder <code>first-try</code> in VS Code. Can Claude change files in your Photos folder?</p>
+      <p class="qt" data-n="4">You have opened the folder <code>test</code> in VS Code. Can Claude change files in your Photos folder?</p>
       <div class="opts">
         <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yes, it can see everything on the computer.</span></button>
         <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>No. It works inside the folder you opened and asks before reaching outside it.</span></button>
@@ -1435,7 +1423,7 @@ node_modules</div></div>
         <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>No, but you must check that the result works.</span></button>
       </div>
       <p class="why"><b>And that is the course.</b> Understanding is optional, looking is not. Go and build something.</p>
-      <p class="nudge">Return to Chapter 1. What did we say the work consists of?</p>
+      <p class="nudge">Return to Section 1. What did we say the work consists of?</p>
     </div>
 
     <div class="quiz-score"><span class="msg">0 of 8</span><span class="bar"><i></i></span></div>
@@ -1448,7 +1436,7 @@ node_modules</div></div>
     <input class="name" id="certname" placeholder="your name here" maxlength="34" aria-label="Your name">
     <p style="color:var(--ink-soft);max-width:470px;margin:8px auto 0">built real software, put it on the internet, and did not once need to know what a semicolon does.</p>
     <div class="badges" id="badges"></div>
-    <p style="font-size:.82rem;color:var(--ink-soft);margin:14px 0 0" id="certprog">Finish all twelve chapters to light up every badge.</p>
+    <p style="font-size:.82rem;color:var(--ink-soft);margin:14px 0 0" id="certprog">Finish all twelve sections to light up every badge.</p>
   </div>
 
   <div class="block" style="margin-top:22px">
@@ -1520,8 +1508,8 @@ node_modules</div></div>
   var $  = function(s,r){ return (r||document).querySelector(s); };
   var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
 
-  /* a chapter is done when every part it contains is done:
-     chapters 1-11 have a hands-on box, chapter 12 has the final exam */
+  /* a section is done when every part it contains is done:
+     sections 1-11 have a hands-on box, section 12 has the final exam */
   function hasCheck(n){ return !!$('.check input[data-check="'+n+'"]'); }
   function hasQuiz(n){ return !!$('.quiz[data-quiz="'+n+'"]'); }
   function done(n){
@@ -1530,7 +1518,7 @@ node_modules</div></div>
   function doneCount(){ var c=0; for(var i=1;i<=TOTAL;i++) if(done(i)) c++; return c; }
 
   /* ---------- build the rail + the map ---------- */
-  var railList = $("#rail-list"), map = $("#map");
+  var railList = $("#rail-list");
   CH.forEach(function(ch){
     var b = document.createElement("button");
     b.className = "rail-item";
@@ -1538,15 +1526,14 @@ node_modules</div></div>
     b.dataset.go = ch.n;
     b.innerHTML = '<span class="rail-dot"><span class="n">'+ch.n+'</span></span><span>'+ch.t+'</span>';
     railList.appendChild(b);
+  });
 
-    if(map && ch.n > 1){
-      var m = document.createElement("button");
-      m.className = "mapcard";
-      m.style.setProperty("--c", ch.c);
-      m.dataset.go = ch.n;
-      m.innerHTML = '<span class="n">'+ch.k+' · '+ch.n+'</span><span class="t">'+ch.t+'</span>';
-      map.appendChild(m);
-    }
+  /* a screenshot that has not been added yet should leave no gap */
+  $$(".shot img").forEach(function(img){
+    img.addEventListener("error", function(){
+      var fig = img.closest(".shot");
+      if(fig) fig.hidden = true;
+    });
   });
 
   /* ---------- page navigation ---------- */
@@ -1575,7 +1562,7 @@ node_modules</div></div>
     var p = document.createElement("button");
     p.className = "navbtn";
     if(prev){ p.innerHTML = '<span class="k">← Previous</span><span class="v">'+prev.t+'</span>'; p.dataset.go = prev.n; }
-    else { p.disabled = true; p.innerHTML = '<span class="k">You’re at the start</span><span class="v">Chapter 1</span>'; }
+    else { p.disabled = true; p.innerHTML = '<span class="k">You’re at the start</span><span class="v">Section 1</span>'; }
     var nx = document.createElement("button");
     nx.className = "navbtn next";
     if(next){ nx.innerHTML = '<span class="k">Next →</span><span class="v">'+next.t+'</span>'; nx.dataset.go = next.n; }
@@ -1624,8 +1611,8 @@ node_modules</div></div>
     });
     if(certprog){
       certprog.textContent = n === TOTAL
-        ? "All twelve chapters complete. Screenshot this and show somebody."
-        : n + " of 12 chapters done. Finish the rest to light up every badge.";
+        ? "All twelve sections complete. Screenshot this and show somebody."
+        : n + " of 12 sections done. Finish the rest to light up every badge.";
     }
     if(n === TOTAL && fire && !celebrated){ celebrated = true; boom(); }
     if(n < TOTAL) celebrated = false;
@@ -1638,7 +1625,7 @@ node_modules</div></div>
       save();
       var was = inp.checked && done(+inp.dataset.check);
       paint(true);
-      if(was) toast("Chapter " + inp.dataset.check + " complete ✓");
+      if(was) toast("Section " + inp.dataset.check + " complete ✓");
     });
   });
 
