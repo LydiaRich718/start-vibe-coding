@@ -523,6 +523,10 @@ h1,h2,h3{letter-spacing:-.02em}
 .rail-item.on .rail-dot{background:var(--orange);border-color:var(--orange);color:#fff}
 .rail-item.done .rail-dot{background:var(--orange);border-color:var(--orange)}
 .rail-title{letter-spacing:.14em}
+/* the exam sits apart and carries no number */
+.rail-item.exam{margin-top:12px;padding-top:15px;border-top:1px solid var(--line);border-radius:0}
+.rail-item.exam .rail-dot{background:none}
+.rail-item.exam.on{border-top-color:var(--line)}
 
 /* callouts: a rule down the side instead of a coloured box */
 .note{
@@ -651,6 +655,19 @@ code{background:var(--orange-bg);border-radius:4px}
 .blob.b4{background:#DCEEF1}
 
 footer .hr{background:var(--line);height:1px}
+
+/* certificate */
+.certform{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
+.certform label{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.certform input{
+  flex:1 1 240px;min-width:200px;font-family:inherit;font-size:1rem;color:var(--ink);
+  background:var(--card);border:1px solid var(--line);border-radius:9px;padding:11px 14px;
+}
+.certform input:focus{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--orange)}
+.certwrap{margin-top:6px}
+.certwrap canvas{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+#certblock.locked .certform,#certblock.locked .certwrap{display:none}
+#certblock:not(.locked) #certlead{display:none}
 .tagpin{background:var(--orange);border-radius:4px;font-weight:600}
 .mock{box-shadow:none;border-radius:11px}
 .mock-bar{background:var(--sand);border-bottom:1px solid var(--line)}
@@ -756,6 +773,7 @@ footer .hr{background:var(--line);height:1px}
         <button data-os="win">Windows</button>
       </div>
     </div>
+    <p style="font-size:.94rem;color:var(--ink-soft);margin:16px 0 0">One thing the switch cannot change: the screenshots were all taken on a Mac. On Windows the windows are shaped a little differently, but every button sits in the same place and carries the same name.</p>
     <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span class="lbl">I understand the assignment</span></label>
   </div>
 </section>
@@ -1615,7 +1633,28 @@ node_modules</div></div>
     </div>
   </div>
 
-  <div class="quiz" data-quiz="12">
+  <div class="block">
+    <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span class="lbl">I know where to find help</span></label>
+  </div>
+</section>
+
+<!-- ═══════════ FINAL EXAM ═══════════ -->
+<section class="chapter" id="ch13" data-ch="13">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">The last thing</div>
+      <h2>Final exam</h2>
+      <p class="sub"><b>(Pass it and your certificate unlocks.)</b></p>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <path d="M100 26l74 28-74 28-74-28 74-28z" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M50 68v30c0 13 22 21 50 21s50-8 50-21V68" fill="none" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
+      <path d="M174 54v36" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="174" cy="96" r="7" fill="#00A3AF" stroke="#0B0B0C" stroke-width="4"/>
+    </svg>
+  </div>
+
+  <div class="quiz" data-quiz="13">
     <div class="quiz-head"><span class="zap">Final</span><h3>Final exam</h3></div>
     <p class="quiz-sub">Eight questions drawn from across the twelve sections. Wrong answers cost you nothing, so guess freely. Pass and you graduate.</p>
 
@@ -1708,14 +1747,17 @@ node_modules</div></div>
     <div class="quiz-score"><span class="msg">0 of 8</span><span class="bar"><i></i></span></div>
   </div>
 
-  <div class="cert" id="cert">
-    
-    <h2>Certificate of Absolutely Getting On With It</h2>
-    <p style="color:var(--ink-soft);margin-bottom:0">This certifies that</p>
-    <input class="name" id="certname" placeholder="your name here" maxlength="34" aria-label="Your name">
-    <p style="color:var(--ink-soft);max-width:470px;margin:8px auto 0">built real software, put it on the internet, and did not once need to know what a semicolon does.</p>
+  <div class="block locked" id="certblock">
+    <h3>Your certificate</h3>
+    <p class="lead" id="certlead">Pass the exam above and this unlocks.</p>
+    <div class="certform">
+      <label for="certname">Name on the certificate</label>
+      <input id="certname" maxlength="30" placeholder="Type your name" autocomplete="name">
+      <button class="btn" id="certdl">Download it</button>
+    </div>
+    <div class="certwrap"><canvas id="certcanvas" width="1600" height="1100" aria-label="Your certificate"></canvas></div>
     <div class="badges" id="badges"></div>
-    <p style="font-size:.82rem;color:var(--ink-soft);margin:14px 0 0" id="certprog">Finish all twelve sections to light up every badge.</p>
+    <p style="font-size:.82rem;color:var(--ink-soft);margin:14px 0 0" id="certprog"></p>
   </div>
 
   <div class="block" style="margin-top:22px">
@@ -1735,6 +1777,7 @@ node_modules</div></div>
     </div>
   </div>
 </section>
+
 
 <div class="navrow" id="navrow"></div>
 
@@ -1763,7 +1806,8 @@ node_modules</div></div>
     {n:9,  t:"Git",                   k:"Protection", c:"var(--orange)"},
     {n:10, t:"Put it on the internet",k:"Shipping",   c:"var(--orange-deep)"},
     {n:11, t:"Secrets & superpowers", k:"Advanced",   c:"var(--ink)"},
-    {n:12, t:"Your survival kit",     k:"Graduation", c:"var(--orange)"}
+    {n:12, t:"Your survival kit",     k:"Graduation", c:"var(--orange)"},
+    {n:13, t:"Final exam",            k:"The last thing", c:"var(--orange-deep)", exam:true}
   ];
   var TOTAL = CH.length, KEY = "vibe101-v1";
 
@@ -1802,7 +1846,8 @@ node_modules</div></div>
     b.className = "rail-item";
     b.style.setProperty("--c", ch.c);
     b.dataset.go = ch.n;
-    b.innerHTML = '<span class="rail-dot"><span class="n">'+ch.n+'</span></span><span>'+ch.t+'</span>';
+    if(ch.exam) b.classList.add("exam");
+    b.innerHTML = '<span class="rail-dot"><span class="n">'+(ch.exam ? "" : ch.n)+'</span></span><span>'+ch.t+'</span>';
     railList.appendChild(b);
   });
 
@@ -1893,8 +1938,8 @@ node_modules</div></div>
     });
     if(certprog){
       certprog.textContent = n === TOTAL
-        ? "All twelve sections complete. Screenshot this and show somebody."
-        : n + " of 12 sections done. Finish the rest to light up every badge.";
+        ? "Twelve sections and the exam, all done."
+        : n + " of " + TOTAL + " done.";
     }
     if(n === TOTAL && fire && !celebrated){ celebrated = true; boom(); }
     if(n < TOTAL) celebrated = false;
@@ -1924,6 +1969,7 @@ node_modules</div></div>
     });
     $$(".quiz").forEach(scoreQuiz);
     var cn = $("#certname"); if(cn) cn.value = "";
+    var cb = $("#certblock"); if(cb) cb.classList.add("locked");
     go(1);
   }
   $("#reset").addEventListener("click", startOver);
@@ -1972,7 +2018,8 @@ node_modules</div></div>
             var already = !!S.quiz[num];
             S.quiz[num] = true; save();
             paint(true);
-            if(!already) toast("Final exam passed. You're a vibe coder.");
+            if(!already) toast("Final exam passed. Your certificate is ready.");
+            unlockCert();
           }
         } else {
           opt.classList.add("wrong");
@@ -1993,11 +2040,84 @@ node_modules</div></div>
   }
 
   /* ---------- certificate name ---------- */
-  var certname = $("#certname");
+  /* ---------- certificate ---------- */
+  var CANV = $("#certcanvas"), certname = $("#certname"), certblock = $("#certblock");
+
+  function drawCert(){
+    if(!CANV || !CANV.getContext) return;
+    var x = CANV.getContext("2d"), W = CANV.width, H = CANV.height;
+    var name = (certname && certname.value.trim()) || "Your name here";
+
+    x.fillStyle = "#FFFFFF"; x.fillRect(0, 0, W, H);
+
+    var g = x.createLinearGradient(0, 0, W, 0);
+    g.addColorStop(0, "#A2D7DD"); g.addColorStop(.5, "#00A3AF"); g.addColorStop(1, "#274A78");
+    x.fillStyle = g; x.fillRect(0, 0, W, 20);
+
+    x.strokeStyle = "#E4EBED"; x.lineWidth = 3;
+    x.strokeRect(64, 74, W - 128, H - 148);
+
+    x.textAlign = "center";
+    try{ x.letterSpacing = "8px"; }catch(e){}
+    x.fillStyle = "#5F6C72"; x.font = "600 30px Inter, system-ui, sans-serif";
+    x.fillText("VIBE CODING 101", W/2, 210);
+    try{ x.letterSpacing = "0px"; }catch(e){}
+
+    x.fillStyle = "#0B0B0C"; x.font = "800 96px Fraunces, Georgia, serif";
+    x.fillText("Certified Vibe Coder", W/2, 350);
+
+    x.strokeStyle = "#00A3AF"; x.lineWidth = 4;
+    x.beginPath(); x.moveTo(W/2 - 90, 400); x.lineTo(W/2 + 90, 400); x.stroke();
+
+    x.fillStyle = "#5F6C72"; x.font = "400 30px Inter, system-ui, sans-serif";
+    x.fillText("This certifies that", W/2, 486);
+
+    x.fillStyle = "#0B0B0C"; x.font = "800 76px Fraunces, Georgia, serif";
+    x.fillText(name, W/2, 600);
+    var nw = Math.min(x.measureText(name).width + 90, W - 260);
+    x.strokeStyle = "#E4EBED"; x.lineWidth = 3;
+    x.beginPath(); x.moveTo(W/2 - nw/2, 634); x.lineTo(W/2 + nw/2, 634); x.stroke();
+
+    x.fillStyle = "#5F6C72"; x.font = "400 32px Inter, system-ui, sans-serif";
+    x.fillText("built real software, put it on the internet, and did not once", W/2, 726);
+    x.fillText("need to know what a semicolon does.", W/2, 774);
+
+    x.fillStyle = "#00A3AF"; x.font = "600 26px Inter, system-ui, sans-serif";
+    x.fillText("Twelve sections and a final exam, passed", W/2, 902);
+
+    x.fillStyle = "#5F6C72"; x.font = "400 24px Inter, system-ui, sans-serif";
+    x.fillText(new Date().toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"}), W/2, 950);
+  }
+
+  function unlockCert(){
+    if(!certblock) return;
+    certblock.classList.remove("locked");
+    drawCert();
+  }
+
   if(certname){
     certname.value = S.name || "";
-    certname.addEventListener("input", function(){ S.name = certname.value; save(); });
+    certname.addEventListener("input", function(){
+      S.name = certname.value; save(); drawCert();
+    });
   }
+  var certdl = $("#certdl");
+  if(certdl) certdl.addEventListener("click", function(){
+    drawCert();
+    CANV.toBlob(function(blob){
+      if(!blob) return;
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "vibe-coding-101-certificate.png";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+    }, "image/png");
+  });
+  if(S.quiz[TOTAL]) unlockCert();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){
+    if(certblock && !certblock.classList.contains("locked")) drawCert();
+  });
 
   /* ---------- OS switch (several copies, kept in sync) ---------- */
   var osKey = "vibe-os", savedOS = null;
@@ -2075,7 +2195,7 @@ node_modules</div></div>
   $("#party-x").addEventListener("click", function(){ party(false); });
   $("#party-next").addEventListener("click", function(){
     party(false);
-    go(12);
+    go(TOTAL);
     setTimeout(function(){
       var c = $("#cert");
       if(c) c.scrollIntoView({behavior:"smooth", block:"center"});
