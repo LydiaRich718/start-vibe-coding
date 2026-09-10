@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vibe Coding 101 — a 12-chapter course for people who've never coded</title>
+<title>Vibe Coding 101</title>
 <meta name="description" content="A twelve-chapter beginner course in building real software with AI. Flip through the chapters, take the mini quizzes, ship something to the internet.">
 <meta property="og:title" content="Vibe Coding 101">
 <meta property="og:description" content="Twelve chapters. No experience needed. By the end you'll have something live on the internet.">
@@ -156,6 +156,7 @@ code{background:var(--yellow-bg);border-radius:6px;padding:1px 5px;font-size:.88
 /* copy blocks */
 .copy{position:relative;background:#20223f;color:#f4f2ff;border-radius:16px;padding:18px 108px 18px 20px;margin:18px 0;font-size:.94rem;line-height:1.55;box-shadow:var(--shadow)}
 .copy.prompt{background:linear-gradient(135deg,#2b2456,#3d2a5e)}
+.copy.plain{padding-right:20px}   /* a sample to read, not a button to press */
 .copy .tag{position:absolute;top:-11px;left:16px;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);border-radius:99px;font-size:.68rem;font-weight:700;padding:1px 10px;text-transform:uppercase;letter-spacing:.06em}
 .copy .txt{white-space:pre-wrap;word-break:break-word}
 .copy code{background:rgba(255,255,255,.12);color:#fff}
@@ -434,7 +435,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <button class="party-close" id="party-x" aria-label="Close">×</button>
     <span class="emoji">🎓</span>
     <h2 id="party-title">You actually did it.</h2>
-    <p>Twelve chapters. A working setup, a save history, secrets handled properly, and something you built living on the real internet.</p>
+    <p>A working setup, a save history, secrets handled properly, and something you built living on the real internet.</p>
     <div class="party-badges"><span>✳️ Claude</span><span>🐙 GitHub</span><span>▲ Vercel</span><span>🔑 OpenRouter</span><span>🌍 Shipped</span></div>
     <button class="btn" id="party-next">See my certificate →</button>
   </div>
@@ -462,9 +463,9 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 <!-- ═══════════ CHAPTER 1 ═══════════ -->
 <section class="chapter" id="ch1" data-ch="1" style="--c:var(--purple);--cbg:var(--purple-bg)">
   <div class="hero">
-    <div class="eyebrow">🍼 Nobody here has coded before</div>
+    <div class="eyebrow">🍼 No experience assumed</div>
     <h1>You're about to build <span class="hl">real software.</span></h1>
-    <p class="lede">Not a toy. Not a tutorial you'll forget. A thing that exists on the internet with a link you can text your mum. Twelve chapters. Let's go.</p>
+    <p class="lede">By the end of this you'll have a working thing on the internet with a link you can send someone. Twelve chapters, about ninety minutes.</p>
     <div class="hero-facts">
       <div class="fact"><b>12</b>chapters</div>
       <div class="fact"><b>90</b>minutes-ish</div>
@@ -475,18 +476,17 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 
   <div class="block">
     <h3>The deal</h3>
-    <p>Here's the trick nobody tells beginners: <b>you don't write the code.</b> You describe what you want in ordinary English, an AI writes it, and you look at what came out and say what to change.</p>
+    <p>You don't write the code. You describe what you want in plain English, the AI writes it, and you look at the result and say what to change.</p>
     <div class="big-idea">You're not learning to code.<br>You're learning to <mark>direct</mark> something that codes.</div>
-    <p>That's it. That's the job. The rest of this course is just showing you which buttons to press and which sentences to say.</p>
+    <p>The rest of the course is which buttons to press and which sentences to say.</p>
   </div>
 
   <div class="block">
     <h3>Three words people will throw at you</h3>
-    <p class="lead">Here's all they actually mean.</p>
     <div class="grid3" style="margin-top:18px">
       <div class="wordcard" style="--c:var(--blue)">
         <span class="ic">🗂️</span><h3>VS Code</h3>
-        <p>A free app that holds your project's files. This is your workshop.</p>
+        <p>A free app that holds your project's files. Your workshop.</p>
       </div>
       <div class="wordcard" style="--c:var(--pink)">
         <span class="ic">✨</span><h3>Claude Code</h3>
@@ -498,14 +498,14 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
       </div>
     </div>
     <div class="note brain" style="margin-top:24px">
-      <h4>🧠 So what is "vibe coding"?</h4>
-      <p style="margin:0">Describing what you want in normal words and letting AI write it. You stay the boss. You don't have to read the code — but you <b>do</b> have to look at the result. That distinction is the whole course in one line.</p>
+      <h4>🧠 And "vibe coding"?</h4>
+      <p style="margin:0">Describing what you want in normal words and letting AI write it. You don't have to read the code. You do have to look at the result. That distinction is the whole course.</p>
     </div>
   </div>
 
   <div class="block">
     <h3>The loop you'll do forever</h3>
-    <p class="lead">Every professional developer using AI is doing this exact circle. Including the ones with fifteen years' experience.</p>
+    <p class="lead">Every professional using AI is doing this same circle, including the ones with fifteen years behind them.</p>
     <div class="loop" id="loop">
       <div class="loopstep"><div class="n">1</div><h4>Ask</h4><p>"Make a page with three colourful boxes."</p></div>
       <div class="loopstep"><div class="n">2</div><h4>Look</h4><p>Open it. Click it. Does it work?</p></div>
@@ -514,52 +514,27 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     </div>
     <div class="note warn" style="margin-top:22px">
       <h4>⚠️ The one way to do this badly</h4>
-      <p style="margin:0">Skipping step 2. Code you never looked at is a <b>rumour</b>. If you only remember one thing from twelve chapters, remember to look.</p>
+      <p style="margin:0">Skipping step 2. Code you haven't looked at is a rumour.</p>
     </div>
   </div>
 
   <div class="block">
     <h3>What's coming</h3>
-    <p class="lead">Click any chapter to jump ahead. But chapters 2–7 build on each other, so the first time through, just go in order.</p>
+    <p class="lead">Click any chapter to jump ahead. Chapters 2 to 7 build on each other, so go in order the first time.</p>
     <div class="map" id="map"></div>
   </div>
 
   <div class="block">
     <h3>One setting before we start</h3>
-    <p>Some instructions differ between a Mac and a Windows PC. Tell the course which one you're on and it'll only show you yours.</p>
-    <div class="osrow" style="margin:0">
+    <p>Some instructions differ between Mac and Windows. Pick yours and the course will only show you that half.</p>
+    <div class="osrow" style="margin:0 0 4px">
       <span class="lab">I'm on a</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
         <button data-os="mac" class="on">🍎 Mac</button>
         <button data-os="win">🪟 Windows</button>
       </div>
     </div>
-  </div>
-
-  <div class="quiz" data-quiz="1">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: The Brief</h3></div>
-    <p class="quiz-sub">Two questions. Get them right and Chapter 1 gets a tick. Wrong answers cost nothing — try again.</p>
-    <div class="q">
-      <p class="qt" data-n="1">In vibe coding, whose job is it to actually type the code?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yours — the AI just suggests things and you type them in.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>The AI's. You describe what you want and review what comes back.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Nobody's — the website builds itself.</span></button>
-      </div>
-      <p class="why"><b>Exactly.</b> You're the director, not the typist. Your job is describing clearly and checking the result.</p>
-      <p class="nudge">Not that one. Think about who's holding the keyboard versus who's holding the vision.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">Which step of the loop do beginners skip, to their own ruin?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Ask</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Look</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Repeat</span></button>
-      </div>
-      <p class="why"><b>Yep.</b> Asking is fun and repeating is easy. Opening the thing and checking it actually works is the bit people skip — and it's the bit that saves you.</p>
-      <p class="nudge">Close. Which one feels like a chore rather than a thrill?</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
+    <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span class="lbl">Got it. Let's go.</span></label>
   </div>
 </section>
 
@@ -569,7 +544,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 2 · Kit up</div>
       <h2>Your Claude account</h2>
-      <p class="sub">The one thing in this whole course you pay for. Everything else is free.</p>
+      <p class="sub">The only thing here you pay for.</p>
       <div class="ch-meta"><span>≈ 5 min</span><span>💳 Paid</span><span>Needed first</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -584,52 +559,26 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   </div>
 
   <div class="block">
-    <p class="lead">Claude Code needs a <b>paid</b> Claude plan. The free plan is chat-only — it can talk to you, but it can't reach into your files and build things. That's the bit we need.</p>
+    <p class="lead">Claude Code needs a paid Claude plan. The free plan is chat only. It can talk to you, but it can't reach into your files and build things, which is the part we need.</p>
     <ol class="dolist">
-      <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> → <b>Sign up</b>. Email or Google, either's fine.</li>
-      <li>Once you're in: click your name at the <b>bottom left</b> → <b>Settings</b> → <b>Plans</b>.</li>
-      <li>Pick <b>Pro</b> — $20/month, or $17/month if you pay for the year.</li>
-      <li><b>Remember this login.</b> You'll need it again in Chapter 6.</li>
+      <li>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> and click <b>Sign up</b>. Email or Google, either works.</li>
+      <li>Once in: click your name at the <b>bottom left</b>, then <b>Settings</b>, then <b>Plans</b>.</li>
+      <li>Pick <b>Pro</b>. $20/month, or $17/month paid yearly.</li>
+      <li>Remember this login. You'll need it again in Chapter 6.</li>
     </ol>
     <div class="note tip">
-      <h4>💸 Which plan, honestly?</h4>
+      <h4>💸 Which plan</h4>
       <ul class="plain">
-        <li><b>Free</b> — chat only. Won't work for this.</li>
-        <li><b>Pro</b> — start here. Plenty for learning, and plenty for building real things.</li>
-        <li><b>Max</b> — from $100/month. Only if you're coding all day and hitting limits. You can upgrade later in one click, so don't agonise now.</li>
+        <li><b>Free.</b> Chat only. Won't work for this.</li>
+        <li><b>Pro.</b> Start here. Plenty for learning and for building real things.</li>
+        <li><b>Max.</b> From $100/month. Only if you're coding all day and hitting limits. You can upgrade later in one click, so don't agonise.</li>
       </ul>
     </div>
     <div class="note brain">
-      <h4>🧾 Where your money goes</h4>
-      <p style="margin:0">One subscription covers Claude in the browser <b>and</b> Claude Code in VS Code. It's not two bills. Everything else in this course — VS Code, GitHub, Vercel — is genuinely free.</p>
+      <h4>🧾 Where the money goes</h4>
+      <p style="margin:0">One subscription covers Claude in the browser and Claude Code in VS Code. It isn't two bills. Everything else in this course is free.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span class="lbl">Claude account created, on a paid plan ✓</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="2">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Kitting up</h3></div>
-    <p class="quiz-sub">Two quick ones.</p>
-    <div class="q">
-      <p class="qt" data-n="1">Why won't the free Claude plan work for this course?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>It's slower.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>It's chat-only — it can't create and edit files on your computer.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>It doesn't work on a Mac.</span></button>
-      </div>
-      <p class="why"><b>Right.</b> Chatting is free. Reaching into your project folder and writing files is the paid part.</p>
-      <p class="nudge">Nope. Think about what Claude Code does that a chat window doesn't.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">How many separate things will you be paying for by the end of this course?</p>
-      <div class="opts">
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">A</span></span><span>One — the Claude plan.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>Three — Claude, GitHub and Vercel.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Four, plus a domain name.</span></button>
-      </div>
-      <p class="why"><b>Just the one.</b> VS Code is free, GitHub is free, Vercel's Hobby plan is free. (In Chapter 11 you'll optionally add a few dollars of AI credit — but that's opt-in and tiny.)</p>
-      <p class="nudge">Have another look at the money note above.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -639,7 +588,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 3 · Kit up</div>
       <h2>Install VS Code</h2>
-      <p class="sub">Your workshop. It looks terrifying for about ninety seconds, and then it doesn't.</p>
+      <p class="sub">Your workshop. Looks terrifying for about ninety seconds.</p>
       <div class="ch-meta"><span>≈ 5 min</span><span>🆓 Free</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -666,15 +615,15 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     </div>
     <ol class="dolist">
       <li>Go to <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a>.</li>
-      <li>Click the big button for your computer. The site usually guesses right.</li>
+      <li>Click the button for your computer. The site usually guesses right.</li>
     </ol>
     <div class="mac-only">
       <div class="note tip">
         <h4>🍎 On Mac</h4>
         <ul class="plain">
           <li>Double-click the downloaded <code>.zip</code>. A blue icon appears.</li>
-          <li>Drag it into your <b>Applications</b> folder, then double-click to open.</li>
-          <li>"Downloaded from the internet, are you sure?" → <b>Open</b>.</li>
+          <li>Drag it into <b>Applications</b>, then double-click to open.</li>
+          <li>"Downloaded from the internet, are you sure?" Click <b>Open</b>.</li>
         </ul>
       </div>
     </div>
@@ -683,40 +632,24 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
         <h4>🪟 On Windows</h4>
         <ul class="plain">
           <li>Double-click the downloaded <code>.exe</code>.</li>
-          <li>Accept the agreement, then <b>Next</b> through every screen — the defaults are fine.</li>
-          <li><b>Install</b> → <b>Finish</b>. VS Code opens itself.</li>
+          <li>Accept the agreement, then click <b>Next</b> through every screen. Defaults are fine.</li>
+          <li><b>Install</b>, then <b>Finish</b>. VS Code opens itself.</li>
         </ul>
       </div>
     </div>
     <div class="note see">
       <h4>👀 You should see</h4>
-      <p style="margin-bottom:0">A big window with a strip of icons down the far left. It looks intimidating. <b>Ignore 95% of it</b> — you'll use about three buttons in this entire course.</p>
+      <p style="margin-bottom:0">A big window with a strip of icons down the far left. That strip is the <b>Activity Bar</b>. You'll use about three buttons in this entire course, so ignore the rest.</p>
     </div>
     <div class="mock">
       <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">Visual Studio Code</span></div>
       <div class="mock-body">
         <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>▶️</span><span>🧩</span></div>
         <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">EXPLORER</div><div class="f">No folder opened</div></div>
-        <div class="mock-main">↖ that strip of icons is the <b>Activity Bar</b>. It's the only part you need.</div>
+        <div class="mock-main">↖ the <b>Activity Bar</b>. The only part you need.</div>
       </div>
     </div>
     <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span class="lbl">VS Code is installed and open</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="3">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: The workshop</h3></div>
-    <p class="quiz-sub">One question. You've earned an easy one.</p>
-    <div class="q">
-      <p class="qt" data-n="1">That strip of icons down the far-left edge of VS Code is called the…</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Terminal</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Activity Bar</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Repo</span></button>
-      </div>
-      <p class="why"><b>That's it.</b> Files, search, extensions, and soon a little star — all live in the Activity Bar.</p>
-      <p class="nudge">Have a scroll back up to the fake VS Code window.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 1</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -726,7 +659,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 4 · Kit up</div>
       <h2>Add Claude Code</h2>
-      <p class="sub">Putting the AI inside your workshop. Three minutes and one little star.</p>
+      <p class="sub">Putting the AI inside your workshop.</p>
       <div class="ch-meta"><span>≈ 3 min</span><span>🆓 Free</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -738,7 +671,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   </div>
 
   <div class="block">
-    <p class="lead">An <b>extension</b> is an add-on for VS Code — like an app on your phone. You're installing exactly one: the one that puts Claude inside.</p>
+    <p class="lead">An <b>extension</b> is an add-on for VS Code, like an app on your phone. You're installing exactly one.</p>
     <div class="osrow">
       <span class="lab">Showing steps for</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
@@ -748,9 +681,9 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     </div>
     <ol class="dolist">
       <li>Click the <b>four squares</b> 🧩 icon on the far left. <span class="mac-only">Or press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>X</kbd>.</span><span class="win-only">Or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>.</span></li>
-      <li>In the search box, type <b>Claude Code</b>.</li>
-      <li>Pick the one published by <b>Anthropic</b>. Check the publisher — there are copycats.</li>
-      <li>Click <b>Install</b> and wait a few seconds.</li>
+      <li>Search for <b>Claude Code</b>.</li>
+      <li>Pick the one published by <b>Anthropic</b>. Check the publisher. There are copycats.</li>
+      <li>Click <b>Install</b>.</li>
     </ol>
     <div class="mock">
       <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">Extensions</span></div>
@@ -761,47 +694,22 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
           <div class="f" style="color:var(--ink);font-weight:700">✨ Claude Code <span class="tagpin">Anthropic</span></div>
           <div class="f" style="font-size:.72rem">Use Claude Code inside VS Code</div>
         </div>
-        <div class="mock-main">Click <b>Install</b> →<br><br>Publisher must say <b>Anthropic</b>.</div>
+        <div class="mock-main">Publisher must say <b>Anthropic</b>.</div>
       </div>
     </div>
     <div class="note see">
       <h4>👀 You should see</h4>
-      <p style="margin-bottom:0">A new <b>Spark</b> icon — a little four-pointed star, ✳ — appear in that left strip. That star means Claude, everywhere in VS Code. Get used to spotting it.</p>
+      <p style="margin-bottom:0">A new <b>Spark</b> icon, a little four-pointed star ✳, in that left strip. Get used to spotting it. It means Claude.</p>
     </div>
     <div class="note stuck">
       <h4>🔦 No star?</h4>
-      <p style="margin-bottom:0">Quit VS Code completely and reopen it. Or press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. One of those always does it.</p>
+      <p style="margin-bottom:0">Quit VS Code completely and reopen. Or press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. One of those always does it.</p>
     </div>
     <div class="note warn">
       <h4>🙅 Things you do NOT need</h4>
-      <p style="margin-bottom:0">Node.js. Git installed by hand. Homebrew. A terminal. Any tutorial demanding these is describing a different setup. If a project genuinely needs one later, Claude will tell you and install it with you.</p>
+      <p style="margin-bottom:0">Node.js. Git installed by hand. Homebrew. A terminal. Any tutorial demanding these is describing a different setup. If a project needs one later, Claude will say so and install it with you.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span class="lbl">Claude Code extension installed, star visible</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="4">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: The star</h3></div>
-    <p class="quiz-sub">Two questions, and one of them matters a lot.</p>
-    <div class="q">
-      <p class="qt" data-n="1">You search "Claude Code" and get several results. Which do you install?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>The first one in the list.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>The one with the most downloads.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">C</span></span><span>The one whose publisher says <b>Anthropic</b>.</span></button>
-      </div>
-      <p class="why"><b>Always check the publisher.</b> Popular extensions attract copycats with near-identical names. This habit will serve you for the rest of your life in software.</p>
-      <p class="nudge">Careful — this is exactly how people install the wrong thing.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">Before you can start building, you must first install Node.js, Git and Homebrew. True or false?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>True — every developer needs them.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>False — you need none of them to start.</span></button>
-      </div>
-      <p class="why"><b>False.</b> Installing things "just in case" is how beginners end up with four broken versions of everything. Wait until something actually asks.</p>
-      <p class="nudge">Have another look at the "things you do NOT need" box.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -811,8 +719,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 5 · Build</div>
       <h2>Your first project folder</h2>
-      <p class="sub">A box to build in — and, quietly, your safety net.</p>
-      <div class="ch-meta"><span>≈ 2 min</span><span>🛟 Safety matters</span></div>
+      <p class="sub">A box to build in, and quietly your safety net.</p>
+      <div class="ch-meta"><span>≈ 2 min</span><span>🛟 Matters more than it looks</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M28 44a8 8 0 0 1 8-8h34l12 14h54a8 8 0 0 1 8 8v56a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V44z" fill="#fff3d4" stroke="#20223f" stroke-width="4" stroke-linejoin="round"/>
@@ -823,7 +731,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   </div>
 
   <div class="block">
-    <p class="lead">Everything you build lives in a folder. And here's the important part: <b>Claude only touches files inside the folder you open.</b> That's not a rule you have to enforce — it's how it works.</p>
+    <p class="lead">Everything you build lives in a folder. Claude only touches files inside the folder you open. That isn't a rule you have to enforce, it's how it works.</p>
     <div class="big-idea">One project, one folder.<br>The folder <mark>is</mark> the safety net.</div>
     <div class="osrow">
       <span class="lab">Showing steps for</span>
@@ -834,56 +742,31 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     </div>
     <div class="mac-only">
       <ol class="dolist">
-        <li>Open <b>Finder</b> → <b>Documents</b>.</li>
-        <li>Right-click empty space → <b>New Folder</b>. Name it <code>first-try</code>.</li>
+        <li>Open <b>Finder</b>, go to <b>Documents</b>.</li>
+        <li>Right-click empty space, choose <b>New Folder</b>. Name it <code>first-try</code>.</li>
       </ol>
     </div>
     <div class="win-only">
       <ol class="dolist">
-        <li>Open <b>File Explorer</b> → <b>Documents</b>.</li>
-        <li>Right-click empty space → <b>New</b> → <b>Folder</b>. Name it <code>first-try</code>.</li>
+        <li>Open <b>File Explorer</b>, go to <b>Documents</b>.</li>
+        <li>Right-click empty space, choose <b>New</b> then <b>Folder</b>. Name it <code>first-try</code>.</li>
       </ol>
     </div>
-    <h3>Now open it in VS Code</h3>
+    <h3>Open it in VS Code</h3>
     <ol class="dolist">
-      <li>Top menu → <b>File</b> → <b>Open Folder…</b></li>
-      <li>Pick <code>first-try</code> → <b>Open</b>.</li>
-      <li>"Do you trust the authors?" → <b>Yes, I trust the authors</b>. You made the folder. You trust you.</li>
+      <li>Top menu, <b>File</b>, <b>Open Folder…</b></li>
+      <li>Pick <code>first-try</code> and click <b>Open</b>.</li>
+      <li>"Do you trust the authors?" Yes. You made the folder.</li>
     </ol>
     <div class="note see">
       <h4>👀 You should see</h4>
-      <p style="margin-bottom:0"><b>FIRST-TRY</b> in the top-left, with nothing underneath it. An empty folder is exactly right. Chapter 7 fills it.</p>
+      <p style="margin-bottom:0"><b>FIRST-TRY</b> top-left with nothing under it. An empty folder is correct. Chapter 7 fills it.</p>
     </div>
     <div class="note tip">
       <h4>💡 The naming rule</h4>
-      <p style="margin-bottom:0">Lowercase, no spaces, dashes between words.<br><code>my-recipe-site</code> ✅ &nbsp;&nbsp; <code>My Recipe Site</code> ❌<br>Spaces in folder names cause genuinely baffling errors months later. Free lunch: just never use them.</p>
+      <p style="margin-bottom:0">Lowercase, no spaces, dashes between words.<br><code>my-recipe-site</code> ✅ &nbsp;&nbsp; <code>My Recipe Site</code> ❌<br>Spaces cause baffling errors months later. Free lunch: never use them.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span class="lbl">Empty project folder open in VS Code</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="5">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: The box</h3></div>
-    <p class="quiz-sub">Two questions.</p>
-    <div class="q">
-      <p class="qt" data-n="1">Which of these is a good project folder name?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span><code>My First Website</code></span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span><code>my-first-website</code></span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span><code>Website (final) v2!!</code></span></button>
-      </div>
-      <p class="why"><b>Lowercase, dashes, no spaces.</b> Boring names age well.</p>
-      <p class="nudge">Spaces and punctuation are the trap here.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">You open the folder <code>first-try</code> in VS Code. Can Claude read and change files in your Photos folder?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yes, it can see everything on the computer.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>No — it works inside the folder you opened, and asks before reaching outside it.</span></button>
-      </div>
-      <p class="why"><b>Correct, and this is why the folder matters.</b> Anything outside it is a deliberate, permission-asking step — not something that happens by accident.</p>
-      <p class="nudge">Think back to why we called the folder a safety net.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -893,7 +776,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 6 · Build</div>
       <h2>Meet Claude</h2>
-      <p class="sub">Sign in, find the chat box, and say hello to your new colleague.</p>
+      <p class="sub">Sign in and find the chat box.</p>
       <div class="ch-meta"><span>≈ 3 min</span><span>✳️ Find the star</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -914,53 +797,37 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
       </div>
     </div>
     <ol class="dolist">
-      <li>Click the <b>Spark</b> star ✳ in the left strip. A Claude panel slides open.</li>
+      <li>Click the <b>Spark</b> star ✳ in the left strip. A Claude panel opens.</li>
       <li>Click <b>Sign in</b>. Your browser pops open.</li>
-      <li>Log in with the Claude account from Chapter 2 → <b>Authorize</b>.</li>
+      <li>Log in with the account from Chapter 2 and click <b>Authorize</b>.</li>
       <li>Close the browser tab and go back to VS Code.</li>
     </ol>
     <div class="note see">
       <h4>👀 You should see</h4>
-      <p>A chat box waiting for you — plus a little <b>Learn Claude Code</b> checklist. That's the extension's own tour. Click through it or dismiss it with the <b>×</b>; this course covers the same ground.</p>
-      <p style="margin-bottom:0">The star also appears in the <b>top-right</b> of the editor, but only once you've got a file open — so it won't be there yet. The one in the left strip is always there.</p>
+      <p>A chat box waiting, plus a small <b>Learn Claude Code</b> checklist. That's the extension's own tour. Click through it or dismiss it with the <b>×</b>. This course covers the same ground.</p>
+      <p style="margin-bottom:0">The star also appears top-right of the editor, but only once a file is open, so it won't be there yet. The one in the left strip always is.</p>
     </div>
     <div class="mock">
       <div class="mock-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="t">first-try — Claude Code</span></div>
       <div class="mock-body">
         <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>🧩</span><span class="hot pulse">✳️</span></div>
-        <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">FIRST-TRY</div><div class="f" style="font-size:.72rem">(empty — correct)</div></div>
+        <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">FIRST-TRY</div><div class="f" style="font-size:.72rem">(empty, correct)</div></div>
         <div class="mock-main" style="background:#faf8ff">✳ <b>Claude</b><br><br><span style="border:1px solid var(--line);border-radius:8px;padding:5px 9px;display:inline-block;width:90%">Type your message…</span></div>
       </div>
     </div>
     <div class="note stuck">
       <h4>🔦 Can't find it?</h4>
       <ul class="plain">
-        <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick an option like "Open in New Tab". (<kbd>⇧</kbd> is Shift.)</li>
-        <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick an option like "Open in New Tab".</li>
-        <li>Still nothing? Same box, run <b>Developer: Reload Window</b>.</li>
+        <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick something like "Open in New Tab". (<kbd>⇧</kbd> is Shift.)</li>
+        <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, pick something like "Open in New Tab".</li>
+        <li>Still nothing? Same box, run <b>Developer: Reload Window</b>. That fixes an embarrassing proportion of VS Code weirdness. Learn it now.</li>
       </ul>
     </div>
     <div class="note tip">
-      <h4>🎬 Want the official tour too?</h4>
+      <h4>🎬 Want the official tour?</h4>
       <p style="margin-bottom:0">In that same command box, run <b>Claude Code: Open Walkthrough</b>. Two minutes, made by the people who built it.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="6">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Hello</h3></div>
-    <p class="quiz-sub">One question. Then the fun starts.</p>
-    <div class="q">
-      <p class="qt" data-n="1">VS Code is being stubborn — a panel won't appear, or something looks stuck. What's the standard first move?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Reinstall VS Code from scratch.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Open the command box and run <b>Developer: Reload Window</b>.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Restart the computer.</span></button>
-      </div>
-      <p class="why"><b>Reload Window fixes an embarrassing proportion of VS Code weirdness.</b> Learn it now, thank yourself for years. Nothing is lost — your files are on disk.</p>
-      <p class="nudge">There's a much gentler option than either of those.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 1</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -970,7 +837,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 7 · Build</div>
       <h2>Your first build</h2>
-      <p class="sub">Two messages. One sets the ground rules, one gives it a job. This is the good bit.</p>
+      <p class="sub">Two messages. One sets the rules, one gives it a job.</p>
       <div class="ch-meta"><span>≈ 5 min</span><span>🎈 The fun one</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -987,7 +854,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   </div>
 
   <div class="block">
-    <p class="lead">Click either box to copy it, then paste it into the Claude chat box and press Enter. Message 1 first.</p>
+    <p class="lead">Click a box to copy it, paste into the Claude chat box, press Enter. Message 1 first.</p>
     <div class="copy prompt">
       <span class="tag">Message 1 · the ground rules</span>
       <div class="txt">I am completely new to coding and to VS Code. Treat me like a total beginner. Use simple words and explain any technical term in one short line. Give me one step at a time. Before making big changes, tell me your plan first.</div>
@@ -1001,49 +868,23 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div class="note see">
       <h4>👀 You should see</h4>
       <ul class="plain">
-        <li>Claude explains what it's about to do, then gets on with it.</li>
+        <li>Claude explains what it's about to do, then does it.</li>
         <li>A file called <code>index.html</code> appears on the left.</li>
-        <li>That's yours. <b>You made a file.</b></li>
+        <li>That's yours. You made a file.</li>
       </ul>
     </div>
-    <div class="big-idea">Message 1 is worth more than message 2.<br>Set the rules and it behaves for the <mark>whole conversation</mark>.</div>
+    <div class="big-idea">Message 1 is worth more than message 2.<br>Set the rules once, it behaves for the <mark>whole conversation</mark>.</div>
   </div>
 
   <div class="block">
-    <h3>It's editing files without asking. That's normal.</h3>
-    <p>At the bottom of the chat box there's a small word — that's the <b>mode</b>. On a Pro plan it starts on <b>Auto</b>, which means Claude writes and edits files in your folder without stopping to ask each time. It's meant to feel like that.</p>
-    <p>If that makes you twitchy, click that word and choose <b>Plan</b>. Claude then writes out what it intends to do and waits for your yes before touching anything. It's a lovely way to learn — you get to read the plan before it happens.</p>
+    <h3>It edits files without asking. That's normal.</h3>
+    <p>At the bottom of the chat box there's a small word. That's the <b>mode</b>. On a Pro plan it starts on <b>Auto</b>, which means Claude writes and edits files in your folder without stopping to ask each time.</p>
+    <p>If that makes you twitchy, click the word and choose <b>Plan</b>. Claude then writes out what it intends to do and waits for your yes. It's a good way to learn, because you get to read the plan before it happens.</p>
     <div class="note warn">
-      <h4>🚦 Whichever mode you're in</h4>
-      <p style="margin-bottom:0">It still stops and asks before anything genuinely risky: deleting a lot, reaching outside your folder, installing software. If a request ever surprises you, type <b>"why do you need that?"</b> — nothing happens until you say so.</p>
+      <h4>🚦 In every mode</h4>
+      <p style="margin-bottom:0">It still stops and asks before anything genuinely risky: deleting a lot, reaching outside your folder, installing software. If a request surprises you, type <b>"why do you need that?"</b> Nothing happens until you say so.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span class="lbl">Claude made me a file 🎈</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="7">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: First contact</h3></div>
-    <p class="quiz-sub">Two questions.</p>
-    <div class="q">
-      <p class="qt" data-n="1">Why send message 1 before message 2?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>It's just polite.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>It sets the rules for the whole conversation — plain words, one step at a time, plan before big changes.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>It has to warm up before it can write files.</span></button>
-      </div>
-      <p class="why"><b>Right.</b> Telling Claude <i>how</i> to work with you is the highest-value thing you'll ever type. Say it once, benefit all session.</p>
-      <p class="nudge">Think about what message 1 actually asks for.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">Claude wants to run something and you don't understand it. Best move?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Approve it — it probably knows best.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>Close VS Code immediately.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">C</span></span><span>Type "why do you need that?" and read the answer before deciding.</span></button>
-      </div>
-      <p class="why"><b>Ask. Always ask.</b> Nothing happens until you approve, and you'll learn something every time. You cannot hurt its feelings.</p>
-      <p class="nudge">You don't have to guess, and you don't have to panic. There's a third option.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -1067,26 +908,26 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   </div>
 
   <div class="block">
-    <div class="big-idea">Code you never looked at is a <mark>rumour</mark>.</div>
-    <p>Easiest way to see your page — just ask:</p>
+    <div class="big-idea">Code you haven't looked at is a <mark>rumour</mark>.</div>
+    <p>Easiest way to see your page is to ask:</p>
     <div class="copy">
       <span class="tag">Paste into Claude</span>
       <div class="txt">Open the page you just made in my web browser so I can see it.</div>
       <button>Copy</button>
     </div>
     <div class="osrow" style="margin-top:18px">
-      <span class="lab">Or do it by hand on</span>
+      <span class="lab">Or by hand on</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
         <button data-os="mac" class="on">🍎 Mac</button>
         <button data-os="win">🪟 Windows</button>
       </div>
     </div>
-    <p style="font-size:.95rem;color:var(--ink-soft)">Right-click <code>index.html</code> on the left → <span class="mac-only">Reveal in Finder</span><span class="win-only">Reveal in File Explorer</span> → double-click it.</p>
+    <p style="font-size:.95rem;color:var(--ink-soft)">Right-click <code>index.html</code> on the left, choose <span class="mac-only">Reveal in Finder</span><span class="win-only">Reveal in File Explorer</span>, double-click it.</p>
   </div>
 
   <div class="block">
     <h3>Now change things. One at a time.</h3>
-    <p class="lead">Click any of these to copy it, paste it, watch what happens. This is the loop, and it's addictive.</p>
+    <p class="lead">Click any of these to copy it, paste it, watch what happens.</p>
     <div class="phrases" style="margin:16px 0">
       <div class="phrase" style="--c:var(--pink)"><span>Make the button green and round.</span><span class="mini">copy</span></div>
       <div class="phrase" style="--c:var(--yellow)"><span>Put the button underneath the boxes.</span><span class="mini">copy</span></div>
@@ -1096,39 +937,14 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
       <div class="phrase" style="--c:var(--orange)"><span>Make the whole thing dark mode.</span><span class="mini">copy</span></div>
     </div>
     <div class="note tip">
-      <h4>🔁 Refresh after every single change</h4>
-      <p style="margin-bottom:0">Your browser has no idea Claude edited the file. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>R</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>R</kbd></span>. Still not there? Ask <b>"did you save the file?"</b></p>
+      <h4>🔁 Refresh after every change</h4>
+      <p style="margin-bottom:0">Your browser has no idea Claude edited the file. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>R</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>R</kbd></span>. This will happen to you roughly nine hundred times. Still nothing? Ask <b>"did you save the file?"</b></p>
     </div>
     <div class="note brain">
-      <h4>🧭 The one rule that saves you</h4>
-      <p style="margin-bottom:0"><b>Change one thing, then look.</b> Ask for eight changes at once and something breaks — and you'll have no idea which one did it. For anything bigger than a tweak, say <b>"tell me your plan first."</b></p>
+      <h4>🧭 The rule that saves you</h4>
+      <p style="margin-bottom:0"><b>Change one thing, then look.</b> Ask for eight changes at once and something breaks, and you won't know which one did it. For anything bigger than a tweak, say <b>"tell me your plan first."</b></p>
     </div>
     <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span class="lbl">I saw my page and changed it 🎨</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="8">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Look and change</h3></div>
-    <p class="quiz-sub">Two questions. These come up in real life constantly.</p>
-    <div class="q">
-      <p class="qt" data-n="1">You asked for a change, Claude says it's done, but your page looks identical. First thing to try?</p>
-      <div class="opts">
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">A</span></span><span>Refresh the browser.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>Tell Claude it's broken and ask it to start over.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Delete the file and try again.</span></button>
-      </div>
-      <p class="why"><b>Refresh first, always.</b> The browser is showing you a snapshot from before the edit. This will happen to you roughly nine hundred times.</p>
-      <p class="nudge">Before you blame anyone, consider that the browser might just be showing you an old picture.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">You want six different changes. What's the smart way?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Ask for all six in one message to save time.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>One at a time, looking after each.</span></button>
-      </div>
-      <p class="why"><b>One at a time.</b> It feels slower. It is dramatically faster — because when something breaks you know exactly which change did it.</p>
-      <p class="nudge">Think about what happens when six changes land at once and one of them breaks the page.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -1138,7 +954,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 9 · Protect</div>
       <h2>Save points</h2>
-      <p class="sub">Git, explained without a single diagram of arrows. It's just an undo history for your whole project.</p>
+      <p class="sub">Git, without a single diagram of arrows.</p>
       <div class="ch-meta"><span>≈ 5 min</span><span>💾 Do this early</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -1155,10 +971,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
 
   <div class="block">
     <h3>What Git actually is</h3>
-    <p>Git is an <b>undo history for your whole project</b>. Each time you <b>commit</b>, it records exactly what every file looked like at that moment. Later you can go back to any of those moments.</p>
-    <p>Think of it like save points in a game. You don't need to understand the machinery. You need to know when to press save.</p>
+    <p>Git is an undo history for your whole project. Each time you <b>commit</b>, it records exactly what every file looked like at that moment. You can go back to any of those moments.</p>
+    <p>Think of it as save points in a game. You don't need the machinery, you need to know when to press save.</p>
     <div class="big-idea">Commit <mark>after</mark> anything that works.<br>Commit <mark>before</mark> anything big.</div>
-    <p>You don't have to learn any commands. Claude does the work — you just say the words:</p>
+    <p>You don't have to learn any commands. Claude does the work, you say the words:</p>
     <div class="copy">
       <span class="tag">When something works</span>
       <div class="txt">This version works. Please set up Git if it isn't already, and commit this as a save point.</div>
@@ -1170,43 +986,18 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
       <button>Copy</button>
     </div>
     <div class="note tip">
-      <h4>⏰ It takes four seconds</h4>
-      <p style="margin-bottom:0">And it is the entire difference between "oh well" and "oh no". There is no such thing as committing too often.</p>
+      <h4>⏰ Four seconds</h4>
+      <p style="margin-bottom:0">That's the whole cost, and it's the difference between "oh well" and "oh no". There is no such thing as committing too often. A save point you make after you die is not much use.</p>
     </div>
     <div class="note brain">
       <h4>🧠 Three words you'll hear</h4>
       <ul class="plain">
-        <li><b>Commit</b> — one saved moment in your history.</li>
-        <li><b>Push</b> — send your commits up to GitHub (Chapter 10).</li>
-        <li><b>Repo</b> — short for repository. Your project plus all its history.</li>
+        <li><b>Commit.</b> One saved moment in your history.</li>
+        <li><b>Push.</b> Send your commits up to GitHub (Chapter 10).</li>
+        <li><b>Repo.</b> Short for repository. Your project plus all its history.</li>
       </ul>
     </div>
     <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span class="lbl">I made my first commit 💾</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="9">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Save points</h3></div>
-    <p class="quiz-sub">Two questions.</p>
-    <div class="q">
-      <p class="qt" data-n="1">When should you commit?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Once, at the very end, when the project is finished.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>After anything that works, and before anything big.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Only when something has already broken.</span></button>
-      </div>
-      <p class="why"><b>Yes.</b> A commit is only useful if it already exists when disaster strikes. Committing after the fire is not a fire escape.</p>
-      <p class="nudge">A save point you make <i>after</i> you die isn't much use.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">Everything has broken and you have no idea why. You committed an hour ago. What do you say?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Nothing — start the project again from scratch.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>"Take me back to the last commit, and explain what went wrong."</span></button>
-      </div>
-      <p class="why"><b>This is exactly why commits exist.</b> Nothing is ever really lost. Ask for the explanation too — that's how you stop repeating it.</p>
-      <p class="nudge">You have a save point. Use it.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -1216,7 +1007,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 10 · Ship</div>
       <h2>Put it on the internet</h2>
-      <p class="sub">Two free accounts and one prompt, and you'll have a link you can text someone. This is the payoff.</p>
+      <p class="sub">Two free accounts and one prompt, and you have a link you can text someone.</p>
       <div class="ch-meta"><span>≈ 15 min</span><span>🆓 Both free</span><span>🌍 The payoff</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -1229,28 +1020,24 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   </div>
 
   <div class="block">
-    <h3>First, two free accounts</h3>
-    <p class="lead">No card needed for either.</p>
-    <h4 style="margin-top:22px">🐙 GitHub — stores your project online</h4>
+    <h3>Two free accounts</h3>
+    <p class="lead">GitHub stores your project and its history. Vercel takes that and serves it to the public. No card needed for either.</p>
+    <h4 style="margin-top:22px">🐙 GitHub</h4>
     <ol class="dolist">
       <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
-      <li>Email, password, username. Your username shows up in links — lowercase, no spaces, something you'd happily say out loud.</li>
+      <li>Email, password, username. Your username shows up in links, so lowercase, no spaces, something you'd say out loud.</li>
       <li>Confirm the emailed code. Choose the <b>Free</b> plan.</li>
-      <li><b>Write your username down.</b> Everyone forgets which one they picked.</li>
+      <li>Write your username down. Everyone forgets which one they picked.</li>
     </ol>
-    <h4 style="margin-top:26px">▲ Vercel — puts it on the actual internet</h4>
+    <h4 style="margin-top:26px">▲ Vercel</h4>
     <ol class="dolist">
       <li>Go to <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a>.</li>
       <li>Click <b>Continue with GitHub</b> and use the account you just made.</li>
-      <li>Approve the permissions box, and pick <b>Hobby</b> when it asks — that's the free one.</li>
+      <li>Approve the permissions box, and pick <b>Hobby</b> when it asks. That's the free one.</li>
     </ol>
-    <div class="note see">
-      <h4>👀 You should see</h4>
-      <p style="margin-bottom:0">An empty Vercel dashboard saying you have no projects. Correct. You're about to fix that.</p>
-    </div>
     <div class="note warn">
       <h4>⚖️ One rule about free Vercel</h4>
-      <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects, showing your mum — all fine. The moment it's a business or a client's site, Vercel expects you on a paid plan.</p>
+      <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects, showing your mum, all fine. The moment it's a business or a client's site, Vercel expects you on a paid plan.</p>
     </div>
   </div>
 
@@ -1268,44 +1055,18 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
         <li>Claude pushes your project up to GitHub. It may ask you to log in once.</li>
         <li>You connect that GitHub project to Vercel in the browser.</li>
         <li>Vercel hands you a link ending in <code>.vercel.app</code>.</li>
-        <li><b>Send it to someone.</b> It's live on the real internet, on a real server, right now.</li>
+        <li>Send it to someone. It's live on a real server right now.</li>
       </ul>
     </div>
     <div class="note stuck">
       <h4>🔐 If your friend's link asks them to log in</h4>
-      <p style="margin-bottom:0">Vercel switches on a thing called <b>Deployment Protection</b>, which locks the page to your account. Go to your project on <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → <b>Settings</b> → <b>Deployment Protection</b> → turn <b>Vercel Authentication</b> off → Save. Now anyone can open it.</p>
+      <p style="margin-bottom:0">That's <b>Deployment Protection</b>, which locks the page to your account. Go to <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a>, your project, <b>Settings</b>, <b>Deployment Protection</b>, turn <b>Vercel Authentication</b> off, Save.</p>
     </div>
     <div class="note tip">
-      <h4>♻️ From now on, forever</h4>
-      <p style="margin-bottom:0">Say <b>"commit and push this"</b>, wait a minute, refresh your link. Vercel updates the live site by itself every time. That's the entire publishing workflow for the rest of your life.</p>
+      <h4>♻️ From now on</h4>
+      <p style="margin-bottom:0">Say <b>"commit and push this"</b>, wait a minute, refresh your link. Vercel updates the live site itself every time. You only connect GitHub to Vercel once. That's the publishing workflow for the rest of your life.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span class="lbl">My thing is on the internet 🌍</span></label>
-  </div>
-
-  <div class="quiz" data-quiz="10">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Shipping</h3></div>
-    <p class="quiz-sub">Two questions.</p>
-    <div class="q">
-      <p class="qt" data-n="1">What's the difference between GitHub and Vercel?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>They're the same thing with different names.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>GitHub stores your project and its history; Vercel takes that and serves it to the public as a website.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>GitHub is for code, Vercel is for images.</span></button>
-      </div>
-      <p class="why"><b>Storage versus serving.</b> GitHub is the filing cabinet; Vercel is the shop window that reads from it.</p>
-      <p class="nudge">One of them keeps your files safe. The other shows them to the world.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">You've made a change and want the live site updated. What do you do?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Set the whole thing up on Vercel again from scratch.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Say "commit and push this", wait a minute, refresh.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Email the file to Vercel.</span></button>
-      </div>
-      <p class="why"><b>Push and it deploys itself.</b> That connection you made once keeps working forever.</p>
-      <p class="nudge">You only ever connect GitHub to Vercel once.</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 2</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -1315,7 +1076,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
     <div>
       <div class="ch-kicker">Chapter 11 · Level up</div>
       <h2>Secrets &amp; superpowers</h2>
-      <p class="sub">API keys, the mysterious <code>.env</code> file, and how to put AI inside the thing you built.</p>
+      <p class="sub">API keys, the <code>.env</code> file, and putting AI inside the thing you built.</p>
       <div class="ch-meta"><span>≈ 20 min</span><span>🔑 The grown-up bit</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -1330,39 +1091,38 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--pink) 0 2
   </div>
 
   <div class="block">
-    <h3>What's a secret?</h3>
-    <p class="lead">Sooner or later your project will want to use somebody else's service — send an email, take a payment, ask an AI a question. Those services need to know it's you asking.</p>
-    <p>So they give you an <b>API key</b>: a long random string that acts as a password. Something like:</p>
-    <div class="copy"><div class="txt">sk-or-v1-8f3a...2c7d</div></div>
+    <h3>What a secret is</h3>
+    <p class="lead">Sooner or later your project will want to use somebody else's service: send an email, take a payment, ask an AI a question. Those services need to know it's you asking.</p>
+    <p>So they give you an <b>API key</b>, a long random string that works as a password:</p>
+    <div class="copy plain"><div class="txt">sk-or-v1-8f3a...2c7d</div></div>
     <div class="note danger">
       <h4>🚨 An API key is a password with your credit card attached</h4>
-      <p style="margin-bottom:0">If someone else gets yours, they can use the service <b>as you</b>, and you get the bill. People run bots that scan GitHub for leaked keys around the clock. This is not a hypothetical.</p>
+      <p style="margin-bottom:0">If someone else gets yours, they use the service as you, and you get the bill. People run bots that scan GitHub for leaked keys around the clock. This is not hypothetical.</p>
     </div>
   </div>
 
   <div class="block">
-    <h3>So where do you put it? A file called <code>.env</code></h3>
-    <p><code>.env</code> is short for <b>environment</b>. It's a plain text file that sits in your project folder and holds your secrets, one per line, like this:</p>
-    <div class="copy"><span class="tag">.env</span><div class="txt">OPENROUTER_API_KEY=sk-or-v1-8f3a...2c7d
+    <h3>Where it goes: a file called <code>.env</code></h3>
+    <p><code>.env</code> is short for environment. It's a plain text file in your project folder holding your secrets, one per line:</p>
+    <div class="copy plain"><span class="tag">.env</span><div class="txt">OPENROUTER_API_KEY=sk-or-v1-8f3a...2c7d
 WEATHER_API_KEY=abc123def456</div></div>
-    <p>Your code says "go get <code>OPENROUTER_API_KEY</code>" instead of containing the key itself. The key lives in one file, in one place, and never appears in the code you share.</p>
-    <div class="big-idea">The whole point of <code>.env</code>:<br>your code can be <mark>public</mark> while your keys stay <mark>private</mark>.</div>
+    <p>Your code says "go get <code>OPENROUTER_API_KEY</code>" instead of containing the key itself. The key lives in one file and never appears in the code you share.</p>
+    <div class="big-idea">Your code can be <mark>public</mark><br>while your keys stay <mark>private</mark>.</div>
 
-    <h3>And the file that makes it work: <code>.gitignore</code></h3>
-    <p>Remember Git from Chapter 9 — it records everything in your folder. <b>Everything.</b> Including a file full of passwords, if you let it.</p>
-    <p><code>.gitignore</code> is a list of files Git should pretend it can't see. Put <code>.env</code> in it and your secrets never leave your computer, no matter how many times you push.</p>
-    <div class="copy"><span class="tag">.gitignore</span><div class="txt">.env
+    <h3><code>.gitignore</code> is what makes that true</h3>
+    <p>Git records everything in your folder, including a file full of passwords if you let it. <code>.gitignore</code> is a list of files Git should pretend it can't see. Put <code>.env</code> in it and your secrets never leave your computer, no matter how many times you push.</p>
+    <div class="copy plain"><span class="tag">.gitignore</span><div class="txt">.env
 .env.local
 node_modules</div></div>
     <div class="note tip">
-      <h4>🧪 The two-file trick you'll see everywhere</h4>
-      <p style="margin-bottom:0">Projects often ship a <code>.env.example</code> with the key <i>names</i> but no values — <code>OPENROUTER_API_KEY=</code> — so the next person knows what to fill in. That one <b>is</b> committed. The real <code>.env</code> never is.</p>
+      <h4>🧪 The two-file convention</h4>
+      <p style="margin-bottom:0">Projects often ship a <code>.env.example</code> with the key names but no values, so the next person knows what to fill in. That one <b>is</b> committed. The real <code>.env</code> never is.</p>
     </div>
     <div class="note brain">
-      <h4>🧠 Why the leading dot?</h4>
-      <p style="margin-bottom:0">A filename starting with <code>.</code> is hidden by default on Mac and Linux — which is why you might not see it in Finder. VS Code shows it just fine. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>.</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>H</kbd></span> in your file browser if you ever need to see hidden files.</p>
+      <h4>🧠 Why the leading dot</h4>
+      <p style="margin-bottom:0">A filename starting with <code>.</code> is hidden by default on Mac and Linux, which is why you might not see it in Finder. VS Code shows it fine. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>.</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>H</kbd></span> if you need to see hidden files.</p>
     </div>
-    <p>You don't have to make these by hand. Say this:</p>
+    <p>You don't have to make these by hand:</p>
     <div class="copy">
       <span class="tag">Paste into Claude</span>
       <div class="txt">Set this up properly for secrets: create a .env file for my API keys, make sure .env is listed in .gitignore so it never gets committed, and add a .env.example with the key names but no values. Then explain in simple words how my code will read the key.</div>
@@ -1371,38 +1131,35 @@ node_modules</div></div>
   </div>
 
   <div class="block">
-    <h3>Let's get you a real key: OpenRouter</h3>
-    <p class="lead"><a href="https://openrouter.ai" target="_blank" rel="noopener">OpenRouter</a> is one door to hundreds of AI models — Claude, GPT, Gemini, open-source ones — through a single key. It means the app <i>you</i> build can have AI inside it, not just the editor you build it in.</p>
+    <h3>Get a real key: OpenRouter</h3>
+    <p class="lead"><a href="https://openrouter.ai" target="_blank" rel="noopener">OpenRouter</a> is one door to hundreds of AI models (Claude, GPT, Gemini, open-source ones) through a single key. It means the app <i>you</i> build can have AI in it, not just the editor you build it in.</p>
     <div class="note brain">
-      <h4>🤔 Wait, don't I already pay for Claude?</h4>
-      <p style="margin-bottom:0">Yes — that's for <b>Claude helping you build</b>. This key is for <b>your app doing AI things for its users</b>. Two different jobs. Your Claude subscription can't power a website you built any more than your Netflix account can power a cinema.</p>
+      <h4>🤔 Don't I already pay for Claude?</h4>
+      <p style="margin-bottom:0">That's for Claude helping <b>you</b> build. This key is for <b>your app</b> doing AI things for its users. Two different jobs. Your Claude subscription can't power a website you built, any more than your Netflix account can power a cinema.</p>
     </div>
     <ol class="dolist">
-      <li>Go to <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a> → <b>Sign in</b>. Google or GitHub is quickest.</li>
-      <li>Click your avatar (top right) → <b>Keys</b>, or go straight to <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">openrouter.ai/keys</a>.</li>
-      <li>Click <b>Create Key</b>, name it something like <code>first-try</code>.</li>
-      <li><b>Copy it now.</b> It's shown once and never again. If you lose it, delete it and make a new one — no drama.</li>
-      <li>Paste it straight into your <code>.env</code> file. Not into a chat. Not into a note. Not into your code.</li>
+      <li>Go to <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a> and sign in. Google or GitHub is quickest.</li>
+      <li>Click your avatar, then <b>Keys</b>. Or go straight to <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">openrouter.ai/keys</a>.</li>
+      <li>Click <b>Create Key</b> and name it <code>first-try</code>.</li>
+      <li><b>Set a spend limit on it while you're there.</b> A key capped at $1 can cost you at most $1, even if your code goes haywire in a loop at 3am. Best habit in this chapter.</li>
+      <li>Copy the key now. It's shown once. If you lose it, delete it and make another, no drama.</li>
+      <li>Paste it into your <code>.env</code>. Not into a chat, not into a note, not into your code.</li>
     </ol>
     <div class="note warn">
-      <h4>💰 About money — read this before you spend anything</h4>
+      <h4>💰 Money, before you spend any</h4>
       <ul class="plain">
-        <li><b>Signing up is free.</b> No card needed to look around.</li>
-        <li>Some models are <b>free to use</b> (they're marked as such, usually with <code>:free</code> in the name). Start there. Seriously — start there.</li>
-        <li>Paid models work on <b>credit you add up front</b>, charged per use. If you want to try them, add the <b>smallest amount they'll let you</b>. You cannot accidentally run up a huge bill on credit that doesn't exist.</li>
-        <li>Check the price of a model on <a href="https://openrouter.ai/models" target="_blank" rel="noopener">openrouter.ai/models</a> <i>before</i> you point your code at it, not after.</li>
+        <li>Signing up is free. No card needed to look around.</li>
+        <li>Some models are free to use, usually marked with <code>:free</code> in the name. Start there.</li>
+        <li>Paid models run on credit you add up front. Add the smallest amount they'll let you. You can't accidentally run up a bill on credit that doesn't exist.</li>
+        <li>Check a model's price on <a href="https://openrouter.ai/models" target="_blank" rel="noopener">openrouter.ai/models</a> before you point code at it, not after.</li>
       </ul>
     </div>
-    <div class="note danger">
-      <h4>🚨 Set a limit on the key while you're there</h4>
-      <p style="margin-bottom:0">When you create a key, OpenRouter lets you cap how much it can spend. <b>Do it.</b> A key with a $1 ceiling can cost you at most $1, even if your code goes haywire in a loop at 3am. This is the single best habit in this chapter.</p>
-    </div>
-    <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span class="lbl">OpenRouter key made, safely in .env 🔑</span></label>
+    <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span class="lbl">OpenRouter key made, capped, safely in .env 🔑</span></label>
   </div>
 
   <div class="block">
-    <h3>Now build something with it</h3>
-    <p class="lead">Here's the fun part. Pick one and paste it — Claude will wire up the key from your <code>.env</code> for you.</p>
+    <h3>Build something with it</h3>
+    <p class="lead">Pick one and paste it. Claude will wire the key in from your <code>.env</code>.</p>
     <div class="phrases" style="margin:16px 0">
       <div class="phrase" style="--c:var(--pink)"><span>Add a box to my page where someone types a mood and gets back a short poem, using my OpenRouter key from .env. Use a free model.</span><span class="mini">copy</span></div>
       <div class="phrase" style="--c:var(--yellow)"><span>Build a page where I paste in a recipe and it tells me the shopping list, using my OpenRouter key from .env.</span><span class="mini">copy</span></div>
@@ -1411,59 +1168,13 @@ node_modules</div></div>
     </div>
     <div class="note stuck">
       <h4>🌐 "It works on my computer but not on the live site"</h4>
-      <p>Almost always this. Remember, <code>.env</code> deliberately never left your machine — so the live site has no key.</p>
-      <p style="margin-bottom:0">Fix: go to <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → your project → <b>Settings</b> → <b>Environment Variables</b>, add the same name and value there, then redeploy. Same secret, told to Vercel directly instead of through GitHub. This is exactly how professional teams do it.</p>
+      <p>Almost always this. <code>.env</code> deliberately never left your machine, so the live site has no key.</p>
+      <p style="margin-bottom:0">Go to <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a>, your project, <b>Settings</b>, <b>Environment Variables</b>. Add the same name and value there, then redeploy. Same secret, told to Vercel directly instead of through GitHub. This is how professional teams do it.</p>
     </div>
     <div class="note danger">
-      <h4>🙈 If you ever leak a key</h4>
-      <p style="margin-bottom:0">Deleting the file isn't enough — Git remembers, and the internet is fast. <b>Go to the service, delete that key, make a new one.</b> Takes thirty seconds and completely solves it. Everyone does this at least once; the only mistake is not revoking it.</p>
+      <h4>🙈 If you leak a key</h4>
+      <p style="margin-bottom:0">Deleting the file isn't enough. Git remembers and bots scrape faster than you can undo. Go to the service, delete that key, make a new one. Thirty seconds and the leaked one is worthless. Everyone does this at least once. The only mistake is not revoking it.</p>
     </div>
-  </div>
-
-  <div class="quiz" data-quiz="11">
-    <div class="quiz-head"><span class="zap">⚡</span><h3>Mini quiz: Secrets</h3></div>
-    <p class="quiz-sub">Four questions — this is the chapter where mistakes cost actual money.</p>
-    <div class="q">
-      <p class="qt" data-n="1">What is a <code>.env</code> file for?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Storing your website's colours and fonts.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Holding secrets like API keys, so they stay out of your code.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Listing everyone who worked on the project.</span></button>
-      </div>
-      <p class="why"><b>Exactly.</b> Code in one place, secrets in another. That separation is the whole idea.</p>
-      <p class="nudge">The name is short for "environment" — think about what your code needs to know that you'd never want to publish.</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="2">Which file stops <code>.env</code> being uploaded to GitHub?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span><code>index.html</code></span></button>
-        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span><code>.env.example</code></span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">C</span></span><span><code>.gitignore</code></span></button>
-      </div>
-      <p class="why"><b>Right.</b> <code>.gitignore</code> is the list of things Git pretends it can't see. If <code>.env</code> isn't in there, your keys go public the first time you push.</p>
-      <p class="nudge">The clue is in the name — which file tells Git to <i>ignore</i> something?</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="3">Your site works locally but breaks live, with an error about a missing key. Why?</p>
-      <div class="opts">
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">A</span></span><span><code>.env</code> never got uploaded — by design — so you must add the key in Vercel's Environment Variables.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>Vercel doesn't support API keys.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>You need to commit <code>.env</code> to GitHub after all.</span></button>
-      </div>
-      <p class="why"><b>Spot on — and never do C.</b> The live site gets its secrets told to it directly by the host, never through your code.</p>
-      <p class="nudge">The key deliberately stayed on your computer. So how does the live site ever learn it?</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="4">You accidentally pasted your API key into a public place. What now?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Delete the message and hope nobody saw.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Go to the service, revoke that key, create a new one.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Change your account password.</span></button>
-      </div>
-      <p class="why"><b>Revoke and replace.</b> Thirty seconds and the leaked key is worthless. Deleting the message does nothing — bots scrape faster than you can undo.</p>
-      <p class="nudge">Hoping is not a security strategy. What makes the leaked key <i>useless</i>?</p>
-    </div>
-    <div class="quiz-score"><span class="msg">0 of 4</span><span class="bar"><i></i></span></div>
   </div>
 </section>
 
@@ -1473,7 +1184,7 @@ node_modules</div></div>
     <div>
       <div class="ch-kicker">Chapter 12 · Graduation</div>
       <h2>Your survival kit</h2>
-      <p class="sub">The cheat sheet, the safety rules, every way you'll get stuck, and one final exam.</p>
+      <p class="sub">The cheat sheet, the safety rules, every way you'll get stuck, and the final exam.</p>
       <div class="ch-meta"><span>Keep this open</span><span>🎓 Final exam</span></div>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -1489,11 +1200,11 @@ node_modules</div></div>
     <h3>Three rules that keep you safe</h3>
     <div class="note danger">
       <h4>🔒 1. Never paste these into a chat</h4>
-      <p style="margin-bottom:0">Passwords · API keys and secret tokens · database passwords · real customer names, emails or card numbers. If a project genuinely needs a key, say: <b>"Set this up as an environment variable so the key isn't in the code."</b> (Chapter 11, in one sentence.)</p>
+      <p style="margin-bottom:0">Passwords. API keys and secret tokens. Database passwords. Real customer names, emails or card numbers. If a project needs a key, say: <b>"Set this up as an environment variable so the key isn't in the code."</b></p>
     </div>
     <div class="note stuck">
       <h4>🛑 2. If it goes off the rails, say these in order</h4>
-      <p style="margin-bottom:0"><b>"Stop. Don't change anything else."</b> → <b>"Explain what you just changed, in simple words."</b> → <b>"Undo that."</b> You won't hurt its feelings, and you cannot break your computer from a chat box.</p>
+      <p style="margin-bottom:0"><b>"Stop. Don't change anything else."</b> Then <b>"Explain what you just changed, in simple words."</b> Then <b>"Undo that."</b> You won't hurt its feelings, and you can't break your computer from a chat box.</p>
     </div>
     <div class="note tip">
       <h4>🐢 3. Small changes beat big ones</h4>
@@ -1502,7 +1213,7 @@ node_modules</div></div>
   </div>
 
   <div class="block">
-    <h3>Your tiny cheat sheet</h3>
+    <h3>Your cheat sheet</h3>
     <p class="lead">Click to copy. These eight sentences get you out of almost any hole.</p>
     <div class="phrases" style="margin-top:16px">
       <div class="phrase" style="--c:var(--pink)"><span>Explain that in beginner words.</span><span class="mini">copy</span></div>
@@ -1515,14 +1226,14 @@ node_modules</div></div>
       <div class="phrase" style="--c:var(--mint)"><span>Commit this working version, then push it.</span><span class="mini">copy</span></div>
     </div>
     <div class="note brain" style="margin-top:24px">
-      <h4>🌟 Remember four things</h4>
-      <p style="margin-bottom:0">You don't have to understand the code — you do have to look at the result. Ask the second you're confused. Keep changes small. Commit whenever something works.</p>
+      <h4>🌟 Four things worth remembering</h4>
+      <p style="margin-bottom:0">You don't have to understand the code, but you do have to look at the result. Ask the second you're confused. Keep changes small. Commit whenever something works.</p>
     </div>
   </div>
 
   <div class="block">
     <h3>When you get stuck</h3>
-    <p class="lead">You will. Everyone does, forever. Here are the usual suspects.</p>
+    <p class="lead">You will. Everyone does, forever.</p>
     <div class="osrow" style="margin-top:16px">
       <span class="lab">Showing answers for</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
@@ -1533,75 +1244,75 @@ node_modules</div></div>
 
     <h4 style="margin:24px 0 12px">Setup won't cooperate</h4>
     <details class="acc"><summary>I can't find the Spark star in VS Code</summary><div class="inner">
-      <p>Quit VS Code completely <span class="mac-only">(<kbd>⌘</kbd>+<kbd>Q</kbd> — closing the window isn't enough)</span><span class="win-only">(close it from the taskbar too)</span> and reopen. If it's still missing, press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. Still nothing? Check the Extensions panel says Claude Code is <b>Installed</b>, by Anthropic.</p>
+      <p>Quit VS Code completely <span class="mac-only">(<kbd>⌘</kbd>+<kbd>Q</kbd>, closing the window isn't enough)</span><span class="win-only">(close it from the taskbar too)</span> and reopen. Still missing? Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. Still nothing? Check the Extensions panel says Claude Code is <b>Installed</b>, by Anthropic.</p>
     </div></details>
     <details class="acc"><summary>It says I need to sign in, or my plan won't work</summary><div class="inner">
-      <p>Claude Code needs a paid plan — Pro, Max, Team or Enterprise. Check <a href="https://claude.ai/settings/billing" target="_blank" rel="noopener">claude.ai → Settings → Billing</a> that it's actually active, then sign out and back in inside VS Code.</p>
+      <p>Claude Code needs a paid plan: Pro, Max, Team or Enterprise. Check <a href="https://claude.ai/settings/billing" target="_blank" rel="noopener">claude.ai settings and billing</a> that it's actually active, then sign out and back in inside VS Code.</p>
     </div></details>
     <details class="acc"><summary>Nothing's happening. It's just sitting there.</summary><div class="inner">
-      <p>Give it 30 seconds — it thinks before it types, and bigger jobs take a minute. If it's genuinely frozen, there's a stop button; press it and send your message again. If that fails, <b>Developer: Reload Window</b> from the command box. Your files are on disk, so nothing is lost.</p>
+      <p>Give it 30 seconds. It thinks before it types, and bigger jobs take a minute. If it's genuinely frozen there's a stop button; press it and send your message again. If that fails, run <b>Developer: Reload Window</b>. Your files are on disk, so nothing is lost.</p>
     </div></details>
     <details class="acc"><summary>Do I need Node.js? Python? Homebrew?</summary><div class="inner">
-      <p>Not to start. Claude will tell you when a project genuinely needs one, and can install it with you. Don't install things "just in case" — that's how beginners end up with four broken versions of everything.</p>
+      <p>Not to start. Claude will tell you when a project needs one and can install it with you. Don't install things just in case. That's how beginners end up with four broken versions of everything.</p>
     </div></details>
 
     <h4 style="margin:28px 0 12px">Claude is doing something weird</h4>
     <details class="acc"><summary>It edited my files without asking. Is that normal?</summary><div class="inner">
-      <p>Yes. On a Pro plan it starts in <b>Auto</b> mode, where it just gets on with edits inside your project. Look at the bottom of the chat box — the mode is written there.</p>
+      <p>Yes. On a Pro plan it starts in <b>Auto</b> mode and gets on with edits inside your project. The mode is written at the bottom of the chat box.</p>
       <p>Want to be asked first? Click it and pick <b>Plan</b> (it writes out its intentions and waits) or <b>Manual</b> (it asks before each edit). Beginners often like Plan for the first week.</p>
     </div></details>
     <details class="acc"><summary>It IS asking permission. Should I say yes?</summary><div class="inner">
-      <p><b>Yes</b> for creating or editing files inside your project folder — that's the job you gave it.</p>
+      <p><b>Yes</b> for creating or editing files inside your project folder. That's the job you gave it.</p>
       <p><b>Ask first</b> for deleting lots of files, working outside your folder, installing software, or sending things to the internet. Type <b>"why do you need that?"</b> Nothing happens until you approve.</p>
     </div></details>
     <details class="acc"><summary>Everything broke and I don't know what happened</summary><div class="inner">
-      <p>Say: <b>"Stop. Explain what changed in simple words, then undo it."</b> If you committed, say <b>"take me back to the last commit."</b> This is exactly why commits exist. Nothing is ever really lost.</p>
+      <p>Say: <b>"Stop. Explain what changed in simple words, then undo it."</b> If you committed, say <b>"take me back to the last commit."</b> This is exactly why commits exist.</p>
     </div></details>
     <details class="acc"><summary>There's scary red text</summary><div class="inner">
-      <p>Red is normal — usually a warning, not a disaster. Copy the whole thing, paste it to Claude, and say: <b>"I got this error. What does it mean and how do I fix it?"</b> That is genuinely what professionals do too.</p>
+      <p>Red is normal, usually a warning rather than a disaster. Copy the whole thing, paste it to Claude, and say: <b>"I got this error. What does it mean and how do I fix it?"</b> That is genuinely what professionals do.</p>
     </div></details>
     <details class="acc"><summary>My change isn't showing up</summary><div class="inner">
-      <p>Refresh the browser <span class="mac-only">(<kbd>⌘</kbd>+<kbd>R</kbd>)</span><span class="win-only">(<kbd>Ctrl</kbd>+<kbd>R</kbd>)</span>. Still nothing? Ask: <b>"Which exact file should I open, and what's its full path?"</b> — you're probably looking at a different copy.</p>
+      <p>Refresh the browser <span class="mac-only">(<kbd>⌘</kbd>+<kbd>R</kbd>)</span><span class="win-only">(<kbd>Ctrl</kbd>+<kbd>R</kbd>)</span>. Still nothing? Ask: <b>"Which exact file should I open, and what's its full path?"</b> You're probably looking at a different copy.</p>
     </div></details>
     <details class="acc"><summary>Claude forgot what we were doing</summary><div class="inner">
-      <p>Long conversations get trimmed, and a new chat starts blank. Click <b>Session history</b> at the top of the Claude panel to reopen an old conversation with everything in it. Starting fresh? Just say what you're building in one line — it reads your files anyway.</p>
+      <p>Long conversations get trimmed, and a new chat starts blank. Click <b>Session history</b> at the top of the Claude panel to reopen an old conversation. Starting fresh? Say what you're building in one line. It reads your files anyway.</p>
     </div></details>
 
     <h4 style="margin:28px 0 12px">Keys, secrets and money</h4>
     <details class="acc"><summary>My site works locally but breaks live</summary><div class="inner">
-      <p>Nine times out of ten it's a missing environment variable. Your <code>.env</code> never left your computer — that's the point of it. Add the same key names and values in <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → your project → <b>Settings</b> → <b>Environment Variables</b>, then redeploy.</p>
+      <p>Nine times out of ten it's a missing environment variable. Your <code>.env</code> never left your computer, which is the point of it. Add the same key names and values in <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a>, your project, <b>Settings</b>, <b>Environment Variables</b>, then redeploy.</p>
     </div></details>
     <details class="acc"><summary>I think I leaked an API key</summary><div class="inner">
-      <p>Don't panic and don't try to erase history. Go to the service that issued it, <b>delete that key</b>, and create a new one. The leaked one instantly becomes worthless. Then check <code>.env</code> is listed in <code>.gitignore</code> so it can't happen twice.</p>
+      <p>Don't panic and don't try to erase history. Go to the service that issued it, delete that key, create a new one. The leaked one instantly becomes worthless. Then check <code>.env</code> is listed in <code>.gitignore</code> so it can't happen twice.</p>
     </div></details>
-    <details class="acc"><summary>How much does all this actually cost?</summary><div class="inner">
-      <p><b>Claude Pro — $20/month</b> ($17 if you pay yearly). That's the only recurring bill.</p>
-      <p>VS Code: free. GitHub: free. Vercel Hobby: free. OpenRouter: free to sign up, and free models exist — paid ones run on credit you add up front, so you can't be surprised.</p>
-      <p style="margin-bottom:0">A custom domain like <code>yourname.com</code>, if you ever want one, is roughly $10–15 a year and totally optional.</p>
+    <details class="acc"><summary>How much does all this cost?</summary><div class="inner">
+      <p><b>Claude Pro, $20/month</b> ($17 paid yearly). That's the only recurring bill.</p>
+      <p>VS Code, GitHub and Vercel Hobby are free. OpenRouter is free to sign up and has free models; paid ones run on credit you add up front, so you can't be surprised.</p>
+      <p style="margin-bottom:0">A custom domain like <code>yourname.com</code> is roughly $10 to $15 a year and entirely optional.</p>
     </div></details>
     <details class="acc"><summary>Can I use this for a business or a client's site?</summary><div class="inner">
-      <p>The free Vercel Hobby plan is for <b>personal, non-commercial</b> use only. The moment it's a business, a client, or anything selling something, Vercel expects you on their paid plan. Learning and side projects are exactly what Hobby is for.</p>
+      <p>The free Vercel Hobby plan is for personal, non-commercial use only. The moment it's a business, a client, or anything selling something, Vercel expects you on their paid plan. Learning and side projects are what Hobby is for.</p>
     </div></details>
     <details class="acc"><summary>My shared link asks people to log in</summary><div class="inner">
-      <p>That's Vercel's <b>Deployment Protection</b>, on by default, locking the page to your account. Fix: <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a> → your project → <b>Settings</b> → <b>Deployment Protection</b> → turn <b>Vercel Authentication</b> off → Save.</p>
+      <p>That's Vercel's <b>Deployment Protection</b>, on by default, locking the page to your account. Fix it at <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a>, your project, <b>Settings</b>, <b>Deployment Protection</b>, turn <b>Vercel Authentication</b> off, Save.</p>
     </div></details>
     <details class="acc"><summary>Is my code private?</summary><div class="inner">
-      <p>What you type and the files Claude reads go to Anthropic's servers to be worked on — that's how it functions. Your GitHub repos are private unless you make them public, and Claude runs on your own machine on your own folder.</p>
-      <p style="margin-bottom:0">The rule that matters: <b>never put real passwords, API keys, or real customer data in a project you're learning with.</b> For the specifics, read <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic's privacy policy</a> and check the privacy settings in your Claude account.</p>
+      <p>What you type and the files Claude reads go to Anthropic's servers to be worked on. That's how it functions. Your GitHub repos are private unless you make them public, and Claude runs on your own machine on your own folder.</p>
+      <p style="margin-bottom:0">The rule that matters: never put real passwords, API keys, or real customer data in a project you're learning with. For specifics, read <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic's privacy policy</a> and check the privacy settings in your Claude account.</p>
     </div></details>
 
     <h4 style="margin:28px 0 12px">Coming back tomorrow</h4>
     <details class="acc"><summary>I closed VS Code. Is my work gone?</summary><div class="inner">
-      <p>No. It's saved in your folder on your computer. Open VS Code → <b>File</b> → <b>Open Recent</b> → pick your project, then click the Spark star. Carry on where you left off.</p>
+      <p>No. It's saved in your folder. Open VS Code, <b>File</b>, <b>Open Recent</b>, pick your project, click the Spark star. Carry on.</p>
     </div></details>
     <details class="acc"><summary>Can I have more than one project?</summary><div class="inner">
-      <p>Yes — one folder each, that's the whole system. Make a new folder, <b>File → Open Folder</b>, and Claude only sees that one. Never put two projects in one folder; it gets confusing fast.</p>
+      <p>Yes. One folder each, that's the whole system. Make a new folder, <b>File</b> then <b>Open Folder</b>, and Claude only sees that one. Never put two projects in one folder.</p>
     </div></details>
     <details class="acc"><summary>I hit my usage limit</summary><div class="inner">
-      <p>Every plan refills every few hours. Wait it out, or upgrade. Nothing is broken and your work is saved.</p>
+      <p>Every plan refills every few hours. Wait it out or upgrade. Nothing is broken and your work is saved.</p>
     </div></details>
     <details class="acc"><summary>What's the terminal version, and do I need it?</summary><div class="inner">
-      <p>Same Claude, no buttons — you type <code>claude</code> in a black text window instead. You can skip it forever. If you're curious: in VS Code go to <b>Terminal → New Terminal</b>, paste the line below, press Enter, then type <code>claude</code>.</p>
+      <p>Same Claude, no buttons. You type <code>claude</code> in a black text window instead. You can skip it forever. If you're curious: in VS Code go to <b>Terminal</b> then <b>New Terminal</b>, paste the line below, press Enter, then type <code>claude</code>.</p>
       <div class="copy mac-only"><span class="tag">Mac</span><div class="txt">curl -fsSL https://claude.ai/install.sh | bash</div><button>Copy</button></div>
       <div class="copy win-only"><span class="tag">Windows PowerShell</span><div class="txt">irm https://claude.ai/install.ps1 | iex</div><button>Copy</button></div>
       <p style="margin-bottom:0">Rule: never paste a command you found online without asking Claude "what does this actually do?" first.</p>
@@ -1637,57 +1348,95 @@ node_modules</div></div>
 
   <div class="quiz" data-quiz="12">
     <div class="quiz-head"><span class="zap">🎓</span><h3>Final exam</h3></div>
-    <p class="quiz-sub">Five questions, pulled from all twelve chapters. Pass this and you graduate.</p>
+    <p class="quiz-sub">Eight questions, one from roughly each chapter. Wrong answers cost nothing, so guess freely. Pass it and you graduate.</p>
+
     <div class="q">
-      <p class="qt" data-n="1">What's the single most important habit in this whole course?</p>
+      <p class="qt" data-n="1">In vibe coding, whose job is it to type the code?</p>
       <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Learning to read code.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Making one change at a time and looking at the result.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Writing very long, very detailed prompts.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yours. The AI suggests, you type it in.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>The AI's. You describe what you want and review what comes back.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Nobody's. The website builds itself.</span></button>
       </div>
-      <p class="why"><b>One change, then look.</b> Everything else in this course is a detail hanging off that.</p>
-      <p class="nudge">It's the thing we've said in almost every chapter.</p>
+      <p class="why"><b>You're the director, not the typist.</b> Describing clearly and checking the result is the whole job.</p>
+      <p class="nudge">Think about who holds the keyboard versus who holds the vision.</p>
     </div>
+
     <div class="q">
-      <p class="qt" data-n="2">Claude wants to delete a lot of files and you weren't expecting it. What do you type?</p>
+      <p class="qt" data-n="2">Which step of the loop do people skip, to their own ruin?</p>
       <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Nothing — close the laptop.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Ask</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Look</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Repeat</span></button>
+      </div>
+      <p class="why"><b>Looking.</b> Asking is fun, repeating is easy. Opening the thing and checking it works is the bit people skip, and the bit that saves them.</p>
+      <p class="nudge">Which one feels like a chore rather than a thrill?</p>
+    </div>
+
+    <div class="q">
+      <p class="qt" data-n="3">You search the extensions panel and get several results named Claude Code. Which do you install?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>The first one in the list.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">B</span></span><span>The one with the most downloads.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">C</span></span><span>The one whose publisher says <b>Anthropic</b>.</span></button>
+      </div>
+      <p class="why"><b>Check the publisher.</b> Popular extensions attract copycats with near-identical names. This habit serves you for life.</p>
+      <p class="nudge">This is exactly how people install the wrong thing.</p>
+    </div>
+
+    <div class="q">
+      <p class="qt" data-n="4">You open the folder <code>first-try</code> in VS Code. Can Claude change files in your Photos folder?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yes, it sees everything on the computer.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>No. It works inside the folder you opened and asks before reaching outside it.</span></button>
+      </div>
+      <p class="why"><b>This is why the folder matters.</b> Anything outside it is a deliberate, permission-asking step, not an accident.</p>
+      <p class="nudge">Remember why we called the folder a safety net.</p>
+    </div>
+
+    <div class="q">
+      <p class="qt" data-n="5">Claude wants to delete a lot of files and you weren't expecting it. What do you type?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Nothing. Close the laptop.</span></button>
         <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>"Stop. Why do you need that?"</span></button>
         <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Approve it and check afterwards.</span></button>
       </div>
-      <p class="why"><b>Ask before you approve, every time.</b> Nothing happens without your yes.</p>
-      <p class="nudge">You have a voice here. Use it.</p>
+      <p class="why"><b>Ask before you approve, every time.</b> Nothing happens without your yes, and you learn something each time you ask.</p>
+      <p class="nudge">You have a voice here. Neither panic nor blind trust is it.</p>
     </div>
+
     <div class="q">
-      <p class="qt" data-n="3">Where does an API key belong?</p>
+      <p class="qt" data-n="6">When should you commit?</p>
       <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Right in the code, so it's easy to find.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Once at the end, when the project is finished.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>After anything that works, and before anything big.</span></button>
+        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Only once something has already broken.</span></button>
+      </div>
+      <p class="why"><b>A commit is only useful if it exists before disaster.</b> Committing after the fire is not a fire escape.</p>
+      <p class="nudge">A save point you make after you die isn't much use.</p>
+    </div>
+
+    <div class="q">
+      <p class="qt" data-n="7">Where does an API key belong?</p>
+      <div class="opts">
+        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>In the code, so it's easy to find.</span></button>
         <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>In <code>.env</code> locally, and in the host's environment variables when live.</span></button>
         <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>In a comment at the top of the file.</span></button>
       </div>
-      <p class="why"><b>Never in the code.</b> <code>.env</code> on your machine, environment variables on the host, <code>.gitignore</code> making sure the first one never travels.</p>
-      <p class="nudge">Chapter 11. Think about what gets uploaded when you push.</p>
+      <p class="why"><b>Never in the code.</b> <code>.env</code> on your machine, environment variables on the host, and <code>.gitignore</code> making sure the first one never travels.</p>
+      <p class="nudge">Think about what gets uploaded when you push.</p>
     </div>
+
     <div class="q">
-      <p class="qt" data-n="4">You've built something that works. What's the very next thing you do?</p>
-      <div class="opts">
-        <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Immediately start the next big feature.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>Commit it.</span></button>
-        <button class="opt"><span class="pip"><span class="ltr">C</span></span><span>Delete the old version to keep things tidy.</span></button>
-      </div>
-      <p class="why"><b>Commit the moment it works.</b> Four seconds now, an hour saved later.</p>
-      <p class="nudge">Chapter 9. What do you do when you reach a save point?</p>
-    </div>
-    <div class="q">
-      <p class="qt" data-n="5">Honestly, now: do you need to understand every line of code your project contains?</p>
+      <p class="qt" data-n="8">Honestly, now: do you need to understand every line of code your project contains?</p>
       <div class="opts">
         <button class="opt"><span class="pip"><span class="ltr">A</span></span><span>Yes, or you're not a real developer.</span></button>
-        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>No — but you do need to check that the result actually works.</span></button>
+        <button class="opt" data-ok="1"><span class="pip"><span class="ltr">B</span></span><span>No, but you do need to check that the result works.</span></button>
       </div>
-      <p class="why"><b>And that's the course.</b> Understanding is optional. Looking is not. Go build something.</p>
-      <p class="nudge">Think back to Chapter 1. What did we say the job actually is?</p>
+      <p class="why"><b>That's the course.</b> Understanding is optional. Looking is not. Go build something.</p>
+      <p class="nudge">Back to Chapter 1. What did we say the job actually is?</p>
     </div>
-    <div class="quiz-score"><span class="msg">0 of 5</span><span class="bar"><i></i></span></div>
+
+    <div class="quiz-score"><span class="msg">0 of 8</span><span class="bar"><i></i></span></div>
   </div>
 
   <div class="cert" id="cert">
@@ -1701,7 +1450,7 @@ node_modules</div></div>
   </div>
 
   <div class="block" style="margin-top:22px">
-    <h3>So… what should I build next?</h3>
+    <h3>What should I build next?</h3>
     <p class="lead">Pick something you actually want to exist. Click to copy a starting prompt.</p>
     <div class="phrases" style="margin-top:16px">
       <div class="phrase" style="--c:var(--pink)"><span>Build a one-page personal site with my name, a short bio, and links to my socials.</span><span class="mini">copy</span></div>
@@ -1713,7 +1462,7 @@ node_modules</div></div>
     </div>
     <div class="note brain" style="margin-top:24px">
       <h4>🚀 The only advice left</h4>
-      <p style="margin-bottom:0">Build the thing you keep wishing existed. It'll be harder than the tutorial and you'll learn ten times more. And you already know every step: ask, look, correct, commit, push.</p>
+      <p style="margin-bottom:0">Build the thing you keep wishing existed. It'll be harder than a tutorial and you'll learn ten times more. You already know every step: ask, look, correct, commit, push.</p>
     </div>
   </div>
 </section>
@@ -1769,9 +1518,13 @@ node_modules</div></div>
   var $  = function(s,r){ return (r||document).querySelector(s); };
   var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
 
-  /* a chapter is done when its quiz is passed AND any hands-on box is ticked */
+  /* a chapter is done when everything it actually contains is done:
+     chapters 1-11 have a hands-on box, chapter 12 has the final exam */
   function hasCheck(n){ return !!$('.check input[data-check="'+n+'"]'); }
-  function done(n){ return !!S.quiz[n] && (!hasCheck(n) || !!S.check[n]); }
+  function hasQuiz(n){ return !!$('.quiz[data-quiz="'+n+'"]'); }
+  function done(n){
+    return (!hasCheck(n) || !!S.check[n]) && (!hasQuiz(n) || !!S.quiz[n]);
+  }
   function doneCount(){ var c=0; for(var i=1;i<=TOTAL;i++) if(done(i)) c++; return c; }
 
   /* ---------- build the rail + the map ---------- */
@@ -1870,7 +1623,7 @@ node_modules</div></div>
     if(certprog){
       certprog.textContent = n === TOTAL
         ? "All twelve chapters. Screenshot this and put it somewhere embarrassing."
-        : n + " of 12 chapters complete — finish the rest to light up every badge.";
+        : n + " of 12 chapters done. Finish the rest to light up every badge.";
     }
     if(n === TOTAL && fire && !celebrated){ celebrated = true; boom(); }
     if(n < TOTAL) celebrated = false;
@@ -1947,13 +1700,8 @@ node_modules</div></div>
           if(scoreQuiz(quiz)){
             var already = !!S.quiz[num];
             S.quiz[num] = true; save();
-            var full = done(num);
             paint(true);
-            if(!already){
-              toast(num === 12 ? "Final exam passed 🎓 You're a vibe coder."
-                   : full     ? "Chapter " + num + " complete ✓"
-                   :            "Quiz passed ✓ — now tick the box below");
-            }
+            if(!already) toast("Final exam passed 🎓 You're a vibe coder.");
           }
         } else {
           opt.classList.add("wrong");
