@@ -388,6 +388,30 @@ body[data-os="mac"] code.mac-only,body[data-os="win"] code.win-only{display:inli
 .fact{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:10px 16px;font-size:.84rem;font-weight:600;box-shadow:3px 3px 0 rgba(32,34,63,.12)}
 .fact b{display:block;font-size:1.3rem;font-family:Fraunces,serif}
 
+/* an image with notes down its right-hand side */
+.annot{display:grid;grid-template-columns:minmax(0,430px) 1fr;gap:28px;align-items:stretch;margin:22px 0}
+.annot figure{margin:0}
+.annot figure img{display:block;width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:8px}
+.annot-notes{display:flex;flex-direction:column}
+.dashlist{list-style:none;padding:0;margin:0}
+.dashlist li{position:relative;padding-left:26px;margin-bottom:13px;font-size:.95rem;line-height:1.5}
+.dashlist li:last-child{margin-bottom:0}
+.dashlist li:before{content:"";position:absolute;left:0;top:.66em;width:15px;height:2px;background:var(--ink);border-radius:1px}
+/* sits at the foot of the column, tail aimed back at the picture */
+.bubble-l{
+  margin-top:auto;position:relative;background:var(--sand);
+  border:1px solid var(--line);border-radius:13px;padding:13px 16px;font-size:.88rem;line-height:1.5;
+}
+.bubble-l p{margin:0}
+.bubble-l:before,.bubble-l:after{content:"";position:absolute;bottom:20px;border:9px solid transparent}
+.bubble-l:before{left:-19px;border-right-color:var(--line)}
+.bubble-l:after{left:-17px;border-right-color:var(--sand)}
+@media (max-width:760px){
+  .annot{grid-template-columns:1fr}
+  .bubble-l{margin-top:18px}
+  .bubble-l:before,.bubble-l:after{display:none}
+}
+
 /* certificate */
 .cert{
   background:linear-gradient(140deg,#fffdf7,#fff8ec);border:3px double var(--ink);border-radius:22px;
@@ -1194,20 +1218,23 @@ footer .hr{background:var(--line);height:1px}
       <figcaption>The mode sits at the bottom right of the message box. Here it reads <b>Auto</b>. Click it to change it.</figcaption>
     </figure>
     <p>Clicking it opens the four choices. <b>Plan</b> is the one to reach for if Auto makes you uneasy, because Claude writes out what it intends to do and waits for your approval. Many people stay on Plan for the first week, since reading the plan before it happens teaches you a great deal.</p>
-    <figure class="shot narrow">
-      <img src="images/claude-modes.png" alt="The Claude Code modes menu listing Manual, Edit automatically, Plan and Auto, with Auto selected, above an Effort slider" loading="lazy">
-    </figure>
-    <ul class="plain">
-      <li><b>Manual</b> asks before every single edit.</li>
-      <li><b>Edit automatically</b> changes the file you have open, without asking.</li>
-      <li><b>Plan</b> writes out what it intends to do, then waits for your yes.</li>
-      <li><b>Auto</b> gets on with the safe things and stops at anything risky.</li>
-    </ul>
-    <p>Holding <kbd>Shift</kbd> and pressing <kbd>Tab</kbd> cycles through them without opening the menu.</p>
-    <div class="note tip">
-      <h4>The Effort slider underneath</h4>
-      <p style="margin-bottom:0">That second row controls how long Claude thinks before it answers. Further right means slower and better at hard problems; further left means quicker, which is fine for small edits. It is unrelated to the modes above it, and you can leave it exactly where it is.</p>
+    <div class="annot">
+      <figure>
+        <img src="images/claude-modes.png" alt="The Claude Code modes menu listing Manual, Edit automatically, Plan and Auto, with Auto selected, above an Effort slider" loading="lazy">
+      </figure>
+      <div class="annot-notes">
+        <ul class="dashlist">
+          <li><b>Manual</b> asks before every single edit.</li>
+          <li><b>Edit automatically</b> changes the file you have open, without asking.</li>
+          <li><b>Plan</b> writes out what it intends to do, then waits for your yes.</li>
+          <li><b>Auto</b> gets on with the safe things and stops at anything risky.</li>
+        </ul>
+        <aside class="bubble-l">
+          <p><b>Effort</b> is how long Claude thinks before it answers. Further right is slower and better at hard problems. You can leave it alone.</p>
+        </aside>
+      </div>
     </div>
+    <p>Holding <kbd>Shift</kbd> and pressing <kbd>Tab</kbd> cycles through the modes without opening the menu.</p>
     <div class="note warn">
       <h4>In every mode</h4>
       <p style="margin-bottom:0">Claude still stops and asks before anything consequential: deleting many files, reaching outside your folder, or installing software. If a request surprises you, type <b>"why do you need that?"</b> Nothing proceeds until you agree to it.</p>
