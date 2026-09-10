@@ -631,12 +631,16 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <img src="images/vscode-download.png" alt="The VS Code download page showing Windows, macOS and Linux cards, with macOS highlighted and marked YOUR OS" loading="lazy">
       <figcaption>The site works out what you are on and marks it <b>YOUR OS</b>. Click the big button in that card and ignore the other two.</figcaption>
     </figure>
+    <figure class="shot medium">
+      <img src="images/vscode-downloading.png" alt="The browser download popup showing the VS Code installer downloading" loading="lazy">
+      <figcaption>Your browser shows it arriving. It is a few hundred megabytes, so give it a minute.</figcaption>
+    </figure>
     <div class="mac-only">
       <div class="note tip">
         <h4>🍎 On Mac</h4>
         <ul class="plain">
-          <li>Double-click the downloaded <code>.zip</code> and a blue icon appears.</li>
-          <li>Drag it into <b>Applications</b>, then double-click to open it.</li>
+          <li>Double-click the downloaded <code>.dmg</code>. A window opens with the blue Visual Studio Code icon inside it.</li>
+          <li>Drag that icon into <b>Applications</b>, then open it from there.</li>
           <li>When asked "downloaded from the internet, are you sure?", click <b>Open</b>.</li>
         </ul>
       </div>
@@ -946,7 +950,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
   <div class="block">
     <h3>Now change things, one at a time</h3>
-    <p class="lead">Click any of these to copy it, paste it in, and watch what happens.</p>
+    <p class="lead">Click any of these to copy it, paste it in, and watch what happens. One at a time, so that when something breaks you know which change did it.</p>
     <div class="phrases" style="margin:16px 0">
       <div class="phrase"><span>Make the button green and round.</span><span class="mini">copy</span></div>
       <div class="phrase"><span>Put the button underneath the boxes.</span><span class="mini">copy</span></div>
@@ -958,10 +962,6 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <div class="note tip">
       <h4>🔁 Refresh after every change</h4>
       <p style="margin-bottom:0">Your browser has no idea Claude edited the file. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>R</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>R</kbd></span>. You will meet this problem many times before refreshing becomes reflex. If nothing has changed, ask <b>"did you save the file?"</b></p>
-    </div>
-    <div class="note brain">
-      <h4>🧭 The rule that saves you</h4>
-      <p style="margin-bottom:0"><b>Change one thing, then look.</b> Request eight changes at once and when something breaks you will have no way of knowing which one caused it. For anything larger than a tweak, say <b>"tell me your plan first."</b></p>
     </div>
     <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span class="lbl">I saw my page and changed it</span></label>
   </div>
