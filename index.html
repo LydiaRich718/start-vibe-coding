@@ -523,6 +523,7 @@ h1,h2,h3{letter-spacing:-.02em}
 .rail-item.on .rail-dot{background:var(--orange);border-color:var(--orange);color:#fff}
 .rail-item.done .rail-dot{background:var(--orange);border-color:var(--orange)}
 .rail-title{letter-spacing:.14em}
+.rail-phase{margin:16px 0 6px 10px;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);opacity:.75}
 /* the exam sits apart and carries no number */
 .rail-item.exam{margin-top:12px;padding-top:15px;border-top:1px solid var(--line);border-radius:0}
 .rail-item.exam .rail-dot{background:none}
@@ -695,7 +696,7 @@ footer .hr{background:var(--line);height:1px}
     <button class="tb-menu" id="menu" aria-label="Sections">☰</button>
     <button class="tb-logo" id="home">Vibe <span>Coding 101</span></button>
     <div class="tb-track" role="progressbar" aria-label="Course progress"><div class="tb-fill" id="fill"></div></div>
-    <div class="tb-count" id="count">0 / 12</div>
+    <div class="tb-count" id="count">0 / 15</div>
     <button class="tb-reset" id="reset" title="Wipe my progress and start over">start over</button>
   </div>
 </div>
@@ -708,7 +709,6 @@ footer .hr{background:var(--line);height:1px}
   <p class="rail-foot">Your place is saved on this device.<br><button class="rail-reset" data-reset>start over</button></p>
 </nav>
 <main class="page" id="page">
-
 <!-- ═══════════ SECTION 1 ═══════════ -->
 <section class="chapter" id="ch1" data-ch="1">
   <div class="hero">
@@ -782,7 +782,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch2" data-ch="2">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 2 · Equipment</div>
+      <div class="ch-kicker">Section 2 · Set up</div>
       <h2>Your Claude account</h2>
       <p class="sub"><b>(The only purchase this course requires.)</b></p>
     </div>
@@ -820,7 +820,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch3" data-ch="3">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 3 · Equipment</div>
+      <div class="ch-kicker">Section 3 · Set up</div>
       <h2>Install VS Code</h2>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true"><g transform="translate(64 42) scale(3)"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z" fill="#007ACC"/></g></svg>
@@ -889,7 +889,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch4" data-ch="4">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 4 · Equipment</div>
+      <div class="ch-kicker">Section 4 · Set up</div>
       <h2>Add Claude Code</h2>
       <p class="sub">Installing the AI into your workshop.</p>
     </div>
@@ -936,7 +936,7 @@ footer .hr{background:var(--line);height:1px}
 <section class="chapter" id="ch5" data-ch="5">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 5 · Building</div>
+      <div class="ch-kicker">Section 5 · Set up</div>
       <h2>Meet Claude</h2>
       <p class="sub">Sign in and find the chat box.</p>
     </div>
@@ -1007,13 +1007,88 @@ footer .hr{background:var(--line);height:1px}
       <h4>The official tour</h4>
       <p style="margin-bottom:0">In that same command box, run <b>Claude Code: Open Walkthrough</b>. Two minutes, made by the people who built it.</p>
     </div>
-    <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
+    <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
   </div>
 </section>
+
+<!-- ═══════════ SECTION 6 ═══════════ -->
 <section class="chapter" id="ch6" data-ch="6">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 6 · Building</div>
+      <div class="ch-kicker">Section 6 · Set up</div>
+      <h2>Your GitHub account</h2>
+      <p class="sub"><b>(Free, and no card.)</b></p>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <rect x="34" y="42" width="132" height="82" rx="12" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M56 78h30M56 96h54" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round" opacity=".3"/>
+      <circle cx="134" cy="88" r="16" fill="#00A3AF" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M127 88l5 5 10-11" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M100 20v13M83 26l6 8M117 26l-6 8" stroke="#A2D7DD" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="block">
+    <h3>What GitHub is for</h3>
+    <p class="lead">GitHub is a filing cabinet for projects, living on the internet rather than on your laptop.</p>
+    <p>Section 11 covers Git, which keeps the history of your project on your own machine. GitHub is where that history goes to be kept somewhere safer. Two things follow. If your laptop dies, your work does not. And because your project now sits at a web address, other services can read it, which is exactly how Section 12 gets your work online.</p>
+    <p>You will not spend any real time on the GitHub website. Claude does the sending. The account simply has to exist.</p>
+    <ol class="dolist">
+      <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
+      <li>Provide an email, a password and a username. Your username appears in every link to your work, so choose lowercase, no spaces, and something you would be content to say out loud in a meeting.</li>
+      <li>Confirm the emailed code, and choose the <b>Free</b> plan when it offers one.</li>
+      <li>Write your username down somewhere. A remarkable number of people forget which one they picked.</li>
+    </ol>
+    <figure class="shot medium">
+      <img src="images/github-signup.png" alt="The GitHub sign-up form asking for email, password and username" loading="lazy">
+      <figcaption>The username is the one decision here that is awkward to change later.</figcaption>
+    </figure>
+    <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span class="lbl">GitHub account created</span></label>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 7 ═══════════ -->
+<section class="chapter" id="ch7" data-ch="7">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Section 7 · Set up</div>
+      <h2>Your Vercel account</h2>
+      <p class="sub"><b>(Also free, also no card.)</b></p>
+    </div>
+    <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
+      <circle cx="80" cy="80" r="44" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M36 80h88M80 36c13 13 13 75 0 88M80 36c-13 13-13 75 0 88" stroke="#0B0B0C" stroke-width="3.5"/>
+      <path d="M148 106l20-36 20 36z" fill="#00A3AF" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="block">
+    <h3>What Vercel is for</h3>
+    <p class="lead">Vercel is the shop window. GitHub holds your project, and Vercel takes what GitHub holds and serves it to anybody with the link.</p>
+    <p>A file on your laptop can only be opened by you. For somebody else to open it, a computer somewhere has to be switched on, connected, and willing to hand your page to whoever asks. That computer is what Vercel provides, and for a project this size it costs nothing.</p>
+    <p>It also watches your GitHub project. Once the two are connected, updating the live site means saving your work as usual and letting Vercel notice.</p>
+    <ol class="dolist">
+      <li>Go to <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a>.</li>
+      <li>Click <b>Continue with GitHub</b> rather than email. That is what lets the two talk to each other later.</li>
+      <li>Approve the permissions box, and select <b>Hobby</b> when it asks, which is the free tier.</li>
+    </ol>
+    <figure class="shot medium">
+      <img src="images/vercel-signup.png" alt="The Vercel sign-up page with Continue with GitHub among the options" loading="lazy">
+      <figcaption>Choose <b>Continue with GitHub</b>. Signing up by email here makes Section 12 harder than it needs to be.</figcaption>
+    </figure>
+    <div class="note warn">
+      <h4>One rule about the free tier</h4>
+      <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects and showing your family all qualify. The moment it becomes a business or a client's site, Vercel expects you on a paid plan.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span class="lbl">Vercel account created, connected to GitHub</span></label>
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 8 ═══════════ -->
+<section class="chapter" id="ch8" data-ch="8">
+  <div class="ch-cover">
+    <div>
+      <div class="ch-kicker">Section 8 · Set up</div>
       <h2>Your first project folder</h2>
       <p class="sub">A box to work in, and quietly your safety net.</p>
     </div>
@@ -1054,7 +1129,7 @@ footer .hr{background:var(--line);height:1px}
     </ol>
     <div class="note see">
       <h4>You should see</h4>
-      <p style="margin-bottom:0"><b>test</b> in the top left with nothing underneath it. An empty folder is the correct outcome, and Section 7 fills it.</p>
+      <p style="margin-bottom:0"><b>test</b> in the top left with nothing underneath it. An empty folder is the correct outcome, and Section 9 fills it.</p>
     </div>
     <figure class="shot medium">
       <img src="images/vscode-empty-folder.png" alt="The VS Code Explorer showing a folder called test with no files inside it" loading="lazy">
@@ -1064,17 +1139,15 @@ footer .hr{background:var(--line);height:1px}
       <h4>The naming rule</h4>
       <p style="margin-bottom:0">Lowercase, no spaces, hyphens between words.<br><code>my-recipe-site</code> <span class="yes">yes</span> &nbsp;&nbsp; <code>My Recipe Site</code> <span class="no">no</span><br>Spaces in folder names produce baffling errors months later, so spare yourself and avoid them from the start.</p>
     </div>
-    <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span class="lbl">Empty project folder open in VS Code</span></label>
+    <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span class="lbl">Empty project folder open in VS Code</span></label>
   </div>
 </section>
 
-<!-- ═══════════ SECTION 6 ═══════════ -->
-
-<!-- ═══════════ SECTION 7 ═══════════ -->
-<section class="chapter" id="ch7" data-ch="7">
+<!-- ═══════════ SECTION 9 ═══════════ -->
+<section class="chapter" id="ch9" data-ch="9">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 7 · Building</div>
+      <div class="ch-kicker">Section 9 · First project</div>
       <h2>Your first build</h2>
       <p class="sub">Two messages. The first sets your terms, the second gives Claude a job.</p>
     </div>
@@ -1130,15 +1203,24 @@ footer .hr{background:var(--line);height:1px}
       <h4>In every mode</h4>
       <p style="margin-bottom:0">Claude still stops and asks before anything consequential: deleting many files, reaching outside your folder, or installing software. If a request surprises you, type <b>"why do you need that?"</b> Nothing proceeds until you agree to it.</p>
     </div>
-    <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span class="lbl">Claude made me a file</span></label>
+    <div class="note tip">
+      <h4>Worth doing now: your first save point</h4>
+      <p>You have something that works, and that is the moment to record it. Section 11 covers this properly, but it costs one sentence to do it today:</p>
+      <div class="copy" style="margin-bottom:0">
+        <span class="tag">Paste into Claude</span>
+        <div class="txt">This version works. Please set up Git if it isn't already, and commit this as a save point.</div>
+        <button>Copy</button>
+      </div>
+    </div>
+    <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span class="lbl">Claude made me a file</span></label>
   </div>
 </section>
 
-<!-- ═══════════ SECTION 8 ═══════════ -->
-<section class="chapter" id="ch8" data-ch="8">
+<!-- ═══════════ SECTION 10 ═══════════ -->
+<section class="chapter" id="ch10" data-ch="10">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 8 · Building</div>
+      <div class="ch-kicker">Section 10 · First project</div>
       <h2>Look at it. Then change it.</h2>
       <p class="sub">The section most people skip, and the one that separates those who build things from those who nearly build things.</p>
     </div>
@@ -1231,16 +1313,16 @@ footer .hr{background:var(--line);height:1px}
       <div class="txt">That is not what I wanted. Undo that last change, then ask me questions until you understand what I am picturing.</div>
       <button>Copy</button>
     </div>
-    <label class="check"><input type="checkbox" data-check="8"><span class="box"></span><span class="lbl">I saw my page and changed it</span></label>
+    <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span class="lbl">I saw my page and changed it</span></label>
   </div>
 
 </section>
 
-<!-- ═══════════ SECTION 9 ═══════════ -->
-<section class="chapter" id="ch9" data-ch="9">
+<!-- ═══════════ SECTION 11 ═══════════ -->
+<section class="chapter" id="ch11" data-ch="11">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 9 · Protection</div>
+      <div class="ch-kicker">Section 11 · First project</div>
       <h2>Git</h2>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -1278,21 +1360,25 @@ footer .hr{background:var(--line);height:1px}
     <div class="note brain">
       <h4>Two more words you will hear</h4>
       <ul class="plain">
-        <li><b>Push.</b> Sending your commits up to GitHub, which is Section 10.</li>
+        <li><b>Push.</b> Sending your commits up to GitHub, which is Section 12.</li>
         <li><b>Repo.</b> Short for repository. Your project together with all of its history.</li>
       </ul>
     </div>
-    <label class="check"><input type="checkbox" data-check="9"><span class="box"></span><span class="lbl">I made my first commit</span></label>
+    <div class="note brain">
+      <h4>If you want the rest of it</h4>
+      <p style="margin-bottom:0">This section covers the two moves you will use every day. Git has more in it, and none of it is needed here, but branches, undoing a commit and reading a history are genuinely useful once you are building something real. There is a companion page for that: <a href="git-basics.html">Git basics</a>.</p>
+    </div>
+    <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span class="lbl">I made my first commit</span></label>
   </div>
 </section>
 
-<!-- ═══════════ SECTION 10 ═══════════ -->
-<section class="chapter" id="ch10" data-ch="10">
+<!-- ═══════════ SECTION 12 ═══════════ -->
+<section class="chapter" id="ch12" data-ch="12">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 10 · Shipping</div>
+      <div class="ch-kicker">Section 12 · First project</div>
       <h2>Put it on the internet</h2>
-      <p class="sub">Two free accounts and one prompt, and you have a link you can send to anyone.</p>
+      <p class="sub"><b>(The payoff.)</b></p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <circle cx="82" cy="78" r="46" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
@@ -1303,40 +1389,7 @@ footer .hr{background:var(--line);height:1px}
     </svg>
   </div>
 
-  <div class="block">
-    <h3>Two free accounts</h3>
-    <p class="lead"><span class="u">GitHub</span> stores your project and its history. <span class="u">Vercel</span> takes what GitHub holds and serves it to the public. Both have free tiers.</p>
-    <h4 style="margin-top:22px">GitHub, the filing cabinet</h4>
-    <ol class="dolist">
-      <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</li>
-      <li>Provide an email, a password and a username. Your username appears in links, so choose lowercase, no spaces, and something you would be content to say out loud.</li>
-      <li>Confirm the emailed code and choose the <b>Free</b> plan.</li>
-      <li>Write your username down somewhere. A remarkable number of people forget which one they picked.</li>
-    </ol>
-    <h4 style="margin-top:26px">Vercel, the shop window</h4>
-    <ol class="dolist">
-      <li>Go to <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a>.</li>
-      <li>Click <b>Continue with GitHub</b> and use the account you have just created.</li>
-      <li>Approve the permissions box, and select <b>Hobby</b> when it asks, which is the free tier.</li>
-    </ol>
-    <div class="flow">
-      <figure>
-        <img src="images/github-signup.png" alt="The GitHub sign-up form asking for email, password and username" loading="lazy">
-        <figcaption>GitHub asks for a username. That one shows up in your links.</figcaption>
-      </figure>
-      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 26 12" width="24" height="11"><path d="M1 6h20M16 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <figure>
-        <img src="images/vercel-signup.png" alt="The Vercel sign-up page with Continue with GitHub among the options" loading="lazy">
-        <figcaption>Vercel: choose <b>Continue with GitHub</b>, not email.</figcaption>
-      </figure>
-    </div>
-    <div class="note warn">
-      <h4>One rule about the free tier</h4>
-      <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects and showing your family all qualify. The moment it becomes a business or a client's site, Vercel expects you on a paid plan.</p>
-    </div>
-  </div>
-
-  <div class="block">
+<div class="block">
     <h3>Now ship it</h3>
     <p class="lead">Paste this in and follow along. Claude drives, you click.</p>
     <div class="copy prompt">
@@ -1361,15 +1414,15 @@ footer .hr{background:var(--line);height:1px}
       <h4>From this point forward</h4>
       <p style="margin-bottom:0">Say <b>"commit and push this"</b>, wait a minute, and refresh your link. Vercel updates the live site on its own each time. You connect GitHub to Vercel once, and that connection keeps working indefinitely.</p>
     </div>
-    <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span class="lbl">My work is on the internet</span></label>
+    <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span class="lbl">My work is on the internet</span></label>
   </div>
 </section>
 
-<!-- ═══════════ SECTION 11 ═══════════ -->
-<section class="chapter" id="ch11" data-ch="11">
+<!-- ═══════════ SECTION 13 ═══════════ -->
+<section class="chapter" id="ch13" data-ch="13">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 11 · Advanced</div>
+      <div class="ch-kicker">Section 13 · Going further</div>
       <h2>Secrets and superpowers</h2>
       <p class="sub">API keys, the <code>.env</code> file, and putting AI inside the thing you built.</p>
     </div>
@@ -1448,7 +1501,7 @@ node_modules</div></div>
         <li>Check a model's price on <a href="https://openrouter.ai/models" target="_blank" rel="noopener">openrouter.ai/models</a> before you point your code at it rather than afterwards.</li>
       </ul>
     </div>
-    <label class="check"><input type="checkbox" data-check="11"><span class="box"></span><span class="lbl">OpenRouter key created, capped, and stored in .env</span></label>
+    <label class="check"><input type="checkbox" data-check="13"><span class="box"></span><span class="lbl">OpenRouter key created, capped, and stored in .env</span></label>
   </div>
 
   <div class="block">
@@ -1472,11 +1525,11 @@ node_modules</div></div>
   </div>
 </section>
 
-<!-- ═══════════ SECTION 12 ═══════════ -->
-<section class="chapter" id="ch12" data-ch="12">
+<!-- ═══════════ SECTION 14 ═══════════ -->
+<section class="chapter" id="ch14" data-ch="14">
   <div class="ch-cover">
     <div>
-      <div class="ch-kicker">Section 12 · Graduation</div>
+      <div class="ch-kicker">Section 14 · Reference</div>
       <h2>Your survival kit</h2>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
@@ -1634,12 +1687,12 @@ node_modules</div></div>
   </div>
 
   <div class="block">
-    <label class="check"><input type="checkbox" data-check="12"><span class="box"></span><span class="lbl">I know where to find help</span></label>
+    <label class="check"><input type="checkbox" data-check="14"><span class="box"></span><span class="lbl">I know where to find help</span></label>
   </div>
 </section>
 
 <!-- ═══════════ FINAL EXAM ═══════════ -->
-<section class="chapter" id="ch13" data-ch="13">
+<section class="chapter" id="ch15" data-ch="15">
   <div class="ch-cover">
     <div>
       <div class="ch-kicker">The last thing</div>
@@ -1654,7 +1707,7 @@ node_modules</div></div>
     </svg>
   </div>
 
-  <div class="quiz" data-quiz="13">
+  <div class="quiz" data-quiz="15">
     <div class="quiz-head"><span class="zap">Final</span><h3>Final exam</h3></div>
     <p class="quiz-sub">Eight questions drawn from across the twelve sections. Wrong answers cost you nothing, so guess freely. Pass and you graduate.</p>
 
@@ -1778,7 +1831,6 @@ node_modules</div></div>
   </div>
 </section>
 
-
 <div class="navrow" id="navrow"></div>
 
 <footer id="footer" hidden>
@@ -1795,19 +1847,21 @@ node_modules</div></div>
 
   /* ---------- the course ---------- */
   var CH = [
-    {n:1,  t:"The Brief",             k:"Start here", c:"var(--orange)"},
-    {n:2,  t:"Your Claude account",   k:"Equipment",  c:"var(--ink)"},
-    {n:3,  t:"Install VS Code",       k:"Equipment",  c:"var(--orange)"},
-    {n:4,  t:"Add Claude Code",       k:"Equipment",  c:"var(--orange-deep)"},
-    {n:5,  t:"Meet Claude",           k:"Building",   c:"var(--ink)"},
-    {n:6,  t:"First project folder",  k:"Building",   c:"var(--orange)"},
-    {n:7,  t:"Your first build",      k:"Building",   c:"var(--orange-deep)"},
-    {n:8,  t:"Look at it. Change it.",k:"Building",   c:"var(--ink)"},
-    {n:9,  t:"Git",                   k:"Protection", c:"var(--orange)"},
-    {n:10, t:"Put it on the internet",k:"Shipping",   c:"var(--orange-deep)"},
-    {n:11, t:"Secrets & superpowers", k:"Advanced",   c:"var(--ink)"},
-    {n:12, t:"Your survival kit",     k:"Graduation", c:"var(--orange)"},
-    {n:13, t:"Final exam",            k:"The last thing", c:"var(--orange-deep)", exam:true}
+    {n:1,  t:"The Brief",              k:"Start here",     c:"var(--orange)"},
+    {n:2,  t:"Your Claude account",    k:"Set up",         c:"var(--ink)"},
+    {n:3,  t:"Install VS Code",        k:"Set up",         c:"var(--orange)"},
+    {n:4,  t:"Add Claude Code",        k:"Set up",         c:"var(--orange-deep)"},
+    {n:5,  t:"Meet Claude",            k:"Set up",         c:"var(--ink)"},
+    {n:6,  t:"Your GitHub account",    k:"Set up",         c:"var(--orange)"},
+    {n:7,  t:"Your Vercel account",    k:"Set up",         c:"var(--orange-deep)"},
+    {n:8,  t:"First project folder",   k:"Set up",         c:"var(--ink)"},
+    {n:9,  t:"Your first build",       k:"First project",  c:"var(--orange)"},
+    {n:10, t:"Look at it. Change it.", k:"First project",  c:"var(--orange-deep)"},
+    {n:11, t:"Git",                    k:"First project",  c:"var(--ink)"},
+    {n:12, t:"Put it on the internet", k:"First project",  c:"var(--orange)"},
+    {n:13, t:"Secrets & superpowers",  k:"Going further",  c:"var(--orange-deep)"},
+    {n:14, t:"Your survival kit",      k:"Reference",      c:"var(--ink)"},
+    {n:15, t:"Final exam",             k:"The last thing", c:"var(--orange-deep)", exam:true}
   ];
   var TOTAL = CH.length, KEY = "vibe101-v1";
 
@@ -1840,7 +1894,7 @@ node_modules</div></div>
   function doneCount(){ var c=0; for(var i=1;i<=TOTAL;i++) if(done(i)) c++; return c; }
 
   /* ---------- build the rail + the map ---------- */
-  var railList = $("#rail-list");
+  var railList = $("#rail-list"), lastPhase = null;
   CH.forEach(function(ch){
     var b = document.createElement("button");
     b.className = "rail-item";
@@ -1848,6 +1902,13 @@ node_modules</div></div>
     b.dataset.go = ch.n;
     if(ch.exam) b.classList.add("exam");
     b.innerHTML = '<span class="rail-dot"><span class="n">'+(ch.exam ? "" : ch.n)+'</span></span><span>'+ch.t+'</span>';
+    if(ch.k !== lastPhase && !ch.exam && ch.n > 1){
+      var hd = document.createElement("p");
+      hd.className = "rail-phase";
+      hd.textContent = ch.k;
+      railList.appendChild(hd);
+    }
+    lastPhase = ch.k;
     railList.appendChild(b);
   });
 
