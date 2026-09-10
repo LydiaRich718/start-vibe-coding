@@ -540,7 +540,10 @@ h1,h2,h3{letter-spacing:-.02em}
 .wordcard,.phrase,.gl,.fact{box-shadow:none;border-radius:11px;background:var(--card)}
 .wordcard:hover,.phrase:hover{transform:none;box-shadow:none;background:var(--sand)}
 .gl{border-style:solid}
-.eyebrow{box-shadow:none;border-radius:99px;font-weight:600;background:var(--sand)}
+.kicker-line{
+  font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0 0 18px;
+}
 .osswitch{box-shadow:none;border-radius:9px;padding:3px}
 .osswitch button{border-radius:7px;font-weight:600}
 
@@ -683,16 +686,16 @@ footer .hr{background:var(--line);height:1px}
 <nav class="rail" id="rail" aria-label="Sections">
   <p class="rail-title">The Course</p>
   <div id="rail-list"></div>
-  <p class="rail-foot">12 sections · about 90 minutes.<br>Your place is saved on this device.<br><button class="rail-reset" data-reset>start over</button></p>
+  <p class="rail-foot">Your place is saved on this device.<br><button class="rail-reset" data-reset>start over</button></p>
 </nav>
 <main class="page" id="page">
 
 <!-- ═══════════ SECTION 1 ═══════════ -->
 <section class="chapter" id="ch1" data-ch="1">
   <div class="hero">
-    <div class="eyebrow">No experience assumed</div>
+    <p class="kicker-line">No experience necessary</p>
     <h1>You're about to build <span class="hl">real software.</span></h1>
-    <p class="lede">By the end of this course you will have a working program on the internet, with a link you can send to anyone who doubts you. Twelve sections, about ninety minutes.</p>
+    <p class="lede">By the end of this course you will have a working program on the internet, with a link you can send to anyone who doubts you. Twelve sections.</p>
     <div class="hero-facts">
       <div class="fact"><b>12</b>sections</div>
     </div>
