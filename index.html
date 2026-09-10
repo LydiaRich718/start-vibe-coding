@@ -127,13 +127,17 @@ mark{background:linear-gradient(180deg,transparent 58%,var(--orange-soft) 58%);c
   background-repeat:no-repeat; background-position:0 100%; background-size:100% .34em;
   padding-bottom:.12em;
 }
-/* a scribbled aside pointing back at the line above it */
-.pointer{
-  display:flex;gap:10px;align-items:flex-start;max-width:440px;margin:-2px 0 18px;
-  background:var(--sand);border:2px dashed var(--ink);border-radius:14px;padding:10px 14px;font-size:.89rem;
+/* a speech bubble that leans in on the sentence beside it */
+.bubble{
+  float:right;width:252px;margin:2px 0 14px 20px;position:relative;
+  background:var(--sand);border:2px solid var(--ink);border-radius:16px;
+  padding:12px 15px;font-size:.88rem;line-height:1.5;
 }
-.pointer .pt{flex:none;font-size:1.1rem;line-height:1.25}
-.pointer p{margin:0}
+.bubble p{margin:0}
+.bubble:before,.bubble:after{content:"";position:absolute;left:30px;border:9px solid transparent}
+.bubble:before{bottom:-18px;border-top-color:var(--ink)}
+.bubble:after{bottom:-14px;border-top-color:var(--sand)}
+@media (max-width:640px){ .bubble{float:none;width:auto;margin:0 0 16px} }
 
 /* callouts */
 .note{border-radius:16px;padding:16px 18px;margin:18px 0;border:2px solid var(--ink);font-size:.96rem}
@@ -496,7 +500,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
   <div class="block">
     <h3>The arrangement</h3>
-    <p>You will not be writing the code. You describe what you want in plain English, the AI writes it, and then you examine the result and say what to change.</p>
+    <p>You will not be writing the code. You describe what you want in your own words, the AI writes it, and then you examine the result and say what to change.</p>
     <div class="big-idea">You are not learning to code.<br>You are learning to <mark>direct</mark> something that codes.</div>
   </div>
 
@@ -923,7 +927,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   </div>
 
   <div class="block">
-    <div class="big-idea">Code you have not looked at<br>is a <mark>rumour</mark>.</div>
+    <div class="big-idea">Code you have not looked at<br>is <mark>not finished</mark>.</div>
     <p>The easiest way to see your page is to ask for it:</p>
     <div class="copy">
       <span class="tag">Paste into Claude</span>
@@ -984,8 +988,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
   <div class="block">
     <h3>What Git does</h3>
+    <aside class="bubble"><p>A <b>commit</b> is one saved version of your project. You will make hundreds of them.</p></aside>
     <p>Git is an undo history for your entire project. Each time you <b>commit</b>, it records exactly what every file looked like at that moment, and you can return to any of those versions.</p>
-    <div class="pointer"><span class="pt">↑</span><p>A <b>commit</b> is one saved version of your project. You will make hundreds of them.</p></div>
     <div class="big-idea">Commit <mark>after</mark> anything that works.<br>Commit <mark>before</mark> anything large.</div>
     <p>There are no commands to learn. Claude does the work, and you supply the words:</p>
     <div class="copy">
