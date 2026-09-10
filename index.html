@@ -106,7 +106,10 @@ b,strong{font-weight:700}
 .ch-kicker{display:inline-flex;align-items:center;gap:8px;background:var(--cbg,var(--orange-bg));border:2px solid var(--ink);border-radius:99px;padding:4px 13px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px}
 .ch-cover h2{margin-bottom:.25em}
 .ch-cover .sub{color:var(--ink-soft);margin:0;font-size:1.02rem}
-.ch-cover .sub b{color:var(--ink)}
+/* brackets in black, the words inside plain and grey like every other subtitle */
+.ch-cover .sub.paren:before,.ch-cover .sub.paren:after{font-weight:700;color:var(--ink)}
+.ch-cover .sub.paren:before{content:"("}
+.ch-cover .sub.paren:after{content:")"}
 .ch-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .ch-meta span{background:var(--cream);border:2px solid var(--ink);border-radius:10px;padding:3px 10px;font-size:.76rem;font-weight:700}
 .illus{width:168px;height:132px;display:block}
@@ -813,7 +816,7 @@ footer .hr{background:var(--line);height:1px}
     <div>
       <div class="ch-kicker">Section 2 · Set up</div>
       <h2>Your Claude account</h2>
-      <p class="sub"><b>(The only purchase this course requires.)</b></p>
+      <p class="sub paren">The only purchase this course requires.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <rect x="26" y="34" width="148" height="92" rx="16" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
@@ -1046,7 +1049,7 @@ footer .hr{background:var(--line);height:1px}
     <div>
       <div class="ch-kicker">Section 6 · Set up</div>
       <h2>Your GitHub account</h2>
-      <p class="sub"><b>(Free, and no card.)</b></p>
+      <p class="sub paren">Free, and no card.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <rect x="34" y="42" width="132" height="82" rx="12" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
@@ -1081,7 +1084,7 @@ footer .hr{background:var(--line);height:1px}
     <div>
       <div class="ch-kicker">Section 7 · Set up</div>
       <h2>Your Vercel account</h2>
-      <p class="sub"><b>(Also free, also no card.)</b></p>
+      <p class="sub paren">Also free, also no card.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <circle cx="80" cy="80" r="44" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
@@ -1118,7 +1121,7 @@ footer .hr{background:var(--line);height:1px}
     <div>
       <div class="ch-kicker">Section 8 · First project</div>
       <h2>Your first project folder</h2>
-      <p class="sub"><b>(A box to work in.)</b></p>
+      <p class="sub paren">A box to work in.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M28 44a8 8 0 0 1 8-8h34l12 14h54a8 8 0 0 1 8 8v56a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V44z" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
@@ -1418,7 +1421,7 @@ footer .hr{background:var(--line);height:1px}
     <div>
       <div class="ch-kicker">Section 12 · First project</div>
       <h2>Put it on the internet</h2>
-      <p class="sub"><b>(The payoff.)</b></p>
+      <p class="sub paren">The payoff.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <circle cx="82" cy="78" r="46" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
@@ -1737,7 +1740,7 @@ node_modules</div></div>
     <div>
       <div class="ch-kicker">The last thing</div>
       <h2>Final exam</h2>
-      <p class="sub"><b>(Pass it and your certificate unlocks.)</b></p>
+      <p class="sub paren">Pass it and your certificate unlocks.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
       <path d="M100 26l74 28-74 28-74-28 74-28z" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
