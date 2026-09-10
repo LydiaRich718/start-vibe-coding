@@ -8,18 +8,19 @@
 <meta property="og:title" content="Vibe Coding 101">
 <meta property="og:description" content="Twelve sections. No experience needed. By the end you'll have something live on the internet.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230B0B0C'/><circle cx='50' cy='50' r='23' fill='none' stroke='%2300A3AF' stroke-width='9'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#1c1814; --ink-soft:#6d6355; --line:#e6dccb;
-  --cream:#faf5ec; --card:#fffdf7; --sand:#f3ebda; --sand-deep:#e9dec7;
-  --orange:#e0701f; --orange-bg:#fbe6d2; --orange-deep:#a94d12; --orange-soft:#f5a463;
-  --radius:20px;
-  --shadow:0 2px 0 rgba(28,24,20,.06), 0 12px 32px -12px rgba(28,24,20,.2);
-  --shadow-lift:0 4px 0 rgba(28,24,20,.08), 0 26px 50px -18px rgba(28,24,20,.34);
+  /* Marine Horizon */
+  --ink:#0B0B0C; --ink-soft:#5F6C72; --line:#E4EBED;
+  --cream:#FFFFFF; --card:#FFFFFF; --sand:#F4FAFB; --sand-deep:#E7F2F4;
+  --orange:#00A3AF; --orange-bg:#EBF6F7; --orange-deep:#274A78; --orange-soft:#A2D7DD;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(11,11,12,.04), 0 10px 28px -18px rgba(11,11,12,.22);
+  --shadow-lift:0 1px 3px rgba(11,11,12,.06), 0 24px 48px -26px rgba(11,11,12,.3);
   --rail-w:252px;
 }
 *{box-sizing:border-box}
@@ -215,9 +216,9 @@ code{background:var(--sand-deep);border-radius:6px;padding:1px 5px;font-size:.88
 .mock-bar .t{font-size:.78rem;color:var(--ink-soft);margin-left:8px;font-weight:600}
 .mock-body{display:flex;min-height:150px;font-size:.8rem}
 .mock-rail{width:46px;background:var(--ink);padding:9px 0;display:flex;flex-direction:column;align-items:center;gap:14px;font-size:1rem}
-.mock-rail span{opacity:.5;transition:.3s;cursor:default}
-.mock-rail span.hot{opacity:1;position:relative}
-.mock-rail span.hot:after{content:"";position:absolute;left:-9px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--orange);border-radius:2px}
+.mock-rail span{width:16px;height:16px;border-radius:4px;background:#fff;opacity:.4;transition:.3s;cursor:default}
+.mock-rail span.hot{opacity:1;position:relative;background:var(--orange)}
+.mock-rail span.hot:after{content:"";position:absolute;left:-11px;top:50%;transform:translateY(-50%);width:2px;height:18px;background:var(--orange);border-radius:2px}
 .mock-side{width:34%;background:var(--cream);border-right:1px solid var(--line);padding:10px}
 .mock-side .f{padding:3px 0;color:var(--ink-soft)}
 .mock-main{flex:1;padding:12px;background:#fff;color:var(--ink-soft)}
@@ -272,6 +273,10 @@ code{background:var(--sand-deep);border-radius:6px;padding:1px 5px;font-size:.88
 .wordcard:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--c,var(--orange-soft))}
 .wordcard .ic{font-size:2rem;line-height:1;display:block;margin-bottom:10px}
 .cmark{width:34px;height:34px;display:block}
+.mico{width:30px;height:30px;display:block}
+.yes,.no{font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:2px 7px}
+.yes{background:var(--orange);color:#fff}
+.no{background:var(--sand-deep);color:var(--ink-soft)}
 .cmark.inline{width:1.05em;height:1.05em;display:inline-block;vertical-align:-.18em}
 .wordcard h3{margin-bottom:.25em;margin-top:0}
 .wordcard p{margin:0;font-size:.94rem;color:var(--ink-soft)}
@@ -306,7 +311,7 @@ body[data-os="mac"] code.mac-only,body[data-os="win"] code.win-only{display:inli
   border:2px solid var(--ink);border-radius:24px;padding:26px;margin-bottom:22px;box-shadow:var(--shadow-lift);position:relative;
 }
 .quiz-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.quiz-head .zap{font-size:1.8rem;line-height:1;animation:bob 2.4s ease-in-out infinite}
+.quiz-head .zap{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--orange);border-radius:5px;padding:4px 9px;animation:none}
 .quiz-head h3{margin:0;font-size:1.45rem}
 .quiz-sub{color:var(--ink-soft);font-size:.94rem;margin:0 0 20px}
 .q{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:18px 20px;margin-bottom:14px;box-shadow:3px 3px 0 rgba(32,34,63,.12)}
@@ -477,6 +482,175 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
   *{animation:none!important;transition:none!important}
   .hero h1 .hl:after{transform:scaleX(1)}
 }
+
+/* ─────────── Marine Horizon refinement ───────────
+   flattens the heavy outlines and offset shadows the old palette leaned on */
+
+body{background:var(--cream)}
+h1,h2,h3{letter-spacing:-.02em}
+
+/* one hairline everywhere a 2px outline used to be */
+.block,.ch-cover,.mock,.acc,.wordcard,.gl,.phrase,.fact,.eyebrow,.osswitch,
+.navbtn,.rail-item.on,.quiz,.q,.opt,.check,.quiz-score,.bubble,.note,
+.cert,.finish,.party-card,.lp{
+  border-width:1px;border-color:var(--line);
+}
+.block,.quiz,.cert,.finish{border-radius:14px;box-shadow:var(--shadow)}
+.ch-cover{border-radius:14px;box-shadow:var(--shadow);padding:26px 28px}
+.ch-cover:before{height:3px;background:var(--orange)}
+.ch-kicker{
+  background:none;border:0;padding:0;margin-bottom:10px;color:var(--ink-soft);
+  font-size:.7rem;letter-spacing:.14em;
+}
+
+/* buttons lose the stacked-paper shadow */
+.btn{border:0;border-radius:9px;box-shadow:none;font-weight:600;padding:13px 26px}
+.btn:hover{transform:none;background:#22333A;box-shadow:none}
+.btn:active{transform:none;box-shadow:none}
+.btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{background:var(--sand)}
+
+.navbtn{border-radius:12px;box-shadow:none;background:var(--card)}
+.navbtn:hover{transform:none;box-shadow:none;background:var(--sand)}
+.navbtn.next{box-shadow:none}
+.navbtn.next:hover{box-shadow:none}
+
+/* sidebar */
+.rail-item{border-radius:9px;font-weight:500}
+.rail-item.on{box-shadow:none;background:var(--sand);border-color:var(--line);font-weight:600}
+.rail-dot{border-width:1px;border-radius:7px;font-weight:600}
+.rail-item.on .rail-dot{background:var(--orange);border-color:var(--orange);color:#fff}
+.rail-item.done .rail-dot{background:var(--orange);border-color:var(--orange)}
+.rail-title{letter-spacing:.14em}
+
+/* callouts: a rule down the side instead of a coloured box */
+.note{
+  background:var(--sand);border:1px solid var(--line);border-left:3px solid var(--orange);
+  border-radius:0 10px 10px 0;padding:15px 18px;
+}
+.note h4{font-family:Inter,sans-serif;font-size:.95rem;letter-spacing:0}
+.note.warn,.note.stuck{background:var(--orange-bg);border-left-color:var(--orange-deep)}
+.note.danger{
+  background:var(--orange-deep);color:#fff;border-color:var(--orange-deep);
+  border-left-color:var(--orange-soft);
+}
+.note.danger code{background:rgba(255,255,255,.14);color:#fff}
+.note.danger a{color:var(--orange-soft)}
+
+/* cards */
+.wordcard,.phrase,.gl,.fact{box-shadow:none;border-radius:11px;background:var(--card)}
+.wordcard:hover,.phrase:hover{transform:none;box-shadow:none;background:var(--sand)}
+.gl{border-style:solid}
+.eyebrow{box-shadow:none;border-radius:99px;font-weight:600;background:var(--sand)}
+.osswitch{box-shadow:none;border-radius:9px;padding:3px}
+.osswitch button{border-radius:7px;font-weight:600}
+
+/* the marked words */
+mark{background:linear-gradient(180deg,transparent 60%,var(--orange-soft) 60%)}
+.hero h1 .hl:after{background:var(--orange-soft);height:.28em}
+.big-idea{border-left-width:3px;border-left-color:var(--orange)}
+.u{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10' preserveAspectRatio='none'%3E%3Cpath d='M2 7C20 3 40 9 62 5S100 3 118 6' fill='none' stroke='%2300A3AF' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E")}
+
+/* numbered steps */
+ol.dolist li:before{border-radius:6px;background:var(--ink);font-weight:600}
+ol.dolist li{border-bottom-color:var(--line)}
+kbd{border-width:1px;border-bottom-width:2px;border-radius:5px;font-weight:500}
+code{background:var(--orange-bg);border-radius:4px}
+
+/* prompts */
+.copy{background:#12181B;border-radius:11px;box-shadow:none}
+.copy.prompt{background:#16202A}
+.copy .tag{
+  background:var(--orange);color:#fff;border:0;border-radius:5px;
+  font-weight:600;letter-spacing:.09em;top:-9px;
+}
+.copy button{border:0;border-radius:7px;font-weight:600;background:#fff}
+.copy button:hover{transform:none;background:var(--orange-soft)}
+.copy button.ok{background:var(--orange);color:#fff}
+
+/* progress */
+.topbar{border-bottom:1px solid var(--line)}
+.tb-track{border:0;height:6px;background:var(--sand-deep)}
+.tb-fill{
+  background:linear-gradient(90deg,#A2D7DD,#00A3AF,#274A78);
+  background-size:200% 100%;animation:slide 9s linear infinite;
+}
+.tb-logo span{color:var(--orange)}
+
+/* checkbox */
+.check{
+  border:1px solid var(--line);border-left:3px solid var(--orange);
+  background:var(--sand);border-radius:0 10px 10px 0;font-weight:600;
+}
+.check:hover{transform:none;background:var(--orange-bg)}
+.check.on{background:var(--orange-bg);border-color:var(--line);border-left-color:var(--orange)}
+.box{border-width:1px;border-radius:5px}
+.check.on .box{background:var(--orange);border-color:var(--orange);transform:none}
+
+/* quiz */
+.quiz{background:var(--sand)}
+.quiz-head h3{letter-spacing:-.01em}
+.q{box-shadow:none;border-radius:11px}
+.opt{border-radius:9px;background:var(--card);font-weight:500}
+.opt:hover{transform:none;background:var(--sand)}
+.opt .pip{border-width:1px;border-radius:6px;font-weight:600}
+.opt.right{background:var(--orange-bg);border-color:var(--orange)}
+.opt.right .pip{background:var(--orange);border-color:var(--orange)}
+.opt.wrong{background:var(--sand-deep);border-color:var(--line)}
+.opt.wrong .pip{background:var(--ink-soft);border-color:var(--ink-soft)}
+.why{background:var(--orange-bg);border:1px solid var(--orange);border-radius:9px}
+.nudge{background:var(--sand-deep);border:1px dashed var(--line);border-radius:9px}
+.quiz-score{box-shadow:none;border-radius:10px}
+.quiz-score .bar{background:var(--sand-deep)}
+.quiz-score .bar i{background:linear-gradient(90deg,#A2D7DD,#00A3AF)}
+.quiz-score.pass{background:var(--orange-bg);border-color:var(--orange)}
+
+/* the loop */
+.loopstep{border-radius:11px;background:var(--card)}
+.loopstep.on{transform:none;box-shadow:none;background:var(--orange-bg);border-color:var(--orange)}
+.loopstep .n{background:var(--ink);font-weight:600}
+
+/* swap rows */
+.swap .strong{border-width:1px;border-color:var(--orange)}
+
+/* speech bubble */
+.bubble{background:var(--sand);border-radius:11px}
+.bubble:before{border-right-color:var(--line)}
+.bubble:after{border-right-color:var(--sand)}
+
+/* accordion */
+.acc{box-shadow:none;border-radius:11px}
+.acc[open] summary{background:var(--sand);border-bottom:1px solid var(--line)}
+
+/* screenshots */
+.shot img,.flow figure img{border-color:var(--line);border-radius:8px}
+
+/* certificate */
+.cert{background:var(--card);border:1px solid var(--line);border-radius:14px}
+.cert:before{background:var(--orange-bg)}
+.cert:after{background:var(--sand-deep)}
+.cert input.name{border-bottom-width:2px}
+.badge{box-shadow:none;border-radius:99px;border-width:1px;font-weight:500}
+.badge.on{background:var(--orange-bg);border-color:var(--orange);transform:none}
+.finish{background:var(--orange-bg)}
+
+/* modal */
+.party-card{border-width:1px;border-radius:14px;box-shadow:var(--shadow-lift)}
+.party-badges span{border-width:1px;border-radius:99px;background:var(--sand);font-weight:500}
+.toast{border-radius:8px;font-weight:600}
+
+/* background wash, drawn from the gradient */
+.blob{opacity:.42;filter:blur(90px)}
+.blob.b1{background:#A2D7DD}
+.blob.b2{background:#EBF6F7}
+.blob.b3{background:#A2D7DD}
+.blob.b4{background:#DCEEF1}
+
+footer .hr{background:var(--line);height:1px}
+.tagpin{background:var(--orange);border-radius:4px;font-weight:600}
+.mock{box-shadow:none;border-radius:11px}
+.mock-bar{background:var(--sand);border-bottom:1px solid var(--line)}
+.mock-rail{background:var(--ink)}
 </style>
 </head>
 <body data-os="mac">
@@ -488,10 +662,9 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 <div class="party" id="party" role="dialog" aria-modal="true" aria-labelledby="party-title">
   <div class="party-card">
     <button class="party-close" id="party-x" aria-label="Close">×</button>
-    <span class="emoji">🎓</span>
     <h2 id="party-title">Twelve sections, completed.</h2>
     <p>A working setup, a save history, secrets handled properly, and something you built living on the real internet.</p>
-    <div class="party-badges"><span>✳️ Claude</span><span>🐙 GitHub</span><span>▲ Vercel</span><span>🔑 OpenRouter</span><span>🌍 Shipped</span></div>
+    <div class="party-badges"><span>Claude</span><span>GitHub</span><span>Vercel</span><span>OpenRouter</span><span>Shipped</span></div>
     <button class="btn" id="party-next">See my certificate →</button>
   </div>
 </div>
@@ -518,7 +691,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 <!-- ═══════════ SECTION 1 ═══════════ -->
 <section class="chapter" id="ch1" data-ch="1">
   <div class="hero">
-    <div class="eyebrow">📋 No experience assumed</div>
+    <div class="eyebrow">No experience assumed</div>
     <h1>You're about to build <span class="hl">real software.</span></h1>
     <p class="lede">By the end of this course you will have a working program on the internet, with a link you can send to anyone who doubts you. Twelve sections, about ninety minutes.</p>
     <div class="hero-facts">
@@ -537,7 +710,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <h3>Three terms you will hear constantly</h3>
     <div class="grid3" style="margin-top:18px">
       <div class="wordcard">
-        <span class="ic">🗂️</span><h3>VS Code</h3>
+        <span class="ic"><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 8.5h19"/><path d="M8 8.5V20"/></svg></span><h3>VS Code</h3>
         <p>A free application that holds your project's files. Consider it your workshop.</p>
       </div>
       <div class="wordcard">
@@ -545,12 +718,12 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
         <p>The AI that works inside VS Code. You describe, it writes the files.</p>
       </div>
       <div class="wordcard">
-        <span class="ic">⌨️</span><h3>Terminal</h3>
+        <span class="ic"><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="#0B0B0C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M7 10l3 2.5L7 15"/><path d="M12.5 15.5h4.5"/></svg></span><h3>Terminal</h3>
         <p>A window for typing commands instead of clicking. You may ignore it.</p>
       </div>
     </div>
     <div class="note brain" style="margin-top:24px">
-      <h4>🧠 On the phrase "vibe coding"</h4>
+      <h4>On the phrase "vibe coding"</h4>
       <p style="margin:0">It means describing what you want in ordinary language and letting the AI write it. You are not required to read the code. You are required to look at the result. That distinction is the substance of this course.</p>
     </div>
   </div>
@@ -565,7 +738,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <div class="loopstep"><div class="n">4</div><h4>Repeat</h4><p>And then you begin again.</p></div>
     </div>
     <div class="note warn" style="margin-top:22px">
-      <h4>⚠️ The one way to do this badly</h4>
+      <h4>The one way to do this badly</h4>
       <p style="margin:0">Skipping step two.</p>
     </div>
   </div>
@@ -576,8 +749,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <div class="osrow" style="margin:0 0 4px">
       <span class="lab">I'm on a</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
-        <button data-os="mac" class="on">🍎 Mac</button>
-        <button data-os="win">🪟 Windows</button>
+        <button data-os="mac" class="on">Mac</button>
+        <button data-os="win">Windows</button>
       </div>
     </div>
     <label class="check"><input type="checkbox" data-check="1"><span class="box"></span><span class="lbl">I understand the assignment</span></label>
@@ -593,13 +766,13 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">The only purchase this course requires.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <rect x="26" y="34" width="148" height="92" rx="16" fill="#fbe6d2" stroke="#1c1814" stroke-width="4"/>
-      <rect x="26" y="52" width="148" height="16" fill="#1c1814"/>
-      <rect x="42" y="86" width="54" height="9" rx="4.5" fill="#1c1814" opacity=".3"/>
-      <rect x="42" y="102" width="34" height="9" rx="4.5" fill="#1c1814" opacity=".18"/>
-      <circle cx="140" cy="100" r="17" fill="#e0701f" stroke="#1c1814" stroke-width="4"/>
-      <path d="M133 100l5 5 10-11" stroke="#fffdf7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M100 12v14M84 20l7 9M116 20l-7 9" stroke="#e0701f" stroke-width="4" stroke-linecap="round"/>
+      <rect x="26" y="34" width="148" height="92" rx="16" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
+      <rect x="26" y="52" width="148" height="16" fill="#0B0B0C"/>
+      <rect x="42" y="86" width="54" height="9" rx="4.5" fill="#0B0B0C" opacity=".3"/>
+      <rect x="42" y="102" width="34" height="9" rx="4.5" fill="#0B0B0C" opacity=".18"/>
+      <circle cx="140" cy="100" r="17" fill="#00A3AF" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M133 100l5 5 10-11" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M100 12v14M84 20l7 9M116 20l-7 9" stroke="#00A3AF" stroke-width="4" stroke-linecap="round"/>
     </svg>
   </div>
 
@@ -615,7 +788,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <figcaption>Google, Apple, or an email address. Any of the three is fine. You will meet this page again in Section 5, when VS Code sends you back to it.</figcaption>
     </figure>
     <div class="note brain">
-      <h4>🧾 Where your money goes</h4>
+      <h4>Where your money goes</h4>
       <p style="margin:0">One subscription covers Claude in the browser and Claude Code in VS Code. It is a single bill. The remaining tools in this course cost nothing at all.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="2"><span class="box"></span><span class="lbl">Claude account created, on a paid plan</span></label>
@@ -631,16 +804,16 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">Your workshop. It looks alarming for about ninety seconds.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <rect x="20" y="26" width="160" height="104" rx="13" fill="#fffdf7" stroke="#1c1814" stroke-width="4"/>
-      <rect x="20" y="26" width="160" height="20" rx="13" fill="#f3ebda" stroke="#1c1814" stroke-width="4"/>
-      <circle cx="34" cy="36" r="4" fill="#1c1814" opacity=".55"/><circle cx="48" cy="36" r="4" fill="#1c1814" opacity=".35"/><circle cx="62" cy="36" r="4" fill="#1c1814" opacity=".2"/>
-      <rect x="20" y="46" width="30" height="84" fill="#1c1814"/>
-      <rect x="30" y="58" width="10" height="4" rx="2" fill="#e0701f"/><rect x="30" y="72" width="10" height="4" rx="2" fill="#fffdf7" opacity=".45"/><rect x="30" y="86" width="10" height="4" rx="2" fill="#fffdf7" opacity=".45"/><rect x="30" y="100" width="10" height="4" rx="2" fill="#fffdf7" opacity=".45"/>
-      <rect x="62" y="60" width="62" height="8" rx="4" fill="#e0701f" opacity=".8"/>
-      <rect x="62" y="76" width="94" height="8" rx="4" fill="#1c1814" opacity=".18"/>
-      <rect x="62" y="92" width="74" height="8" rx="4" fill="#1c1814" opacity=".18"/>
-      <rect x="62" y="108" width="44" height="8" rx="4" fill="#f5a463"/>
-      <path d="M158 128l14 16M172 128l-14 16" stroke="#e0701f" stroke-width="4" stroke-linecap="round"/>
+      <rect x="20" y="26" width="160" height="104" rx="13" fill="#FFFFFF" stroke="#0B0B0C" stroke-width="4"/>
+      <rect x="20" y="26" width="160" height="20" rx="13" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
+      <circle cx="34" cy="36" r="4" fill="#0B0B0C" opacity=".55"/><circle cx="48" cy="36" r="4" fill="#0B0B0C" opacity=".35"/><circle cx="62" cy="36" r="4" fill="#0B0B0C" opacity=".2"/>
+      <rect x="20" y="46" width="30" height="84" fill="#0B0B0C"/>
+      <rect x="30" y="58" width="10" height="4" rx="2" fill="#00A3AF"/><rect x="30" y="72" width="10" height="4" rx="2" fill="#FFFFFF" opacity=".45"/><rect x="30" y="86" width="10" height="4" rx="2" fill="#FFFFFF" opacity=".45"/><rect x="30" y="100" width="10" height="4" rx="2" fill="#FFFFFF" opacity=".45"/>
+      <rect x="62" y="60" width="62" height="8" rx="4" fill="#00A3AF" opacity=".8"/>
+      <rect x="62" y="76" width="94" height="8" rx="4" fill="#0B0B0C" opacity=".18"/>
+      <rect x="62" y="92" width="74" height="8" rx="4" fill="#0B0B0C" opacity=".18"/>
+      <rect x="62" y="108" width="44" height="8" rx="4" fill="#A2D7DD"/>
+      <path d="M158 128l14 16M172 128l-14 16" stroke="#00A3AF" stroke-width="4" stroke-linecap="round"/>
     </svg>
   </div>
 
@@ -648,8 +821,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <div class="osrow">
       <span class="lab">Showing steps for</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
-        <button data-os="mac" class="on">🍎 Mac</button>
-        <button data-os="win">🪟 Windows</button>
+        <button data-os="mac" class="on">Mac</button>
+        <button data-os="win">Windows</button>
       </div>
     </div>
     <ol class="dolist">
@@ -670,7 +843,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <p>Once it lands, install it.</p>
     <div class="mac-only">
       <div class="note tip">
-        <h4>🍎 On Mac</h4>
+        <h4>On Mac</h4>
         <ul class="plain">
           <li>Double-click the downloaded <code>.dmg</code>. A window opens with the blue Visual Studio Code icon inside it.</li>
           <li>Drag that icon into <b>Applications</b>, then open it from there.</li>
@@ -680,7 +853,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     </div>
     <div class="win-only">
       <div class="note tip">
-        <h4>🪟 On Windows</h4>
+        <h4>On Windows</h4>
         <ul class="plain">
           <li>Double-click the downloaded <code>.exe</code>.</li>
           <li>Accept the agreement, then click <b>Next</b> through every screen. The defaults are correct.</li>
@@ -689,15 +862,15 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       </div>
     </div>
     <div class="note see">
-      <h4>👀 You should see</h4>
+      <h4>You should see</h4>
       <p style="margin-bottom:0">A large window with a strip of icons down the far left. That strip is the <b>Activity Bar</b>. You will use about three of those buttons in this entire course, so pay no attention to the rest of the interface.</p>
     </div>
     <div class="mock">
       <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="t">Visual Studio Code</span></div>
       <div class="mock-body">
-        <div class="mock-rail"><span>📄</span><span>🔍</span><span>🌿</span><span>▶️</span><span>🧩</span></div>
+        <div class="mock-rail"><span></span><span></span><span></span><span></span><span></span></div>
         <div class="mock-side"><div class="f" style="font-weight:700;color:var(--ink)">EXPLORER</div><div class="f">No folder opened</div></div>
-        <div class="mock-main">↖ the <b>Activity Bar</b>, and the only part you need.</div>
+        <div class="mock-main">That strip is the <b>Activity Bar</b>, and the only part you need.</div>
       </div>
     </div>
     <label class="check"><input type="checkbox" data-check="3"><span class="box"></span><span class="lbl">VS Code is installed and open</span></label>
@@ -713,10 +886,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">Installing the AI into your workshop.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <path d="M52 42h34a12 12 0 1 1 24 0h34v34a12 12 0 1 0 0 24v34H52V42z" fill="#fbe6d2" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M52 42h34a12 12 0 1 1 24 0h34v34a12 12 0 1 0 0 24v34H52V42z" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
       <g transform="translate(58 42) scale(0.84)"><path d="M50.0 44.0L50.0 6.0M53.2 45.0L73.8 13.0M55.5 47.5L90.0 31.7M55.9 50.9L93.6 56.3M54.5 53.9L83.3 78.8M51.7 55.8L62.4 92.2M48.3 55.8L37.6 92.2M45.5 53.9L16.7 78.8M44.1 50.9L6.4 56.3M44.5 47.5L10.0 31.7M46.8 45.0L26.2 13.0" stroke="#D97757" stroke-width="9" stroke-linecap="round" fill="none"/></g>
-      <circle cx="150" cy="40" r="6" fill="#f5a463" stroke="#1c1814" stroke-width="3"/>
-      <circle cx="42" cy="122" r="5" fill="#1c1814"/>
+      <circle cx="150" cy="40" r="6" fill="#A2D7DD" stroke="#0B0B0C" stroke-width="3"/>
+      <circle cx="42" cy="122" r="5" fill="#0B0B0C"/>
     </svg>
   </div>
 
@@ -725,12 +898,12 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <div class="osrow">
       <span class="lab">Showing steps for</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
-        <button data-os="mac" class="on">🍎 Mac</button>
-        <button data-os="win">🪟 Windows</button>
+        <button data-os="mac" class="on">Mac</button>
+        <button data-os="win">Windows</button>
       </div>
     </div>
     <ol class="dolist">
-      <li>Click the <b>four squares</b> 🧩 icon on the far left. <span class="mac-only">Or press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>X</kbd>.</span><span class="win-only">Or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>.</span></li>
+      <li>Click the <b>four squares</b> icon on the far left. <span class="mac-only">Or press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>X</kbd>.</span><span class="win-only">Or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>.</span></li>
       <li>Search for <b>Claude Code</b>.</li>
       <li>Choose the one published by <b>Anthropic</b>. Check the publisher, because there are imitations with near-identical names.</li>
       <li>Click <b>Install</b>.</li>
@@ -740,11 +913,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <figcaption>The circled one is the real thing. Look at everything below it: same words, different publishers. This is why you check.</figcaption>
     </figure>
     <div class="note see">
-      <h4>👀 You should see</h4>
+      <h4>You should see</h4>
       <p style="margin-bottom:0">A new <b>Spark</b> icon, a small four-pointed star, appear in that left strip. Learn to spot it, because it means Claude everywhere you meet it.</p>
     </div>
     <div class="note stuck">
-      <h4>🔦 If no star appears</h4>
+      <h4>If no star appears</h4>
       <p style="margin-bottom:0">Quit VS Code completely and reopen it. Failing that, press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> and run <b>Developer: Reload Window</b>. One of the two always resolves it.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="4"><span class="box"></span><span class="lbl">Claude Code extension installed, star visible</span></label>
@@ -760,11 +933,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">Sign in and find the chat box.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <path d="M26 42a12 12 0 0 1 12-12h68a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12H62l-22 18V88h-2a12 12 0 0 1-12-12V42z" fill="#f3ebda" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <rect x="46" y="50" width="46" height="7" rx="3.5" fill="#1c1814" opacity=".32"/>
-      <rect x="46" y="64" width="30" height="7" rx="3.5" fill="#1c1814" opacity=".18"/>
+      <path d="M26 42a12 12 0 0 1 12-12h68a12 12 0 0 1 12 12v34a12 12 0 0 1-12 12H62l-22 18V88h-2a12 12 0 0 1-12-12V42z" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="46" y="50" width="46" height="7" rx="3.5" fill="#0B0B0C" opacity=".32"/>
+      <rect x="46" y="64" width="30" height="7" rx="3.5" fill="#0B0B0C" opacity=".18"/>
       <g transform="translate(104 46) scale(0.9)"><path d="M50.0 44.0L50.0 6.0M53.2 45.0L73.8 13.0M55.5 47.5L90.0 31.7M55.9 50.9L93.6 56.3M54.5 53.9L83.3 78.8M51.7 55.8L62.4 92.2M48.3 55.8L37.6 92.2M45.5 53.9L16.7 78.8M44.1 50.9L6.4 56.3M44.5 47.5L10.0 31.7M46.8 45.0L26.2 13.0" stroke="#D97757" stroke-width="9" stroke-linecap="round" fill="none"/></g>
-      <circle cx="60" cy="126" r="5" fill="#f5a463" stroke="#1c1814" stroke-width="3"/>
+      <circle cx="60" cy="126" r="5" fill="#A2D7DD" stroke="#0B0B0C" stroke-width="3"/>
     </svg>
   </div>
 
@@ -772,8 +945,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <div class="osrow">
       <span class="lab">Showing steps for</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
-        <button data-os="mac" class="on">🍎 Mac</button>
-        <button data-os="win">🪟 Windows</button>
+        <button data-os="mac" class="on">Mac</button>
+        <button data-os="win">Windows</button>
       </div>
     </div>
     <p class="lead">Signing in sends you out to your browser and back again. Here is the whole trip.</p>
@@ -810,12 +983,12 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
 
     <p>You only do this once. Claude stays signed in from now on.</p>
     <div class="note see">
-      <h4>👀 You should see</h4>
+      <h4>You should see</h4>
       <p>A chat box waiting for you, plus a small <b>Learn Claude Code</b> checklist. That is the extension's own tour. Click through it or dismiss it with the <b>×</b>, since this course covers the same ground.</p>
       <p style="margin-bottom:0">The star also appears at the top right of the editor, but only once a file is open, so it will not be there yet. The one in the left strip always is.</p>
     </div>
     <div class="note stuck">
-      <h4>🔦 If you cannot find it</h4>
+      <h4>If you cannot find it</h4>
       <ul class="plain">
         <li class="mac-only">Press <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>, type <b>Claude</b>, and pick an option such as "Open in New Tab". (<kbd>⇧</kbd> is Shift.)</li>
         <li class="win-only">Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type <b>Claude</b>, and pick an option such as "Open in New Tab".</li>
@@ -823,7 +996,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       </ul>
     </div>
     <div class="note tip">
-      <h4>🎬 The official tour</h4>
+      <h4>The official tour</h4>
       <p style="margin-bottom:0">In that same command box, run <b>Claude Code: Open Walkthrough</b>. Two minutes, made by the people who built it.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="6"><span class="box"></span><span class="lbl">Signed in, chat box is waiting</span></label>
@@ -837,10 +1010,10 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">A box to work in, and quietly your safety net.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <path d="M28 44a8 8 0 0 1 8-8h34l12 14h54a8 8 0 0 1 8 8v56a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V44z" fill="#f3ebda" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M28 66h116v52a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V66z" fill="#f5a463" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M150 40l6 14 14 6-14 6-6 14-6-14-14-6 14-6 6-14z" fill="#e0701f" stroke="#1c1814" stroke-width="3.5" stroke-linejoin="round"/>
-      <rect x="56" y="88" width="60" height="7" rx="3.5" fill="#1c1814" opacity=".3"/>
+      <path d="M28 44a8 8 0 0 1 8-8h34l12 14h54a8 8 0 0 1 8 8v56a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V44z" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M28 66h116v52a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8V66z" fill="#A2D7DD" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M150 40l6 14 14 6-14 6-6 14-6-14-14-6 14-6 6-14z" fill="#00A3AF" stroke="#0B0B0C" stroke-width="3.5" stroke-linejoin="round"/>
+      <rect x="56" y="88" width="60" height="7" rx="3.5" fill="#0B0B0C" opacity=".3"/>
     </svg>
   </div>
 
@@ -849,8 +1022,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <div class="osrow">
       <span class="lab">Showing steps for</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
-        <button data-os="mac" class="on">🍎 Mac</button>
-        <button data-os="win">🪟 Windows</button>
+        <button data-os="mac" class="on">Mac</button>
+        <button data-os="win">Windows</button>
       </div>
     </div>
     <div class="mac-only">
@@ -872,7 +1045,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <li>When asked whether you trust the authors, say yes. You made the folder yourself.</li>
     </ol>
     <div class="note see">
-      <h4>👀 You should see</h4>
+      <h4>You should see</h4>
       <p style="margin-bottom:0"><b>test</b> in the top left with nothing underneath it. An empty folder is the correct outcome, and Section 7 fills it.</p>
     </div>
     <figure class="shot medium">
@@ -880,8 +1053,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <figcaption>Nothing under the folder name. That is what an empty project looks like.</figcaption>
     </figure>
     <div class="note tip">
-      <h4>💡 The naming rule</h4>
-      <p style="margin-bottom:0">Lowercase, no spaces, hyphens between words.<br><code>my-recipe-site</code> ✅ &nbsp;&nbsp; <code>My Recipe Site</code> ❌<br>Spaces in folder names produce baffling errors months later, so spare yourself and avoid them from the start.</p>
+      <h4>The naming rule</h4>
+      <p style="margin-bottom:0">Lowercase, no spaces, hyphens between words.<br><code>my-recipe-site</code> <span class="yes">yes</span> &nbsp;&nbsp; <code>My Recipe Site</code> <span class="no">no</span><br>Spaces in folder names produce baffling errors months later, so spare yourself and avoid them from the start.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="5"><span class="box"></span><span class="lbl">Empty project folder open in VS Code</span></label>
   </div>
@@ -898,15 +1071,15 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">Two messages. The first sets your terms, the second gives Claude a job.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <rect x="94" y="46" width="76" height="84" rx="10" fill="#fffdf7" stroke="#1c1814" stroke-width="4"/>
-      <rect x="106" y="60" width="52" height="12" rx="6" fill="#1c1814"/>
-      <rect x="106" y="80" width="14" height="14" rx="4" fill="#e0701f" stroke="#1c1814" stroke-width="3"/>
-      <rect x="125" y="80" width="14" height="14" rx="4" fill="#f5a463" stroke="#1c1814" stroke-width="3"/>
-      <rect x="144" y="80" width="14" height="14" rx="4" fill="#f3ebda" stroke="#1c1814" stroke-width="3"/>
-      <rect x="106" y="104" width="34" height="13" rx="6.5" fill="#e0701f" stroke="#1c1814" stroke-width="3"/>
-      <path d="M26 118L72 72" stroke="#1c1814" stroke-width="9" stroke-linecap="round"/>
-      <path d="M72 72l10-10" stroke="#f5a463" stroke-width="11" stroke-linecap="round"/>
-      <path d="M62 42l4 10 10 4-10 4-4 10-4-10-10-4 10-4 4-10z" fill="#e0701f" stroke="#1c1814" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="94" y="46" width="76" height="84" rx="10" fill="#FFFFFF" stroke="#0B0B0C" stroke-width="4"/>
+      <rect x="106" y="60" width="52" height="12" rx="6" fill="#0B0B0C"/>
+      <rect x="106" y="80" width="14" height="14" rx="4" fill="#00A3AF" stroke="#0B0B0C" stroke-width="3"/>
+      <rect x="125" y="80" width="14" height="14" rx="4" fill="#A2D7DD" stroke="#0B0B0C" stroke-width="3"/>
+      <rect x="144" y="80" width="14" height="14" rx="4" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="3"/>
+      <rect x="106" y="104" width="34" height="13" rx="6.5" fill="#00A3AF" stroke="#0B0B0C" stroke-width="3"/>
+      <path d="M26 118L72 72" stroke="#0B0B0C" stroke-width="9" stroke-linecap="round"/>
+      <path d="M72 72l10-10" stroke="#A2D7DD" stroke-width="11" stroke-linecap="round"/>
+      <path d="M62 42l4 10 10 4-10 4-4 10-4-10-10-4 10-4 4-10z" fill="#00A3AF" stroke="#0B0B0C" stroke-width="3" stroke-linejoin="round"/>
     </svg>
   </div>
 
@@ -923,7 +1096,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <button>Copy</button>
     </div>
     <div class="note see">
-      <h4>👀 You should see</h4>
+      <h4>You should see</h4>
       <ul class="plain">
         <li>Claude explains what it intends to do, and then does it.</li>
         <li>A file called <code>index.html</code> appears on the left.</li>
@@ -946,7 +1119,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <figcaption><b>Manual</b> asks before every edit. <b>Plan</b> shows you its thinking first. <b>Auto</b> gets on with the safe things and stops at anything risky. Shift and Tab cycles through them.</figcaption>
     </figure>
     <div class="note warn">
-      <h4>🚦 In every mode</h4>
+      <h4>In every mode</h4>
       <p style="margin-bottom:0">Claude still stops and asks before anything consequential: deleting many files, reaching outside your folder, or installing software. If a request surprises you, type <b>"why do you need that?"</b> Nothing proceeds until you agree to it.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="7"><span class="box"></span><span class="lbl">Claude made me a file</span></label>
@@ -962,12 +1135,12 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">The section most people skip, and the one that separates those who build things from those who nearly build things.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <path d="M14 78s24-34 60-34 60 34 60 34-24 34-60 34-60-34-60-34z" fill="#fbe6d2" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <circle cx="74" cy="78" r="19" fill="#fffdf7" stroke="#1c1814" stroke-width="4"/>
-      <circle cx="74" cy="78" r="8" fill="#1c1814"/>
-      <path d="M150 118l30-30a9 9 0 0 0-13-13l-30 30-5 18 18-5z" fill="#f5a463" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M132 105l13 13" stroke="#1c1814" stroke-width="3.5"/>
-      <path d="M158 40v12M148 46h20" stroke="#e0701f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M14 78s24-34 60-34 60 34 60 34-24 34-60 34-60-34-60-34z" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="74" cy="78" r="19" fill="#FFFFFF" stroke="#0B0B0C" stroke-width="4"/>
+      <circle cx="74" cy="78" r="8" fill="#0B0B0C"/>
+      <path d="M150 118l30-30a9 9 0 0 0-13-13l-30 30-5 18 18-5z" fill="#A2D7DD" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M132 105l13 13" stroke="#0B0B0C" stroke-width="3.5"/>
+      <path d="M158 40v12M148 46h20" stroke="#00A3AF" stroke-width="4" stroke-linecap="round"/>
     </svg>
   </div>
 
@@ -993,8 +1166,8 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <div class="osrow" style="margin-top:18px">
       <span class="lab">Or by hand on</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
-        <button data-os="mac" class="on">🍎 Mac</button>
-        <button data-os="win">🪟 Windows</button>
+        <button data-os="mac" class="on">Mac</button>
+        <button data-os="win">Windows</button>
       </div>
     </div>
     <p style="font-size:.95rem;color:var(--ink-soft)">Right-click <code>index.html</code> on the left, choose <span class="mac-only">Reveal in Finder</span><span class="win-only">Reveal in File Explorer</span>, and double-click it.</p>
@@ -1003,7 +1176,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <figcaption>Roughly what comes back. Yours will look different, and that is fine.</figcaption>
     </figure>
     <div class="note tip">
-      <h4>🔁 Refresh after every change</h4>
+      <h4>Refresh after every change</h4>
       <p style="margin-bottom:0">Your browser has no idea Claude edited the file. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>R</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>R</kbd></span>. You will meet this problem many times before refreshing becomes reflex. If nothing has changed, ask <b>"did you save the file?"</b></p>
     </div>
   </div>
@@ -1071,14 +1244,14 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <h2>Git</h2>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <path d="M30 110h140" stroke="#1c1814" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="52" cy="110" r="11" fill="#f5a463" stroke="#1c1814" stroke-width="4"/>
-      <circle cx="100" cy="110" r="11" fill="#e0701f" stroke="#1c1814" stroke-width="4"/>
-      <circle cx="148" cy="110" r="11" fill="#a94d12" stroke="#1c1814" stroke-width="4"/>
-      <path d="M52 99V62h28l-7 8 7 8H52" fill="#f3ebda" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M100 99V46h28l-7 8 7 8h-28" fill="#fbe6d2" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M148 99V72h26l-7 7 7 7h-26" fill="#f3ebda" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M40 132h120" stroke="#1c1814" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+      <path d="M30 110h140" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="52" cy="110" r="11" fill="#A2D7DD" stroke="#0B0B0C" stroke-width="4"/>
+      <circle cx="100" cy="110" r="11" fill="#00A3AF" stroke="#0B0B0C" stroke-width="4"/>
+      <circle cx="148" cy="110" r="11" fill="#274A78" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M52 99V62h28l-7 8 7 8H52" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M100 99V46h28l-7 8 7 8h-28" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M148 99V72h26l-7 7 7 7h-26" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M40 132h120" stroke="#0B0B0C" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
     </svg>
   </div>
 
@@ -1103,7 +1276,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p style="margin-bottom:0">Which is the difference between "oh well" and "oh no". There is no such thing as committing too often, and a save point created after the disaster is of no use to anybody.</p>
     </div>
     <div class="note brain">
-      <h4>🧠 Two more words you will hear</h4>
+      <h4>Two more words you will hear</h4>
       <ul class="plain">
         <li><b>Push.</b> Sending your commits up to GitHub, which is Section 10.</li>
         <li><b>Repo.</b> Short for repository. Your project together with all of its history.</li>
@@ -1122,11 +1295,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">Two free accounts and one prompt, and you have a link you can send to anyone.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <circle cx="82" cy="78" r="46" fill="#fbe6d2" stroke="#1c1814" stroke-width="4"/>
-      <path d="M36 78h92M82 32c14 14 14 78 0 92M82 32c-14 14-14 78 0 92" stroke="#1c1814" stroke-width="3.5"/>
-      <path d="M142 118l-9-9a11 11 0 0 1 0-16l9-9a11 11 0 0 1 16 16l-3 3" fill="none" stroke="#e0701f" stroke-width="5" stroke-linecap="round"/>
-      <path d="M162 62l9 9a11 11 0 0 1 0 16l-9 9a11 11 0 0 1-16-16l3-3" fill="none" stroke="#f5a463" stroke-width="5" stroke-linecap="round"/>
-      <path d="M148 90l16-16" stroke="#1c1814" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="82" cy="78" r="46" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M36 78h92M82 32c14 14 14 78 0 92M82 32c-14 14-14 78 0 92" stroke="#0B0B0C" stroke-width="3.5"/>
+      <path d="M142 118l-9-9a11 11 0 0 1 0-16l9-9a11 11 0 0 1 16 16l-3 3" fill="none" stroke="#00A3AF" stroke-width="5" stroke-linecap="round"/>
+      <path d="M162 62l9 9a11 11 0 0 1 0 16l-9 9a11 11 0 0 1-16-16l3-3" fill="none" stroke="#A2D7DD" stroke-width="5" stroke-linecap="round"/>
+      <path d="M148 90l16-16" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
     </svg>
   </div>
 
@@ -1147,7 +1320,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <li>Approve the permissions box, and select <b>Hobby</b> when it asks, which is the free tier.</li>
     </ol>
     <div class="note warn">
-      <h4>⚖️ One rule about the free tier</h4>
+      <h4>One rule about the free tier</h4>
       <p style="margin-bottom:0">Hobby is for <b>personal, non-commercial</b> projects. Learning, side projects and showing your family all qualify. The moment it becomes a business or a client's site, Vercel expects you on a paid plan.</p>
     </div>
   </div>
@@ -1161,7 +1334,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <button>Copy</button>
     </div>
     <div class="note see">
-      <h4>👀 What happens</h4>
+      <h4>What happens</h4>
       <ul class="plain">
         <li>Claude pushes your project up to GitHub, and may ask you to log in once.</li>
         <li>You connect that GitHub project to Vercel in the browser.</li>
@@ -1170,11 +1343,11 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       </ul>
     </div>
     <div class="note stuck">
-      <h4>🔐 If your link asks people to log in</h4>
+      <h4>If your link asks people to log in</h4>
       <p style="margin-bottom:0">That is <b>Deployment Protection</b>, which locks the page to your account. Visit <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a>, open your project, then <b>Settings</b>, then <b>Deployment Protection</b>, turn <b>Vercel Authentication</b> off, and save.</p>
     </div>
     <div class="note tip">
-      <h4>♻️ From this point forward</h4>
+      <h4>From this point forward</h4>
       <p style="margin-bottom:0">Say <b>"commit and push this"</b>, wait a minute, and refresh your link. Vercel updates the live site on its own each time. You connect GitHub to Vercel once, and that connection keeps working indefinitely.</p>
     </div>
     <label class="check"><input type="checkbox" data-check="10"><span class="box"></span><span class="lbl">My work is on the internet</span></label>
@@ -1190,13 +1363,13 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
       <p class="sub">API keys, the <code>.env</code> file, and putting AI inside the thing you built.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <rect x="40" y="72" width="80" height="60" rx="12" fill="#fbe6d2" stroke="#1c1814" stroke-width="4"/>
-      <path d="M58 72V56a22 22 0 0 1 44 0v16" fill="none" stroke="#1c1814" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="80" cy="98" r="8" fill="#1c1814"/>
-      <path d="M80 106v10" stroke="#1c1814" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="152" cy="52" r="12" fill="#e0701f" stroke="#1c1814" stroke-width="4"/>
-      <path d="M152 64v30M146 78h12M146 88h12" stroke="#1c1814" stroke-width="4" stroke-linecap="round"/>
-      <path d="M138 118h34M144 128h22" stroke="#f5a463" stroke-width="4" stroke-linecap="round"/>
+      <rect x="40" y="72" width="80" height="60" rx="12" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M58 72V56a22 22 0 0 1 44 0v16" fill="none" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="80" cy="98" r="8" fill="#0B0B0C"/>
+      <path d="M80 106v10" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="152" cy="52" r="12" fill="#00A3AF" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M152 64v30M146 78h12M146 88h12" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
+      <path d="M138 118h34M144 128h22" stroke="#A2D7DD" stroke-width="4" stroke-linecap="round"/>
     </svg>
   </div>
 
@@ -1206,7 +1379,7 @@ footer .hr{height:2px;background:repeating-linear-gradient(90deg,var(--orange) 0
     <p>So they issue you an <b>API key</b>, a long random string that functions as a password:</p>
     <div class="copy plain"><div class="txt">sk-or-v1-8f3a...2c7d</div></div>
     <div class="note danger">
-      <h4>🚨 An API key is a password with your credit card attached</h4>
+      <h4>An API key is a password with your credit card attached</h4>
       <p style="margin-bottom:0">If somebody else obtains yours, they use the service as you and the bill arrives at your door. There are bots scanning public code for leaked keys around the clock. This is not a hypothetical risk.</p>
     </div>
   </div>
@@ -1225,11 +1398,11 @@ WEATHER_API_KEY=abc123def456</div></div>
 .env.local
 node_modules</div></div>
     <div class="note tip">
-      <h4>🧪 The two-file convention</h4>
+      <h4>The two-file convention</h4>
       <p style="margin-bottom:0">Projects often ship a <code>.env.example</code> listing the key names with no values, so the next person knows what to supply. That file is committed. The real <code>.env</code> never is.</p>
     </div>
     <div class="note brain">
-      <h4>🧠 Why the leading dot</h4>
+      <h4>Why the leading dot</h4>
       <p style="margin-bottom:0">A filename beginning with a dot is hidden by default on Mac and Linux, which is why you may not find it in Finder. VS Code displays it without complaint. Press <span class="mac-only"><kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>.</kbd></span><span class="win-only"><kbd>Ctrl</kbd>+<kbd>H</kbd></span> if you need to reveal hidden files elsewhere.</p>
     </div>
     <p>You do not have to create these by hand:</p>
@@ -1244,7 +1417,7 @@ node_modules</div></div>
     <h3>Obtaining a real key: OpenRouter</h3>
     <p class="lead"><a href="https://openrouter.ai" target="_blank" rel="noopener">OpenRouter</a> is a single door to hundreds of AI models, Claude and GPT and Gemini and open-source ones, all behind one key. It means the application <i>you</i> build can have AI inside it, not only the editor you build it in.</p>
     <div class="note brain">
-      <h4>🤔 Do I not already pay for Claude?</h4>
+      <h4>Do I not already pay for Claude?</h4>
       <p style="margin-bottom:0">You do, and that covers Claude helping <b>you</b> build. This key covers <b>your application</b> doing AI work for its own users. They are separate jobs. Your Claude subscription cannot power a website you built, any more than a Netflix account can power a cinema.</p>
     </div>
     <ol class="dolist">
@@ -1256,7 +1429,7 @@ node_modules</div></div>
       <li>Paste it into your <code>.env</code> file. Not into a chat, not into a note, and not into your code.</li>
     </ol>
     <div class="note warn">
-      <h4>💰 On money, before you spend any</h4>
+      <h4>On money, before you spend any</h4>
       <ul class="plain">
         <li>Signing up is free and no card is required to look around.</li>
         <li>Some models cost nothing to use, usually marked with <code>:free</code> in the name. Begin with those.</li>
@@ -1277,12 +1450,12 @@ node_modules</div></div>
       <div class="phrase"><span>Explain, in beginner words, exactly how my code reads the key out of .env and what would happen if the file was missing.</span><span class="mini">copy</span></div>
     </div>
     <div class="note stuck">
-      <h4>🌐 "It works on my computer but not on the live site"</h4>
+      <h4>"It works on my computer but not on the live site"</h4>
       <p>This is nearly always the explanation. Your <code>.env</code> deliberately never left your machine, so the deployed site has no key to read.</p>
       <p style="margin-bottom:0">Visit <a href="https://vercel.com/dashboard" target="_blank" rel="noopener">vercel.com/dashboard</a>, open your project, then <b>Settings</b>, then <b>Environment Variables</b>. Add the same name and value there and redeploy. The same secret, told to Vercel directly rather than travelling through GitHub. This is how professional teams handle it.</p>
     </div>
     <div class="note danger">
-      <h4>🙈 If you leak a key</h4>
+      <h4>If you leak a key</h4>
       <p style="margin-bottom:0">Deleting the file is not sufficient, because Git remembers and the scanning bots move faster than you can undo. Go to the service, delete that key, and issue a new one. Thirty seconds of work and the leaked key becomes worthless. Most people do this at least once. The only real mistake is failing to revoke.</p>
     </div>
   </div>
@@ -1297,26 +1470,26 @@ node_modules</div></div>
       <p class="sub">The safety rules, the cheat sheet, every way you will get stuck, and the final exam.</p>
     </div>
     <svg class="illus" viewBox="0 0 200 156" fill="none" aria-hidden="true">
-      <path d="M100 28l72 28-72 28-72-28 72-28z" fill="#fbe6d2" stroke="#1c1814" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M52 70v28c0 12 22 20 48 20s48-8 48-20V70" fill="none" stroke="#1c1814" stroke-width="4" stroke-linecap="round"/>
-      <path d="M172 56v34" stroke="#1c1814" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="172" cy="96" r="7" fill="#e0701f" stroke="#1c1814" stroke-width="4"/>
-      <path d="M100 130v10" stroke="#f5a463" stroke-width="4" stroke-linecap="round"/>
+      <path d="M100 28l72 28-72 28-72-28 72-28z" fill="#EBF6F7" stroke="#0B0B0C" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M52 70v28c0 12 22 20 48 20s48-8 48-20V70" fill="none" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
+      <path d="M172 56v34" stroke="#0B0B0C" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="172" cy="96" r="7" fill="#00A3AF" stroke="#0B0B0C" stroke-width="4"/>
+      <path d="M100 130v10" stroke="#A2D7DD" stroke-width="4" stroke-linecap="round"/>
     </svg>
   </div>
 
   <div class="block">
     <h3>Three rules that keep you safe</h3>
     <div class="note danger">
-      <h4>🔒 1. Never paste these into a chat</h4>
+      <h4>1. Never paste these into a chat</h4>
       <p style="margin-bottom:0">Passwords, API keys, secret tokens, database passwords, or real customer names, emails and card numbers. If a project needs a key, say: <b>"Set this up as an environment variable so the key isn't in the code."</b></p>
     </div>
     <div class="note stuck">
-      <h4>🛑 2. If it goes off the rails, say these in order</h4>
+      <h4>2. If it goes off the rails, say these in order</h4>
       <p style="margin-bottom:0">First <b>"Stop. Don't change anything else."</b> Then <b>"Explain what you just changed, in simple words."</b> Then <b>"Undo that."</b> You will not hurt its feelings, and you cannot break your computer from a chat box.</p>
     </div>
     <div class="note tip">
-      <h4>🐢 3. Small changes beat large ones</h4>
+      <h4>3. Small changes beat large ones</h4>
       <p style="margin-bottom:0">One change, look, commit, every time. It feels slower and it is considerably faster.</p>
     </div>
   </div>
@@ -1335,7 +1508,7 @@ node_modules</div></div>
       <div class="phrase"><span>Commit this working version, then push it.</span><span class="mini">copy</span></div>
     </div>
     <div class="note brain" style="margin-top:24px">
-      <h4>🌟 Four things worth remembering</h4>
+      <h4>Four things worth remembering</h4>
       <p style="margin-bottom:0">You are not required to understand the code, but you are required to look at the result. Ask the moment you are confused. Keep your changes small. Commit whenever something works.</p>
     </div>
   </div>
@@ -1346,8 +1519,8 @@ node_modules</div></div>
     <div class="osrow" style="margin-top:16px">
       <span class="lab">Showing answers for</span>
       <div class="osswitch" role="group" aria-label="Choose your computer">
-        <button data-os="mac" class="on">🍎 Mac</button>
-        <button data-os="win">🪟 Windows</button>
+        <button data-os="mac" class="on">Mac</button>
+        <button data-os="win">Windows</button>
       </div>
     </div>
 
@@ -1456,7 +1629,7 @@ node_modules</div></div>
   </div>
 
   <div class="quiz" data-quiz="12">
-    <div class="quiz-head"><span class="zap">🎓</span><h3>Final exam</h3></div>
+    <div class="quiz-head"><span class="zap">Final</span><h3>Final exam</h3></div>
     <p class="quiz-sub">Eight questions drawn from across the twelve sections. Wrong answers cost you nothing, so guess freely. Pass and you graduate.</p>
 
     <div class="q">
@@ -1549,7 +1722,7 @@ node_modules</div></div>
   </div>
 
   <div class="cert" id="cert">
-    <span class="seal">🎓</span>
+    
     <h2>Certificate of Absolutely Getting On With It</h2>
     <p style="color:var(--ink-soft);margin-bottom:0">This certifies that</p>
     <input class="name" id="certname" placeholder="your name here" maxlength="34" aria-label="Your name">
@@ -1570,7 +1743,7 @@ node_modules</div></div>
       <div class="phrase"><span>Build a page showing my photos in a grid I can click through.</span><span class="mini">copy</span></div>
     </div>
     <div class="note brain" style="margin-top:24px">
-      <h4>🚀 The last piece of advice</h4>
+      <h4>The last piece of advice</h4>
       <p style="margin-bottom:0">Build the thing you keep wishing existed. It will be harder than any tutorial and you will learn ten times as much from it. You already know every step: ask, look, correct, commit, push.</p>
     </div>
   </div>
@@ -1812,7 +1985,7 @@ node_modules</div></div>
             var already = !!S.quiz[num];
             S.quiz[num] = true; save();
             paint(true);
-            if(!already) toast("Final exam passed 🎓 You're a vibe coder.");
+            if(!already) toast("Final exam passed. You're a vibe coder.");
           }
         } else {
           opt.classList.add("wrong");
@@ -1926,7 +2099,7 @@ node_modules</div></div>
   function boom(){
     var c = $("#confetti"), ctx = c.getContext("2d");
     c.style.display = "block"; c.width = innerWidth; c.height = innerHeight;
-    var cols = ["#e0701f","#f5a463","#a94d12","#1c1814","#e9dec7","#fbe6d2"], ps = [];
+    var cols = ["#00A3AF","#A2D7DD","#274A78","#0B0B0C","#EBF6F7","#DCEEF1"], ps = [];
     for(var i = 0; i < 170; i++) ps.push({
       x: Math.random()*c.width, y: -20 - Math.random()*c.height*0.5,
       w: 6 + Math.random()*8, h: 8 + Math.random()*10,
